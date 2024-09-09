@@ -1,0 +1,13 @@
+T1	ORGANIC 108 129	dimethyl acet - amide
+T2	MATERIAL_AMOUNT 157 166	5e10 wt %
+T3	POLYMER 38 43	SPTES
+T4	POLYMER 87 94	puriﬁed
+T5	ORGANIC 132 136	DMAc
+T6	ORGANIC 139 152	Sigma Aldrich
+T7	CONDITION 425 456	in sulfuric acid ( 4 M , 24 h )
+T8	CONDITION 334 360	for 2 h in deionized water
+T9	REF_EXP 406 410	they
+T10	MATERIAL_AMOUNT 444 447	4 M
+T11	INORGANIC 428 441	sulfuric acid
+T12	INORGANIC 345 360	deionized water
+T13	CONDITION 365 399	dried under vacuum ( 24 h , 80 C )

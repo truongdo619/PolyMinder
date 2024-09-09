@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "noEmit": true,
+  },
+  "include": ["./pdf-highlighter", "pdf-highlighter/brat_embed", "../pdf-highlighter/components/BratEmbedding.tsx"]
+}
