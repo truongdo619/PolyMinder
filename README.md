@@ -17,6 +17,9 @@ For detailed information on setting up and running the backend, please refer to 
 
 For detailed information on setting up and running the frontend, please refer to the [web_interface README](web_interface/README.md).
 
+## Demo Video
+
+Watch the demo video [here](https://www.youtube.com/watch?v=Q6RR7kQHSvU).
 
 ## License
 
