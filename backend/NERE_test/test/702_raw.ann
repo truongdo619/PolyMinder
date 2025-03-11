@@ -1,0 +1,48 @@
+T1	POLYMER 41 63	poly(3-hexylthiophene)
+T2	POLYMER 65 69	P3HT
+T3	POLYMER 113 189	poly(ε-caprolactone)-block-poly(3-hexylthiophene)-block-poly(ε-caprolactone)
+T4	POLYMER 191 207	PCL-b-P3HT-b-PCL
+T5	POLYMER_FAMILY 233 238	epoxy
+T6	POLYMER 244 260	PCL-b-P3HT-b-PCL
+T7	MONOMER 343 374	2-bromo-3-hexyl-5-iodothiophene
+T8	MONOMER 414 428	ε-caprolactone
+T9	POLYMER 868 872	P3HT
+T10	POLYMER_FAMILY 953 958	epoxy
+T11	POLYMER_FAMILY 991 996	epoxy
+T12	POLYMER 1262 1266	P3HT
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	abbreviation_of Arg1:T4 Arg2:T3
+T13	CHAR_METHOD 757 792	dynamic mechanical thermal analysis
+T14	SYN_METHOD 323 339	polycondensation
+R3	synthesised_by Arg1:T6 Arg2:T14
+T15	SYN_METHOD 383 410	ring-opening polymerization
+R4	synthesised_by Arg1:T6 Arg2:T15
+T16	CHAR_METHOD 463 505	1H nuclear magnetic resonance spectroscopy
+T17	CHAR_METHOD 507 513	1H NMR
+R5	abbreviation_of Arg1:T17 Arg2:T16
+T18	REF_EXP 430 432	it
+R6	refers_to Arg1:T18 Arg2:T6
+R7	characterized_by Arg1:T18 Arg2:T17
+T19	CHAR_METHOD 516 545	gel permeation chromatography
+T20	CHAR_METHOD 547 550	GPC
+R8	abbreviation_of Arg1:T20 Arg2:T19
+R9	characterized_by Arg1:T18 Arg2:T20
+T21	CHAR_METHOD 556 589	differential scanning calorimetry
+T22	CHAR_METHOD 591 594	DSC
+R10	abbreviation_of Arg1:T22 Arg2:T21
+R11	characterized_by Arg1:T18 Arg2:T22
+T24	CHAR_METHOD 677 709	transmission electron microscopy
+T25	CHAR_METHOD 711 714	TEM
+R12	abbreviation_of Arg1:T25 Arg2:T24
+T26	CHAR_METHOD 717 745	small angle X-ray scattering
+T27	CHAR_METHOD 747 751	SAXS
+R13	abbreviation_of Arg1:T27 Arg2:T26
+T28	CHAR_METHOD 794 798	DMTA
+R14	abbreviation_of Arg1:T28 Arg2:T13
+T29	CHAR_METHOD 816 844	small angle X-ray scattering
+T30	CHAR_METHOD 846 850	SAXS
+R18	abbreviation_of Arg1:T30 Arg2:T29
+T31	PROP_NAME 1145 1165	thermal conductivity
+T32	PROP_NAME 1102 1122	dielectric constants
+T23	CONDITION 1231 1277	with increasing the content of P3HT nanophases
+R15	has_condition Arg1:T31 Arg2:T23	

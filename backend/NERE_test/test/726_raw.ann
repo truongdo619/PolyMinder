@@ -1,0 +1,54 @@
+T1	POLYMER 24 43	poly(vinyl alcohol)
+T3	INORGANIC 124 145	phenyltriethoxysilane
+T4	INORGANIC 147 151	PTES
+T5	INORGANIC 157 179	diethoxydiphenylsilane
+T6	INORGANIC 181 186	DEDPS
+T7	POLYMER 812 815	PVA
+T8	INORGANIC 816 820	PTES
+T9	MATERIAL_AMOUNT 842 852	0.4 mmol/g
+T10	INORGANIC 853 857	PTES
+T11	PROP_NAME 903 907	flux
+T12	PROP_VALUE 911 921	145 g/m2 h
+T13	PROP_NAME 928 945	separation factor
+T14	PROP_VALUE 949 953	1026
+T15	COMPOSITE 812 820	PVA-PTES
+R1	abbreviation_of Arg1:T4 Arg2:T3
+R2	abbreviation_of Arg1:T6 Arg2:T5
+R8	has_property Arg1:T15 Arg2:T11
+R10	has_property Arg1:T15 Arg2:T13
+R9	has_value Arg1:T11 Arg2:T12
+R11	has_value Arg1:T13 Arg2:T14
+R3	has_amount Arg1:T10 Arg2:T9
+T18	CONDITION 954 1028	for the pervaporation dehydration of 85% ethanol aqueous solution at 40 °C
+R5	has_condition Arg1:T12 Arg2:T18
+R7	has_condition Arg1:T14 Arg2:T18
+T16	SYN_METHOD 102 117	sol-gel process
+T19	POLYMER 45 48	PVA
+R12	abbreviation_of Arg1:T19 Arg2:T1
+T2	COMPOSITE 24 62	poly(vinyl alcohol) (PVA)/organosilica
+R13	synthesised_by Arg1:T2 Arg2:T16
+T20	CHAR_METHOD 684 689	FT-IR
+T21	CHAR_METHOD 691 694	TGA
+T22	CHAR_METHOD 696 699	SEM
+T23	REF_EXP 321 333	the membrane
+R14	refers_to Arg1:T23 Arg2:T2
+T24	REF_EXP 406 433	the as-fabricated membranes
+R15	refers_to Arg1:T24 Arg2:T23
+T25	REF_EXP 605 617	the membrane
+R16	refers_to Arg1:T25 Arg2:T24
+T26	REF_EXP 760 769	membranes
+R17	refers_to Arg1:T26 Arg2:T25
+R18	characterized_by Arg1:T26 Arg2:T20
+R19	characterized_by Arg1:T26 Arg2:T21
+R20	characterized_by Arg1:T26 Arg2:T22
+T28	MATERIAL_AMOUNT 991 994	85%
+T30	ORGANIC 50 62	organosilica
+T31	ORGANIC 208 220	organosilica
+T32	ORGANIC 300 312	organosilane
+T33	ORGANIC 479 491	organosilane
+T34	ORGANIC 250 257	ethanol
+T17	CONDITION 888 896	at 80 °C
+T27	ORGANIC 995 1002	ethanol
+R4	has_amount Arg1:T27 Arg2:T28	
+R6	has_condition Arg1:T12 Arg2:T17	
+R21	has_condition Arg1:T14 Arg2:T17	

@@ -1,0 +1,11 @@
+T1	ORGANIC 106 145	methoxyoligo (oxyethylene) methacrylate
+T2	ORGANIC 147 152	MOEnM
+T3	POLYMER 158 183	poly(methyl methacrylate)
+T4	POLYMER 185 189	PMMA
+T5	PROP_NAME 489 509	ionic conductivities
+T6	PROP_VALUE 510 537	in the order of 10-3 S cm-1
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	abbreviation_of Arg1:T4 Arg2:T3
+R5	has_value Arg1:T5 Arg2:T6
+T9	CONDITION 538 545	at 25°C
+R3	has_condition Arg1:T6 Arg2:T9

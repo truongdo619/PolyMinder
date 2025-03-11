@@ -1,0 +1,90 @@
+T1	MONOMER 8 30	triarylaminooxadiazole
+T2	POLYMER 84 88	PTOA
+T3	PROP_NAME 226 228	Tg
+T4	PROP_VALUE 231 237	218 °C
+T5	PROP_NAME 239 241	Td
+T6	PROP_VALUE 244 250	373 °C
+T7	POLYMER 266 270	PTOA
+T8	POLYMER 707 711	PTOA
+T9	POLYMER 947 951	PTOA
+T10	POLYMER 1395 1399	PTOA
+T11	PROP_NAME 1416 1426	brightness
+T12	PROP_NAME 1431 1441	efficiency
+T13	PROP_VALUE 1472 1481	248 cd/m2
+T14	PROP_VALUE 1486 1495	0.54 cd/A
+T15	POLYMER 1521 1525	PTOA
+T16	POLYMER 1579 1583	PTOA
+R2	has_value Arg1:T3 Arg2:T4
+R4	has_value Arg1:T5 Arg2:T6
+T17	PROP_NAME 122 139	thermal stability
+T18	REF_EXP 208 215	polymer
+R1	refers_to Arg1:T18 Arg2:T2
+R3	has_property Arg1:T18 Arg2:T17
+R5	has_property Arg1:T18 Arg2:T3
+R6	has_property Arg1:T18 Arg2:T5
+T19	PROP_NAME 277 324	photoluminescence (PL) with an emission maximum
+R7	has_property Arg1:T7 Arg2:T19
+T20	PROP_VALUE 328 334	426 nm
+R8	has_value Arg1:T19 Arg2:T20
+T21	PROP_NAME 439 461	emission maximum of PL
+T22	PROP_VALUE 477 483	458 nm
+T23	CONDITION 253 264	In solution
+R9	has_condition Arg1:T20 Arg2:T23
+T24	CONDITION 420 433	In solid film
+R10	has_value Arg1:T21 Arg2:T22
+R11	has_condition Arg1:T22 Arg2:T24
+R12	has_property Arg1:T7 Arg2:T21
+R13	has_value Arg1:T11 Arg2:T13
+R14	has_value Arg1:T12 Arg2:T14
+T25	POLYMER 1589 1611	poly(n-vinylcarbazole)
+T26	POLYMER 1613 1616	PVK
+R15	abbreviation_of Arg1:T26 Arg2:T25
+T27	POLYMER 1714 1718	PTOA
+T28	POLYMER 1719 1722	PVK
+T29	COMPOSITE 1714 1722	PTOA-PVK
+T30	MONOMER 42 59	tetraphenylsilane
+T31	POLYMER 8 82	triarylaminooxadiazole-containing tetraphenylsilane light-emitting polymer
+R16	abbreviation_of Arg1:T2 Arg2:T31	
+T32	MONOMER 184 201	tetraphenylsilane
+T33	MONOMER 390 412	triarylaminooxadiazole
+T34	PROP_NAME 512 514	PL
+T35	CONDITION 515 526	in solution
+R17	has_condition Arg1:T34 Arg2:T35	
+R18	has_property Arg1:T7 Arg2:T34	
+T36	PROP_NAME 650 652	PL
+T37	REF_EXP 576 590	the solid film
+R19	refers_to Arg1:T37 Arg2:T7	
+R20	has_property Arg1:T37 Arg2:T36	
+T38	PROP_NAME 672 684	PL stability
+R21	has_property Arg1:T8 Arg2:T38	
+T39	CHAR_METHOD 752 769	thermal annealing
+T40	CONDITION 770 794	at elevated temperatures
+R22	characterized_by Arg1:T8 Arg2:T39	
+R23	has_condition Arg1:T38 Arg2:T40	
+T41	PROP_NAME 829 831	PL
+T42	REF_EXP 875 892	a pristine sample
+T43	REF_EXP 897 933	a repeatedly thermally annealed film
+T44	CONDITION 935 944	at 200 °C
+R24	refers_to Arg1:T42 Arg2:T8	
+R25	refers_to Arg1:T43 Arg2:T8	
+R26	has_property Arg1:T42 Arg2:T41	
+R27	has_property Arg1:T43 Arg2:T41	
+R28	has_condition Arg1:T41 Arg2:T44	
+T45	PROP_NAME 969 971	EL
+T46	PROP_VALUE 992 998	458 nm
+R29	has_value Arg1:T45 Arg2:T46	
+T47	PROP_VALUE 1028 1041	around 530 nm
+T48	PROP_NAME 1122 1124	EL
+T49	PROP_VALUE 1134 1144	400-650 nm
+R30	has_value Arg1:T48 Arg2:T49	
+T50	MONOMER 1196 1206	oxadiazole
+T51	MONOMER 1211 1233	diphenyl(4-tolyl)amine
+R31	has_value Arg1:T45 Arg2:T47	
+T52	PROP_NAME 1303 1364	Commission Internationale de L'Eclairage (CIEx,y) coordinates
+T53	PROP_VALUE 1366 1375	0.20,0.23
+R32	has_value Arg1:T52 Arg2:T53	
+T54	PROP_NAME 1515 1517	EL
+T55	CONDITION 1563 1645	by blending the PTOA with poly(n-vinylcarbazole) (PVK) in different concentrations
+R33	has_condition Arg1:T54 Arg2:T55	
+T56	PROP_NAME 1683 1685	PL
+T57	PROP_NAME 1690 1692	EL

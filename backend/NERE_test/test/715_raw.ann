@@ -1,0 +1,23 @@
+T1	POLYMER 0 19	Poly(p-vinylphenol)
+T2	POLYMER 21 25	PVPh
+T3	POLYMER 31 57	poly(N-acryloylmorpholine)
+T4	POLYMER 59 63	PAcM
+T5	POLYMER 527 531	PVPh
+T6	POLYMER 587 591	PAcM
+T7	POLYMER 700 704	PAcM
+T8	POLYMER 1056 1060	PVPh
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	abbreviation_of Arg1:T4 Arg2:T3
+T9	OTHER_MATERIAL 96 109	ethanol/water
+T10	MATERIAL_AMOUNT 111 114	1:1
+R3	has_amount Arg1:T9 Arg2:T10
+T11	PROP_NAME 276 304	glass transition temperature
+T12	CHAR_METHOD 342 381	Fourier transform infrared spectroscopy
+T13	CHAR_METHOD 386 441	13C solid-state nuclear magnetic resonance spectroscopy
+T14	CHAR_METHOD 634 666	X-ray photoelectron spectroscopy
+T15	ORGANIC 96 103	ethanol
+T16	POLYMER 174 191	dimethylformamide
+T17	INORGANIC 466 474	hydrogen
+T18	INORGANIC 571 583	ether oxygen
+T19	INORGANIC 682 690	nitrogen
+T20	INORGANIC 726 734	hydrogen

@@ -1,0 +1,66 @@
+T1	POLYMER 55 80	poly(N-vinyl pyrrolidone)
+T2	POLYMER 82 85	PVP
+T3	POLYMER 104 125	poly(ethylene glycol)
+T4	POLYMER 127 130	PEG
+T5	PROP_NAME 135 137	Mw
+T6	PROP_VALUE 140 143	400
+T7	POLYMER 390 393	PEG
+T8	POLYMER 525 528	PEG
+T9	POLYMER 767 770	PVP
+T10	POLYMER 812 815	PVP
+T11	POLYMER 857 860	PEG
+T12	POLYMER 904 907	PVP
+T13	POLYMER 1018 1021	PVP
+T14	POLYMER 1056 1059	PVP
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	abbreviation_of Arg1:T4 Arg2:T3
+R3	has_property Arg1:T3 Arg2:T5
+R4	has_value Arg1:T5 Arg2:T6
+T15	PROP_NAME 38 54	molecular weight
+R5	has_property Arg1:T1 Arg2:T15
+T16	CHAR_METHOD 235 238	DSC
+T17	OTHER_MATERIAL 23 131	blends of high-molecular weight poly(N-vinyl pyrrolidone) (PVP) with short-chain poly(ethylene glycol) (PEG)
+R6	characterized_by Arg1:T17 Arg2:T16
+T18	PROP_NAME 486 518	temperatures of glass transition
+T19	PROP_NAME 520 522	Tg
+R7	abbreviation_of Arg1:T19 Arg2:T18
+T20	PROP_NAME 529 549	cold crystallization
+T21	PROP_NAME 551 553	Tc
+R8	abbreviation_of Arg1:T21 Arg2:T20
+R9	has_property Arg1:T8 Arg2:T21
+T22	PROP_NAME 560 567	melting
+T23	PROP_NAME 569 571	Tm
+R10	abbreviation_of Arg1:T23 Arg2:T22
+T24	PROP_NAME 589 612	change in heat capacity
+T25	PROP_NAME 614 617	ΔCp
+R11	abbreviation_of Arg1:T25 Arg2:T24
+T26	PROP_NAME 670 672	Tg
+T27	PROP_NAME 733 735	Tg
+T28	PROP_NAME 736 738	Tm
+T29	PROP_NAME 740 742	Tc
+T30	PROP_NAME 743 745	Tm
+T31	PROP_NAME 750 752	Tc
+T32	PROP_NAME 753 755	Tg
+T33	OTHER_MATERIAL 767 774	PVP-PEG
+T34	OTHER_MATERIAL 812 819	PVP-PEG
+T35	OTHER_MATERIAL 1056 1063	PVP-PEG
+T36	POLYMER 771 774	PEG
+T37	POLYMER 816 819	PEG
+T38	POLYMER 1060 1063	PEG
+T39	PROP_NAME 954 956	Tg
+T40	REF_EXP 684 689	blend
+R12	refers_to Arg1:T40 Arg2:T17
+R13	has_property Arg1:T40 Arg2:T19
+R14	has_property Arg1:T40 Arg2:T23
+R15	has_property Arg1:T40 Arg2:T25
+R16	has_property Arg1:T40 Arg2:T26
+R17	has_property Arg1:T33 Arg2:T27
+R18	has_property Arg1:T33 Arg2:T28
+R19	has_property Arg1:T33 Arg2:T29
+R20	has_property Arg1:T33 Arg2:T30
+R21	has_property Arg1:T33 Arg2:T31
+R22	has_property Arg1:T33 Arg2:T32
+R23	has_property Arg1:T35 Arg2:T39
+T41	CONDITION 180 215	in a common solvent (ethyl alcohol)
+T42	ORGANIC 201 214	ethyl alcohol
+R24	has_condition Arg1:T6 Arg2:T41	

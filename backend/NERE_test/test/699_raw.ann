@@ -1,0 +1,43 @@
+T1	POLYMER 194 219	poly(vinylidene fluoride)
+T2	POLYMER_FAMILY 356 381	poly(alkyl methacrylate)s
+T3	PROP_NAME 106 126	dielectric constants
+T4	PROP_NAME 128 129	ε
+R1	abbreviation_of Arg1:T4 Arg2:T3
+T5	PROP_NAME 225 226	ε
+T6	PROP_NAME 247 275	glass transition temperature
+T7	PROP_NAME 277 279	Tg
+R2	abbreviation_of Arg1:T7 Arg2:T6
+R3	has_property Arg1:T1 Arg2:T5
+R4	has_property Arg1:T1 Arg2:T7
+T8	PROP_NAME 387 388	ε
+T9	PROP_NAME 409 411	Tg
+T10	PROP_NAME 419 438	melting temperature
+R5	has_property Arg1:T2 Arg2:T8
+R6	has_property Arg1:T2 Arg2:T9
+R7	has_property Arg1:T2 Arg2:T10
+T11	POLYMER_FAMILY 517 540	cyanoethylated polymers
+T12	POLYMER_FAMILY 820 842	cyanoethylated polymer
+T13	PROP_NAME 546 547	ε
+R8	has_property Arg1:T11 Arg2:T13
+T14	PROP_NAME 638 639	ε
+T15	PROP_NAME 660 679	dielectric constant
+R9	has_property Arg1:T11 Arg2:T14
+R10	has_property Arg1:T11 Arg2:T15
+T16	PROP_NAME 884 885	ε
+R11	has_property Arg1:T12 Arg2:T16
+T17	PROP_NAME 926 945	dielectric constant
+R12	has_property Arg1:T12 Arg2:T17
+T18	PROP_NAME 1193 1194	ε
+T19	ORGANIC 33 42	carbazole
+T20	ORGANIC 69 71	Cz
+R13	abbreviation_of Arg1:T20 Arg2:T19	
+T21	ORGANIC 43 56	terephthalate
+T22	ORGANIC 72 74	TP
+R14	abbreviation_of Arg1:T22 Arg2:T21	
+T23	CONDITION 157 188	in a wide range of temperatures
+R15	has_condition Arg1:T4 Arg2:T23	
+T24	ORGANIC 760 762	Cz
+T25	ORGANIC 763 765	TP
+T26	ORGANIC 1037 1039	Cz
+T27	ORGANIC 1040 1042	TP
+T28	CONDITION 1125 1154	over a wide temperature range

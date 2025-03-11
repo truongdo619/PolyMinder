@@ -1,0 +1,17 @@
+T1	MONOMER 168 210	2-acrylamido-2-methylpropane sulfonic acid
+T2	MONOMER 212 216	AMPS
+T3	POLYMER_FAMILY 239 266	perfluoropolyether oligomer
+T4	MONOMER 493 497	AMPS
+T5	PROP_NAME 504 523	proton conductivity
+T6	PROP_VALUE 525 545	1.10-3-5.10-3 S cm-1
+T7	MATERIAL_AMOUNT 589 595	10 wt%
+T8	MONOMER 596 600	AMPS
+T9	MONOMER 793 797	AMPS
+T10	MONOMER 968 972	AMPS
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	has_amount Arg1:T8 Arg2:T7
+T13	CONDITION 559 600	at a threshold composition of 10 wt% AMPS
+R3	has_condition Arg1:T6 Arg2:T13
+T12	POLYMER 1044 1051	Nafion®
+T11	CONDITION 775 805	On increasing the AMPS content
+T14	CONDITION 1119 1152	when the temperature is increased

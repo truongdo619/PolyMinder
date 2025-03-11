@@ -1,0 +1,81 @@
+T1	MONOMER 36 89	4,4′-bis(4-aminophenoxy)biphenyl-3,3′-disulfonic acid
+T2	MONOMER 91 97	BAPBDS
+T3	MONOMER 186 218	4,4′-bis(4-aminophenoxy)biphenyl
+T4	MONOMER 220 224	BAPB
+T5	POLYMER_FAMILY 227 248	Sulfonated polyimides
+T6	POLYMER_FAMILY 250 254	SPIs
+T7	MONOMER 275 321	1,4,5,8-naphthalenetetracarboxylic dianhydride
+T8	MONOMER 323 327	NTDA
+T9	MONOMER 330 336	BAPBDS
+T10	MONOMER 372 376	BAPB
+T11	POLYMER_FAMILY 382 385	SPI
+T12	POLYMER_FAMILY 488 492	SPIs
+T13	PROP_NAME 547 559	water uptake
+T14	PROP_NAME 561 563	WU
+T15	PROP_NAME 598 617	proton conductivity
+T16	POLYMER_FAMILY 643 647	SPIs
+T17	PROP_NAME 697 699	WU
+T18	POLYMER_FAMILY 793 797	SPIs
+T19	PROP_NAME 803 826	ion exchange capacities
+T20	PROP_NAME 828 832	IECs
+T21	PROP_VALUE 837 850	1.9-2.7 meq/g
+T22	PROP_NAME 894 895	σ
+T23	POLYMER_FAMILY 976 980	SPIs
+T24	PROP_NAME 996 1000	IECs
+T25	PROP_NAME 1041 1042	σ
+T26	PROP_VALUE 1053 1070	10-2 S/cm or more
+T27	PROP_NAME 1079 1081	WU
+T28	PROP_NAME 1176 1177	σ
+T30	PROP_NAME 900 902	WU
+T31	POLYMER_FAMILY 1013 1017	SPIs
+T33	PROP_VALUE 1085 1107	25 g/100 g dry polymer
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	abbreviation_of Arg1:T4 Arg2:T3
+R3	abbreviation_of Arg1:T6 Arg2:T5
+R4	abbreviation_of Arg1:T8 Arg2:T7
+R5	abbreviation_of Arg1:T14 Arg2:T13
+R6	abbreviation_of Arg1:T20 Arg2:T19
+R13	has_property Arg1:T18 Arg2:T20
+R14	has_value Arg1:T20 Arg2:T21
+R16	has_value Arg1:T25 Arg2:T26
+R18	has_value Arg1:T27 Arg2:T33
+T35	PROP_NAME 113 121	basisity
+T36	PROP_NAME 415 430	water stability
+T37	CONDITION 431 451	at high temperatures
+T39	PROP_NAME 566 573	density
+T40	PROP_NAME 618 619	σ
+R8	abbreviation_of Arg1:T40 Arg2:T15
+T41	POLYMER 949 959	Nafion 117
+T42	CONDITION 1108 1129	under 70% RH at 50 °C
+T45	CONDITION 1185 1250	only in liquid water, but not in the nearly saturated water vapor
+R9	has_condition Arg1:T33 Arg2:T42
+T48	PROP_NAME 516 545	water vapor sorption isotherm
+T52	REF_EXP 1139 1149	the latter
+R11	refers_to Arg1:T52 Arg2:T23
+T29	MONOMER 19 26	diamine
+T32	MONOMER 474 481	diamine
+T54	MONOMER 355 363	diamines
+R19	has_property Arg1:T1 Arg2:T35
+T55	SYN_METHOD 164 182	direct sulfonation
+R20	synthesised_by Arg1:T1 Arg2:T55
+R21	has_property Arg1:T11 Arg2:T36
+R22	has_condition Arg1:T36 Arg2:T37
+R23	has_property Arg1:T12 Arg2:T36
+T38	REF_EXP 510 515	Their
+R24	refers_to Arg1:T38 Arg2:T11
+R25	has_property Arg1:T38 Arg2:T48
+R26	has_property Arg1:T38 Arg2:T14
+R27	has_property Arg1:T38 Arg2:T39
+R29	has_property Arg1:T38 Arg2:T40
+R30	has_property Arg1:T16 Arg2:T17
+R12	has_property Arg1:T18 Arg2:T22
+R28	has_property Arg1:T18 Arg2:T30
+R31	has_property Arg1:T23 Arg2:T24
+R32	has_property Arg1:T41 Arg2:T22
+R33	has_property Arg1:T41 Arg2:T30
+R34	has_property Arg1:T23 Arg2:T22
+R35	has_property Arg1:T23 Arg2:T30
+R15	has_property Arg1:T31 Arg2:T25
+R17	has_property Arg1:T52 Arg2:T28
+R36	has_condition Arg1:T28 Arg2:T45
+R7	has_property Arg1:T31 Arg2:T27

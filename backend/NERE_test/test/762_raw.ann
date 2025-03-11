@@ -1,0 +1,44 @@
+T1	POLYMER_FAMILY 47 75	methacrylate-based copolymer
+T2	POLYMER_FAMILY 208 236	methacrylate-based copolymer
+T3	MONOMER 327 360	trimethylsilylmethyl methacrylate
+T4	MONOMER 362 365	TMS
+T5	MONOMER 371 390	methyl methacrylate
+T6	MONOMER 392 395	MMA
+T7	MONOMER 424 447	N,N-dimethyl acrylamide
+T8	MONOMER 449 453	DMAA
+R1	abbreviation_of Arg1:T4 Arg2:T3
+R2	abbreviation_of Arg1:T6 Arg2:T5
+R3	abbreviation_of Arg1:T8 Arg2:T7
+T9	SYN_METHOD 260 287	radical bulk polymerization
+R4	synthesised_by Arg1:T2 Arg2:T9
+T10	PROP_NAME 460 489	dissolved-oxygen permeability
+T11	REF_EXP 493 518	these copolymer membranes
+R5	refers_to Arg1:T11 Arg2:T2
+T12	PROP_NAME 851 880	dissolved-oxygen permeability
+T13	PROP_NAME 1079 1120	dissolved-oxygen permeability coefficient
+T14	PROP_NAME 1189 1220	oxygen permeability coefficient
+T15	REF_EXP 578 592	the copolymers
+R6	refers_to Arg1:T15 Arg2:T11
+T16	REF_EXP 616 633	hydrated membrane
+R7	refers_to Arg1:T16 Arg2:T15
+T17	REF_EXP 749 772	the copolymer membranes
+R8	refers_to Arg1:T17 Arg2:T16
+T18	REF_EXP 884 928	the heavy ion-irradiated copolymer membranes
+R9	refers_to Arg1:T18 Arg2:T17
+R10	has_property Arg1:T18 Arg2:T12
+T19	REF_EXP 1023 1031	membrane
+R11	refers_to Arg1:T19 Arg2:T18
+T20	REF_EXP 1134 1160	Xe ion-irradiated membrane
+R12	refers_to Arg1:T20 Arg2:T19
+R13	has_property Arg1:T20 Arg2:T13
+R14	has_property Arg1:T20 Arg2:T14
+T21	INORGANIC 118 124	oxygen
+T22	CONDITION 155 180	under hydrated conditions
+T23	INORGANIC 470 476	oxygen
+T24	INORGANIC 541 548	silicon
+T25	CONDITION 644 682	with the increase of the water content
+T26	INORGANIC 808 810	Xe
+T27	INORGANIC 861 867	oxygen
+T28	INORGANIC 1089 1095	oxygen
+T29	INORGANIC 1134 1136	Xe
+T30	INORGANIC 1244 1250	oxygen

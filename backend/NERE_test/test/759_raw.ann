@@ -1,0 +1,61 @@
+T1	POLYMER 121 146	poly(vinylidene fluoride)
+T2	MONOMER 349 356	Styrene
+T3	MONOMER 361 373	sulfobetaine
+T4	POLYMER 425 429	PVDF
+T5	MATERIAL_AMOUNT 639 644	5 wt%
+T6	MONOMER 648 655	styrene
+T7	MONOMER 656 660	SBMA
+T8	MATERIAL_AMOUNT 670 675	40/60
+T9	PROP_NAME 737 756	water contact angle
+T10	PROP_VALUE 758 761	12°
+T11	MONOMER 944 951	styrene
+T12	MONOMER 952 956	SBMA
+T13	MONOMER 1001 1008	styrene
+T14	MONOMER 1017 1021	SBMA
+T15	PROP_NAME 1206 1227	separation efficiency
+T16	PROP_VALUE 1231 1236	99.0%
+T17	PROP_VALUE 1238 1243	99.2%
+T18	PROP_VALUE 1245 1250	99.1%
+T19	PROP_VALUE 1252 1257	99.0%
+T20	PROP_VALUE 1262 1267	99.0%
+T22	REF_EXP 727 735	membrane
+T23	REF_EXP 1083 1096	The membranes
+R9	has_property Arg1:T22 Arg2:T9
+R10	has_value Arg1:T9 Arg2:T10
+R11	has_property Arg1:T23 Arg2:T15
+R12	has_value Arg1:T15 Arg2:T16
+T25	COMPOSITE 648 660	styrene/SBMA
+R3	has_amount Arg1:T25 Arg2:T8
+T26	CONDITION 1132 1141	toluene/W
+T27	CONDITION 1143 1151	hexane/W
+T28	CONDITION 1153 1165	hexadecane/W
+T29	CONDITION 1167 1175	diesel/W
+T30	CONDITION 1180 1193	soybean oil/W
+R4	has_condition Arg1:T16 Arg2:T26
+R5	has_condition Arg1:T17 Arg2:T27
+R6	has_condition Arg1:T18 Arg2:T28
+R7	has_condition Arg1:T19 Arg2:T29
+R8	has_condition Arg1:T20 Arg2:T30
+T21	REF_EXP 531 543	the membrane
+R1	refers_to Arg1:T21 Arg2:T4
+R2	refers_to Arg1:T22 Arg2:T21
+T31	CONDITION 620 702	a solid content of 5 wt%, a styrene/SBMA ratio of 40/60 and a reaction time of 5 h
+R14	has_condition Arg1:T10 Arg2:T31
+T33	COMPOSITE 944 956	styrene/SBMA
+T34	PROP_NAME 1047 1055	porosity
+T35	PROP_NAME 1066 1081	coating density
+R16	has_property Arg1:T22 Arg2:T34
+R17	has_property Arg1:T22 Arg2:T35
+R18	refers_to Arg1:T23 Arg2:T22
+T36	CHAR_METHOD 783 800	chemical analyses
+T37	CHAR_METHOD 871 888	Physical analyses
+T38	ORGANIC 1132 1139	toluene
+T39	ORGANIC 1143 1149	hexane
+T40	ORGANIC 1153 1163	hexadecane
+T41	ORGANIC 1167 1173	diesel
+T42	ORGANIC 1180 1191	soybean oil
+R19	characterized_by Arg1:T22 Arg2:T36	
+R20	characterized_by Arg1:T22 Arg2:T37	
+T24	CONDITION 901 962	deviating from the optimized conditions of styrene/SBMA ratio
+R13	has_condition Arg1:T34 Arg2:T24	
+R15	has_condition Arg1:T35 Arg2:T24	

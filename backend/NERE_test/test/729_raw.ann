@@ -1,0 +1,51 @@
+T1	POLYMER 64 76	polyisoprene
+T2	POLYMER 78 81	PIP
+T3	POLYMER 87 98	polystyrene
+T4	POLYMER 100 102	PS
+T5	PROP_NAME 208 229	crossover temperature
+T6	PROP_NAME 231 233	TC
+T7	PROP_NAME 417 419	TC
+T8	POLYMER 527 529	PS
+T9	PROP_NAME 556 587	segmental relaxation time at TC
+T10	PROP_NAME 598 603	τ(TC)
+T11	PROP_VALUE 604 612	∼ 10-7 s
+T12	PROP_NAME 811 813	TC
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	abbreviation_of Arg1:T4 Arg2:T3
+R3	abbreviation_of Arg1:T6 Arg2:T5
+R4	abbreviation_of Arg1:T10 Arg2:T9
+R12	has_value Arg1:T10 Arg2:T11
+T15	PROP_NAME 170 198	glass transition temperature
+T16	PROP_NAME 200 202	Tg
+R5	abbreviation_of Arg1:T16 Arg2:T15
+T17	PROP_NAME 432 448	molecular weight
+T18	PROP_NAME 450 452	MW
+R6	abbreviation_of Arg1:T18 Arg2:T17
+T19	REF_EXP 457 470	both polymers
+T20	PROP_NAME 488 490	TC
+T21	PROP_NAME 491 493	Tg
+T22	PROP_NAME 521 523	MW
+T23	REF_EXP 617 630	both polymers
+T24	PROP_NAME 646 648	MW
+T25	PROP_NAME 298 314	relaxation times
+T26	PROP_NAME 744 761	dynamic crossover
+T27	PROP_NAME 482 493	ratio TC/Tg
+R7	has_property Arg1:T1 Arg2:T16
+R8	has_property Arg1:T3 Arg2:T16
+R9	has_property Arg1:T1 Arg2:T6
+R10	has_property Arg1:T3 Arg2:T6
+R11	has_property Arg1:T1 Arg2:T25
+R13	has_property Arg1:T3 Arg2:T25
+R14	refers_to Arg1:T19 Arg2:T1
+R15	refers_to Arg1:T19 Arg2:T3
+R16	has_property Arg1:T19 Arg2:T7
+R17	has_property Arg1:T19 Arg2:T18
+R18	has_property Arg1:T19 Arg2:T20
+R19	has_property Arg1:T19 Arg2:T21
+R20	has_property Arg1:T19 Arg2:T27
+R21	has_property Arg1:T8 Arg2:T22
+R22	has_property Arg1:T23 Arg2:T10
+R23	refers_to Arg1:T23 Arg2:T19
+R24	has_property Arg1:T23 Arg2:T24
+R25	has_property Arg1:T23 Arg2:T26
+R26	has_property Arg1:T23 Arg2:T12

@@ -1,0 +1,74 @@
+T1	POLYMER 168 209	polystyrene-b-polybutadiene-b-polystyrene
+T2	POLYMER 211 214	SBS
+T3	POLYMER 232 245	polybutadiene
+T4	POLYMER 247 249	PB
+T5	PROP_NAME 340 355	volume fraction
+T6	POLYMER 376 378	PB
+T7	PROP_NAME 391 394	ϕPB
+T8	PROP_NAME 661 664	ϕPB
+T9	PROP_VALUE 667 671	0.73
+T10	POLYMER 918 921	SBS
+T11	PROP_NAME 936 938	Mn
+T12	PROP_VALUE 941 953	207 kg mol-1
+T13	PROP_NAME 958 961	ϕPB
+T14	PROP_VALUE 964 968	0.80
+T15	PROP_VALUE 407 424	from 0.63 to 0.93
+T17	REF_EXP 561 573	the membrane
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	abbreviation_of Arg1:T4 Arg2:T3
+R3	abbreviation_of Arg1:T7 Arg2:T5
+R8	has_property Arg1:T6 Arg2:T7
+R9	has_value Arg1:T7 Arg2:T15
+R10	has_property Arg1:T17 Arg2:T8
+R11	has_value Arg1:T8 Arg2:T9
+R13	has_property Arg1:T10 Arg2:T11
+R15	has_property Arg1:T10 Arg2:T13
+R14	has_value Arg1:T11 Arg2:T12
+R16	has_value Arg1:T13 Arg2:T14
+T20	ORGANIC 77 84	ethanol
+T22	OTHER_MATERIAL 77 90	ethanol/water
+T23	ORGANIC 258 265	ethanol
+T24	MATERIAL_AMOUNT 295 300	8 wt%
+T25	ORGANIC 301 308	ethanol
+T27	OTHER_MATERIAL 301 314	ethanol/water
+T28	PROP_NAME 442 458	molecular weight
+T29	REF_EXP 462 475	the copolymer
+R17	has_property Arg1:T29 Arg2:T31
+R18	has_value Arg1:T31 Arg2:T32
+T31	PROP_NAME 477 479	Mn
+R4	abbreviation_of Arg1:T31 Arg2:T28
+T32	PROP_VALUE 492 515	from 34 to 207 kg mol-1
+T33	PROP_NAME 521 552	normalized ethanol permeability
+T34	PROP_NAME 575 581	PE/ϕPB
+T35	PROP_NAME 591 610	ethanol selectivity
+T36	PROP_NAME 612 615	αEW
+R5	abbreviation_of Arg1:T36 Arg2:T35
+T37	PROP_NAME 642 644	Mn
+T38	PROP_VALUE 676 680	0.80
+T39	PROP_NAME 717 723	PE/ϕPB
+T40	PROP_NAME 728 731	αEW
+T41	PROP_NAME 770 772	Mn
+T42	PROP_NAME 858 864	PE/ϕPB
+T43	PROP_NAME 869 875	PW/ϕPB
+T44	PROP_NAME 883 886	αEW
+R6	has_amount Arg1:T27 Arg2:T24
+R7	refers_to Arg1:T29 Arg2:T1
+T45	CONDITION 626 644	with increasing Mn
+T47	CONDITION 758 778	in the high Mn limit
+R12	refers_to Arg1:T17 Arg2:T29
+R19	abbreviation_of Arg1:T34 Arg2:T33
+R20	has_property Arg1:T17 Arg2:T34
+R21	has_property Arg1:T17 Arg2:T36
+R22	has_value Arg1:T8 Arg2:T38
+R23	has_property Arg1:T17 Arg2:T39
+R24	has_property Arg1:T17 Arg2:T40
+T16	CONDITION 646 715	In the case of ϕPB = 0.73 and 0.80 systems (cylindrical morphologies)
+R25	has_condition Arg1:T39 Arg2:T16
+R26	has_condition Arg1:T39 Arg2:T47
+R27	has_condition Arg1:T40 Arg2:T16
+R28	has_condition Arg1:T40 Arg2:T47
+R29	has_property Arg1:T17 Arg2:T42
+R30	has_property Arg1:T17 Arg2:T43
+R31	has_property Arg1:T17 Arg2:T44
+R32	has_condition Arg1:T34 Arg2:T45
+R33	has_condition Arg1:T36 Arg2:T45

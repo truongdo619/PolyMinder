@@ -1,0 +1,33 @@
+T1	POLYMER 58 90	poly(trimethylene terephthalate)
+T2	POLYMER 116 119	PEI
+T3	POLYMER 283 286	PTT
+T4	POLYMER 291 294	PEI
+T5	POLYMER 372 375	PEI
+T6	POLYMER 422 425	PTT
+T8	PROP_NAME 540 557	melt-crystallized
+T9	PROP_VALUE 561 567	180 °C
+T10	POLYMER 1171 1174	PEI
+T11	POLYMER 1228 1231	PEI
+T12	POLYMER 92 95	PTT
+T13	POLYMER 97 113	poly(ether imide
+T14	REF_EXP 524 535	50/50 blend
+R1	abbreviation_of Arg1:T12 Arg2:T1
+R2	abbreviation_of Arg1:T2 Arg2:T13
+R4	has_property Arg1:T14 Arg2:T8
+R5	has_value Arg1:T8 Arg2:T9
+T15	CHAR_METHOD 151 169	optical microscopy
+T16	CHAR_METHOD 171 173	OM
+R6	abbreviation_of Arg1:T16 Arg2:T15
+T17	CHAR_METHOD 176 204	small-angle light scattering
+T18	CHAR_METHOD 206 210	SALS
+R7	abbreviation_of Arg1:T18 Arg2:T17
+T19	CHAR_METHOD 217 245	small-angle X-ray scattering
+T20	CHAR_METHOD 247 251	SAXS
+R8	abbreviation_of Arg1:T20 Arg2:T19
+T21	COMPOSITE 58 120	poly(trimethylene terephthalate) (PTT)/poly(ether imide) (PEI)
+R9	characterized_by Arg1:T21 Arg2:T16
+R10	characterized_by Arg1:T21 Arg2:T18
+R11	characterized_by Arg1:T21 Arg2:T20
+R3	refers_to Arg1:T14 Arg2:T21
+T7	CHAR_METHOD 773 777	SALS
+R12	characterized_by Arg1:T14 Arg2:T7
