@@ -1,0 +1,243 @@
+.TextHighlight {
+  position: absolute;
+}
+
+.TextHighlight__parts {
+  opacity: 1;
+}
+
+.TextHighlight__part {
+  cursor: pointer;
+  position: absolute;
+  transition: background 0.3s;
+}
+
+
+.INORGANIC {
+  background: #00ffff;
+}
+
+.REF_EXP {
+  background: #bd0ea5;
+}
+
+.CONDITION {
+  background: #ffe000;
+}
+
+.MATERIAL_AMOUNT {
+  background: #a0522d;
+}
+
+.ORGANIC {
+  background: #ff00ff;
+}
+
+.POLYMER {
+  background: #ff4500;
+}
+
+.PROP_NAME {
+  background: #1e90ff;
+}
+
+.CHAR_METHOD {
+  background: rgb(160, 119, 138);
+}
+
+.POLYMER_FAMILY {
+  background: #00ff00;
+}
+
+.PROP_VALUE {
+  background: #ffd700;
+}
+
+.MONOMER {
+  background: #B8BDD3;
+}
+
+.OTHER_MATERIAL{
+  background: #1976d2;
+}
+
+.COMPOSITE{
+  background: #00ff88;
+}
+
+.SYN_METHOD{
+  background: #f09bc5;
+}
+
+.INORGANIC_COLOR {
+  color: #00ffff!important;
+}
+
+.REF_EXP_COLOR {
+  color: #bd0ea5!important;
+}
+
+.CONDITION_COLOR {
+  color: #ffe000!important;
+}
+
+.MATERIAL_AMOUNT_COLOR {
+  color: #a0522d!important;
+}
+
+.ORGANIC_COLOR {
+  color: #ff00ff!important;
+}
+
+.POLYMER_COLOR {
+  color: #ff4500!important;
+}
+
+.PROP_NAME_COLOR {
+  color: #1e90ff!important;
+}
+
+.CHAR_METHOD_COLOR {
+  color: rgb(160, 119, 138)!important;
+}
+
+.POLYMER_FAMILY_COLOR {
+  color: #00ff00!important;
+}
+
+.PROP_VALUE_COLOR {
+  color: #ffd700!important;
+}
+
+.MONOMER_COLOR {
+  color: #B8BDD3!important;
+}
+
+.OTHER_MATERIAL_COLOR {
+  color: #1976d2!important;
+}
+
+.COMPOSITE_COLOR {
+  color: #00ff88!important;
+}
+
+.SYN_METHOD_COLOR {
+  color: #f09bc5!important;
+}
+
+
+/* .TextHighlight--scrolledTo .TextHighlight__part {
+  background: #ff4141;
+} */
+
+.TextHighlight--scrolledTo .INORGANIC {
+  background: #00aeff;
+}
+.TextHighlight--scrolledTo .CHAR_METHOD {
+  background: rgb(197, 129, 161);
+}
+.TextHighlight--scrolledTo .PROP_NAME {
+  background: rgb(0, 4, 255);
+}
+.TextHighlight--scrolledTo .POLYMER {
+  background: #ff4141;
+}
+.TextHighlight--scrolledTo .POLYMER_FAMILY {
+  background: #33ff00;
+}
+.TextHighlight--scrolledTo .ORGANIC {
+  background: #ff00d4;
+}
+.TextHighlight--scrolledTo .MATERIAL_AMOUNT {
+  background: #f34d00;
+}
+.TextHighlight--scrolledTo .CONDITION {
+  background: #ffd900;
+}
+.TextHighlight--scrolledTo .REF_EXP {
+  background: #ff00dd;
+}
+.TextHighlight--scrolledTo .PROP_VALUE {
+  background: #ffd000;
+}
+.TextHighlight--scrolledTo .MONOMER {
+  background: #494c5c;
+}
+.TextHighlight--scrolledTo .OTHER_MATERIAL {
+  background: #0080ff;
+}
+.TextHighlight--scrolledTo .COMPOSITE {
+  background: #00ff62;
+}
+.TextHighlight--scrolledTo .SYN_METHOD {
+  background: #f74fa3;
+}
+
+.TextHighlight--scrolledTo .PARAGRAPH {
+  background: #ff000080;
+}
+
+.has_property_COLOR {
+  color: purple!important;
+  border-style: solid;
+  border-color: gray;
+  border-width: 2px;
+  border-radius: 5px;
+}
+
+.has_value_COLOR {
+  color: green;
+  border-style: solid;
+  border-color: gray;
+  border-width: 2px;
+  border-radius: 5px;
+}
+
+.has_amount_COLOR {
+  color: red!important;
+  border-style: solid;
+  border-color: gray;
+  border-width: 2px;
+  border-radius: 5px;
+}
+
+.has_condition_COLOR {
+  color: gray!important;
+  border-style: solid;
+  border-color: gray;
+  border-width: 2px;
+  border-radius: 5px;
+}
+
+.abbreviation_of_COLOR {
+  color: blue!important;
+  border-style: solid;
+  border-color: gray;
+  border-width: 2px;
+  border-radius: 5px;
+}
+
+.refers_to_COLOR {
+  color: purple!important;
+  border-style: solid;
+  border-color: gray;
+  border-width: 2px;
+  border-radius: 5px;
+}
+
+.synthesised_by_COLOR {
+  color: red!important;
+  border-style: solid;
+  border-color: gray;
+  border-width: 2px;
+  border-radius: 5px;
+}
+
+.characterized_by_COLOR {
+  color: black!important;
+  border-style: solid;
+  border-color: gray;
+  border-width: 2px;
+  border-radius: 5px;
+}
+

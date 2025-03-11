@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolyMinder User Manual</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- CSS Styles -->
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #2c3e50;
+            background-color: #f9fafb;
+            display: flex;
+        }
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: #34495e;
+            color: white;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .sidebar h2 {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #2c3e50;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0 20px;
+        }
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+        .sidebar ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        .sidebar ul li a:hover {
+            color: #3498db;
+        }
+        /* Content Styles */
+        .content {
+            flex: 1;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .content h1, .content h2, .content h3, .content h4 {
+            color: #2c3e50;
+        }
+        .content h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .content h2 {
+            font-size: 2em;
+            margin-top: 40px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .content h3 {
+            font-size: 1.75em;
+            margin-top: 30px;
+            color: #2980b9;
+        }
+        .content h4 {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #2980b9;
+        }
+        .content p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #34495e;
+        }
+        .content ul, .content ol {
+            margin: 20px 0;
+            padding-left: 40px;
+        }
+        .content li {
+            margin-bottom: 10px;
+        }
+        .content a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .content a:hover {
+            text-decoration: underline;
+        }
+        .content img {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        /* Button Styles */
+        .content button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .content button:hover {
+            background-color: #2980b9;
+        }
+        /* Table Styles */
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        .content table th, .content table td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .content table th {
+            background-color: #3498db;
+            color: white;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            body {
+                display: block;
+            }
+            .content {
+                padding: 20px;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <h2>PolyMinder Docs</h2>
+        <ul>
+            <li><a href="#introduction">1. Introduction</a></li>
+            <li><a href="#features">2. Features</a>
+                <ul>
+                    <li><a href="#login-signup">2.1 Login and Sign Up</a></li>
+                    <li><a href="#document-management">2.2 Document Management</a></li>
+                    <li><a href="#editing-function">2.3 Editing Function</a></li>
+                    <li><a href="#filtering-function">2.4 Filtering Function</a></li>
+                    <li><a href="#download-function">2.5 Download Function</a></li>
+                </ul>
+            </li>
+            <li><a href="#contact-support">3. Contact Support</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content">
+
+        <h1>User Manual</h1>
+        <p>Welcome to the <strong>PolyMinder</strong> user manual. This guide will help you navigate and utilize the system effectively.</p>
+
+        <h2 id="introduction">1. Introduction</h2>
+        <p>The <strong>PolyMinder</strong> system is designed to help users manage and analyze their documents efficiently. This manual will guide you through the various features and functionalities of the system.</p>
+
+        <h2 id="features">2. Features</h2>
+        <p>The <strong>PolyMinder</strong> system offers the following key features:</p>
+
+        <h3 id="login-signup">2.1 Login and Sign Up</h3>
+        <p>Access to the system requires users to log in or sign up for an account.</p>
+
+        <h4>How to Log In:</h4>
+        <ol>
+            <li>Click the <strong>Login</strong> button located at the top-right corner of the homepage.</li>
+            <img src="./src/DocsPage/photos/Sign_in_header.png" alt="Login Button">
+            <li>Enter your email and password in the login form.</li>
+            <img src="./src/DocsPage/photos/Sign_in.png" alt="Login Form">
+            <li>Click the <strong>Log In</strong> button to access your account.</li>
+        </ol>
+
+        <h4>How to Sign Up:</h4>
+        <ol>
+            <li>Click the <strong>Sign Up</strong> button located at the top-right corner of the homepage.</li>
+            <img src="./src/DocsPage/photos/Sign_up_header.png" alt="Sign Up Button">
+            <li>Fill in your email, password, and confirm your password in the sign-up form.</li>
+            <img src="./src/DocsPage/photos/Sign_up.png" alt="Sign Up Form">
+            <li>Click the <strong>Sign Up</strong> button to create your account.</li>
+        </ol>
+
+        <h3 id="document-management">2.2 Document Management</h3>
+        <p>Manage your uploaded documents through the user-friendly dashboard.</p>
+
+        <h4>Accessing the Dashboard:</h4>
+        <ol>
+            <li>After logging in, click the <strong>Documents</strong> button on the header bar.</li>
+            <img src="./src/DocsPage/photos/documents_header.png" alt="Documents Button">
+            <li>View your uploaded documents and their processing status in the dashboard.</li>
+            <img src="./src/DocsPage/photos/documents_page.png" alt="Dashboard View">
+        </ol>
+
+        <h4>Dashboard Operations:</h4>
+        <ul>
+            <li><strong>Upload PDF:</strong> Click the <strong>Upload Document</strong> button to upload new PDF files for processing.</li>
+            <li><strong>View Document:</strong> Click on a document title to view its content.</li>
+            <img src="./src/DocsPage/photos/Result.PNG" alt="Document View">
+            <li><strong>Download Original PDF:</strong> Download the original PDF file by clicking the download icon.</li>
+            <li><strong>Delete Document:</strong> Remove a document from the system by clicking the delete icon.</li>
+        </ul>
+
+        <h3 id="editing-function">2.3 Editing Function</h3>
+        <p>After processing, you can verify and edit extracted text, entities, and relationships.</p>
+
+        <h4>Editing Extracted Text:</h4>
+        <ol>
+            <li>Navigate to the <strong>Paragraph Viewer</strong> by clicking the <strong>Paragraph</strong> tab on the right sidebar.</li>
+            <img src="./src/DocsPage/photos/Paragraph_view.PNG" alt="Paragraph Viewer">
+            <li>Click on highlighted areas in the PDF to view paragraph content.</li>
+            <img src="./src/DocsPage/photos/Paragraph_click.PNG" alt="Paragraph Content">
+            <li>Click the edit icon to modify the paragraph text.</li>
+            <img src="./src/DocsPage/photos/para_edit_instruct.png" alt="Edit Paragraph">
+            <img src="./src/DocsPage/photos/Paragraph_edit.PNG" alt="Edit Window">
+            <li>After editing, click <strong>Save & Load</strong> to apply changes.</li>
+        </ol>
+
+        <h4>Editing Entities and Relationships:</h4>
+        <ol>
+            <li>Go to the <strong>Entity Viewer</strong> by clicking the <strong>Entity</strong> tab on the right sidebar.</li>
+            <li>Click on entities in the PDF or sidebar to view details.</li>
+            <img src="./src/DocsPage/photos/Entity_click.PNG" alt="Entity Details">
+            <li>Use the <strong>Show All Entities</strong> button to highlight all entities in a paragraph.</li>
+            <img src="./src/DocsPage/photos/show_all_entity.PNG" alt="Show All Entities">
+            <li>Click the edit icon to modify an entity.</li>
+            <img src="./src/DocsPage/photos/edit_open_instruct.PNG" alt="Edit Entity">
+            <img src="./src/DocsPage/photos/edit_entity.PNG" alt="Entity Edit Window">
+            <li>Change the entity type by selecting from the dropdown menu.</li>
+            <img src="./src/DocsPage/photos/change_entity_type.PNG" alt="Change Entity Type">
+            <li>Modify the entity text by selecting new text in the paragraph.</li>
+            <img src="./src/DocsPage/photos/change_text_of_entity.PNG" alt="Change Entity Text">
+            <li>To delete an entity, click the <strong>Delete</strong> button.</li>
+            <li>Edit relationships by clicking the <strong>Relation</strong> tab within the edit window.</li>
+            <img src="./src/DocsPage/photos/edit_relation.png" alt="Edit Relations">
+            <li>Add new relations by clicking the add icon and filling in the details.</li>
+            <img src="./src/DocsPage/photos/add_new_relation.PNG" alt="Add Relation">
+            <img src="./src/DocsPage/photos/add_new_relation_detail.PNG" alt="Relation Details">
+            <li>After making changes, click <strong>Save & Reload</strong> to update.</li>
+        </ol>
+
+        <h3 id="filtering-function">2.4 Filtering Function</h3>
+        <p>Use the filtering function to view specific entities or relationships.</p>
+
+        <ol>
+            <li>Click on an entity type in the sidebar to filter results.</li>
+            <img src="./src/DocsPage/photos/filter_entity.png" alt="Filter Entities">
+            <li>The PDF viewer will update to show only the selected entities.</li>
+            <img src="./src/DocsPage/photos/filter_entity_PDF.png" alt="Filtered PDF View">
+            <li>For advanced filtering, click the filter icon.</li>
+            <img src="./src/DocsPage/photos/filter_icon.png" alt="Filter Icon">
+            <li>Select the desired relation type and click <strong>Apply</strong>.</li>
+            <img src="./src/DocsPage/photos/filter_dialog.png" alt="Filter Dialog">
+        </ol>
+
+        <h3 id="download-function">2.5 Download Function</h3>
+        <p>Download your results in various formats for offline use.</p>
+
+        <ol>
+            <li>Click the <strong>Download Result</strong> button.</li>
+            <img src="./src/DocsPage/photos/download_button.PNG" alt="Download Button">
+            <li>Choose from the available options:</li>
+            <ul>
+                <li><strong>All Data</strong></li>
+                <li><strong>Only Confirmed Data</strong></li>
+                <li><strong>Based on Entity Type</strong></li>
+                <li><strong>Based on Current Filter</strong></li>
+            </ul>
+            <img src="./src/DocsPage/photos/download_dialog.png" alt="Download Options">
+        </ol>
+
+        <h2 id="contact-support">3. Contact Support</h2>
+        <p>If you need assistance, please reach out to our support team:</p>
+        <ul>
+            <li><strong>Email:</strong> <a href="mailto:truongdo@jaist.ac.jp">truongdo@jaist.ac.jp</a></li>
+        </ul>
+
+    </div>
+
+</body>
+</html>
