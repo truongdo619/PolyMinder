@@ -1,0 +1,63 @@
+T1	POLYMER_FAMILY 0 15	Polybenzoxazine
+T2	POLYMER 16 36	polydimethylsiloxane
+T3	POLYMER_FAMILY 38 41	PBa
+T4	POLYMER 42 46	PDMS
+T5	MONOMER 129 140	benzoxazine
+T6	MONOMER 142 144	Ba
+T7	MONOMER 173 195	diethoxydimethylsilane
+T8	MONOMER 197 202	DEDMS
+T9	MATERIAL_AMOUNT 295 307	up to 13 wt%
+T10	POLYMER 311 315	PDMS
+T11	ORGANIC 333 355	p-toluenesulfonic acid
+T12	POLYMER 412 416	PDMS
+T13	POLYMER_FAMILY 424 427	PBa
+T14	POLYMER_FAMILY 508 511	PBa
+T15	POLYMER 512 516	PDMS
+T16	POLYMER_FAMILY 565 568	PBa
+T17	POLYMER 606 610	PDMS
+T18	POLYMER_FAMILY 739 742	PBa
+T19	POLYMER 845 849	PDMS
+R1	abbreviation_of Arg1:T3 Arg2:T1
+R2	abbreviation_of Arg1:T4 Arg2:T2
+R3	abbreviation_of Arg1:T6 Arg2:T5
+R4	abbreviation_of Arg1:T8 Arg2:T7
+R5	has_amount Arg1:T10 Arg2:T9
+T20	SYN_METHOD 98 125	ring-opening polymerization
+T21	COMPOSITE 0 36	Polybenzoxazine-polydimethylsiloxane
+T22	COMPOSITE 38 46	PBa-PDMS
+R6	abbreviation_of Arg1:T22 Arg2:T21
+R7	synthesised_by Arg1:T21 Arg2:T20
+T23	CHAR_METHOD 451 454	SEM
+T24	REF_EXP 268 280	hybrid films
+R8	refers_to Arg1:T24 Arg2:T21
+R9	characterized_by Arg1:T24 Arg2:T23
+T25	PROP_NAME 460 476	tensile strength
+T26	PROP_NAME 481 500	elongation at break
+T27	COMPOSITE 508 516	PBa-PDMS
+R10	has_property Arg1:T27 Arg2:T25
+R11	has_property Arg1:T27 Arg2:T26
+T28	REF_EXP 547 552	those
+R12	refers_to Arg1:T28 Arg2:T25
+R13	refers_to Arg1:T28 Arg2:T26
+R14	has_property Arg1:T16 Arg2:T28
+T29	CHAR_METHOD 612 641	Dynamic viscoelastic analysis
+T30	PROP_NAME 658 686	glass transition temperature
+T31	REF_EXP 690 700	the hybrid
+R15	refers_to Arg1:T31 Arg2:T27
+R16	has_property Arg1:T31 Arg2:T30
+R17	characterized_by Arg1:T31 Arg2:T29
+T32	REF_EXP 722 726	that
+R18	refers_to Arg1:T32 Arg2:T30
+R19	has_property Arg1:T18 Arg2:T32
+T33	PROP_NAME 758 784	decomposition temperatures
+T34	CONDITION 804 813	at 850 °C
+T35	CHAR_METHOD 874 900	thermogravimetric analysis
+R20	has_property Arg1:T31 Arg2:T33
+R21	has_condition Arg1:T33 Arg2:T34
+R22	characterized_by Arg1:T31 Arg2:T35
+T36	CONDITION 824 857	with the increase of PDMS content
+R23	has_condition Arg1:T33 Arg2:T36
+T37	SYN_METHOD 154 169	sol-gel process
+T38	SYN_METHOD 376 391	sol-gel process
+R24	synthesised_by Arg1:T21 Arg2:T37
+R25	synthesised_by Arg1:T24 Arg2:T38

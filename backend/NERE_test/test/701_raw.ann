@@ -1,0 +1,76 @@
+T1	POLYMER_FAMILY 32 50	poly(ester amide)s
+T2	MONOMER 93 107	1,4-butanediol
+T3	MONOMER 142 155	bisamide-diol
+T4	MONOMER 231 244	bisamide-diol
+T5	MONOMER 249 263	1,4-butanediol
+T6	MATERIAL_AMOUNT 327 350	between 10 and 85 mol %
+T7	POLYMER_FAMILY 394 412	poly(ester amide)s
+T8	PROP_NAME 811 826	melt transition
+T9	PROP_VALUE 830 850	between 58 and 70 °C
+T10	REF_EXP 873 880	polymer
+R2	has_property Arg1:T10 Arg2:T8
+R4	has_property Arg1:T10 Arg2:T13
+R6	has_property Arg1:T10 Arg2:T15
+R8	has_property Arg1:T10 Arg2:T17
+R10	has_property Arg1:T10 Arg2:T19
+R12	has_property Arg1:T10 Arg2:T21
+R3	has_value Arg1:T8 Arg2:T9
+R5	has_value Arg1:T13 Arg2:T14
+R7	has_value Arg1:T15 Arg2:T16
+R9	has_value Arg1:T17 Arg2:T18
+R11	has_value Arg1:T19 Arg2:T20
+R13	has_value Arg1:T21 Arg2:T22
+T12	MATERIAL_AMOUNT 938 952	10 to 85 mol %
+T13	PROP_NAME 962 977	melt transition
+T14	PROP_VALUE 999 1005	140 °C
+T15	PROP_NAME 1016 1044	glass transition temperature
+T16	PROP_VALUE 1067 1072	-5 °C
+T17	PROP_NAME 1088 1103	elastic modulus
+T18	PROP_VALUE 1125 1132	524 MPa
+T19	PROP_NAME 1138 1153	stress at break
+T20	PROP_VALUE 1174 1180	28 MPa
+T21	PROP_NAME 1191 1206	strain at break
+T22	PROP_VALUE 1229 1233	370%
+T11	PROP_NAME 5 21	molecular weight
+R14	has_property Arg1:T1 Arg2:T11
+T23	SYN_METHOD 68 89	melt polycondensation
+R15	synthesised_by Arg1:T1 Arg2:T23
+T25	CHAR_METHOD 352 357	FT-IR
+T26	CHAR_METHOD 362 366	WAXD
+R18	characterized_by Arg1:T7 Arg2:T25
+R19	characterized_by Arg1:T7 Arg2:T26
+T27	REF_EXP 488 502	These polymers
+R20	refers_to Arg1:T27 Arg2:T7
+T28	REF_EXP 615 627	The polymers
+R1	refers_to Arg1:T28 Arg2:T27
+R21	refers_to Arg1:T10 Arg2:T28
+T29	PROP_VALUE 1003 1005;993 995	°C 83
+R17	has_value Arg1:T13 Arg2:T29
+T30	CONDITION 894 952	By increasing the hard segment content from 10 to 85 mol %
+R22	has_condition Arg1:T14 Arg2:T30
+T31	PROP_VALUE 1060 1063;1070 1072	-45 °C
+R23	has_condition Arg1:T16 Arg2:T30
+T32	PROP_VALUE 1119 1121;1129 1132	70 MPa
+R24	has_value Arg1:T15 Arg2:T31
+R25	has_value Arg1:T17 Arg2:T32
+R26	has_condition Arg1:T18 Arg2:T30
+T33	PROP_VALUE 1169 1170;1177 1180	8 MPa
+R27	has_value Arg1:T19 Arg2:T33
+R28	has_condition Arg1:T20 Arg2:T30
+T34	PROP_VALUE 1222 1225;1232 1233	820 %
+R29	has_value Arg1:T21 Arg2:T34
+R30	has_condition Arg1:T22 Arg2:T30
+T24	MONOMER 165 182	1,4-diaminobutane
+T35	MONOMER 187 201	ε-caprolactone
+T36	MONOMER 109 125	dimethyl adipate
+T37	REF_EXP 265 285	a series of polymers
+R16	refers_to Arg1:T37 Arg2:T1	
+R31	has_amount Arg1:T37 Arg2:T6	
+T38	POLYMER 480 486	nylons
+T39	PROP_NAME 650 665	melt transition
+R32	has_property Arg1:T28 Arg2:T39	
+T40	REF_EXP 1352 1376	these segmented polymers
+R33	refers_to Arg1:T40 Arg2:T10	
+T41	ORGANIC 554 559	amide
+T42	ORGANIC 734 739	amide
+T43	ORGANIC 772 777	amide

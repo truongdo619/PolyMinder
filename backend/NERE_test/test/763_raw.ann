@@ -1,0 +1,42 @@
+T1	MONOMER 59 67	t-BF-a-c
+T2	POLYMER_FAMILY 69 87	benzoxazine resins
+T3	MONOMER 336 356	t-BF-a-c benzoxazine
+T4	POLYMER 492 507	poly (t-BF-a-c)
+T5	POLYMER_FAMILY 650 667	benzoxazine resin
+T6	POLYMER 759 774	Poly (t-BF-a-c)
+T7	PROP_NAME 796 824	glass transition temperature
+T8	PROP_VALUE 826 831	373°C
+T9	POLYMER_FAMILY 866 882	polybenzoxazines
+T10	POLYMER_FAMILY 956 972	polybenzoxazines
+T11	POLYMER_FAMILY 1076 1091	polybenzoxazine
+R1	has_property Arg1:T6 Arg2:T7
+R2	has_value Arg1:T7 Arg2:T8
+T12	MONOMER 201 208	diamine
+T13	SYN_METHOD 126 165	two-stage Mannich condensation reaction
+R3	synthesised_by Arg1:T2 Arg2:T13
+T14	CHAR_METHOD 248 252	FTIR
+T15	CHAR_METHOD 254 256;265 268	1H NMR
+T16	CHAR_METHOD 261 268	13C NMR
+T17	CHAR_METHOD 527 536	rheometer
+T18	CHAR_METHOD 538 571	differential scanning calorimeter
+T19	CHAR_METHOD 573 599	thermogravimetric analysis
+T20	CHAR_METHOD 605 633	dynamic mechanical analyzer.
+R4	characterized_by Arg1:T4 Arg2:T17
+R5	characterized_by Arg1:T4 Arg2:T18
+R6	characterized_by Arg1:T4 Arg2:T19
+R7	characterized_by Arg1:T4 Arg2:T20
+R8	characterized_by Arg1:T3 Arg2:T14
+R9	characterized_by Arg1:T3 Arg2:T15
+R10	characterized_by Arg1:T3 Arg2:T16
+T21	PROP_NAME 894 911	thermal stability
+T22	PROP_NAME 796 824	glass transition temperature
+R11	has_property Arg1:T9 Arg2:T22
+R12	has_property Arg1:T6 Arg2:T21
+R13	has_property Arg1:T10 Arg2:T21
+T23	ORGANIC 43 51	fluorene
+T24	ORGANIC 1061 1069	fluorene
+T25	ORGANIC 6 14	cardanol
+T26	ORGANIC 749 757	cardanol
+T27	ORGANIC 941 949	cardanol
+T28	ORGANIC 1032 1040	cardanol
+T29	ORGANIC 214 223	bisphenol

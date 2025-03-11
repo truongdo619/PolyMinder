@@ -1,0 +1,56 @@
+T1	POLYMER 71 91	poly(ethylene oxide)
+T2	POLYMER 113 116	PEO
+T3	POLYMER 123 127	PELA
+T4	MONOMER 285 294	l-lactide
+T5	POLYMER 345 348	PEO
+T6	POLYMER 397 408	PLA-PEO-PLA
+T7	ORGANIC 426 452	hexamethylene diisocyanate
+T8	ORGANIC 454 457	HDI
+T9	POLYMER 482 485	PEO
+T10	PROP_VALUE 502 513	1000-10,000
+T11	PROP_NAME 514 530	molecular weight
+T12	POLYMER 562 565	PLA
+T13	PROP_NAME 880 905	ultimate tensile strength
+T14	PROP_VALUE 913 926	around 30 MPa
+T15	PROP_NAME 928 942	Young's moduli
+T16	PROP_VALUE 953 959	14 MPa
+T17	PROP_NAME 1173 1176	UTS
+T18	PROP_VALUE 1184 1196	around 9 MPa
+T20	POLYMER_FAMILY 140 167	poly(ether-ester-urethane)s
+T21	REF_EXP 795 820	The multiblock copolymers
+T23	REF_EXP 1063 1090	these multiblock copolymers
+R2	abbreviation_of Arg1:T8 Arg2:T7
+R7	has_property Arg1:T9 Arg2:T11
+R8	has_value Arg1:T11 Arg2:T10
+R9	has_property Arg1:T21 Arg2:T13
+R11	has_property Arg1:T21 Arg2:T15
+R13	has_property Arg1:T21 Arg2:T26
+R10	has_value Arg1:T13 Arg2:T14
+R12	has_value Arg1:T15 Arg2:T16
+R14	has_value Arg1:T26 Arg2:T27
+R15	has_property Arg1:T23 Arg2:T17
+R16	has_value Arg1:T17 Arg2:T18
+T26	PROP_NAME 964 983	elongation at break
+T27	PROP_VALUE 996 1007	above 1000%
+T19	POLYMER 92 111	poly(l-lactic acid)
+T22	POLYMER 117 120	PLA
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R3	abbreviation_of Arg1:T22 Arg2:T19
+T24	POLYMER 71 111	poly(ethylene oxide)/poly(l-lactic acid)
+T29	POLYMER 113 120	PEO/PLA
+R4	abbreviation_of Arg1:T29 Arg2:T24
+R5	abbreviation_of Arg1:T3 Arg2:T24
+T31	SYN_METHOD 254 281	ring-opening polymerization
+T32	CHAR_METHOD 606 609	DSC
+T33	CHAR_METHOD 614 619	X-ray
+T30	CONDITION 1139 1158	when fully hydrated
+R17	has_condition Arg1:T18 Arg2:T30
+T34	REF_EXP 1020 1025	their
+R18	refers_to Arg1:T34 Arg2:T21
+R19	refers_to Arg1:T23 Arg2:T34
+R20	synthesised_by Arg1:T19 Arg2:T31
+T28	REF_EXP 733 743	copolymers
+R21	refers_to Arg1:T28 Arg2:T20
+R22	refers_to Arg1:T21 Arg2:T28
+R23	characterized_by Arg1:T28 Arg2:T32
+R24	characterized_by Arg1:T28 Arg2:T33

@@ -1,0 +1,60 @@
+T1	POLYMER_FAMILY 25 51	copoly(thioether sulfone)s
+T2	PROP_NAME 62 80	refractive indices
+T3	PROP_NAME 90 102	Abbe numbers
+T4	MONOMER 269 305	2,5-bis(sulfanylmethyl)-1,4-dithiane
+T5	MONOMER 307 311	BMMD
+T6	MONOMER 317 340	cyclohexane-1,4-dithiol
+T7	MONOMER 342 346	CHDT
+T8	POLYMER_FAMILY 453 478	copoly(thioether sulfone)
+T9	POLYMER 480 499	poly(BMMD/CHDT-DVS)
+T10	PROP_NAME 570 600	5% weight-loss at temperatures
+T11	PROP_VALUE 601 612	over 300 °C
+T12	PROP_NAME 634 663	glass transition temperatures
+T13	PROP_VALUE 667 675	42-50 °C
+T14	POLYMER 768 787	Poly(BMMD/CHDT-DVS)
+T15	PROP_NAME 818 836	refractive indices
+T16	PROP_NAME 841 853	Abbe numbers
+T17	PROP_VALUE 889 902	1.6512-1.6022
+T18	PROP_VALUE 907 916	42.6-50.6
+R1	abbreviation_of Arg1:T5 Arg2:T4
+R2	abbreviation_of Arg1:T7 Arg2:T6
+R6	has_value Arg1:T10 Arg2:T11
+R8	has_value Arg1:T12 Arg2:T13
+R9	has_property Arg1:T14 Arg2:T15
+R11	has_property Arg1:T14 Arg2:T16
+R10	has_value Arg1:T15 Arg2:T17
+R12	has_value Arg1:T16 Arg2:T18
+T21	CONDITION 613 624	in nitrogen
+R4	has_condition Arg1:T11 Arg2:T21
+R13	has_property Arg1:T1 Arg2:T2
+R14	has_property Arg1:T1 Arg2:T3
+T19	SYN_METHOD 242 265	random copolymerization
+T20	REF_EXP 220 224	They
+R15	refers_to Arg1:T20 Arg2:T1
+R16	synthesised_by Arg1:T20 Arg2:T19
+T22	PROP_NAME 543 560	thermal stability
+T23	REF_EXP 526 530	they
+R3	refers_to Arg1:T23 Arg2:T8
+R5	has_property Arg1:T23 Arg2:T22
+R7	has_property Arg1:T23 Arg2:T10
+R17	has_property Arg1:T23 Arg2:T12
+T24	CHAR_METHOD 733 766	differential scanning calorimetry
+T25	REF_EXP 710 715	films
+R18	refers_to Arg1:T25 Arg2:T23
+R19	characterized_by Arg1:T25 Arg2:T24
+T26	MONOMER 353 368	divinyl sulfone
+T27	MONOMER 370 373	DVS
+R20	abbreviation_of Arg1:T27 Arg2:T26	
+T28	SYN_METHOD 388 408	Michael polyaddition
+R21	synthesised_by Arg1:T20 Arg2:T28	
+T29	MONOMER 485 489	BMMD
+T30	MONOMER 490 494	CHDT
+T31	MONOMER 495 498	DVS
+T32	MONOMER 773 777	BMMD
+T33	MONOMER 778 782	CHDT
+T34	MONOMER 783 786	DVS
+T35	PROP_NAME 949 967	refractive indices
+T36	PROP_NAME 978 1000	wavelength dispersions
+R22	has_property Arg1:T14 Arg2:T35	
+R23	has_property Arg1:T14 Arg2:T36	
+T37	INORGANIC 616 624	nitrogen

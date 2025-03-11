@@ -1,0 +1,62 @@
+T1	MONOMER 0 28	Tetracarboxylic dianhydrides
+T2	ORGANIC 51 85	hydrogenated trimellitic anhydride
+T3	ORGANIC 87 90	HTA
+T4	ORGANIC 101 106	diols
+T5	POLYMER_FAMILY 123 141	poly(ester imide)s
+T6	POLYMER_FAMILY 143 148	PEsIs
+T7	MONOMER 155 195	HTA-derived tetracarboxylic dianhydrides
+T8	MONOMER 266 309	cycloaliphatic tetracarboxylic dianhydrides
+T9	POLYMER_FAMILY 321 325	PEsI
+T10	POLYMER_FAMILY 433 437	PEsI
+T11	ORGANIC 566 569	HTA
+T12	POLYMER_FAMILY 578 583	PEsIs
+T13	PROP_NAME 646 675	glass transition temperatures
+T14	PROP_NAME 677 679	Tg
+T15	ORGANIC 843 846	HTA
+T16	POLYMER_FAMILY 855 860	PEsIs
+T17	ORGANIC 926 929	HTA
+T18	PROP_NAME 1025 1027	Tg
+T19	ORGANIC 1277 1280	HTA
+T20	POLYMER_FAMILY 1289 1293	PEsI
+T21	PROP_NAME 1406 1408	Tg
+T22	PROP_VALUE 1409 1424	close to 300 °C
+T23	PROP_NAME 1476 1495	elongation at break
+T24	PROP_VALUE 1496 1502	> 100%
+R1	abbreviation_of Arg1:T3 Arg2:T2
+R2	abbreviation_of Arg1:T6 Arg2:T5
+R3	abbreviation_of Arg1:T14 Arg2:T13
+R5	has_value Arg1:T21 Arg2:T22
+R7	has_value Arg1:T23 Arg2:T24
+T25	MONOMER 494 501	diamine
+T26	MONOMER 239 247	diamines
+T27	PROP_NAME 347 364	molecular weights
+T28	PROP_NAME 366 368	Mw
+R8	abbreviation_of Arg1:T28 Arg2:T27
+T29	ORGANIC 485 489	diol
+T30	ORGANIC 982 986	diol
+T31	ORGANIC 1173 1177	diol
+R10	has_property Arg1:T12 Arg2:T14
+T32	PROP_NAME 697 713	water absorption
+T33	PROP_NAME 715 717	WA
+R11	abbreviation_of Arg1:T33 Arg2:T32
+R12	has_property Arg1:T12 Arg2:T33
+T34	PROP_NAME 739 759	dielectric constants
+R13	has_property Arg1:T12 Arg2:T34
+T35	PROP_NAME 1079 1081	WA
+R14	has_property Arg1:T16 Arg2:T18
+R15	has_property Arg1:T16 Arg2:T35
+T36	REF_EXP 1364 1367	its
+R4	refers_to Arg1:T36 Arg2:T20
+R6	has_property Arg1:T36 Arg2:T21
+R16	has_property Arg1:T36 Arg2:T23
+T37	ORGANIC 155 158	HTA
+T38	PROP_NAME 215 225	reactivity
+R17	has_property Arg1:T7 Arg2:T38	
+T39	CONDITION 1030 1061	by restricted internal rotation
+T40	CONDITION 1082 1116	by a decreased imide group content
+T41	ORGANIC 1148 1161	4,4′-biphenol
+T42	PROP_NAME 1465 1474	toughness
+R9	has_property Arg1:T36 Arg2:T42	
+T43	ORGANIC 962 970	fluorene
+R18	has_condition Arg1:T18 Arg2:T39	
+R19	has_condition Arg1:T35 Arg2:T40	

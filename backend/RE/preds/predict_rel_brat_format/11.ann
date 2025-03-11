@@ -1,0 +1,22 @@
+T1	INORGANIC 68 76	hydrogen
+T2	INORGANIC 322 330	hydrogen
+T3	PROP_NAME 94 113	proton conductivity
+T4	PROP_NAME 156 163;179 188	thermal stability
+T5	PROP_NAME 227 239	water uptake
+T6	CHAR_METHOD 561 593	quasi-elastic neutron scattering
+T7	CHAR_METHOD 460 490	small angle neutron scattering
+T8	CHAR_METHOD 596 600	QENS
+T9	CHAR_METHOD 493 497	SANS
+T10	CHAR_METHOD 542 546	SAXS
+T11	CHAR_METHOD 658 661	NMR
+T12	CHAR_METHOD 616 642	nuclear magnetic resonance
+T13	POLYMER 404 409	Naﬁon
+T14	CHAR_METHOD 511 539	small angle x-ray scattering
+T15	CHAR_METHOD 778 802	pulsed ﬁeld gradient NMR
+T16	CHAR_METHOD 785 802	ﬁeld gradient NMR
+T17	CHAR_METHOD 913 917	SANS
+T18	POLYMER_FAMILY 715 735	sulfonated polyimide
+T19	POLYMER_FAMILY 738 741	SPI
+T20	CHAR_METHOD 904 908	SAXS
+T21	CHAR_METHOD 807 839	NMR quadrupolar relaxation rates
+T22	CHAR_METHOD 871 893	small angle scattering

@@ -1,0 +1,54 @@
+T1	INORGANIC 12 26	cerium dioxide
+T2	POLYMER_FAMILY 45 47	PI
+T3	INORGANIC 291 295	CeO2
+T4	INORGANIC 385 389	CeO2
+T5	POLYMER_FAMILY 429 438	polyimide
+T6	INORGANIC 516 520	CeO2
+T7	INORGANIC 574 578	CeO2
+T8	INORGANIC 817 821	CeO2
+T9	INORGANIC 1023 1027	CeO2
+T10	POLYMER_FAMILY 34 43	polyimide
+R1	abbreviation_of Arg1:T2 Arg2:T10
+T11	INORGANIC 28 32	CeO2
+R2	abbreviation_of Arg1:T11 Arg2:T1
+T12	COMPOSITE 12 48	cerium dioxide (CeO2)/polyimide (PI)
+T13	POLYMER_FAMILY 110 123	polyamic acid
+T14	POLYMER_FAMILY 125 128	PAA
+R3	abbreviation_of Arg1:T14 Arg2:T13
+T15	CHAR_METHOD 221 224	TGA
+T16	CHAR_METHOD 229 232	XPS
+T17	CHAR_METHOD 346 349	SEM
+R4	characterized_by Arg1:T12 Arg2:T15
+R5	characterized_by Arg1:T12 Arg2:T16
+R6	characterized_by Arg1:T12 Arg2:T17
+T18	PROP_NAME 593 610	thermal stability
+T19	REF_EXP 614 633	nanocomposite films
+R7	refers_to Arg1:T19 Arg2:T12
+R8	has_property Arg1:T19 Arg2:T18
+T20	PROP_NAME 710 738	glass transition temperature
+T21	PROP_NAME 740 742	Tg
+R9	abbreviation_of Arg1:T21 Arg2:T20
+R10	has_property Arg1:T19 Arg2:T21
+T22	PROP_NAME 860 862	Tg
+T23	REF_EXP 776 795	nanocomposite films
+R11	refers_to Arg1:T23 Arg2:T19
+R12	has_property Arg1:T23 Arg2:T22
+T24	CONDITION 796 821	with high loading of CeO2
+R13	has_condition Arg1:T22 Arg2:T24
+T25	CHAR_METHOD 864 868	DMTA
+T26	CHAR_METHOD 873 900	static tensile measurements
+T27	PROP_NAME 917 932	storage modulus
+T28	REF_EXP 936 955	nanocomposite films
+R14	refers_to Arg1:T28 Arg2:T23
+R15	has_property Arg1:T28 Arg2:T27
+R16	characterized_by Arg1:T28 Arg2:T25
+R17	characterized_by Arg1:T28 Arg2:T26
+T29	PROP_NAME 977 996	elongation at break
+R18	has_property Arg1:T28 Arg2:T29
+T30	CONDITION 1007 1035	with increasing CeO2 content
+R19	has_condition Arg1:T27 Arg2:T30
+R20	has_condition Arg1:T29 Arg2:T30
+T31	INORGANIC 96 105	Ce(Phen)3
+T32	INORGANIC 257 263	cerium
+T33	CONDITION 335 344	at 300 °C
+T34	INORGANIC 662 671	Ce(Phen)3

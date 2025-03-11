@@ -1,0 +1,57 @@
+T1	ORGANIC 19 72	3,3′,4,4′-oxydiphthalic dianhydride-4,4′-oxydianiline
+T2	ORGANIC 74 82	ODPA-ODA
+T3	POLYMER 89 103	polyetherimide
+T4	POLYMER 105 108	PEI
+T5	PROP_NAME 204 221	thermal stability
+T6	ORGANIC 229 237	ODPA-ODA
+T7	POLYMER 243 246	PEI
+T8	ORGANIC 780 788	ODPA-ODA
+T9	POLYMER 794 797	PEI
+T10	ORGANIC 874 882	ODPA-ODA
+T11	POLYMER 888 891	PEI
+T12	PROP_NAME 1163 1182	oxygen permeability
+T13	PROP_VALUE 1186 1198	131.5 Barrer
+T14	PROP_NAME 1212 1229	O2/N2 selectivity
+T15	PROP_VALUE 1233 1236	9.7
+T16	REF_EXP 1071 1091	The carbon membranes
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	abbreviation_of Arg1:T4 Arg2:T3
+R3	has_property Arg1:T16 Arg2:T12
+R5	has_property Arg1:T16 Arg2:T14
+R4	has_value Arg1:T12 Arg2:T13
+R6	has_value Arg1:T14 Arg2:T15
+T17	CHAR_METHOD 264 290	thermogravimetric analysis
+T18	CHAR_METHOD 450 489	Fourier transform infrared spectroscopy
+T19	CHAR_METHOD 491 509	elemental analysis
+T20	CHAR_METHOD 511 528	X-ray diffraction
+T21	CHAR_METHOD 530 558	scanning electron microscopy
+T22	REF_EXP 400 428	the as-made carbon membranes
+T23	POLYMER 229 246	ODPA-ODA type PEI
+T24	POLYMER 780 797	ODPA-ODA type PEI
+T25	POLYMER 874 891	ODPA-ODA type PEI
+R7	characterized_by Arg1:T23 Arg2:T17
+R8	refers_to Arg1:T22 Arg2:T23
+R9	characterized_by Arg1:T22 Arg2:T18
+R10	characterized_by Arg1:T22 Arg2:T19
+R11	characterized_by Arg1:T22 Arg2:T20
+R12	characterized_by Arg1:T22 Arg2:T21
+T26	INORGANIC 638 645	zeolite
+T28	PROP_NAME 975 992	thermal stability
+T29	PROP_NAME 997 1005	porosity
+R14	has_property Arg1:T25 Arg2:T28
+R15	has_property Arg1:T25 Arg2:T29
+R16	refers_to Arg1:T16 Arg2:T25
+T30	CONDITION 1092 1154	made after preoxidation at 480 °C and heat treatment at 650 °C
+R17	has_condition Arg1:T13 Arg2:T30
+R18	has_condition Arg1:T15 Arg2:T30
+T31	INORGANIC 1357 1364	zeolite
+T27	INORGANIC 147 153	carbon
+T32	INORGANIC 716 722	carbon
+T33	INORGANIC 832 838	carbon
+T34	INORGANIC 925 931	carbon
+T35	INORGANIC 1212 1214	O2
+T36	INORGANIC 1215 1217	N2
+T37	INORGANIC 1274 1280	carbon
+T38	INORGANIC 1350 1356	carbon
+T39	INORGANIC 1379 1381	H2
+T40	INORGANIC 1382 1384	N2

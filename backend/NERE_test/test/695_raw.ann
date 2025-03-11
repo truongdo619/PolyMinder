@@ -1,0 +1,55 @@
+T1	POLYMER 67 93	poly(oxypropylene) diamine
+T2	POLYMER 95 100	d2000
+T3	INORGANIC 106 118	mineral clay
+T4	POLYMER 126 129	PEO
+T5	POLYMER 256 261	d2000
+T6	MATERIAL_AMOUNT 506 519	25 wt[percnt]
+T7	POLYMER 520 525	d2000
+R1	abbreviation_of Arg1:T2 Arg2:T1
+T8	PROP_NAME 173 185	conductivity
+T9	CHAR_METHOD 325 358	differential scanning calorimetry
+T10	CHAR_METHOD 360 363	DSC
+R2	abbreviation_of Arg1:T10 Arg2:T9
+T11	CHAR_METHOD 366 395	alternating current impedance
+T12	CHAR_METHOD 397 409	AC impedance
+R3	abbreviation_of Arg1:T12 Arg2:T11
+T13	CHAR_METHOD 415 441	Fourier-transform infrared
+T14	CHAR_METHOD 443 448	FT-IR
+R4	abbreviation_of Arg1:T14 Arg2:T13
+T15	CHAR_METHOD 455 458	DSC
+R5	has_amount Arg1:T7 Arg2:T6
+T16	PROP_NAME 549 551	Tg
+T17	POLYMER 585 590	d2000
+T18	POLYMER 573 576	PEO
+T19	POLYMER 727 730	PEO
+T20	POLYMER 739 744	d2000
+T21	INORGANIC 704 716	mineral clay
+T22	PROP_NAME 822 834	surface area
+T23	PROP_NAME 851 863	conductivity
+T24	CHAR_METHOD 940 945	FT-IR
+R6	has_property Arg1:T4 Arg2:T8
+R7	characterized_by Arg1:T4 Arg2:T10
+R8	characterized_by Arg1:T4 Arg2:T12
+R9	characterized_by Arg1:T4 Arg2:T14
+T25	COMPOSITE 572 590	(PEO)8LiClO4/d2000
+R10	characterized_by Arg1:T25 Arg2:T15
+R11	has_property Arg1:T25 Arg2:T16
+T26	COMPOSITE 726 744	(PEO)8LiClO4/d2000
+T27	REF_EXP 813 816	its
+R12	refers_to Arg1:T27 Arg2:T21
+R13	has_property Arg1:T27 Arg2:T22
+R14	has_property Arg1:T26 Arg2:T23
+R15	characterized_by Arg1:T26 Arg2:T24
+T28	CONDITION 191 210	at room temperature
+R16	has_condition Arg1:T8 Arg2:T28	
+T29	INORGANIC 240 248	silicate
+T30	INORGANIC 263 275	ether oxygen
+T31	INORGANIC 281 288	lithium
+T32	INORGANIC 578 584	LiClO4
+T33	INORGANIC 732 738	LiClO4
+T34	INORGANIC 904 912	silicate
+T35	INORGANIC 924 931	lithium
+T36	INORGANIC 1021 1028	lithium
+T37	INORGANIC 1166 1174	silicate
+T38	INORGANIC 1186 1193	lithium
+T39	INORGANIC 1209 1216	lithium

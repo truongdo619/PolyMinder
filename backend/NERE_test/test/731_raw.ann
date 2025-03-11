@@ -1,0 +1,16 @@
+T1	INORGANIC 0 21	Graphene quantum dots
+T2	INORGANIC 45 53	graphene
+T3	INORGANIC 325 346	graphene quantum dots
+T4	INORGANIC 429 450	graphene quantum dots
+T5	POLYMER_FAMILY 456 461	epoxy
+T6	INORGANIC 477 498	graphene quantum dots
+T7	POLYMER_FAMILY 552 557	epoxy
+T8	INORGANIC 739 760	graphene quantum dots
+T9	PROP_NAME 293 313	thermal conductivity
+R1	has_property Arg1:T3 Arg2:T9
+T10	PROP_NAME 580 600	thermal conductivity
+R2	has_property Arg1:T7 Arg2:T10
+T11	PROP_NAME 623 651	glass transition temperature
+R3	has_property Arg1:T7 Arg2:T11
+T12	PROP_NAME 673 688	storage modulus
+R4	has_property Arg1:T7 Arg2:T12

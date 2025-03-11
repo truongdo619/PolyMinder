@@ -1,0 +1,35 @@
+T1	POLYMER 70 101	starch-g-poly(1,4-dioxan-2-one)
+T2	PROP_NAME 969 997	crystallization temperatures
+T3	PROP_VALUE 1009 1025	from 45 to 60 °C
+T5	PROP_NAME 998 1000	Tc
+R3	has_value Arg1:T5 Arg2:T3
+R1	abbreviation_of Arg1:T5 Arg2:T2
+T4	CHAR_METHOD 138 171	differential scanning calorimetry
+T6	CHAR_METHOD 173 176	DSC
+R2	abbreviation_of Arg1:T6 Arg2:T4
+R5	characterized_by Arg1:T1 Arg2:T6
+T9	POLYMER 444 466	poly(1,4-dioxan-2-one)
+T10	POLYMER 468 472	PPDO
+R7	abbreviation_of Arg1:T10 Arg2:T9
+T11	POLYMER 550 554	PPDO
+T13	PROP_NAME 657 685	crystallization temperatures
+T7	CHAR_METHOD 1059 1062	DSC
+T8	POLYMER 1184 1188	PPDO
+T12	PROP_NAME 1211 1239	crystallization temperatures
+T14	REF_EXP 259 269	copolymers
+T15	REF_EXP 500 514	the copolymers
+R4	refers_to Arg1:T14 Arg2:T1
+R6	refers_to Arg1:T15 Arg2:T14
+T16	REF_EXP 603 623	the graft copolymers
+R8	refers_to Arg1:T16 Arg2:T15
+R9	has_property Arg1:T16 Arg2:T13
+T17	REF_EXP 727 747	the graft copolymers
+T18	REF_EXP 906 926	the graft copolymers
+R10	refers_to Arg1:T17 Arg2:T16
+R11	refers_to Arg1:T18 Arg2:T17
+R12	has_property Arg1:T18 Arg2:T5
+T19	REF_EXP 1134 1154	the graft copolymers
+R13	refers_to Arg1:T19 Arg2:T18
+R14	characterized_by Arg1:T19 Arg2:T7
+R15	has_property Arg1:T19 Arg2:T12
+R16	has_property Arg1:T8 Arg2:T12

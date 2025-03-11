@@ -1,0 +1,67 @@
+T5	POLYMER 188 191	PVC
+T6	MONOMER 205 233	tris(2-butoxyethyl)phosphate
+T7	MONOMER 235 239	TBEP
+T8	MONOMER 245 270	2-nitrophenyl octyl ether
+T9	MONOMER 272 276	NPOE
+T10	MONOMER 298 329	dinonylnaphthalenesulfonic acid
+T11	MONOMER 331 335	DNSA
+T12	MONOMER 341 374	dinonylnaphthalenedisulfonic acid
+T13	MONOMER 376 381	DNDSA
+T14	POLYMER 642 645	CTA
+T15	MONOMER 646 650	NPOE
+T16	MONOMER 651 656	DNDSA
+T18	POLYMER 884 887	CTA
+T19	MONOMER 888 893	DNDSA
+T20	MONOMER 894 898	NPOE
+T21	PROP_NAME 918 937	proton conductivity
+T22	PROP_VALUE 939 948	3.5 mS/cm
+R2	abbreviation_of Arg1:T7 Arg2:T6
+R3	abbreviation_of Arg1:T9 Arg2:T8
+R4	abbreviation_of Arg1:T11 Arg2:T10
+R5	abbreviation_of Arg1:T13 Arg2:T12
+R8	has_value Arg1:T21 Arg2:T22
+T25	CONDITION 950 1013	with no variation of its behavior during 2 months of evaluation
+R6	has_condition Arg1:T22 Arg2:T25
+T4	PROP_NAME 489 508	proton conductivity
+T26	CHAR_METHOD 527 565	electrochemical impedance spectroscopy
+T27	CHAR_METHOD 567 570	EIS
+R11	abbreviation_of Arg1:T27 Arg2:T26
+T28	PROP_NAME 676 687	selectivity
+T29	REF_EXP 672 675	its
+R13	has_property Arg1:T29 Arg2:T28
+T30	CHAR_METHOD 781 784	DSC
+T31	CHAR_METHOD 789 792	TGA
+T32	PROP_NAME 831 848	thermal stability
+T33	REF_EXP 852 867	these membranes
+T34	POLYMER 1470 1473	CTA
+T35	MONOMER 1474 1479	DNDSA
+T36	MONOMER 1480 1484	NPOE
+T37	POLYMER 1370 1373	CTA
+T38	CHAR_METHOD 1015 1019	FTIR
+T39	PROP_NAME 1322 1334	conductivity
+T41	PROP_NAME 1451 1462	selectivity
+T42	COMPOSITE 642 656	CTA-NPOE-DNDSA
+R14	refers_to Arg1:T29 Arg2:T42
+R15	refers_to Arg1:T33 Arg2:T42
+R16	has_property Arg1:T33 Arg2:T32
+R17	characterized_by Arg1:T33 Arg2:T30
+R18	characterized_by Arg1:T33 Arg2:T31
+T43	COMPOSITE 884 898	CTA-DNDSA-NPOE
+R7	has_property Arg1:T43 Arg2:T21
+T44	REF_EXP 1072 1084	the membrane
+R19	refers_to Arg1:T44 Arg2:T43
+R20	characterized_by Arg1:T44 Arg2:T38
+T45	COMPOSITE 1470 1484	CTA-DNDSA-NPOE
+R21	has_property Arg1:T45 Arg2:T41
+T46	CONDITION 1494 1533	for protons over calcium or sodium ions
+R22	has_condition Arg1:T41 Arg2:T46
+T47	CONDITION 1259 1308	increasing plasticizer and carrier concentrations
+R25	has_condition Arg1:T39 Arg2:T47
+T48	REF_EXP 1400 1413	this property
+R26	refers_to Arg1:T48 Arg2:T39
+T49	CONDITION 1359 1381	increasing CTA content
+R28	has_condition Arg1:T48 Arg2:T49
+T1	INORGANIC 1511 1518	calcium
+T2	INORGANIC 1522 1528	sodium
+T3	INORGANIC 718 724	sodium
+T17	INORGANIC 729 736	calcium
