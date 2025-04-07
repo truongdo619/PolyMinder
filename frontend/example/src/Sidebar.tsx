@@ -12,13 +12,12 @@ import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
+import Divider from '@mui/material/Divider';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import DialogContentText from '@mui/material/DialogContentText';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -37,7 +36,7 @@ import { GlobalContext } from './GlobalState';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from './axiosSetup';
 import Pagination from '@mui/material/Pagination';
-import { set } from "date-fns";
+import { Box, List, ListItem, ListItemIcon, ListItemText, Checkbox, Typography } from '@mui/material';
 
 interface SidebarProps {
   highlights: Array<CommentedHighlight>;
@@ -45,6 +44,7 @@ interface SidebarProps {
   setIsActive: (active: boolean) => void;
   setHighlights: React.Dispatch<React.SetStateAction<Array<CommentedHighlight>>>; // Add this line
   selectedMode: string;
+  paraHighlights: Array<CommentedHighlight>; // <-- new prop
 }
 
 const updateHash = (highlight: Highlight) => {
@@ -57,7 +57,7 @@ interface Paragraph {
   // Add other properties if necessary
 }
 
-const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, selectedMode }: SidebarProps) => {
+const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, selectedMode, paraHighlights }: SidebarProps) => {
   const globalContext = useContext(GlobalContext);
   
   if (!globalContext) {
@@ -89,6 +89,14 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
   const [selectionEnd, setSelectionEnd] = useState<number | null>(null);
   const [confirmStatusOpen, setConfirmStatusOpen] = useState(false);
 
+  // State for "adjust your selection" dialog
+  const [openParaSelection, setOpenParaSelection] = useState(false);
+  // Track which paragraphs are selected (default all checked)
+  const [paragraphSelections, setParagraphSelections] = useState<boolean[]>(
+    paraHighlights.map(ph => ph.visible !== undefined ? ph.visible : true)
+  );
+
+
   // State to track if the "add relation" row should be shown
   const [showAddRelationRow, setShowAddRelationRow] = useState(false);
 
@@ -102,6 +110,27 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
   // Determine the highlights to display on the current page
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentHighlights = highlights.slice(startIndex, startIndex + itemsPerPage);
+
+  const [allParagraphsSelected, setAllParagraphsSelected] = useState(true);
+
+  // Updated paragraph checkbox handler to keep the "All" box in sync:
+  const handleParagraphCheckbox = (index: number) => {
+    setParagraphSelections((prev) => {
+      const updated = [...prev];
+      updated[index] = !updated[index];
+      // Update the "All" checkbox state if any box is unchecked
+      setAllParagraphsSelected(updated.every(Boolean));
+      return updated;
+    });
+  };
+
+  // New function to toggle all paragraphs on/off:
+  const handleAllParagraphsToggle = () => {
+    const newVal = !allParagraphsSelected;
+    setAllParagraphsSelected(newVal);
+    setParagraphSelections(paragraphSelections.map(() => newVal));
+  };
+
 
   // Handle page change
   const handlePageChange = (event, page) => {
@@ -142,6 +171,63 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
     setNewRelationTarget('');
     setConfirmStatusOpen(false);
   };
+
+  const handleOpenParaSelection = () => {
+    setOpenParaSelection(true);
+  };
+  
+  const handleCloseParaSelection = () => {
+    setOpenParaSelection(false);
+  };
+  
+  
+  // When user hits "Save & Reload" in that dialog
+  // Here we simply filter out any highlights that belong
+  // to unchecked paragraphs. Adjust as needed.
+
+  const handleSaveParagraphSelection = async () => {
+    try {
+      setIsActive(true);
+      const data = {
+        document_id: documentId,
+        update_id: updateId,
+        visible_list: paragraphSelections
+      };
+
+      console.log("Payload to /set-visible:", data);
+      const token = localStorage.getItem('accessToken');
+      const response = await axiosInstance.post(
+        `${import.meta.env.VITE_BACKEND_URL}/set-visible`,
+        data,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      // After success, set new highlights
+      // If you need, also update other states (bratOutput, fileName, etc.)
+      setBratOutput(response.data.brat_format_output);
+      setDocumentId(response.data.document_id); // Store documentId in GlobalState
+      setUpdateId(response.data.update_id);
+      setHighlights(response.data.pdf_format_output);
+      setFileName(response.data.filename);
+      navigateTo('/result', { 
+        state: { 
+          highlights: response.data.pdf_format_output, 
+          url: `${import.meta.env.VITE_PDF_BACKEND_URL}/statics/${response.data.filename}`
+        }
+      });
+    } catch (error) {
+      console.error("Error updating visible list:", error);
+    } finally {
+      setOpenParaSelection(false);
+      setIsActive(false);
+    }
+  };
+
 
   const handleEntitySaveAndReload = async () => {
     setIsActive(true);
@@ -449,9 +535,32 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
         </h2>
         <p>
           <small>
-            To highlight a new entity, select the text you want and click "Add Highlight".
+            
           </small>
         </p>
+        <p style={{ fontSize: "15px", marginTop: "10px" }}>
+        🌟 To highlight a new entity, select the text you want and click "Add Highlight".
+        </p>
+
+
+        <p style={{ fontSize: "15px", marginTop: "10px" }}>
+          📝 To view results for a specific section of the document, please{" "}
+          <span
+            style={{
+              color: "#007bff",
+              cursor: "pointer",
+              textDecoration: "none",
+              fontWeight: "bold",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.textDecoration = "underline")}
+            onMouseLeave={(e) => (e.currentTarget.style.textDecoration = "none")}
+            onClick={handleOpenParaSelection}
+          >
+            adjust your selection
+          </span>
+          .
+        </p>
+
       </div>
 
       {/* Render paginated highlights */}
@@ -804,6 +913,96 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
           </Button>
         </DialogActions>
       </Dialog>
+
+          
+      {/* NEW Dialog: "Adjust Your Selection" */}
+      <Dialog
+      open={openParaSelection}
+      onClose={handleCloseParaSelection}
+      maxWidth="md"
+      fullWidth
+      PaperProps={{
+        style: {
+          borderRadius: '8px',
+          backgroundColor: '#fafafa',
+        },
+      }}
+    >
+      <DialogTitle style={{ textAlign: 'center' }}>
+        Adjust Your Paragraph Selection
+      </DialogTitle>
+      <Divider />
+      <DialogContent dividers>
+        {/* "Enable/Disable All" checkbox outside the paragraphs list */}
+        <Box sx={{ display: "flex", alignItems: "center", marginBottom: "1rem" }}>
+          <Checkbox
+            checked={allParagraphsSelected}
+            onChange={handleAllParagraphsToggle}
+          />
+          <Typography variant="body1">Enable/Disable All</Typography>
+        </Box>
+
+        {/* List of paragraphs with a tooltip and individual checkboxes */}
+        <List>
+          {paraHighlights.map((para, i) => {
+            const shortPreview =
+              para.content.text.slice(0, 150) +
+              (para.content.text.length > 150 ? "..." : "");
+            return (
+              <ListItem
+                key={i}
+                dense
+                sx={{
+                  userSelect: "none",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: "1rem",
+                  padding: "0.5rem",
+                  border: "1px solid #ddd",
+                  borderRadius: "5px",
+                  backgroundColor: "#f9f9f9",
+                  cursor: "pointer",
+                  transition: "background 0.2s ease-in-out",
+                  ":hover": {
+                    backgroundColor: "#ececec",
+                  },
+                }}
+              >
+                <Tooltip title={para.content.text} arrow>
+                  <Box sx={{ flexGrow: 1 }}>
+                    <Typography variant="subtitle2">
+                      Paragraph {para.para_id + 1} - {para.comment}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: "#555" }}>
+                      {shortPreview}
+                    </Typography>
+                  </Box>
+                </Tooltip>
+
+                {/* Individual paragraph checkbox */}
+                <Checkbox
+                  edge="end"
+                  checked={paragraphSelections[i]}
+                  onChange={() => handleParagraphCheckbox(i)}
+                  tabIndex={-1}
+                  disableRipple
+                />
+              </ListItem>
+            );
+          })}
+        </List>
+      </DialogContent>
+      <Divider />
+      <DialogActions>
+        <Button onClick={handleCloseParaSelection} color="primary" variant="outlined">
+          Cancel
+        </Button>
+        <Button onClick={handleSaveParagraphSelection} color="primary" variant="contained">
+          Save & Reload
+        </Button>
+      </DialogActions>
+    </Dialog>
 
 
 

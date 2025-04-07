@@ -24,7 +24,7 @@ export const TextHighlight = ({
 }: TextHighlightProps) => {
   const highlightClass = isScrolledTo ? "TextHighlight--scrolledTo" : "";
   const { rects } = highlight.position;
-  const classnametext = highlight.comment;
+  const classnametext = highlight.comment.toUpperCase();
   const para_id = highlight.para_id;
   // console.log("highlight: ", highlight);
   return (
@@ -39,7 +39,8 @@ export const TextHighlight = ({
             style={{ ...rect, ...style, position: 'absolute' }}
             className={`TextHighlight__part ${classnametext}`}
           >
-            {classnametext === "PARAGRAPH" && index === 0 && para_id !== undefined && (
+            {/* {classnametext.startsWith("BLOCK") && classnametext != "BLOCK_DISCARDED" && index === 0 && para_id !== undefined && ( */}
+            {classnametext.startsWith("BLOCK") && index === 0 && para_id !== undefined && (
               <Badge 
                 badgeContent={para_id + 1} 
                 color="primary"

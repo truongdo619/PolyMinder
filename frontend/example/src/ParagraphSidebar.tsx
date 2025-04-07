@@ -53,6 +53,8 @@ const ParagraphSidebar = ({
   /* ----------------------------
    *    Styled Textarea
    * ---------------------------- */
+
+  console.log(highlights);
   const blue = {
     100: '#DAECFF',
     200: '#b6daff',

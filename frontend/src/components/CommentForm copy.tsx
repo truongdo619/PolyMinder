@@ -7,13 +7,13 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Card from '@mui/material/Card';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import BratEmbedding from './BratEmbedding';
 import Draggable from 'react-draggable';
 import DownloadIcon from '@mui/icons-material/Download';
-import PolylineIcon from '@mui/icons-material/Polyline';
 import { GlobalContext } from '../../example/src/GlobalState';
 import axiosInstance from '../../example/src/axiosSetup';
-
 
 function useWindowDimensions() {
   const [windowDimensions, setWindowDimensions] = useState({
@@ -46,20 +46,9 @@ interface CommentFormProps {
   };
   toggleEditInProgress: (isEditing: boolean) => void;  
   pdfHighlighterUtils: any;
-  onOpenTreeDialog?: () => void;
 }
 
-
-
-const CommentForm = ({
-  onSubmit,
-  highlight,
-  brat_item,
-  toggleEditInProgress,
-  pdfHighlighterUtils,
-  onOpenTreeDialog
-}: CommentFormProps) => {
-
+const CommentForm = ({ onSubmit, highlight, brat_item, toggleEditInProgress, pdfHighlighterUtils }: CommentFormProps) => {
   const globalContext = React.useContext(GlobalContext);
   if (!globalContext) {
     throw new Error("GlobalContext is undefined");
@@ -71,6 +60,12 @@ const CommentForm = ({
   const [showAllEntities, setShowAllEntities] = useState(false);
   const { width: windowWidth } = useWindowDimensions();
 
+  // State for tabs
+  const [tabValue, setTabValue] = useState(0);
+  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    setTabValue(newValue);
+  };
+
   const calculateWidthBasedOnContent = (content: string) => {
     const baseWidth = 300; 
     const maxWidth = Math.min(800, windowWidth - 20); 
@@ -78,6 +73,7 @@ const CommentForm = ({
     return Math.min(baseWidth + contentWidth, maxWidth);
   };
 
+  // Compute the base card width and then increase it when showAllEntities is true.
   const baseCardWidth = calculateWidthBasedOnContent(brat_item.text);
   const cardWidth = showAllEntities 
     ? Math.min(baseCardWidth + 200, Math.min(800, windowWidth - 20))
@@ -90,8 +86,6 @@ const CommentForm = ({
       border: 'none',
     }
   };
-
-  // Example method to handle JSON downloading (unchanged)
 
   function extractNumberFromParaId(para_id: string): number | null {
     const match = para_id.match(/\d+/);
@@ -171,7 +165,6 @@ const CommentForm = ({
       pdfHighlighterUtils.scrolledToHighlightIdRef.current = null;
       pdfHighlighterUtils.renderHighlightLayers();
     }
-    // Reset URL hash
     const hash = document.location.hash;
     const parts = hash.split('#');
     document.location.hash = parts[0] + "#" + parts[1];
@@ -182,12 +175,13 @@ const CommentForm = ({
     setKey(prevKey => prevKey + 1);
   };
 
-  // Example: filter the brat_item so only highlight-related entities are shown
   const currentEntityId = highlight.id.split('_')[1];
+
   const filteredBratItem = showAllEntities ? brat_item : (() => {
     if (!brat_item || !brat_item.entities) return brat_item;
 
     const relatedEntityIds = new Set([currentEntityId]);
+
     if (brat_item.relations) {
       brat_item.relations.forEach(relation => {
         if (relation && relation[2]) {
@@ -203,8 +197,8 @@ const CommentForm = ({
 
     const filteredEntities = brat_item.entities.filter(entity => relatedEntityIds.has(entity[0]));
     const filteredRelations = brat_item.relations
-      ? brat_item.relations.filter(r =>
-          relatedEntityIds.has(r[2][0][1]) && relatedEntityIds.has(r[2][1][1])
+      ? brat_item.relations.filter(relation =>
+          relatedEntityIds.has(relation[2][0][1]) && relatedEntityIds.has(relation[2][1][1])
         )
       : [];
 
@@ -212,70 +206,64 @@ const CommentForm = ({
   })();
 
   return (
-    <>
     <Box>
       <Draggable>
         <div>
           <Card key={key} sx={{ minWidth: 300, width: cardWidth }}>
-            <CardContent>
-              <Typography variant="h5" component="div">
-                {highlight.comment}
-              </Typography>
-              <Slider
-                aria-label="Temperature"
-                defaultValue={100}
-                step={0}
-                className={highlight.comment + '_COLOR'}
-              />
-              <Typography variant="body2">
-                {'"' + highlight.content.text?.slice(0, 100) + '..."'}
-              </Typography>
-              <Typography variant="subtitle2" sx={{ mt: 1 }}>
-                Brat Visualization:
-              </Typography>
-              <BratEmbedding docData={filteredBratItem} />
-            </CardContent>
+            {/* Tabs Header */}
+            <Tabs value={tabValue} onChange={handleTabChange}>
+              <Tab label="Brat Visualization" />
+              <Tab label="Tree Visualization" />
+            </Tabs>
 
-            <CardActions sx={{ justifyContent: 'space-between' }}>
+            {/* First Tab: Brat Visualization */}
+            {tabValue === 0 && (
               <Box>
-                <Button size="small" onClick={toggleEntitiesView}>
-                  {showAllEntities ? "Show Only Highlighted Entity" : "Show All Entities"}
-                </Button>
-                <Button size="small" onClick={handleClose}>
-                  Close
-                </Button>
+                <CardContent>
+                  <Typography variant="h5" component="div">
+                    {highlight.comment}
+                  </Typography>
+                  <Slider
+                    aria-label="Temperature"
+                    defaultValue={100}
+                    step={0}
+                    className={highlight.comment + '_COLOR'}
+                  />
+                  <Typography variant="body2">
+                    {'"' + highlight.content.text + '"'}
+                  </Typography>
+                  <BratEmbedding docData={filteredBratItem} />
+                </CardContent>
+                <CardActions sx={{ justifyContent: 'space-between' }}>
+                  <Box>
+                    <Button size="small" onClick={toggleEntitiesView}>
+                      {showAllEntities ? "Show Only Highlighted Entity" : "Show All Entities"}
+                    </Button>
+                    <Button size="small" onClick={handleClose}>Close</Button>
+                  </Box>
+                  <Button
+                    sx={svgStyle}
+                    size="small"
+                    onClick={handleDownload}
+                    startIcon={<DownloadIcon />}
+                    variant="contained"
+                  >
+                    Download JSON
+                  </Button>
+                </CardActions>
               </Box>
+            )}
 
-              <Box>
-                <Button
-                  sx={svgStyle}
-                  size="small"
-                  onClick={handleDownload}
-                  startIcon={<DownloadIcon />}
-                  variant="contained"
-                  style={{ marginRight: '8px' }}
-                >
-                  Download JSON
-                </Button>
-                <Button
-                  sx={svgStyle}
-                  size="small"
-                  startIcon={<PolylineIcon />}
-                  variant="contained"
-                  onClick={() => onOpenTreeDialog && onOpenTreeDialog(highlight.id)}
-                >
-                  Open Graph Visualization
-                </Button>
+            {/* Second Tab: Tree Visualization (placeholder) */}
+            {tabValue === 1 && (
+              <Box sx={{ p: 2 }}>
+                Fill with tree visualization
               </Box>
-            </CardActions>
+            )}
           </Card>
         </div>
       </Draggable>
     </Box>
-    {/* The dialog for the tree visualization */}
-    {/* <Dialog open={openTreeDialog} maxWidth="md" fullWidth> */}
-
-    </>
   );
 };
 

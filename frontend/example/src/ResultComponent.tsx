@@ -53,38 +53,21 @@ const extractRelationHighlights = (highlights: Array<CommentedHighlight>) => {
 
 
 const convertBratOutputToHighlights = (bratOutput: any[]): Highlight[] => {
-  // console.log("bratOutput", bratOutput);
+  console.log("bratOutput", bratOutput);
   let highlights: Highlight[] = [];
   bratOutput.forEach((para, paraId) => {
     const highlight: Highlight = {
       id:  `para${paraId}`,
-      comment: "PARAGRAPH", 
+      comment: "BLOCK_" + para.type.toUpperCase(), 
       content: {
         text: para.text,
       },      
       position: {
-        boundingRect: {
-          x1: para.bounding_box.x1,
-          y1: para.bounding_box.y1,
-          x2: para.bounding_box.x2,
-          y2: para.bounding_box.y2,
-          width: para.bounding_box.width,
-          height: para.bounding_box.height,
-          pageNumber: para.bounding_box.pageNumber,
-        },
-        rects: [
-          {
-            x1: para.bounding_box.x1,
-            y1: para.bounding_box.y1,
-            x2: para.bounding_box.x2,
-            y2: para.bounding_box.y2,
-            width: para.bounding_box.width,
-            height: para.bounding_box.height,
-            pageNumber: para.bounding_box.pageNumber,
-          }
-        ]
+        boundingRect: para.bounding_box[0], 
+        rects: para.bounding_box
       },
       para_id: paraId,
+      visible: para.visible
     };
 
     highlights.push(highlight);
@@ -111,15 +94,25 @@ const ResultComponent = () => {
   const [currentPDFPage, setCurrentPDFPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const location = useLocation();
-  const initialHighlights = location.state?.highlights || {};
-
+  const initialHighlights = location.state?.highlights || [];
+  const initialVisibleHighlights = initialHighlights.filter((highlight: CommentedHighlight) => highlight.visible);
   // console.log("Initial highlights", initialHighlights);
   const MAIN_URL = location.state?.url || "";
   const [url, setUrl] = useState(MAIN_URL);
   const [highlights, setHighlights] = useState<Array<CommentedHighlight>>(
-    initialHighlights ?? [],
+    initialVisibleHighlights ?? [],
   );
 
+  
+  const setVisibleHighlights = (
+    value: React.SetStateAction<Array<CommentedHighlight>>
+  ) => {
+    setHighlights((prev) => {
+      const newHighlights = typeof value === "function" ? value(prev) : value;
+      return newHighlights.filter((hl) => hl.visible);
+    });
+  };
+  
   // useEffect(() => {
   //   setRelationHighlights(extractRelationHighlights(highlights));
   // }, [highlights]);
@@ -245,7 +238,7 @@ const ResultComponent = () => {
         setBratOutput(response.data.brat_format_output);
         setDocumentId(response.data.document_id); // Store documentId in GlobalState
         setUpdateId(response.data.update_id);
-        setHighlights(response.data.pdf_format_output);
+        setVisibleHighlights(response.data.pdf_format_output);
         navigateTo('/result', { 
           state: { 
             highlights: response.data.pdf_format_output, 
@@ -334,7 +327,7 @@ const ResultComponent = () => {
 
   const deleteHighlight = (highlight: ViewportHighlight | Highlight) => {
     console.log("Deleting highlight", highlight);
-    setHighlights(highlights.filter((h) => h.id != highlight.id));
+    setVisibleHighlights(highlights.filter((h) => h.id != highlight.id));
   };
 
   const editHighlight = (
@@ -342,15 +335,11 @@ const ResultComponent = () => {
     edit: Partial<CommentedHighlight>,
   ) => {
     console.log(`Editing highlight ${idToUpdate} with `, edit);
-    setHighlights(
+    setVisibleHighlights(
       highlights.map((highlight) =>
         highlight.id === idToUpdate ? { ...highlight, ...edit } : highlight,
       ),
     );
-  };
-
-  const resetHighlights = () => {
-    setHighlights([]);
   };
 
   const PDFpageChange = (page: number) => {
@@ -562,7 +551,7 @@ const ResultComponent = () => {
           setDocumentId(response.data.document_id);
           setUpdateId(response.data.update_id);
           setFileName(response.data.filename);
-          setHighlights(response.data.pdf_format_output);
+          setVisibleHighlights(response.data.pdf_format_output);
         } catch (error: any) {
           console.error('Error fetching document:', error);
           setIsActive(false);
@@ -610,8 +599,9 @@ const ResultComponent = () => {
         highlights={isFiltered ? filteredHighlights : highlights}
         getHighlightById={getHighlightById}
         setIsActive={setIsActive}
-        setHighlights={setHighlights}
+        setHighlights={setVisibleHighlights}
         selectedMode={selectedMode}
+        paraHighlights={paraHighlights}
       />
 
     } else if (selectedMode === 'Relations') {
@@ -642,8 +632,9 @@ const ResultComponent = () => {
         highlights={isRelationFiltered ? filteredRelationHighlights : relationHighlights}
           getHighlightById={getHighlightById}
           setIsActive={setIsActive}
-          setHighlights={setHighlights}
+          setHighlights={setVisibleHighlights}
           selectedMode={selectedMode}
+          paraHighlights={paraHighlights}
         />
       );
     } else {

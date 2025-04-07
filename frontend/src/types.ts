@@ -93,6 +93,7 @@ export interface Highlight {
   position: ScaledPosition;
   para_id?: number;
   comment?: string;
+  visible?: boolean;
 }
 
 /**

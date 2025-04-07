@@ -12,6 +12,57 @@
   transition: background 0.3s;
 }
 
+.BLOCK_INDEX {
+  background-color: #28A9E1;
+}
+
+.BLOCK_PARAGRAPH{
+  background-color: #f7888880;
+}
+
+.BLOCK_TEXT{
+  background-color: #f7888880;
+}
+
+.BLOCK_TITLE{
+  background-color: #d1d1ff;
+}
+
+.BLOCK_LIST{
+  background-color: #bfe5ce;
+}
+
+.BLOCK_DISCARDED{
+  background-color: #e2e2e2;
+}
+
+.BLOCK_IMAGE_BODY{
+  background-color: #e0fec1;
+}
+
+.BLOCK_IMAGE_CAPTION{
+  background-color: #d1e8ff;
+}
+
+.BLOCK_IMAGE_FOOTNOTE{
+  background-color: #FFB266;
+}
+
+.BLOCK_INTEREQUATION{
+  background-color: #00FF00;
+}
+
+.BLOCK_TABLE_BODY{
+  background-color: #f0f0b3;
+}
+
+.BLOCK_TABLE_CAPTION{
+  background-color: #ffffd1;
+}
+
+.BLOCK_TABLE_FOOTNOTE{
+  background-color: #f7fff0;
+}
 
 .INORGANIC {
   background: #00ffff;
@@ -62,7 +113,7 @@
 }
 
 .COMPOSITE{
-  background: #00ff88;
+  background: #8400ff;
 }
 
 .SYN_METHOD{
@@ -118,7 +169,7 @@
 }
 
 .COMPOSITE_COLOR {
-  color: #00ff88!important;
+  color: #8400ff!important;
 }
 
 .SYN_METHOD_COLOR {
@@ -167,13 +218,61 @@
   background: #0080ff;
 }
 .TextHighlight--scrolledTo .COMPOSITE {
-  background: #00ff62;
+  background: #6a02be;
 }
 .TextHighlight--scrolledTo .SYN_METHOD {
   background: #f74fa3;
 }
 
-.TextHighlight--scrolledTo .PARAGRAPH {
+.TextHighlight--scrolledTo .BLOCK_PARAGRAPH {
+  background: #ff000080;
+}
+
+.TextHighlight--scrolledTo .BLOCK_TEXT {
+  background: #ff000080;
+}
+
+.TextHighlight--scrolledTo .BLOCK_TITLE {
+  background: #ff000080;
+}
+
+.TextHighlight--scrolledTo .BLOCK_LIST {
+  background: #ff000080;
+}
+
+.TextHighlight--scrolledTo .BLOCK_DISCARDED {
+  background: #ff000080;
+}
+
+.TextHighlight--scrolledTo .BLOCK_IMAGE_BODY {
+  background: #ff000080;
+}
+
+.TextHighlight--scrolledTo .BLOCK_IMAGE_CAPTION {
+  background: #ff000080;
+}
+
+.TextHighlight--scrolledTo .BLOCK_TABLE_BODY {
+  background: #ff000080;
+}
+
+.TextHighlight--scrolledTo .BLOCK_TABLE_CAPTION {
+  background: #ff000080;
+}
+
+.TextHighlight--scrolledTo .BLOCK_TABLE_FOOTNOTE {
+  background: #ff000080;
+}
+
+.TextHighlight--scrolledTo .BLOCK_INDEX {
+  background: #ff000080;
+}
+
+.TextHighlight--scrolledTo .BLOCK_INTEREQUATION {
+  background: #ff000080;
+}
+
+.TextHighlight--scrolledTo .BLOCK_IMAGE_FOOTNOTE {
   background: #ff000080;
 }
 
@@ -218,7 +317,7 @@
 }
 
 .refers_to_COLOR {
-  color: purple!important;
+  color: cyan!important;
   border-style: solid;
   border-color: gray;
   border-width: 2px;

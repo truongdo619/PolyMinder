@@ -51,14 +51,6 @@ import {
 import { HighlightLayer } from "./HighlightLayer";
 import { MouseSelection } from "./MouseSelection";
 import { TipContainer } from "./TipContainer";
-import TreeVisualizationExample from './TreeVisualizationExample';
-
-// Material UI dialog imports
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import Button from '@mui/material/Button';
 
 const SCROLL_MARGIN = 10;
 const SELECTION_DELAY = 250; // Debounce wait time in milliseconds for a selection changing to be registered
@@ -205,23 +197,6 @@ export const PdfHighlighter = ({
   // State
   const globalContext = useContext(GlobalContext);
   
-  const [openTreeDialog, setOpenTreeDialog] = useState(false);
-  const [treeDialogHighlightId, setTreeDialogHighlightId] = useState<string | null>(null);
-
-
-  const handleOpenTreeDialog = (id: string) => {
-    setTreeDialogHighlightId(id);
-    setOpenTreeDialog(true);
-  };
-  
-  const handleCloseTreeDialog = () => {
-    const hash = document.location.hash;
-    const parts = hash.split('#');
-    document.location.hash = parts[0] + "#" + parts[1];
-    setOpenTreeDialog(false);
-  };
-
-
   // const location = useLocation();
   // const brat_output = location.state?.brat_output || [];
   if (!globalContext) {
@@ -412,7 +387,7 @@ export const PdfHighlighter = ({
     toggleEditInProgress(false);
   };
   
-  const handleMouseDownWrapper = (event: MouseEvent) => { 
+  const handleMouseDownWrapper = (event: MouseEvent) => {
     handleMouseDown(event as unknown as React.PointerEvent<HTMLDivElement>);
   };
 
@@ -583,7 +558,6 @@ export const PdfHighlighter = ({
           }
           }
           pdfHighlighterUtils={pdfHighlighterUtils}
-          onOpenTreeDialog={() => handleOpenTreeDialog(highlight.id)}
         ></CommentForm>
       ),
     };
@@ -658,7 +632,6 @@ export const PdfHighlighter = ({
   utilsRef(pdfHighlighterUtils);
 
   return (
-    <>
     <PdfHighlighterContext.Provider value={pdfHighlighterUtils}>
       <div
         ref={containerNodeRef}
@@ -724,17 +697,5 @@ export const PdfHighlighter = ({
         )}
       </div>
     </PdfHighlighterContext.Provider>
-    <Dialog open={openTreeDialog} maxWidth="lg" fullWidth>
-      <DialogTitle>Graph Visualization</DialogTitle>
-      <DialogContent>
-        {treeDialogHighlightId && (
-          <TreeVisualizationExample highlightId={treeDialogHighlightId} />
-        )}
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleCloseTreeDialog}>Close</Button>
-      </DialogActions>
-    </Dialog>
-    </>
   );
 };
