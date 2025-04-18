@@ -73,14 +73,14 @@ const CommentForm = ({
 
   const calculateWidthBasedOnContent = (content: string) => {
     const baseWidth = 300; 
-    const maxWidth = Math.min(800, windowWidth - 20); 
+    const maxWidth = Math.min(1100, windowWidth - 20); 
     const contentWidth = content.length * 5; 
     return Math.min(baseWidth + contentWidth, maxWidth);
   };
 
   const baseCardWidth = calculateWidthBasedOnContent(brat_item.text);
   const cardWidth = showAllEntities 
-    ? Math.min(baseCardWidth + 200, Math.min(800, windowWidth - 20))
+    ? Math.min(baseCardWidth + 200, Math.min(1100, windowWidth - 20))
     : baseCardWidth;
 
   const svgStyle = {
@@ -184,7 +184,8 @@ const CommentForm = ({
 
   // Example: filter the brat_item so only highlight-related entities are shown
   const currentEntityId = highlight.id.split('_')[1];
-  const filteredBratItem = showAllEntities ? brat_item : (() => {
+
+  const filteredBratItem = showAllEntities || "triggers" in brat_item ? brat_item : (() => {
     if (!brat_item || !brat_item.entities) return brat_item;
 
     const relatedEntityIds = new Set([currentEntityId]);

@@ -120,6 +120,12 @@
   background: #f09bc5;
 }
 
+.EVENT {
+  background: #32CD32;
+}
+
+
+
 .INORGANIC_COLOR {
   color: #00ffff!important;
 }
@@ -176,6 +182,9 @@
   color: #f09bc5!important;
 }
 
+.EVENT_COLOR {
+  background: #32CD32!important;
+}
 
 /* .TextHighlight--scrolledTo .TextHighlight__part {
   background: #ff4141;
@@ -223,6 +232,11 @@
 .TextHighlight--scrolledTo .SYN_METHOD {
   background: #f74fa3;
 }
+
+.TextHighlight--scrolledTo .EVENT {
+  background: #179717!important;
+}
+
 
 .TextHighlight--scrolledTo .BLOCK_PARAGRAPH {
   background: #ff000080;

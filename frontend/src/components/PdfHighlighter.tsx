@@ -52,6 +52,7 @@ import { HighlightLayer } from "./HighlightLayer";
 import { MouseSelection } from "./MouseSelection";
 import { TipContainer } from "./TipContainer";
 import TreeVisualizationExample from './TreeVisualizationExample';
+import HardCodedVisExample from './TreeVisualizationExampleVis';
 
 // Material UI dialog imports
 import Dialog from '@mui/material/Dialog';
@@ -537,7 +538,7 @@ export const PdfHighlighter = ({
     selection.removeAllRanges();
   };
 
-  const custom_scrollToHighlight = (highlight: Highlight, editHighlight: (idToUpdate: string, edit: Partial<CommentedHighlight>)=> void) => {
+  const custom_scrollToHighlight = (highlight: Highlight, editHighlight: (idToUpdate: string, edit: Partial<CommentedHighlight>)=> void, selectedMode: String) => {
     const { boundingRect, usePdfCoordinates } = highlight.position;
     const pageNumber = boundingRect.pageNumber;
 
@@ -570,12 +571,65 @@ export const PdfHighlighter = ({
     });
     let viewport = scaledToViewport(boundingRect, pageViewport, usePdfCoordinates);
     // viewport.
+    
+    if (selectedMode == "Events") {
+      // console.log("log from custom pdfhightlighter")
+
+    }
+
+    let brat_item = undefined;
+    if (selectedMode == "Events") {
+      brat_item = {
+        // Our text of choice
+        text     : "In a recent patent application for advanced polymer composites, researchers described the thermal behavior of two distinct polymers with remarkably different characteristics. Poly(butyl acrylate)-graft-poly(acrylonitrile-co-styrene) (P(BA)-g-P(AN-co-S)), a graft copolymer with chemical structure C3H3N/C8H8/C7H12O2, exhibited a glass transition temperature of 111.0 F at a heating rate of 5°C/min and frequency of 1 kHz as determined through dielectric relaxation measurements. This copolymer also demonstrated interesting mechanical properties; its dynamic flexural properties storage modulus was measured to be approximately 1.800 kgf/cm2 at 25°C and a frequency of 1 Hz using DMA analysis. Unlike many conventional styrene-based copolymers, P(BA)-g-P(AN-co-S) appears to maintain structural integrity at elevated temperatures, with a thermal decomposition temperature of 400.0 F under a controlled heating rate of 10°C/min in nitrogen atmosphere at 0.1 atm, as revealed by isothermogravimetric analysis.  In contrast, poly[iminoethyleneimino(2-phenoxyterephthaloyl)] (PIEIPPT), a homopolymer with the formula C16H14N2O3, displayed significantly different thermal characteristics. The latter compound's glass transition temperature was determined to be 164.0 K with a heating rate of 2°C/min and a frequency of 0.5 Hz via dilatometry. This extraordinarily low Tg makes PIEIPPT particularly suitable for cryogenic applications where maintaining flexibility at extremely low temperatures is critical. While both polymers contain aromatic components in their structures, the presence of butyl acrylate segments in the graft copolymer contributes to its higher thermal stability compared to PIEIPPT. It should be noted that the storage modulus of the graft copolymer tends to decrease by approximately 15% when the measurement temperature exceeds 50°C, highlighting the importance of carefully controlled testing conditions for accurate property characterization."
+      };
+      
+      brat_item['entities'] = [
+          ['T3', 'POLYMER', [[175, 232]]],
+          ['T19', 'POLYMER', [[1022, 1070]]],
+          ['T7', 'PROP_NAME', [[551, 594]]],
+          ['T12', 'PROP_NAME', [[838, 871]]],
+          ['T1', 'PROP_NAME', [[329, 357]]],
+          ['T2', 'PROP_NAME', [[1206, 1234]]],
+          ['T9', 'PROP_VALUE', [[628, 641]]],
+          ['T4', 'PROP_VALUE', [[361, 368]]],
+          ['T14', 'PROP_VALUE', [[875, 882]]],
+          ['T20', 'PROP_VALUE', [[1256, 1263]]],
+          ['T5', 'CONDITION', [[369, 420]]],
+          ['T10', 'CONDITION', [[642, 673]]],
+          ['T15', 'CONDITION', [[883, 960]]],
+          ['T21', 'CONDITION', [[1264, 1320]]],
+          ['T6', 'CHAR_METHOD', [[443, 464]]],
+          ['T11', 'CHAR_METHOD', [[680, 683]]],
+          ['T16', 'CHAR_METHOD', [[977, 1006]]],
+          ['T22', 'CHAR_METHOD', [[1325, 1336]]],
+      ];
+      
+      brat_item['triggers'] = [
+          ['T25', 'PropertyInfo', [[329, 357]]],
+          ['T23', 'PropertyInfo', [[551, 594]]],
+          ['T24', 'PropertyInfo', [[838, 871]]],
+          ['T26', 'PropertyInfo', [[1206, 1234]]],
+      ];
+      
+      brat_item['events'] = [
+          ['E1', 'T25', [['Polymer', 'T3'], ['Value', 'T4'], ['Condition', 'T5'], ['Char_method', 'T6']]],
+          ['E2', 'T23', [['Polymer', 'T3'], ['Value', 'T9'], ['Condition', 'T10'], ['Char_method', 'T11']]],
+          ['E3', 'T24', [['Polymer', 'T3'], ['Value', 'T14'], ['Condition', 'T15'], ['Char_method', 'T16']]],
+          ['E4', 'T26', [['Polymer', 'T19'], ['Value', 'T20'], ['Condition', 'T21'], ['Char_method', 'T22']]],
+      ];
+      console.log("brat_item", brat_item);
+    }
+    else {
+      brat_item = highlight.para_id !== undefined ? bratOutput[highlight.para_id] : undefined
+    }
+    
     const editCommentTip: Tip = {
       position: {boundingRect:viewport,rects:[viewport]},
       content: (
         <CommentForm
           highlight={highlight}
-          brat_item={highlight.para_id !== undefined ? bratOutput[highlight.para_id] : undefined}
+          brat_item={brat_item}
           toggleEditInProgress={toggleEditInProgress}
           onSubmit={(input) => {
             setTip(null);
@@ -587,6 +641,8 @@ export const PdfHighlighter = ({
         ></CommentForm>
       ),
     };
+
+
     setTip(editCommentTip);
     toggleEditInProgress(true);
     scrolledToHighlightIdRef.current = highlight.id;
@@ -729,6 +785,7 @@ export const PdfHighlighter = ({
       <DialogContent>
         {treeDialogHighlightId && (
           <TreeVisualizationExample highlightId={treeDialogHighlightId} />
+          // <HardCodedVisExample />
         )}
       </DialogContent>
       <DialogActions>

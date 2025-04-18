@@ -13,7 +13,8 @@ import { GlobalContext } from './GlobalState';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import DescriptionIcon from '@mui/icons-material/Description';
 import ParagraphIcon from '@mui/icons-material/FormatAlignLeft';
-import LinkIcon from '@mui/icons-material/Link';
+import CommitIcon from '@mui/icons-material/Commit';
+import TimelineIcon from '@mui/icons-material/Timeline';
 import axiosInstance from './axiosSetup';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -41,12 +42,13 @@ import {
     highlights: Array<CommentedHighlight>;
     paraHighlights: Array<CommentedHighlight>;
     relationHighlights: Array<CommentedHighlight>; // Add relations highlights
+    eventHighlights: Array<CommentedHighlight>; // Add events highlights
     filterHighlights: (selectedEntityRelationMap: {}) => void;
     filterRelations: (selectedRelationEntityMap: {})=> void; // Add filterRelations function
     resetFilter: () => void;
     resetRelationFilter: () => void; // Add resetRelationFilter function
-    selectedMode: 'Entities' | 'Paragraphs' | 'Relations'; // Add Relations option
-    setSelectedMode: (mode: 'Entities' | 'Paragraphs' | 'Relations') => void; // Update setter
+    selectedMode: 'Entities' | 'Paragraphs' | 'Relations' | 'Events';
+    setSelectedMode: (mode: 'Entities' | 'Paragraphs' | 'Relations' | 'Events') => void;
     setIsActive: (active: boolean) => void;
   }
 
@@ -54,6 +56,7 @@ import {
     highlights,
     paraHighlights,
     relationHighlights,
+    eventHighlights,
     filterHighlights,
     filterRelations, // Added filterRelations prop
     resetFilter,
@@ -551,7 +554,7 @@ import {
         setIsDialogOpen(true);
       };
 
-      const handleButtonClick = (mode: 'Entities' | 'Paragraphs' | 'Relations') => {
+      const handleButtonClick = (mode: 'Entities' | 'Paragraphs' | 'Relations' | 'Events') => {
         setSelectedIndexes([0]);
         setSelectedLabels([]);
         mode === 'Relations' ? resetRelationFilter() : resetFilter();
@@ -741,6 +744,30 @@ import {
           ))}
         </List>
     }
+    else if (selectedMode === 'Events') {
+      filterSettings = <List component="nav" aria-label="main mailbox folders" style={{ marginTop: "1rem", paddingTop: "0" }}>
+        <ListItemButton
+          selected={selectedIndexes.includes(0)}
+          onClick={(event) => {handleListItemClick(event, 0)}}
+        >
+          <ListItemText primary="All Events"
+            secondary={
+              <React.Fragment>
+                <Typography
+                  sx={{ display: 'inline' }}
+                  component="span"
+                  variant="body2"
+                  color="text.primary"
+                >
+                  {eventHighlights.length}
+                </Typography>
+                {" items"}
+              </React.Fragment>
+            }
+          />
+        </ListItemButton>
+      </List>
+    }
     else {
       filterSettings = <List component="nav" aria-label="main mailbox folders" style={{ marginTop: "1rem", paddingTop: "0" }}>
         <ListItemButton
@@ -798,10 +825,23 @@ import {
             <ListItemButton selected={selectedMode === "Relations"} onClick={() => handleButtonClick("Relations")}>
               <ListItemText primary="Relations" />
               <ListItemIcon sx={{ position: 'absolute', right: 0, minWidth: "30px" }}>
-                <LinkIcon />
+                <CommitIcon />
               </ListItemIcon>
             </ListItemButton>
           </Tooltip>
+
+
+          {/* <Tooltip title="Click to filter events" placement="top">
+            <ListItemButton
+              selected={selectedMode === 'Events'}
+              onClick={() => handleButtonClick('Events')}
+            >
+              <ListItemText primary="Events" />
+              <ListItemIcon sx={{ position: 'absolute', right: 0, minWidth: "30px" }}>
+                <TimelineIcon />   
+              </ListItemIcon>
+            </ListItemButton>
+          </Tooltip> */}
 
           <Tooltip title="Click to filter paragraphs" placement="top">
             <ListItemButton

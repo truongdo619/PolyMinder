@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import ResultComponent from './ResultComponent';
-import DragAndDrop from './PDFUploadComponent';
+// import DragAndDrop from './PDFUploadComponent';
 import { GlobalProvider } from './GlobalState';
 import HomePage from './HomePage/HomePage';
 import DocsPage from './DocsPage/DocsPage';
@@ -41,14 +41,14 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
-            <Route
+            {/* <Route
               path="/upload"
               element={
                 <ProtectedRoute>
                   <DragAndDrop />
                 </ProtectedRoute>
               }
-            />
+            /> */}
             <Route
               path="/result"
               element={
@@ -57,7 +57,18 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
-            <Route path="/docs" element={<DocsPage />} />
+            {/* <Route path="/docs" element={<DocsPage />} /> */}
+
+
+            {/* Redirect plain /docs → latest getting‑started */}
+            <Route path="/docs" element={<Navigate to="/docs/v3.1/getting-started/overview" replace />} />
+            <Route path="/docs/:version" element={<Navigate to="getting-started/overview" replace />} />
+            <Route path="/docs/:version/:section" element={<Navigate to="overview" replace />} />
+
+            {/* main docs route */}
+            <Route path="/docs/:version/:section/:page" element={<DocsPage />} />
+
+            
           </Routes>
         </Router>
       </AuthProvider>

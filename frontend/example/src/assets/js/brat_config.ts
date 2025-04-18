@@ -13,9 +13,19 @@ export interface RelationType {
   args: { role: string; targets: string[] }[];
 }
 
+export interface EventType {
+  type: string;
+  labels: string[];
+  bgColor: string;
+  borderColor: string;
+  arcs?: { type: string; labels: string[]; color: string }[];
+}
+
+
 export const collData: {
   entity_types: EntityType[];
   relation_types: RelationType[];
+  event_types: EventType[];
 } = {
   entity_types: [
     {
@@ -94,6 +104,12 @@ export const collData: {
       type: "SYN_METHOD",
       labels: ["SYN_METHOD"],
       bgColor: "#f09bc5",
+      borderColor: "darken",
+    },
+    {
+      type: "CHAR_METHOD",
+      labels: ["CHAR_METHOD"],
+      bgColor: "#f3e9e3",
       borderColor: "darken",
     },
   ],
@@ -318,4 +334,19 @@ export const collData: {
       ],
     },
   ],
+  event_types: [ {
+    type   : 'PropertyInfo',
+    labels : ['PropertyInfo', 'PropInfo'],
+    bgColor: '#32CD32',
+    borderColor: 'darken',
+    /* Unlike relations, events originate from a span of text and can take
+        several arguments */
+    arcs   : [
+        {type: 'Polymer', labels: ['Polymer','Polymer'], color: '#b22222' },
+        // Just like the event itself, its arguments can be styled
+        {type: 'Value', labels: ['Value','Value'], color: '#cd6600'},
+        {type: 'Condition', labels: ['Condition','Condition'], color: '#ffe000' },
+        {type: 'Char_method', labels: ['Char_method','Char_method'], color: '#696969' }
+    ]
+} ]
 };

@@ -7,6 +7,7 @@ import HighlightContainer from "./HighlightContainer";
 import Sidebar from "./Sidebar";
 import ParagraphSidebar from "./ParagraphSidebar";
 import SettingSidebar from "./SettingSidebar";
+import EventSidebar from "./EventSidebar";
 import Toolbar from "./Toolbar";
 import { GlobalContext } from './GlobalState';
 import LoadingOverlay from 'react-loading-overlay-ts'; // Add this import
@@ -53,7 +54,7 @@ const extractRelationHighlights = (highlights: Array<CommentedHighlight>) => {
 
 
 const convertBratOutputToHighlights = (bratOutput: any[]): Highlight[] => {
-  console.log("bratOutput", bratOutput);
+  // console.log("bratOutput", bratOutput);
   let highlights: Highlight[] = [];
   bratOutput.forEach((para, paraId) => {
     const highlight: Highlight = {
@@ -80,6 +81,8 @@ const convertBratOutputToHighlights = (bratOutput: any[]): Highlight[] => {
 const ResultComponent = () => {
   const [isActive, setIsActive] = useState(false); // Add this state
   const [relationHighlights, setRelationHighlights] = useState<Array<CommentedHighlight>>([]); // Add this state
+  const [eventHighlights, setEventHighlights] = useState<Array<CommentedHighlight>>([]);
+
   const globalContext = useContext(GlobalContext);
 
   if (!globalContext) {
@@ -140,7 +143,7 @@ const ResultComponent = () => {
   const [lastEntityIds, setLastEntityIds] = useState<{ [key: number]: number }>({});
 
   // New state to track selected mode
-  const [selectedMode, setSelectedMode] = useState<'Entities' | 'Relations' | 'Paragraphs'>('Entities');
+  const [selectedMode, setSelectedMode] = useState<'Entities' | 'Relations' | 'Events' | 'Paragraphs'>('Entities');
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
   const [selectedHistory, setSelectedHistory] = useState<{ id: number, real_id: number, name: string; upload_time: string } | null>(null);
 
@@ -180,6 +183,12 @@ const ResultComponent = () => {
     }
     if (selectedMode === "Relations"){
       setRelationHighlights(extractRelationHighlights(highlights));
+    }
+
+    if (selectedMode === "Events"){
+      // setEventHighlights 20% random of the highlights
+      const randomHighlights = highlights.filter(() => Math.random() < 0.2);
+      setEventHighlights(randomHighlights);
     }
 
   }, [selectedMode]);
@@ -351,6 +360,8 @@ const ResultComponent = () => {
       return highlights.find((highlight) => highlight.id === id);
     } else if (selectedMode === 'Relations') {
       return relationHighlights.find((highlight) => highlight.id === id); // Handle Relation highlights
+    } else if (selectedMode === 'Events') {
+      return eventHighlights.find((highlight) => highlight.id === id); // Handle Relation highlights
     } else {
       return paraHighlights.find((highlight) => highlight.id === id);
     }
@@ -392,9 +403,11 @@ const ResultComponent = () => {
     if (id) {
       const highlight = getHighlightById(parseIdFromHash());
       // const viewport_highlight = getViewportHighlightById(parseIdFromHash());
-      // console.log("Highlight to scroll to", highlight);
+      console.log("Highlight to scroll to", highlight);
       if (highlight && highlighterUtilsRef.current) {
-        highlighterUtilsRef.current.custom_scrollToHighlight(highlight, editHighlight);
+        
+
+        highlighterUtilsRef.current.custom_scrollToHighlight(highlight, editHighlight, selectedMode);
         setTimeout(() => {
           const hash = document.location.hash;
           const parts = hash.split('#');
@@ -637,6 +650,44 @@ const ResultComponent = () => {
           paraHighlights={paraHighlights}
         />
       );
+    } else if (selectedMode === 'Events') {
+      pdfloader = <PdfLoader document={url}>
+      {(loadedPdfDocument) => {
+        // Set the loaded PDF document state here
+        setPdfDocument(loadedPdfDocument);
+        return (
+            <PdfHighlighter
+              enableAreaSelection={(event) => event.altKey}
+              pdfDocument={loadedPdfDocument}
+              // onScrollAway={resetHash}
+              utilsRef={(_pdfHighlighterUtils) => {
+                highlighterUtilsRef.current = _pdfHighlighterUtils;
+              }}
+              pdfScaleValue={pdfScaleValue}
+              selectionTip={<ExpandableTip addHighlight={(highlight, comment) => addHighlight(highlight, comment)} />}
+              highlights={eventHighlights}
+              style={{
+                height: "calc(100% - 41px)",
+              }}
+              onPageChange={(page) => PDFpageChange(page)}
+            >
+              <HighlightContainer
+                editHighlight={editHighlight}
+                onContextMenu={handleContextMenu}
+              />
+            </PdfHighlighter>
+        );
+      }}
+    </PdfLoader>
+
+    sidebar = <EventSidebar
+        highlights={eventHighlights}
+        getHighlightById={getHighlightById}
+        setIsActive={setIsActive}
+        setHighlights={setVisibleHighlights}
+        selectedMode={selectedMode}
+        paraHighlights={paraHighlights}
+      />
     } else {
     pdfloader = <PdfLoader document={url}>
       {(loadedPdfDocument) => {
@@ -714,6 +765,7 @@ const ResultComponent = () => {
           highlights={highlights}
           paraHighlights={paraHighlights}
           relationHighlights={relationHighlights}
+          eventHighlights={eventHighlights}
           filterHighlights={filterHighlights}
           filterRelations={filterRelations} // Pass filterRelations function
           resetFilter={resetFilter}

@@ -54,7 +54,6 @@ const ParagraphSidebar = ({
    *    Styled Textarea
    * ---------------------------- */
 
-  console.log(highlights);
   const blue = {
     100: '#DAECFF',
     200: '#b6daff',
@@ -183,7 +182,7 @@ const ParagraphSidebar = ({
         }
       );
 
-      console.log('Paragraphs updated successfully:', response.data);
+      // console.log('Paragraphs updated successfully:', response.data);
       setBratOutput(response.data.brat_format_output);
       setDocumentId(response.data.document_id);
       setUpdateId(response.data.update_id);
@@ -260,7 +259,7 @@ const ParagraphSidebar = ({
         }
       );
 
-      console.log('Paragraphs reordered successfully:', response.data);
+      // console.log('Paragraphs reordered successfully:', response.data);
       setBratOutput(response.data.brat_format_output);
       setDocumentId(response.data.document_id);
       setUpdateId(response.data.update_id);

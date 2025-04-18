@@ -61,7 +61,7 @@ export type PdfHighlighterUtils = {
    * @param highlight - A highlight provided to the {@link PdfHighlighter} to
    * scroll to.
    */
-  custom_scrollToHighlight(highlight: Highlight, editHighlight: (idToUpdate: string, edit: Partial<CommentedHighlight>)=> void): void;
+  custom_scrollToHighlight(highlight: Highlight, editHighlight: (idToUpdate: string, edit: Partial<CommentedHighlight>)=> void, selectedMode: String): void;
 
 
   /**

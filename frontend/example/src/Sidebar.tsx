@@ -60,6 +60,7 @@ interface Paragraph {
 const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, selectedMode, paraHighlights }: SidebarProps) => {
   const globalContext = useContext(GlobalContext);
   
+  // console.log("highlights", highlights)
   if (!globalContext) {
     throw new Error("GlobalContext must be used within a GlobalProvider");
   }
@@ -239,8 +240,8 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
         tail_pos: selectionEnd,
         type: editableComment
     };
-    console.log('data:', data);
-    console.log('selectedHighlight:', selectedHighlight);
+    // console.log('data:', data);
+    // console.log('selectedHighlight:', selectedHighlight);
     try {
         const token = localStorage.getItem('accessToken');
         const response = await axiosInstance.post(
@@ -283,8 +284,8 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
         update_id: updateId,
         ids: [selectedHighlight?.id],
     };
-    console.log('data:', data);
-    console.log('selectedHighlight:', selectedHighlight);
+    // console.log('data:', data);
+    // console.log('selectedHighlight:', selectedHighlight);
     try {
         const token = localStorage.getItem('accessToken');
         const response = await axiosInstance.post(
@@ -298,7 +299,7 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
             }
         );
 
-        console.log('Paragraphs updated successfully:', response.data);
+        // console.log('Paragraphs updated successfully:', response.data);
         setBratOutput(response.data.brat_format_output);
         setDocumentId(response.data.document_id); // Store documentId in GlobalState
         setUpdateId(response.data.update_id);
@@ -399,7 +400,7 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
       relations: selectedHighlight?.relations,
     };
     
-    console.log('data:', data);
+    // console.log('data:', data);
     try {
       const token = localStorage.getItem('accessToken');
       const response = await axiosInstance.post(
@@ -413,7 +414,7 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
         }
       );
   
-      console.log('Relations updated successfully:', response.data);
+      // console.log('Relations updated successfully:', response.data);
       setBratOutput(response.data.brat_format_output);
       setDocumentId(response.data.document_id); // Update documentId in GlobalState
       setUpdateId(response.data.update_id);
@@ -544,7 +545,7 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
 
 
         <p style={{ fontSize: "15px", marginTop: "10px" }}>
-          📝 To view results for a specific section of the document, please{" "}
+          📝 To annotate results for specific sections of the document, please{" "}
           <span
             style={{
               color: "#007bff",
@@ -590,7 +591,7 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
                       <i style={{ marginLeft: "0rem" }}>{relation.type}</i>
                       <br />
                       <strong style={{ marginLeft: "1rem" }}>
-                        {getHighlightById(relation.arg_id)?.comment}: {relation.arg_text}
+                        {relation.arg_type}: {relation.arg_text}
                       </strong>
                     </li>
                   ))}
