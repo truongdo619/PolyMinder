@@ -1,1 +1,1 @@
-# PlyMinder-core
+# PolyMinder-core

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Manual</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: #f5f5f5;
+            font-size: 18px;
+            color: #2c3e50;  /* Darker text color for better readability */
+        }
+        
+        .content {
+            max-width: 80vw;  /* Limit content width for better readability */
+            margin: 0 auto;  /* Center content horizontally */
+            padding: 20px;
+            background-color: white;  /* Add a background for contrast */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);  /* Subtle shadow for focus */
+            border-radius: 8px;  /* Rounded corners for better aesthetics */
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-top: 0;
+        }
+        
+        h2 {
+            font-size: 2.5em;
+        }
+        
+        h3 {
+            font-size: 2em;
+        }
+        
+        p {
+            color: #34495e;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+        }
+        
+        ul {
+            margin: 20px;
+            padding-left: 40px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table th, table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+            font-size: 1.2em;
+        }
+        
+        table th {
+            background-color: #3498db;
+            color: white;
+        }
+        img {
+            width: 50%;
+            height: 50%;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3em;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content">
+
+    <h1>User Manual</h1>
+
+    <h2>Table of Contents</h2>
+    <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#contact-support">Contact Support</a></li>
+    </ul>
+
+    <hr>
+
+    <h2 id="introduction">1. Introduction</h2>
+    <p>Welcome to the <strong>Material Science</strong> user manual. This guide will help you install, configure, and use the software efficiently.</p>
+
+    <h2 id="features">2. Features</h2>
+    
+    <h3>2.1 PDF Upload and Processing</h3>
+    <p>Users can upload PDF files into the system for automatic <strong>Named Entity Recognition (NER)</strong> and <strong>Relation Extraction</strong>. The system will analyze the document and label entities and their relationships within the text.</p>
+
+    <h4>How to Upload a PDF:</h4>
+    <ol>
+        <li>Navigate to the <strong>Dashboard</strong> after accessing the system.</li>
+        <img src="./photos/dashboard.PNG" alt="Dashboard of system">
+        <li>In the <strong>Upload</strong> section of the dashboard, click on the <strong>Upload PDF</strong> button.</li>
+        <li>Select your PDF file from your local system.</li>
+        <img src="./photos/choose_file.PNG" alt="Upload the PDF files">
+        <li>Once uploaded, the system will begin processing the file and extract the entities and relationships.</li>
+        <img src="./photos/Result.PNG" alt="The result of extracting process" >
+    </ol>
+
+    <h3>2.2 Paragraphs and Entities Editing Function</h3>
+    <p>After the system processes the uploaded PDF and extracts entities and relations, users can edit the extracted text, entities, and relationships.</p>
+
+    <h4>Editing Extracted Text:</h4>
+    <ol>
+        <li>Go to the <strong>Paragraph Viewer</strong> section by choosing the <strong>Paragraph</strong> button on the top of the most right sidebar. The extracted text area will be highlighted on the PDF file and the list of paragraphs extracted from the PDF file will be displayed on the right sidebar.</li>
+        <img src="./photos/Paragraph_view.PNG" alt="Paragraph Viewer" >
+        <li>Click on any parts of the highlighted areas to check the content inside that paragraph.</li>
+        <img src="./photos/Paragraph_click.PNG" alt="Check the content of a paragraph"  >
+        <li>To edit the text of the paragraph, click on the edit button in the corner of the paragraph panel to open the editing window and start editing the content of the paragraph.</li>
+        <img src="./photos/para_edit_instruct.png" alt="Click on the edit button to edit the content of the paragraph">
+        <br>
+        <img src="./photos/Paragraph_edit.PNG" alt="Paragraph editing window">
+        <li>Click the button <strong>Download JSON</strong> to download the information of the current paragraph under JSON format.</li>
+        <li>Save changes by clicking the <strong>Save & load</strong> button.</li>
+    </ol>
+
+    <h4>Editing Named Entities and Relationship:</h4>
+    <ol>
+        <li>In the <strong>Entity Viewer</strong>, the system will display a list of recognized entities. Go to the <strong>Entity Viewer</strong> section by choosing the <strong>Entity</strong> button on the top of the most right sidebar.</li>
+        <li>To see the detailed information of an entity, click on the highlighted area on the PDF viewer or click on the entity panel in the list of entities shown on the right sidebar. The detail window will show up, and the screen will be scrolled to the position of the entity in the document and the entity in the list will be highlighted.</li>
+        <img src="./photos/Entity_click.PNG" alt="Check the detailed information of an entity" >
+        <li>The button <strong>SHOW ALL ENTITIES</strong> will visualize all the entities in the same paragraph that contain the current entity.</li>
+        <img src="./photos/show_all_entity.PNG" alt="Show all entity" >
+        <li>Click the button <strong>Download JSON</strong> to download the information of the current entity under JSON format.</li>
+        <img src="./photos/downloadJSON_entity.PNG" alt="Downloaded JSON information" >
+        <li>To modify the information of the entity, click on the edit button in the right corner of each entity panel in the right sidebar. After the editing window shows up, you can modify the type and text of the current entity as well as the relations to other entities.</li>
+        <img src="./photos/edit_open_instruct.PNG" alt="Entity edit button">
+        <br>
+        <img src="./photos/edit_entity.PNG" alt="Entity editing window">
+        <li>To change the type of the entity, click on the current type to open up the list of available entity types and choose the new type.</li>
+        <img src="./photos/change_entity_type.PNG" alt="Change the entity type">
+        <li>To change the text of the entity, drag and click on the new span of text in the current paragraph.</li>
+        <img src="./photos/change_text_of_entity.PNG" alt="Change the text of entity">
+        <li>To delete the current entity, click the <strong>DELETE</strong> button on the right corner of the window. Be cautious, as this action cannot be undone.</li>
+        <li>To change the relation of the current entity, click on the <strong>RELATION</strong> button on the menu bar inside the editing window.</li>
+        <img src="./photos/edit_relation.png" alt="Open relation editing window">
+        <li>To add a new relation of the current entity, click on the add button on the window.</li>
+        <img src="./photos/add_new_relation.PNG" alt="Add relation button">
+        <br>
+        <img src="./photos/add_new_relation_detail.PNG" alt="Add new relation window">
+        <li>To add the relation type, click on the field <strong>Relation Type</strong> to open the list of available relation types and choose the suitable relation type.</li>
+        <img src="./photos/add_relation_type.PNG" alt="List of available relation type">
+        <li>To add the object to the relation, click on the field <strong>Object Entity</strong> to open the list of available entities inside the same paragraph and choose the suitable entity.</li>
+        <img src="./photos/add_relation_object.PNG" alt="List of available entities">
+        <li>Once finished, click the button <strong>ADD</strong> to add a new relation to the current entity.</li>
+        <img src="./photos/finish_add_relation.PNG" alt="Save the new relation">
+        <br>
+        <img src="./photos/add_relation_result.PNG" alt="Result of adding new relation">
+        <li>To modify the information of an existing relation, click on the relation type of that relation or object entity and choose the new relation type and object entity as in the previous steps.</li>
+        <li>To delete an existing relation from the current entity, click on the delete button on the row of that relation.</li>
+        <img src="./photos/delete_relation.PNG" alt="Delete relation button">
+        <li>Once finished, click <strong>SAVE & RELOAD</strong> to save changes, or click <strong>CANCEL</strong> to undo the changes.</li>
+    </ol>
+
+    <p>The information of the whole document can be downloaded by clicking the <strong>DOWNLOAD RESULT</strong> button on the most right corner of the interface. With the changes of users, the downloaded results will be also updated according to the changes made by users.</p>
+    <img src="./photos/download_button.PNG" alt="Download result button">
+
+    <h2 id="contact-support">3. Contact Support</h2>
+    <p>If you encounter any issues, please contact our support team:</p>
+    <ul>
+        <li><strong>Email:</strong> truongdo@jaist.ac.jp</li>
+        <!-- <li><strong>Phone:</strong> +1-500-123-4567</li> -->
+        <!-- <li><strong>Website:</strong> <a href="http://yoursoftware.com/support">Support Page</a></li> -->
+    </ul>
+
+</div>
+
+</body>
+</html>
