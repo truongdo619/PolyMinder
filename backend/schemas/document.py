@@ -132,9 +132,3 @@ class LegacyCreateEntitySchema(BaseModel):
     head_pos: Optional[int]= None
     tail_pos: Optional[int]= None
     scale_value: Optional[float]= None
-
-class ReorderPara(BaseModel):
-    document_id: int
-    update_id: Optional[int] =None
-    old_para_id:Optional[int] = None
-    paragraphs:List[int]

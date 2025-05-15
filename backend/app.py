@@ -4,9 +4,9 @@ from fastapi.staticfiles import StaticFiles
 import os
 from routes import router
 from config import UPLOAD_DIR
-from database import Base,dev_engine
+from database import Base,engine
 
-Base.metadata.create_all(bind=dev_engine)
+Base.metadata.create_all(bind=engine)
 # Define the FastAPI app
 app = FastAPI()
 

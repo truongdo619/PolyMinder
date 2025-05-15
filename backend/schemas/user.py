@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+
 class UserBase(BaseModel):
     username: str
     email: str
@@ -31,28 +31,4 @@ class TokenData(BaseModel):
 
 class ParaUpdate(BaseModel):
     paragraphs: list
-
-class ResetRequest(BaseModel):
-    email: str
-
-class ResetPassword(BaseModel):
-    token: str
-    new_password:str
-
-class UpdateUSerInfor(BaseModel):
-    username: Optional[str]  = None
-    password: Optional[str] = None
-    email: Optional[str] = None
-    fullname: Optional[str] = None
-    address: Optional[str] = None
-    phone: Optional[str] = None
-    workplace: Optional[str] = None
-
-class ChangePassword(BaseModel):
-    old_password:str
-    new_password:str
     
-class ContactSupport(BaseModel):
-    name: str
-    email: str
-    content: str

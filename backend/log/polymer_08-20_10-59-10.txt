@@ -1,0 +1,6 @@
+2024-08-20 10:59:10 - INFO: Building Model
+2024-08-20 10:59:53 - INFO: Loading Data
+2024-08-20 13:40:35 - INFO: Loading Data
+2024-08-20 13:43:16 - INFO: Loading Data
+2024-08-20 14:01:34 - INFO: Loading Data
+2024-08-20 14:25:56 - INFO: Loading Data

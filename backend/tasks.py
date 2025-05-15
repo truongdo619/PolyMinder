@@ -9,7 +9,7 @@ from crud.psql import document as document_crud
 from models.psql import user as user_model
 from models.psql import document as document_model
 from utils import utils
-from database import get_dev_db as get_db
+from database import get_db
 
 from datetime import datetime
 import traceback

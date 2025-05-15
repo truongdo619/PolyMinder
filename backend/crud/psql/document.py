@@ -174,15 +174,7 @@ def get_update_as_doc_and_user(db: Session, document_id: int, update_id: int, us
     update = db.query(Update).filter(and_(Update.id == update_id,Update.DocumentID == document_id, Update.UserID==user_id)).first()
     if update:
         return update
-
-def get_update_by_doc_and_user(db: Session, document_id: int, user_id: int):
-    update = db.query(Update).filter(and_(Update.DocumentID == document_id, Update.UserID==user_id)).first()
-    if update:
-        return update
-    else:
-        document = get_document(db,document_id)
-        return init_quick_update(db,document,user_id,document_id )
-
+    
 def modify_update_as_object(db: Session, update_id: int , modified_update: Update):
     print(f"doing update at id: {update_id}")
     update_to_update = db.query(Update).filter_by(id=update_id).first()
@@ -253,7 +245,10 @@ def get_last_update(session: Session, document_id: int,user_id: int):
 #     for index, update in enumerate(updates):
 #         result.append({"interative_id":index,"real_id":update.id,"name":update.Name})
 #     return result
-
+def get_update_as_doc_and_user(db: Session, document_id: int, update_id: int, user_id: int):
+    update = db.query(Update).filter(and_(Update.id == update_id,Update.DocumentID == document_id, Update.UserID==user_id)).first()
+    if update:
+        return update
 
 def init_quick_update(session: Session, document, user_id,document_id):
     num_para = len(document.get_entities())

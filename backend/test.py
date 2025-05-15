@@ -1,116 +1,136 @@
-from pdf_processing import process_pdf_to_text, convert_pdf_to_text_and_bounding_boxes
+import numpy as np
 
-
-
-
-# check_text("Transport properties")
-# check_text("x-ray scattering",mode=0)
-# check_text("angle neutron")
-def compare_rect(rect1, rect2):
-    if rect1["x1"]!=rect2["x1"] or rect1["x2"]!=rect2["x2"] or rect1["y1"]!=rect2["y1"] or rect1["y2"]!=rect2["y2"]:
-        return False
-    return True
-
-def check_if_there_is_break(sample, sample_box):
-    min_x = 10000
-    max_x = 0
-    line_down= 0 
-    break_line = 0 
-    container = [[]]
-    rect_container = [[]]
-    container_pos = 0
-    for index, rect in enumerate( sample_box):
-        if rect["x1"] < min_x:
-            min_x = rect["x1"]
-        if rect["x2"] > max_x:
-            max_x = rect["x2"]
-    for index, rect in enumerate( sample_box):
-        if index >= len(sample):
-            continue
-        container[container_pos].append(sample[index])
-        rect_container[container_pos].append(rect)
-
-        if index < len(sample_box)-1:
-            if compare_rect(rect, sample_box[index-1]):
-                line_down+=1
-                # print(sample[index])
-                if sample_box[index+1]['x1'] - min_x >6 or (max_x - rect['x2']) >6:
-                    break_line+=1
-                    container.append([])
-                    rect_container.append([])
-                    container_pos+=1
+def levenshtein_edit_list(text1, text2):
+    """ 
+    Compute the Levenshtein distance and extract the edit operations between text1 and text2.
     
-    # print(line_down) 
-    # print(break_line) 
-    for index, para in enumerate(container):
-        container[index] = "".join(para)
-
-    # print(container)
-    container, rect_container = remove_blank_text(container, rect_container)
-    return container, rect_container
-
-def divide_paragraphs(all_pages_text_data, all_pages_bb_data):
-    container = []
-    rect_container = []
-    for para, para_bb in list(zip(all_pages_text_data, all_pages_bb_data)):
-        try:
-            new_paras, new_bb = check_if_there_is_break(para, para_bb)
-
-            container.extend(new_paras)
-            rect_container.extend(new_bb)
-        except:
-            print("error happened at ")
-            print(all_pages_text_data.index(para))
+    Parameters:
+    text1 (str): The original text.
+    text2 (str): The target text.
     
-    return container, rect_container
+    Returns:
+    list of tuples: A list of edit operations.
+                    Each operation is represented as a tuple ('operation', index_in_text1, index_in_text2).
+                    Operations can be 'match', 'insert', 'delete', or 'replace'.
+    """
+    len1, len2 = len(text1), len(text2)
+    dp = np.zeros((len1 + 1, len2 + 1), dtype=int)
 
-def remove_blank_text(container, rect_container):
-    removed = 0
-    for index, text in enumerate(container):
-        if text.strip()=="":
-            container.remove(container[index-removed])
-            rect_container.remove(rect_container[index-removed])
-    return container, rect_container
+    for i in range(len1 + 1):
+        dp[i][0] = i
+    for j in range(len2 + 1):
+        dp[0][j] = j
 
-# check_if_there_is_break(sample, box_sample)
-def check_sample(sample, box_sample):
-    print(sample)
-    print(box_sample[0])
-    print(box_sample[-1])
-    print(len(sample))
-    print(len(box_sample))
-    # for box in box_sample:
-    #     print(box)
-    # print(len(sample))
-    # print(len(box_sample))
-if __name__ =="__main__":
-    # file_path = 'uploads/yoonessi2011.pdf'
-    # file_path = 'uploads/39045.pdf'
-    file_path = 'uploads/namazi2011.pdf'
-    all_pages_text_data, all_pages_bb_data = convert_pdf_to_text_and_bounding_boxes(file_path)
-    sample_id = 96
-    sample = all_pages_text_data[sample_id]
-    box_sample = all_pages_bb_data[sample_id]
-    check_sample(sample, box_sample)
-    print("now the second sample")
-    second_sample_id = 89
-    second_sample = all_pages_text_data[second_sample_id]
-    second_box_sample = all_pages_bb_data[second_sample_id]
-    check_sample(second_sample, second_box_sample)
-    # container, rect_container = check_if_there  _is_break(sample,box_sample)
-    # for text, box in list(zip(container,rect_container)):
-    #     print(text)
-    #     for pos in box:
-    #         print(pos)
-    # print(len(container))
-    # print(sample)
+    for i in range(1, len1 + 1):
+        for j in range(1, len2 + 1):
+            if text1[i - 1] == text2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1]
+            else:
+                dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1])
+
+    # Backtrack to find the edit list
+    i, j = len1, len2
+    edit_list = []
+
+    while i > 0 and j > 0:
+        if text1[i - 1] == text2[j - 1]:
+            edit_list.append(('match', i - 1, j - 1))
+            i -= 1
+            j -= 1
+        elif dp[i][j] == dp[i - 1][j - 1] + 1:
+            edit_list.append(('replace', i - 1, j - 1))
+            i -= 1
+            j -= 1
+        elif dp[i][j] == dp[i - 1][j] + 1:
+            edit_list.append(('delete', i - 1, j))
+            i -= 1
+        else:
+            edit_list.append(('insert', i, j - 1))
+            j -= 1
+
+    while i > 0:
+        edit_list.append(('delete', i - 1, j))
+        i -= 1
+
+    while j > 0:
+        edit_list.append(('insert', i, j - 1))
+        j -= 1
+
+    edit_list.reverse()
+    return edit_list
+
+def generate_bounding_boxes(text1, bbox1, text2):
+    """
+    Generate bounding boxes for text2 based on the bounding boxes of text1 and Levenshtein edit operations.
+    
+    Parameters:
+    text1 (str): The original text with known bounding boxes.
+    bbox1 (list of dicts): A list of bounding boxes corresponding to each character in text1. 
+                           Each bounding box is represented as a dictionary with keys: x1, y1, x2, y2, width, height, pageNumber.
+    text2 (str): The new text for which we need to generate bounding boxes.
+    
+    Returns:
+    list of dicts: A list of bounding boxes corresponding to each character in text2.
+    """
+    edit_list = levenshtein_edit_list(text1, text2)
+    print(edit_list)
+    bbox2 = []
+    i, j = 0, 0
+
+    for operation, idx1, idx2 in edit_list:
+        if operation == 'match' or operation == 'replace':
+            bbox2.append(bbox1[idx1])
+            i += 1
+            j += 1
+        elif operation == 'insert':
+            # Insert a placeholder bounding box, or estimate based on nearby bounding boxes
+            # Here, we'll just use the previous bounding box as a placeholder
+            if bbox2:
+                bbox2.append(bbox2[-1])
+            else:
+                bbox2.append({
+                    "x1": 0, "y1": 0, "x2": 0, "y2": 0,
+                    "width": bbox1[0]["width"],
+                    "height": bbox1[0]["height"],
+                    "pageNumber": bbox1[0]["pageNumber"]
+                })  # Fallback placeholder
+            j += 1
+        elif operation == 'delete':
+            i += 1
+
+    return bbox2
 
 
+text1 = "helo"
+bbox1 = [
+    {
+        "x1": 0, "y1": 0, "x2": 10, "y2": 10,
+        "width": 595.2760009765625, "height": 793.7009887695312,
+        "pageNumber": 1
+    },
+    {
+        "x1": 10, "y1": 0, "x2": 20, "y2": 10,
+        "width": 595.2760009765625, "height": 793.7009887695312,
+        "pageNumber": 1
+    },
+    {
+        "x1": 20, "y1": 0, "x2": 30, "y2": 10,
+        "width": 595.2760009765625, "height": 793.7009887695312,
+        "pageNumber": 1
+    },
+    {
+        "x1": 30, "y1": 0, "x2": 40, "y2": 10,
+        "width": 595.2760009765625, "height": 793.7009887695312,
+        "pageNumber": 1
+    },
+    {
+        "x1": 40, "y1": 0, "x2": 50, "y2": 10,
+        "width": 595.2760009765625, "height": 793.7009887695312,
+        "pageNumber": 1
+    }
+]
+text2 = "he lo"
 
 
-    # print("start")
-    # print(len(all_pages_text_data))
-    # print(len(all_pages_bb_data))
-    # all_pages_text_data, all_pages_bb_data = divide_paragraphs(all_pages_text_data, all_pages_bb_data)
-    # print(len(all_pages_text_data))
-    # print(len(all_pages_bb_data))
+bbox2 = generate_bounding_boxes(text1, bbox1, text2)
+print(bbox2)  # Output: corresponding bounding boxes for "helo"

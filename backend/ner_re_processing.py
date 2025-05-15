@@ -191,9 +191,6 @@ def build_character_mapping(model_output_text, original_text, debug = False):
 def normalize_org_text_and_bbox(model_output_item, bbox_item, org_text_item):
     normalized_bbox, normalized_org_text = [], []
     set_model_output_item = set(model_output_item)  
-    # print(org_text_item)
-    # print(len(org_text_item))
-    # print(len(bbox_item))
     if len(bbox_item) ==0:
         return [], []
     for idx, character in enumerate(org_text_item):
@@ -203,33 +200,19 @@ def normalize_org_text_and_bbox(model_output_item, bbox_item, org_text_item):
         normalized_bbox.append(bbox_item[idx])
     return normalized_org_text, normalized_bbox
 
-def brat_output_text_bb_convert(brat_output_text, bbox, character_mapping_dict, debug=False):
+def brat_output_text_bb_convert(brat_output_text, bbox, character_mapping_dict):
     output = []
     if len(bbox)==0:
         return output
     for char_idx, char in enumerate(brat_output_text):
-        # if debug:
-        #     print(char_idx)
         output.append(bbox[character_mapping_dict[char_idx]])
-    if debug:
-        print("len brat_output_text", len(brat_output_text))
-        print("len bbox ",len(bbox))
     return output
-
-def check_null(brat_format_output):
-    for id, para in enumerate(brat_format_output):
-        if para is None:
-            print("NULL DETECTED!!!")
-
 
 def convert_to_output_v2(model_output, bbox, org_texts):
     final_result = []
-    blank_id = []
     brat_format_output = model_output.copy()
     nomalized_org_texts, normalized_bbox_items = [], []
-    print("start debug in ner re processing")
-    print(len(model_output))
-    print(len(org_texts))
+    
     for para_id, para_output in enumerate(model_output):
         if "edit_status" in para_output:
             edit_status = para_output["edit_status"]
@@ -238,32 +221,16 @@ def convert_to_output_v2(model_output, bbox, org_texts):
                 "entities":[],
                 "relations":[]
             }
-        # if para_id==96:
-            # print('para_output["text"] ',para_output["text"])
-            # print('org_texts[para_id] ',org_texts[para_id])
-            # print(len(org_texts[para_id]))
-            # print(len(bbox[para_id]))
-            # print("before normalized ", bbox[para_id][-1])
+
         nomalized_org_text, normalized_bbox_item = normalize_org_text_and_bbox(para_output["text"], bbox[para_id], org_texts[para_id])
-        # if para_id==96:
-            # print('para_output["text"] ',para_output["text"])
-            # print('org_texts[para_id] ',nomalized_org_text)
-            # print(len(nomalized_org_text))
-            # print(len(normalized_bbox_item))
-            
-            # print("after normalized ",normalized_bbox_item[-1])
-        if len(bbox[para_id]) ==0:
-            blank_id.append(para_id)
+        if normalized_bbox_item == []:
             continue
-        # if para_id == 96:
-        #     character_mapping_dict = build_character_mapping(para_output["text"], nomalized_org_text,debug=True)
-        # else:
-        character_mapping_dict = build_character_mapping(para_output["text"], nomalized_org_text,debug=False)
+        if para_id == 5:
+            character_mapping_dict = build_character_mapping(para_output["text"], nomalized_org_text,debug=True)
+        else:
+            character_mapping_dict = build_character_mapping(para_output["text"], nomalized_org_text,debug=False)
         nomalized_org_texts.append(para_output["text"])
-        debug=False
-        if para_id == 96:
-            debug=True
-        normalized_bbox_items.append(brat_output_text_bb_convert(para_output["text"], normalized_bbox_item, character_mapping_dict,debug=debug))
+        normalized_bbox_items.append(brat_output_text_bb_convert(para_output["text"], normalized_bbox_item, character_mapping_dict))
         
         # Raise error if the length of the normalized text and bounding box is not the same
         if len(nomalized_org_text) != len(normalized_bbox_item):
@@ -277,8 +244,7 @@ def convert_to_output_v2(model_output, bbox, org_texts):
                 entity_edit_status = "none"
             else:
                 entity_edit_status = entity_edit_status["status"]
-            # print(entity)
-            # print(entity[2][0][1])
+
             current_item = {
                 "content": {
                     "text": entity[-1]
@@ -318,15 +284,14 @@ def convert_to_output_v2(model_output, bbox, org_texts):
                     "edit_status":relation_edit_status
                 })
         brat_format_output[para_id]["bounding_box"] = paragraph_bounding_box  # Add paragraph bounding box to brat_format_output
-        check_null(brat_format_output)
-        # if para_id == 5:
-        #     print("text: ", para_output["text"])
-        #     # print("character mapping dict ", character_mapping_dict)
-        #     print("origin bbox ",bbox[para_id][-1])
-        #     print("normalized bbox ",normalized_bbox_item[-1])
-        #     print("finalized bbox ",brat_output_text_bb_convert(para_output["text"], normalized_bbox_item, character_mapping_dict)[-1])
-        #     print(" final bouding box ",brat_format_output[para_id]["bounding_box"])
-    return {"pdf_format_output": final_result, "brat_format_output": brat_format_output, 'blank_id':blank_id}, normalized_bbox_items, nomalized_org_texts
+        if para_id == 5:
+            print("text: ", para_output["text"])
+            # print("character mapping dict ", character_mapping_dict)
+            print("origin bbox ",bbox[para_id][-1])
+            print("normalized bbox ",normalized_bbox_item[-1])
+            print("finalized bbox ",brat_output_text_bb_convert(para_output["text"], normalized_bbox_item, character_mapping_dict)[-1])
+            print(" final bouding box ",brat_format_output[para_id]["bounding_box"])
+    return {"pdf_format_output": final_result, "brat_format_output": brat_format_output}, normalized_bbox_items, nomalized_org_texts
 
 def get_span_bounding_boxes(start_pos, end_pos, char_bounding_boxes):
     span_bounding_boxes = []

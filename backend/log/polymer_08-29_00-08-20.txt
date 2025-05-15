@@ -1,0 +1,25 @@
+2024-08-29 00:08:20 - INFO: Building Model
+2024-08-29 00:08:57 - INFO: Loading Data
+2024-08-29 00:12:52 - INFO: Loading Data
+2024-08-29 05:24:48 - INFO: xref found: pos=b'25464'
+2024-08-29 05:24:48 - INFO: read_xref_from: start=25464, token=/b'xref'
+2024-08-29 05:24:48 - INFO: xref objects: {}
+2024-08-29 05:24:48 - INFO: trailer: {'Size': 37, 'Root': <PDFObjRef:1>, 'Info': <PDFObjRef:14>, 'ID': [b"\xe9\x88\x91\xf0\x1f\xc3'L\xac\xd8\xbcn\r[DA", b"\xe9\x88\x91\xf0\x1f\xc3'L\xac\xd8\xbcn\r[DA"], 'Prev': 24567, 'XRefStm': 24240}
+2024-08-29 05:24:48 - INFO: read_xref_from: start=24240, token=36
+2024-08-29 05:24:48 - INFO: xref stream: objid=(0, 36), fields=1,4,2
+2024-08-29 05:24:48 - INFO: trailer: {'Type': /'XRef', 'Size': 36, 'W': [1, 4, 2], 'Root': <PDFObjRef:1>, 'Info': <PDFObjRef:14>, 'ID': [b"\xe9\x88\x91\xf0\x1f\xc3'L\xac\xd8\xbcn\r[DA", b"\xe9\x88\x91\xf0\x1f\xc3'L\xac\xd8\xbcn\r[DA"], 'Filter': /'FlateDecode', 'Length': 126}
+2024-08-29 05:24:48 - INFO: read_xref_from: start=24567, token=/b'xref'
+2024-08-29 05:24:48 - INFO: xref objects: {1: (None, 17, 0), 2: (None, 163, 0), 3: (None, 219, 0), 4: (None, 497, 0), 5: (None, 3774, 0), 6: (None, 3902, 0), 7: (None, 3930, 0), 8: (None, 4085, 0), 9: (None, 4158, 0), 10: (None, 4395, 0), 11: (None, 4449, 0), 12: (None, 4503, 0), 13: (None, 4670, 0), 14: (None, 4908, 0), 30: (None, 5539, 0), 31: (None, 6146, 0), 32: (None, 20503, 0), 33: (None, 21084, 0), 34: (None, 21111, 0), 35: (None, 24195, 0), 36: (None, 24240, 0)}
+2024-08-29 05:24:48 - INFO: trailer: {'Size': 37, 'Root': <PDFObjRef:1>, 'Info': <PDFObjRef:14>, 'ID': [b"\xe9\x88\x91\xf0\x1f\xc3'L\xac\xd8\xbcn\r[DA", b"\xe9\x88\x91\xf0\x1f\xc3'L\xac\xd8\xbcn\r[DA"]}
+2024-08-29 05:24:48 - INFO: trailer: {'Size': 37, 'Root': <PDFObjRef:1>, 'Info': <PDFObjRef:14>, 'ID': [b"\xe9\x88\x91\xf0\x1f\xc3'L\xac\xd8\xbcn\r[DA", b"\xe9\x88\x91\xf0\x1f\xc3'L\xac\xd8\xbcn\r[DA"]}
+2024-08-29 05:24:48 - INFO: Pages: Kids=[<PDFObjRef:3>]
+2024-08-29 05:24:48 - INFO: Page: {'Type': /'Page', 'Parent': <PDFObjRef:2>, 'Resources': {'Font': {'F1': <PDFObjRef:5>, 'F2': <PDFObjRef:12>}, 'ExtGState': {'GS10': <PDFObjRef:10>, 'GS11': <PDFObjRef:11>}, 'ProcSet': [/'PDF', /'Text', /'ImageB', /'ImageC', /'ImageI']}, 'MediaBox': [0, 0, 612, 792], 'Contents': <PDFObjRef:4>, 'Group': {'Type': /'Group', 'S': /'Transparency', 'CS': /'DeviceRGB'}, 'Tabs': /'S', 'StructParents': 0}
+2024-08-29 05:24:48 - INFO: Processing page: <PDFPage: Resources={'Font': {'F1': <PDFObjRef:5>, 'F2': <PDFObjRef:12>}, 'ExtGState': {'GS10': <PDFObjRef:10>, 'GS11': <PDFObjRef:11>}, 'ProcSet': [/'PDF', /'Text', /'ImageB', /'ImageC', /'ImageI']}, MediaBox=[0, 0, 612, 792]>
+2024-08-29 05:24:48 - INFO: render_contents: resources={'Font': {'F1': <PDFObjRef:5>, 'F2': <PDFObjRef:12>}, 'ExtGState': {'GS10': <PDFObjRef:10>, 'GS11': <PDFObjRef:11>}, 'ProcSet': [/'PDF', /'Text', /'ImageB', /'ImageC', /'ImageI']}, streams=[<PDFStream(4): raw=3204, {'Filter': /'FlateDecode', 'Length': 3202}>], ctm=(1, 0, 0, 1, 0, 0)
+2024-08-29 05:24:48 - INFO: get_font: create: objid=5, spec={'Type': /'Font', 'Subtype': /'Type0', 'BaseFont': /'BCDEEE+Aptos', 'Encoding': /'Identity-H', 'DescendantFonts': <PDFObjRef:6>, 'ToUnicode': <PDFObjRef:30>}
+2024-08-29 05:24:48 - INFO: get_font: create: objid=None, spec={'BaseFont': /'BCDEEE+Aptos', 'Subtype': /'CIDFontType2', 'Type': /'Font', 'CIDToGIDMap': /'Identity', 'DW': 1000, 'CIDSystemInfo': <PDFObjRef:8>, 'FontDescriptor': <PDFObjRef:9>, 'W': <PDFObjRef:32>, 'Encoding': /'Identity-H', 'ToUnicode': <PDFStream(30): raw=534, {'Filter': /'FlateDecode', 'Length': 532}>}
+2024-08-29 05:24:48 - INFO: get_font: create: objid=12, spec={'Type': /'Font', 'Subtype': /'TrueType', 'Name': /'F2', 'BaseFont': /'BCDFEE+Aptos', 'Encoding': /'WinAnsiEncoding', 'FontDescriptor': <PDFObjRef:13>, 'FirstChar': 32, 'LastChar': 32, 'Widths': <PDFObjRef:33>}
+2024-08-29 05:24:49 - INFO: Loading Data
+2024-08-29 11:15:38 - INFO: Loading Data
+2024-08-29 11:16:00 - INFO: Loading Data
+2024-08-29 11:17:48 - INFO: Loading Data

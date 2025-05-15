@@ -94,88 +94,6 @@ def convert_pdf_to_text_v1(path, min_length):
 #         all_pages_bb_data += block_bb_data
 #     return all_pages_text_data, all_pages_bb_data
 
-def compare_rect(rect1, rect2):
-    if rect1["x1"]!=rect2["x1"] or rect1["x2"]!=rect2["x2"] or rect1["y1"]!=rect2["y1"] or rect1["y2"]!=rect2["y2"]:
-        return False
-    return True
-
-def check_if_there_is_break(sample, sample_box):
-    min_x = 10000
-    max_x = 0
-    line_down= 0 
-    break_line = 0 
-    container = [[]]
-    rect_container = [[]]
-    container_pos = 0
-    for index, rect in enumerate( sample_box):
-        if rect["x1"] < min_x:
-            min_x = rect["x1"]
-        if rect["x2"] > max_x:
-            max_x = rect["x2"]
-    if len(sample)!= len(sample_box):
-        print("sample:  ",sample)
-        print("num sample:  ",len(sample))
-        print("num pos:   ",len(sample_box))
-    for index, rect in enumerate( sample_box):
-        if index >= len(sample):
-            continue
-
-        container[container_pos].append(sample[index])
-        rect_container[container_pos].append(rect)
-
-        if index < len(sample_box)-1:
-            if compare_rect(rect, sample_box[index-1]):
-                line_down+=1
-                # print(sample[index])
-                if sample_box[index+1]['x1'] - min_x >6 or (max_x - rect['x2']) >11:
-                    break_line+=1
-                    container.append([])
-                    rect_container.append([])
-                    container_pos+=1
-    
-    # print(line_down) 
-    # print(break_line) 
-    for index, para in enumerate(container):
-        container[index] = "".join(para)
-    # for index, rect_list in enumerate(rect_container):
-    #     if rect_list == []:
-    #         rect_container.remove(rect_list)
-    #         container.remove(container[index])
-    # print(container)
-    container, rect_container = remove_blank_text(container, rect_container)
-    return container, rect_container
-
-def remove_blank_text(container, rect_container):
-    removed = 0
-    for index, text in enumerate(container):
-        if text.strip()=="":
-            container.remove(container[index-removed])
-            rect_container.remove(rect_container[index-removed])
-    return container, rect_container
-
-
-def divide_paragraphs(all_pages_text_data, all_pages_bb_data):
-    container = []
-    rect_container = []
-    for para, para_bb in list(zip(all_pages_text_data, all_pages_bb_data)):
-        new_paras, new_bb = check_if_there_is_break(para, para_bb)
-        container.extend(new_paras)
-        rect_container.extend(new_bb)
-    container, rect_container = remove_blank_pos(container, rect_container)
-    return container, rect_container
-
-def remove_blank_pos(all_pages_text_data, all_pages_bb_data):
-    blank_id = []
-    for index, box in enumerate(all_pages_bb_data):
-        if box == []:
-            blank_id.append(index)
-    removed = 0
-    for id in blank_id:
-        all_pages_bb_data.remove(all_pages_bb_data[id-removed])
-        all_pages_text_data.remove(all_pages_text_data[id-removed])
-        removed+=1
-    return all_pages_text_data, all_pages_bb_data
-
 def convert_pdf_to_text_and_bounding_boxes(path):
     document = fitz.open(path)
 
@@ -292,7 +210,6 @@ def convert_pdf_to_text_and_bounding_boxes(path):
                 all_pages_bb_data.append(block_bb_data[index])
         # all_pages_text_data += block_texts_data
         # all_pages_bb_data += block_bb_data
-    all_pages_text_data, all_pages_bb_data = divide_paragraphs(all_pages_text_data, all_pages_bb_data)
     return all_pages_text_data, all_pages_bb_data
 
 

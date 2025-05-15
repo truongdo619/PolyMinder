@@ -397,96 +397,41 @@ def generate_id():
     print(unique_id)
     return unique_id
 
-def reorder_all(new_order, list_object):
-    copy_list_object = copy.deepcopy(list_object)
-    new_list_object = []
-    for index in new_order:
-        new_list_object.append(copy_list_object[index])
-    return new_list_object
-
-def execute_one_note_on_entities(user_note,entities):
-    actions = user_note["action"]
-    for ent in user_note["content"]:
-        para_id = ent["para_id"]
-        ent_id = ent["ent_id"]
-        ent_type = ent["ent_type"]
-        ent_text = ent["ent_text"]
-        
-        if actions=="add":
-            entities[para_id]["entities"].append([
-                ent_id,
-                ent_type,
-                [[ent["head"],ent["tail"]]],
-                ent_text
-            ])
-        if actions=="delete":
-            for e in entities[para_id]["entities"]:
-                if e[1] == ent_type and e[-1]==ent_text and e[2][0][0]==ent["head"] and e[2][0][1]==ent["tail"] :
-                    entities[para_id]["entities"].remove(e)
-        
-        if actions=="update":
-            print(actions)
-            for index, e in enumerate(entities[para_id]["entities"]):
-                if e[1]==ent["old_ent_type"] and e[-1]==ent["old_ent_text"] and e[2][0][0]==ent["old_head"] and e[2][0][1]==ent["old_tail"] :
-                    entities[para_id]["entities"][index] = [
-                                                                ent_id,
-                                                                ent_type,
-                                                                [[ent["head"],ent["tail"]]],
-                                                                ent_text
-                                                            ]
-        return entities
-    
 def execute_user_note_on_entities(user_notes, entities):
     for note in user_notes:
         if note["target"]=="ent":
-            entities = execute_one_note_on_entities(note,entities)
-            # actions = note["action"]
-            # for ent in note["content"]:
-            #     para_id = ent["para_id"]
-            #     ent_id = ent["ent_id"]
-            #     ent_type = ent["ent_type"]
-            #     ent_text = ent["ent_text"]
+            actions = note["action"]
+            for ent in note["content"]:
+                para_id = ent["para_id"]
+                ent_id = ent["ent_id"]
+                ent_type = ent["ent_type"]
+                ent_text = ent["ent_text"]
                 
-            #     if actions=="add":
-            #         entities[para_id]["entities"].append([
-            #             ent_id,
-            #             ent_type,
-            #             [[ent["head"],ent["tail"]]],
-            #             ent_text
-            #         ])
-            #     if actions=="delete":
-            #         for e in entities[para_id]["entities"]:
-            #             if e[1] == ent_type and e[-1]==ent_text and e[2][0][0]==ent["head"] and e[2][0][1]==ent["tail"] :
-            #                 entities[para_id]["entities"].remove(e)
+                if actions=="add":
+                    entities[para_id]["entities"].append([
+                        ent_id,
+                        ent_type,
+                        [[ent["head"],ent["tail"]]],
+                        ent_text
+                    ])
+                if actions=="delete":
+                    for e in entities[para_id]["entities"]:
+                        if e[1] == ent_type and e[-1]==ent_text and e[2][0][0]==ent["head"] and e[2][0][1]==ent["tail"] :
+                            entities[para_id]["entities"].remove(e)
                 
-            #     if actions=="update":
-            #         print(actions)
-            #         for index, e in enumerate(entities[para_id]["entities"]):
-            #             if e[1]==ent["old_ent_type"] and e[-1]==ent["old_ent_text"] and e[2][0][0]==ent["old_head"] and e[2][0][1]==ent["old_tail"] :
-            #                 entities[para_id]["entities"][index] = [
-            #                                                             ent_id,
-            #                                                             ent_type,
-            #                                                             [[ent["head"],ent["tail"]]],
-            #                                                             ent_text
-            #                                                         ]
-        # elif note["target"]=="all":
-        #     entities = reorder_all(note['content'][0]['new_order'], entities)
+                if actions=="update":
+                    print(actions)
+                    for index, e in enumerate(entities[para_id]["entities"]):
+                        if e[1]==ent["old_ent_type"] and e[-1]==ent["old_ent_text"] and e[2][0][0]==ent["old_head"] and e[2][0][1]==ent["old_tail"] :
+                            entities[para_id]["entities"][index] = [
+                                                                        ent_id,
+                                                                        ent_type,
+                                                                        [[ent["head"],ent["tail"]]],
+                                                                        ent_text
+                                                                    ]
         else:   
             continue
     return entities
-
-def execute_one_note_on_paragraphs(user_note, paragraphs, old_bboxs, change_ids):
-    new_para = copy.deepcopy(paragraphs)
-    new_bbox = copy.deepcopy(old_bboxs)
-    for para in user_note["content"]:
-        # print(para)
-        para_id = para["para_id"]
-        text = para["text"]
-        change_ids.append(para_id)
-        changed_pos = organize_new_box([paragraphs[para_id]],[old_bboxs[para_id]],[text])
-        new_bbox[para_id] = changed_pos[0]
-        new_para[para_id] = text
-    return new_para, new_bbox, change_ids
 
 def execute_user_note_on_paragraphs(user_notes, paragraphs, old_bboxs):
     change_ids = []
@@ -497,137 +442,62 @@ def execute_user_note_on_paragraphs(user_notes, paragraphs, old_bboxs):
     new_bbox = copy.deepcopy(old_bboxs)
     for note in user_notes:
         if note["target"]=="para":
-            # for para in note["content"]:
-            #     # print(para)
-            #     para_id = para["para_id"]
-            #     text = para["text"]
-            #     change_ids.append(para_id)
-            #     changed_pos = organize_new_box([paragraphs[para_id]],[old_bboxs[para_id]],[text])
-            #     new_bbox[para_id] = changed_pos[0]
-            #     new_para[para_id] = text
-            new_para, new_bbox, change_ids = execute_one_note_on_paragraphs(note, new_para, new_bbox, change_ids)
-        elif note["target"]=="all":
-            new_para = reorder_all(note['content'][0]['new_order'], new_para)
-            new_bbox = reorder_all(note['content'][0]['new_order'], new_bbox)
+            for para in note["content"]:
+                # print(para)
+                para_id = para["para_id"]
+                text = para["text"]
+                change_ids.append(para_id)
+                changed_pos = organize_new_box([paragraphs[para_id]],[old_bboxs[para_id]],[text])
+                new_bbox[para_id] = changed_pos[0]
+                new_para[para_id] = text
         else:
             continue
     return new_para , new_bbox, change_ids
 
-
-def execute_one_note_on_relations(user_note, relations):
-    action = user_note["action"]
-    if action =="add":
-        for packed_rel in user_note["content"]:
-            para_id = packed_rel["para_id"]
-            rel = packed_rel["rel"]
-            relations[para_id]["relations"].append(rel)
-    if action =="delete":
-        for packed_rel in user_note["content"]:
-            para_id = packed_rel["para_id"]
-            rel = packed_rel["rel"]
-            for index, relation in enumerate(relations[para_id]["relations"]):
-                # relations[para_id]["relations"].remove(rel)
-                if relation[1] == rel[1] and relation[2] == rel[2] :
-
-                    relations[para_id]["relations"].remove(relation)
-    if action == "update":
-        for packed_rel in user_note["content"]:
-            para_id = packed_rel["para_id"]
-            rel = packed_rel["rel"]
-            r_id = rel[0]
-            for index, orel in enumerate(relations[para_id]["relations"]):
-                if orel[1] == rel[1] and orel[2] == rel[2] :
-                    rel[0] = relations[para_id]["relations"][index][0]
-                    relations[para_id]["relations"][index] = rel
-    return relations
-
-def execute_one_note_on_edit_status(user_note, relations):
-    edit_status_lits = user_note["content"]
-    for index, note_list in enumerate(edit_status_lits):
-        try:
-            relations[index]["edit_status"] = note_list
-        except:
-            print("+++++++++++++++++++++++++++")
-            print(len(relations))
-            print("+++++++++++++++++++++++++++")
-            print(index)
-            print("++++++++++++++++++++++++++++++")
-            print(note_list)
-    return relations
 def execute_user_note_on_relations(user_notes, relations):
     # check if result is no longer keep the id when user make update, check both text and type
     for note in user_notes:
         if note["target"] == "relation":
-            # action = note["action"]
-            # if action =="add":
-            #     for packed_rel in note["content"]:
-            #         para_id = packed_rel["para_id"]
-            #         rel = packed_rel["rel"]
-            #         relations[para_id]["relations"].append(rel)
-            # if action =="delete":
-            #     for packed_rel in note["content"]:
-            #         para_id = packed_rel["para_id"]
-            #         rel = packed_rel["rel"]
-            #         for index, relation in enumerate(relations[para_id]["relations"]):
-            #             # relations[para_id]["relations"].remove(rel)
-            #             if relation[1] == rel[1] and relation[2] == rel[2] :
+            action = note["action"]
+            if action =="add":
+                for packed_rel in note["content"]:
+                    para_id = packed_rel["para_id"]
+                    rel = packed_rel["rel"]
+                    relations[para_id]["relations"].append(rel)
+            if action =="delete":
+                for packed_rel in note["content"]:
+                    para_id = packed_rel["para_id"]
+                    rel = packed_rel["rel"]
+                    for index, relation in enumerate(relations[para_id]["relations"]):
+                        # relations[para_id]["relations"].remove(rel)
+                        if relation[1] == rel[1] and relation[2] == rel[2] :
 
-            #                 relations[para_id]["relations"].remove(relation)
-            # if action == "update":
-            #     for packed_rel in note["content"]:
-            #         para_id = packed_rel["para_id"]
-            #         rel = packed_rel["rel"]
-            #         r_id = rel[0]
-            #         for index, orel in enumerate(relations[para_id]["relations"]):
-            #             if orel[1] == rel[1] and orel[2] == rel[2] :
-            #                 rel[0] = relations[para_id]["relations"][index][0]
-            #                 relations[para_id]["relations"][index] = rel
-            relations = execute_one_note_on_relations(note, relations)
-
+                            relations[para_id]["relations"].remove(relation)
+            if action == "update":
+                for packed_rel in note["content"]:
+                    para_id = packed_rel["para_id"]
+                    rel = packed_rel["rel"]
+                    r_id = rel[0]
+                    for index, orel in enumerate(relations[para_id]["relations"]):
+                        if orel[1] == rel[1] and orel[2] == rel[2] :
+                            rel[0] = relations[para_id]["relations"][index][0]
+                            relations[para_id]["relations"][index] = rel
         if note["target"]=="edit_status":
-            # edit_status_lits = note["content"]
-            # for index, note_list in enumerate(edit_status_lits):
-            #     try:
-            #         relations[index]["edit_status"] = note_list
-            #     except:
-            #         print("+++++++++++++++++++++++++++")
-            #         print(len(relations))
-            #         print("+++++++++++++++++++++++++++")
-            #         print(index)
-            #         print("++++++++++++++++++++++++++++++")
-            #         print(note_list)
-            relations = execute_one_note_on_edit_status(note, relations)
-        # elif note["target"]=="all":
-        #     relations = reorder_all(note['content'][0]['new_order'], relations)
-            # new_bbox = reorder_all(note['content']['new_order'], new_bbox)
+            edit_status_lits = note["content"]
+            for index, note_list in enumerate(edit_status_lits):
+                try:
+                    relations[index]["edit_status"] = note_list
+                except:
+                    print("+++++++++++++++++++++++++++")
+                    print(len(relations))
+                    print("+++++++++++++++++++++++++++")
+                    print(index)
+                    print("++++++++++++++++++++++++++++++")
+                    print(note_list)
     return relations
 
 # def add_init_edit_status_2_relation_list(relations):
     
-def execute_user_note_on_all_data(usernotes, paragraphs, bboxs, entities, relations):
-    new_para = copy.deepcopy(paragraphs)
-    new_bbox = copy.deepcopy(bboxs)
-    change_ids = []
-    for note in usernotes:
-        if note["target"]=="edit_status":
-            relations = execute_one_note_on_edit_status(note, relations)
-        elif note["target"] == "relation":
-            relations = execute_one_note_on_relations(note, relations)
-        elif note["target"]=="para":
-            new_para, new_bbox, change_ids = execute_one_note_on_paragraphs(note, new_para, new_bbox, change_ids)
-        elif note["target"]=="ent":
-            # In this part, use relations along with entities because relation itself also contain "entities" information
-            relations = execute_one_note_on_entities(note, relations)
-            entities = execute_one_note_on_entities(note, entities)
-        elif note["target"]=="all":
-            relations = reorder_all(note['content'][0]['new_order'], relations)
-            new_para = reorder_all(note['content'][0]['new_order'], new_para)
-            new_bbox = reorder_all(note['content'][0]['new_order'], new_bbox)
-            entities = reorder_all(note['content'][0]['new_order'], entities)
-            # This line is for edit status 
-            # relations = reorder_all(note['content'][0]['new_order'], relations) 
-
-    return new_para, new_bbox, entities, relations, change_ids
 
 def decide_new_ent_number(entities,user_note,para_id):
     base_number = len(entities[para_id]["entities"])
@@ -658,10 +528,6 @@ def add_edit_status(array, field_name, id):
             "status":"confirmed"
         })
         return array
-
-def change_para_id(new_id, object_list):
-    for object in object_list:
-        return 1
 
 def decide_new_pos(new_entity,char_positions):
     """
@@ -990,55 +856,6 @@ def compose_password_reset_email(reset_link: str, recipient_email: str, username
         "body_html": body_html
     }
 
-def compose_question_reminder_email(user_name: str, user_email: str, questions: str) -> dict:
-    """
-    Compose an email to remind the server admin that a user has questions for them.
-
-    :param admin_email: The email address of the server admin.
-    :param user_name: The name/username of the user who has questions.
-    :param user_email: The email address of the user who has questions.
-    :param questions: The user's questions or message.
-    :return: A dictionary with 'subject', 'body_text', and 'body_html'.
-    """
-
-    subject = "[Polyminder] User questions pending"
-
-    body_text = f"""\
-        Hello,
-
-        This is a reminder that user "{user_name}" ({user_email}) has questions for you:
-
-        {questions}
-
-        Please reach out to them at your earliest convenience.
-
-        Best regards,
-        Polyminder Team
-        """
-
-            # Optional HTML version
-    body_html = f"""\
-        <html>
-        <body>
-            <p>Hello,</p>
-            <p>This is a reminder that user <strong>{user_name}</strong> 
-            (<a href="mailto:{user_email}">{user_email}</a>) has questions for you:</p>
-            <blockquote>
-            {questions}
-            </blockquote>
-            <p>Please respond as soon as possible.</p>
-            <p>Best regards,<br>Polyminder Team</p>
-        </body>
-        </html>
-    """
-
-    return {
-        "subject": subject,
-        "body_text": body_text,
-        "body_html": body_html
-    }
-
-
 def send_reset_password_email(to_email,reset_link, username ):
     # Set up the SMTP server
     smtp_host = 'smtp.gmail.com'  # Replace with your SMTP server
@@ -1072,45 +889,6 @@ def send_reset_password_email(to_email,reset_link, username ):
         server.quit()
     
     return result
-
-def send_contact_support_email(user_email,name, content ):
-    # Set up the SMTP server
-    smtp_host = 'smtp.gmail.com'  # Replace with your SMTP server
-    smtp_port = 587  # Port for TLS
-    from_email = 'polyminder.no.reply@gmail.com'  # Replace with your email
-    to_emails = [
-        'trieuhoangan1012@gmail.com',
-        'truongdo619@gmail.com'
-        ]
-    password = gmail_app_password  # Replace with your email password
-
-    # Create the email message
-    for to_email in to_emails:
-        mail_obj = compose_question_reminder_email(name, user_email, content)
-        msg = MIMEMultipart()
-        msg['From'] = from_email
-        msg['To'] = to_email
-        msg['Subject'] = mail_obj['subject']
-        
-        msg.attach(MIMEText(mail_obj['body_html'], 'html'))
-        result = False
-        # Connect to the SMTP server
-        try:
-            server = smtplib.SMTP(smtp_host, smtp_port)
-            server.starttls()  # Use TLS for security
-            server.login(from_email, password)  # Login with your email and password
-            # Send the email
-            server.sendmail(from_email, to_email, msg.as_string())
-            print("Email sent successfully!")
-            result = True
-        except Exception as e:
-            print(f"Failed to send email. Error: {str(e)}")
-            result = False
-        finally:
-            server.quit()
-    
-    return result
-
 
 def decide_log_file():
     current_date = datetime.now()
