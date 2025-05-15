@@ -1,0 +1,41 @@
+T1	POLYMER 65 74	Matrimid®
+T2	POLYMER 565 574	Matrimid®
+T3	PROP_NAME 650 670	membrane selectivity
+T4	PROP_VALUE 685 693	up to 95
+R3	has_value Arg1:T3 Arg2:T4
+T6	PROP_NAME 463 465	Tg
+T7	PROP_NAME 467 495	glass transition temperature
+R4	abbreviation_of Arg1:T6 Arg2:T7
+T8	PROP_NAME 332 370	membrane selectivity of water over HAc
+T9	PROP_NAME 804 814	water flux
+T10	PROP_VALUE 816 827	1.6 kg/m2 h
+T11	MATERIAL_AMOUNT 833 839	20 wt%
+R5	has_value Arg1:T9 Arg2:T10
+T12	CONDITION 829 870	for 20 wt% HAc concentration feed streams
+R7	has_condition Arg1:T10 Arg2:T12
+T13	CONDITION 871 882	at 101.5 °C
+R8	has_condition Arg1:T10 Arg2:T13
+T15	CONDITION 694 787	using a 520 μm outer diameter/325 μm inner diameter and 20 cm long defect-free annealed fiber
+R12	has_condition Arg1:T4 Arg2:T15
+T16	INORGANIC 54 56	N2
+T17	INORGANIC 61 63	O2
+T18	ORGANIC 112 123	acetic acid
+T19	ORGANIC 125 128	HAc
+R13	abbreviation_of Arg1:T19 Arg2:T18	
+T21	OTHER_MATERIAL 112 139	acetic acid (HAc) and water
+T22	ORGANIC 150 161	Acetic acid
+T23	REF_EXP 186 197	the polymer
+R14	refers_to Arg1:T23 Arg2:T1	
+T24	ORGANIC 249 260	acetic acid
+R9	has_property Arg1:T23 Arg2:T8	
+T26	ORGANIC 367 370	HAc
+T27	CONDITION 392 419	with increasing HAc content
+T28	ORGANIC 408 411	HAc
+R10	has_condition Arg1:T8 Arg2:T27	
+T29	ORGANIC 608 611	HAc
+R1	has_property Arg1:T2 Arg2:T3	
+R2	has_property Arg1:T2 Arg2:T9	
+T5	ORGANIC 840 843	HAc
+R6	has_amount Arg1:T5 Arg2:T11	
+T30	PROP_NAME 987 998	free volume
+R11	has_property Arg1:T2 Arg2:T30	

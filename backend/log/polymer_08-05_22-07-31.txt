@@ -1,0 +1,6 @@
+2024-08-05 22:07:31 - INFO: Building Model
+2024-08-05 22:07:46 - ERROR: Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+

@@ -1,0 +1,79 @@
+T1	POLYMER 147 150	PBI
+T2	POLYMER 197 200	PBI
+T3	POLYMER 237 265	sulfonated polyphenylsulfone
+T4	POLYMER 267 272	sPPSU
+T5	ORGANIC 307 328	α,α′-dibromo-p-xylene
+T6	ORGANIC 330 333	DBX
+T7	POLYMER 418 421	PBI
+T8	POLYMER 426 431	sPPSU
+T9	POLYMER 505 508	PBI
+T10	POLYMER 509 514	sPPSU
+T11	ORGANIC 787 790	DBX
+T12	ORGANIC 954 957	DBX
+T13	POLYMER 1058 1061	PBI
+T14	POLYMER 1062 1067	sPPSU
+T15	MATERIAL_AMOUNT 1098 1105	0.7 wt%
+T16	PROP_NAME 1222 1237	H2 permeability
+T17	PROP_VALUE 1241 1252	46.2 Barrer
+T18	PROP_NAME 1264 1282	H2/CO2 selectivity
+T19	PROP_VALUE 1286 1289	9.9
+T20	COMPOSITE 1058 1067	PBI/sPPSU
+R1	abbreviation_of Arg1:T4 Arg2:T3
+R2	abbreviation_of Arg1:T6 Arg2:T5
+R6	has_value Arg1:T16 Arg2:T17
+R8	has_value Arg1:T18 Arg2:T19
+T22	ORGANIC 1106 1109	DBX
+R3	has_amount Arg1:T22 Arg2:T15
+T23	CONDITION 1290 1298	at 150°C
+R4	has_condition Arg1:T19 Arg2:T23
+T21	COMPOSITE 505 514	PBI/sPPSU
+T24	PROP_NAME 582 604	fractional free volume
+T25	PROP_NAME 606 609	FFV
+R9	abbreviation_of Arg1:T25 Arg2:T24
+R10	has_property Arg1:T21 Arg2:T25
+T26	REF_EXP 713 732	the blend membranes
+R11	refers_to Arg1:T26 Arg2:T21
+T27	PROP_NAME 753 765	permeability
+R12	has_property Arg1:T26 Arg2:T27
+T28	PROP_NAME 917 920	FFV
+T29	PROP_NAME 925 934	pore size
+T30	REF_EXP 894 903	membranes
+R13	refers_to Arg1:T30 Arg2:T26
+R14	has_property Arg1:T30 Arg2:T28
+R15	has_property Arg1:T30 Arg2:T29
+T31	PROP_NAME 1005 1025	gas pair selectivity
+T32	CONDITION 1026 1046	at high temperatures
+T33	REF_EXP 971 986	blend membranes
+R16	refers_to Arg1:T33 Arg2:T30
+R17	has_property Arg1:T33 Arg2:T31
+R18	has_condition Arg1:T31 Arg2:T32
+T34	MATERIAL_AMOUNT 1052 1057	50/50
+R19	has_amount Arg1:T20 Arg2:T34
+T35	REF_EXP 1199 1201	It
+R5	refers_to Arg1:T35 Arg2:T20
+R7	has_property Arg1:T35 Arg2:T16
+R20	has_property Arg1:T35 Arg2:T18
+T36	INORGANIC 165 167	H2
+T37	INORGANIC 168 171	CO2
+T38	PROP_NAME 165 182	H2/CO2 separation
+T39	CONDITION 183 191	at 150°C
+R21	has_condition Arg1:T38 Arg2:T39	
+R22	has_property Arg1:T1 Arg2:T38	
+T40	PROP_NAME 550 569	chemical resistance
+R23	has_property Arg1:T21 Arg2:T40	
+T41	CONDITION 611 651	after annealing at elevated temperatures
+R24	has_condition Arg1:T40 Arg2:T41	
+R25	has_condition Arg1:T25 Arg2:T41	
+T42	CONDITION 766 781	after annealing
+R26	has_condition Arg1:T27 Arg2:T42	
+T43	PROP_NAME 821 840	chemical resistance
+R27	has_property Arg1:T30 Arg2:T43	
+T44	CONDITION 1110 1118	at 300°C
+T45	INORGANIC 1222 1224	H2
+T46	INORGANIC 1264 1266	H2
+T47	INORGANIC 1267 1270	CO2
+R28	has_condition Arg1:T17 Arg2:T23	
+T48	CONDITION 783 799	The DBX addition
+R29	has_condition Arg1:T43 Arg2:T48	
+R30	has_condition Arg1:T28 Arg2:T48	
+R31	has_condition Arg1:T29 Arg2:T48	

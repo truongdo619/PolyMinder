@@ -1,0 +1,16 @@
+T1	POLYMER 49 67	poly(4-oxybenzoyl)
+T2	POLYMER 69 72	POB
+T3	MONOMER 181 207	4-propionyloxybenzoic acid
+T4	MONOMER 209 234	4-hexanoyloxybenzoic acid
+T5	MONOMER 236 261	4-octanoyloxybenzoic acid
+T6	MONOMER 266 291	4-decanoyloxybenzoic acid
+T7	POLYMER 356 359	POB
+T8	MONOMER 444 478	4-perfluorooctanoyloxybenzoic acid
+T9	MONOMER 480 484	FOBA
+T10	MONOMER 705 709	FOBA
+T11	POLYMER 1149 1152	POB
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	abbreviation_of Arg1:T9 Arg2:T8
+T12	MONOMER 109 131	4-acyloxybenzoic acids
+T13	CONDITION 292 320	in liquid paraffin at 320 °C
+T14	ORGANIC 742 759	perfluorooctanoyl

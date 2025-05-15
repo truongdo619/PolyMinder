@@ -1,0 +1,61 @@
+T1	POLYMER 52 71	poly(vinyl alcohol)
+T2	POLYMER 73 77	PVOH
+T3	POLYMER 236 240	PVOH
+T4	POLYMER 594 598	PVOH
+T5	POLYMER 918 922	PVOH
+T6	PROP_NAME 1954 1977	degradation temperature
+T7	PROP_VALUE 1978 1985	>100 °C
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R3	has_value Arg1:T6 Arg2:T7
+T8	POLYMER 167 170	PAA
+T9	POLYMER 147 165	Poly(acrylic acid)
+T10	PROP_NAME 216 232	water resistance
+R4	has_property Arg1:T3 Arg2:T10
+R5	abbreviation_of Arg1:T8 Arg2:T9
+T11	REF_EXP 242 255	The membranes
+R6	refers_to Arg1:T11 Arg2:T3
+T12	REF_EXP 384 393	membranes
+R2	refers_to Arg1:T12 Arg2:T11
+T13	PROP_NAME 408 424	water resistance
+R7	has_property Arg1:T12 Arg2:T13
+T14	POLYMER 586 589	PAA
+T15	POLYMER 910 913	PAA
+T16	POLYMER 1277 1280	PAA
+T17	POLYMER 1452 1455	PAA
+T18	MATERIAL_AMOUNT 582 585	10%
+T19	MATERIAL_AMOUNT 572 575	10%
+R8	has_amount Arg1:T14 Arg2:T18
+T20	MATERIAL_AMOUNT 590 593	80%
+R9	has_amount Arg1:T4 Arg2:T20
+T21	PROP_NAME 636 652	tensile strength
+T22	PROP_NAME 654 669	tensile modulus
+T23	CHAR_METHOD 714 742	Polarized optical microscopy
+T24	MATERIAL_AMOUNT 792 808	greater than 10%
+T25	CHAR_METHOD 810 849	Differential thermogravimetric analysis
+T26	CHAR_METHOD 851 855	DTGA
+R10	abbreviation_of Arg1:T26 Arg2:T25
+T27	MATERIAL_AMOUNT 897 900	10%
+T28	MATERIAL_AMOUNT 906 909	10%
+R11	has_amount Arg1:T15 Arg2:T28
+T29	MATERIAL_AMOUNT 914 917	80%
+R12	has_amount Arg1:T5 Arg2:T29
+T30	COMPOSITE 557 598	membranes with 10% CNXLs/10% PAA/80% PVOH
+R13	has_property Arg1:T30 Arg2:T21
+R14	has_property Arg1:T30 Arg2:T22
+R15	characterized_by Arg1:T30 Arg2:T23
+T31	COMPOSITE 897 922	10% CNXL/10% PAA/80% PVOH
+R16	characterized_by Arg1:T31 Arg2:T26
+T32	MATERIAL_AMOUNT 1438 1442	≥10%
+R17	has_amount Arg1:T17 Arg2:T32
+T33	PROP_NAME 1485 1489	flux
+T34	COMPOSITE 1417 1455	membranes containing ≥10% CNXLs or PAA
+R18	has_property Arg1:T34 Arg2:T33
+R19	has_property Arg1:T34 Arg2:T6
+T35	POLYMER 105 114	cellulose
+T36	CONDITION 274 297	at various temperatures
+T37	CONDITION 336 371	Heat treatment at 170 °C for 45 min
+R20	has_condition Arg1:T13 Arg2:T37	
+T38	ORGANIC 1056 1073	trichloroethylene
+T39	POLYMER 2002 2011	cellulose
+T40	PROP_NAME 1954 1977	degradation temperature
+R21	has_property Arg1:T39 Arg2:T40	

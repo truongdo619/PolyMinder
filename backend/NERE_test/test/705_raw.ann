@@ -1,0 +1,18 @@
+T1	POLYMER 112 125	polypropylene
+T2	POLYMER 171 184	Rodrun LC3000
+T3	MATERIAL_AMOUNT 227 229;241 244	10 wt%
+T4	MATERIAL_AMOUNT 231 233;241 244	20 wt%
+T5	MATERIAL_AMOUNT 238 244	40 wt%
+T6	REF_EXP 245 248	LCP
+R1	refers_to Arg1:T6 Arg2:T2
+R2	has_amount Arg1:T6 Arg2:T3
+R3	has_amount Arg1:T6 Arg2:T4
+R4	has_amount Arg1:T6 Arg2:T5
+T8	PROP_NAME 736 751	elastic modulus
+T9	PROP_NAME 760 777	complex viscosity
+T10	COMPOSITE 102 184	blends of polypropylene and a commercial liquid crystalline polymer, Rodrun LC3000
+T11	REF_EXP 215 221	blends
+R6	refers_to Arg1:T11 Arg2:T10
+R7	has_property Arg1:T11 Arg2:T8
+R8	has_property Arg1:T11 Arg2:T9
+T7	CONDITION 260 277	at 220 and 240 °C

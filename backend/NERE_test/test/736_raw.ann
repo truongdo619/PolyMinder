@@ -1,0 +1,15 @@
+T1	POLYMER_FAMILY 36 46	polyethers
+T2	PROP_NAME 368 382	melting points
+T3	PROP_VALUE 383 404	between 100 and 130°C
+T4	REF_EXP 354 362	polymers
+R2	has_property Arg1:T4 Arg2:T2
+R3	has_value Arg1:T2 Arg2:T3
+T5	PROP_NAME 91 108	molecular weights
+R4	has_property Arg1:T1 Arg2:T5
+T6	REF_EXP 143 148	their
+R1	refers_to Arg1:T6 Arg2:T1
+T7	REF_EXP 227 239	the polymers
+R5	refers_to Arg1:T7 Arg2:T6
+T8	REF_EXP 302 314	the polymers
+R6	refers_to Arg1:T8 Arg2:T7
+R7	refers_to Arg1:T4 Arg2:T8

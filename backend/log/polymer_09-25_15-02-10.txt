@@ -1,0 +1,241 @@
+2024-09-25 15:02:10 - INFO: Building Model
+2024-09-25 15:03:48 - INFO: Loading Data
+2024-09-25 15:14:01 - INFO: Loading Data
+2024-09-25 15:16:03 - INFO: Loading Data
+2024-09-25 15:17:04 - INFO: Loading Data
+2024-09-25 15:18:14 - INFO: Loading Data
+2024-09-25 15:19:12 - INFO: Loading Data
+2024-09-25 15:21:09 - INFO: Loading Data
+2024-09-25 15:22:06 - INFO: Loading Data
+2024-09-25 15:24:37 - INFO: Loading Data
+2024-09-25 15:51:42 - INFO: Loading Data
+2024-09-25 16:12:20 - INFO: Loading Data
+2024-09-25 16:13:01 - INFO: Loading Data
+2024-09-26 02:59:31 - INFO: Loading Data
+2024-09-26 02:59:49 - INFO: Loading Data
+2024-09-26 03:00:32 - INFO: Loading Data
+2024-09-26 11:17:42 - INFO: Loading Data
+2024-09-26 13:57:52 - INFO: Loading Data
+2024-09-26 14:27:24 - INFO: Loading Data
+2024-09-26 17:38:15 - INFO: Loading Data
+2024-09-27 05:27:57 - INFO: Loading Data
+2024-09-27 07:07:05 - INFO: Loading Data
+2024-09-27 10:58:59 - INFO: Loading Data
+2024-09-27 13:21:40 - INFO: xref found: pos=b'116'
+2024-09-27 13:21:40 - INFO: read_xref_from: start=116, token=/b'xref'
+2024-09-27 13:21:40 - INFO: xref objects: {187: (None, 16, 0), 188: (None, 3596, 0), 189: (None, 3824, 0), 190: (None, 3865, 0), 191: (None, 3900, 0), 192: (None, 4627, 0), 193: (None, 4741, 0), 194: (None, 4856, 0), 195: (None, 4970, 0), 196: (None, 5085, 0), 197: (None, 5200, 0), 198: (None, 5315, 0), 199: (None, 5430, 0), 200: (None, 5545, 0), 201: (None, 5660, 0), 202: (None, 5773, 0), 203: (None, 5887, 0), 204: (None, 6004, 0), 205: (None, 6121, 0), 206: (None, 6238, 0), 207: (None, 6354, 0), 208: (None, 6468, 0), 209: (None, 6582, 0), 210: (None, 6688, 0), 211: (None, 6796, 0), 212: (None, 6903, 0), 213: (None, 7008, 0), 214: (None, 7116, 0), 215: (None, 7224, 0), 216: (None, 7304, 0), 217: (None, 7384, 0), 218: (None, 7464, 0), 219: (None, 7543, 0), 220: (None, 7622, 0), 221: (None, 7702, 0), 222: (None, 7782, 0), 223: (None, 7860, 0), 224: (None, 7940, 0), 225: (None, 8019, 0), 226: (None, 8098, 0), 227: (None, 8176, 0), 228: (None, 8254, 0), 229: (None, 8334, 0), 230: (None, 8414, 0), 231: (None, 8494, 0), 232: (None, 8575, 0), 233: (None, 8655, 0), 234: (None, 8736, 0), 235: (None, 8816, 0), 236: (None, 9457, 0), 237: (None, 9615, 0), 238: (None, 10063, 0), 239: (None, 10561, 0), 240: (None, 10944, 0), 241: (None, 11022, 0), 242: (None, 11960, 0), 243: (None, 12121, 0), 244: (None, 12343, 0), 245: (None, 13031, 0), 246: (None, 13140, 0), 247: (None, 13366, 0), 248: (None, 13554, 0), 249: (None, 14236, 0), 250: (None, 14542, 0), 251: (None, 15637, 0), 252: (None, 15803, 0), 253: (None, 16009, 0), 254: (None, 17023, 0), 255: (None, 17226, 0), 256: (None, 17404, 0), 257: (None, 17473, 0), 258: (None, 17768, 0), 259: (None, 18420, 0), 260: (None, 19460, 0), 261: (None, 19656, 0), 262: (None, 20026, 0), 263: (None, 20089, 0), 264: (None, 20366, 0), 265: (None, 20518, 0), 266: (None, 21004, 0), 267: (None, 22126, 0), 268: (None, 23161, 0), 269: (None, 23521, 0), 270: (None, 24583, 0), 271: (None, 25430, 0), 272: (None, 25810, 0), 273: (None, 31444, 0), 274: (None, 34353, 0), 275: (None, 40662, 0), 276: (None, 41002, 0), 277: (None, 64047, 0), 278: (None, 83121, 0), 279: (None, 84908, 0), 280: (None, 85164, 0), 281: (None, 85446, 0), 282: (None, 85642, 0), 283: (None, 87004, 0), 284: (None, 87218, 0), 285: (None, 87282, 0), 286: (None, 87362, 0), 287: (None, 87434, 0), 288: (None, 87515, 0), 289: (None, 87596, 0), 290: (None, 87677, 0), 291: (None, 87735, 0), 292: (None, 88101, 0), 293: (None, 88210, 0), 294: (None, 88313, 0), 295: (None, 88441, 0), 296: (None, 88561, 0), 297: (None, 88740, 0), 298: (None, 88897, 0), 299: (None, 89008, 0), 300: (None, 89183, 0), 301: (None, 89290, 0), 302: (None, 89411, 0), 303: (None, 3426, 0), 304: (None, 2711, 0)}
+2024-09-27 13:21:40 - INFO: trailer: {'Size': 305, 'Prev': 890300, 'XRefStm': 3426, 'Root': <PDFObjRef:188>, 'Info': <PDFObjRef:177>, 'ID': [b'\x00\x1b{\xcf\xa4\x1b\xf4\x8f\x99\x98\xdf*\xd5\xceLS', b"\xfa\xa1[\x16z\xc9\x9dC\x97Nx\xdeV\xe7'\xcd"]}
+2024-09-27 13:21:40 - INFO: read_xref_from: start=3426, token=303
+2024-09-27 13:21:40 - INFO: xref stream: objid=(178, 9), fields=1,1,1
+2024-09-27 13:21:40 - INFO: trailer: {'Length': 20, 'Filter': /'FlateDecode', 'W': [1, 1, 1], 'Index': [178, 9], 'DecodeParms': {'Columns': 3, 'Predictor': 12}, 'Size': 187, 'Type': /'XRef'}
+2024-09-27 13:21:40 - INFO: read_xref_from: start=890300, token=/b'xref'
+2024-09-27 13:21:40 - INFO: xref objects: {1: (None, 89581, 0), 2: (None, 90133, 0), 3: (None, 90248, 0), 4: (None, 90362, 0), 5: (None, 90476, 0), 6: (None, 90589, 0), 7: (None, 90702, 0), 8: (None, 90812, 0), 9: (None, 90927, 0), 10: (None, 91042, 0), 11: (None, 91157, 0), 12: (None, 91272, 0), 13: (None, 91388, 0), 14: (None, 91504, 0), 15: (None, 91620, 0), 16: (None, 91733, 0), 17: (None, 91846, 0), 18: (None, 91962, 0), 19: (None, 92074, 0), 20: (None, 92190, 0), 21: (None, 92306, 0), 22: (None, 101244, 0), 23: (None, 127906, 0), 24: (None, 128348, 0), 25: (None, 128464, 0), 26: (None, 128578, 0), 27: (None, 128692, 0), 28: (None, 128807, 0), 29: (None, 128923, 0), 30: (None, 129039, 0), 31: (None, 129153, 0), 32: (None, 129269, 0), 33: (None, 129385, 0), 34: (None, 129501, 0), 35: (None, 129615, 0), 36: (None, 135663, 0), 37: (None, 408841, 0), 38: (None, 409309, 0), 39: (None, 409423, 0), 40: (None, 409537, 0), 41: (None, 409653, 0), 42: (None, 409769, 0), 43: (None, 409883, 0), 44: (None, 409997, 0), 45: (None, 410113, 0), 46: (None, 410229, 0), 47: (None, 410345, 0), 48: (None, 410461, 0), 49: (None, 418565, 0), 50: (None, 521609, 0), 51: (None, 522069, 0), 52: (None, 522182, 0), 53: (None, 522296, 0), 54: (None, 522410, 0), 55: (None, 522524, 0), 56: (None, 522638, 0), 57: (None, 522754, 0), 58: (None, 522868, 0), 59: (None, 522984, 0), 60: (None, 523100, 0), 61: (None, 523216, 0), 62: (None, 529113, 0), 63: (None, 778944, 0), 64: (None, 779372, 0), 65: (None, 779486, 0), 66: (None, 785297, 0), 67: (None, 795243, 0), 68: (None, 805450, 0), 69: (None, 816009, 0), 70: (None, 827384, 0), 71: (None, 838295, 0), 72: (None, 847714, 0), 73: (None, 858860, 0), 74: (None, 868768, 0), 75: (None, 869046, 0), 76: (None, 869152, 0), 77: (None, 869258, 0), 78: (None, 872009, 0), 79: (None, 872102, 0), 80: (None, 872195, 0), 81: (None, 873010, 0), 82: (None, 873202, 0), 83: (None, 873486, 0), 84: (None, 873672, 0), 85: (None, 874102, 0), 86: (None, 874262, 0), 87: (None, 874941, 0), 88: (None, 875209, 0), 89: (None, 875412, 0), 90: (None, 875895, 0), 91: (None, 876108, 0), 92: (None, 876306, 0), 93: (None, 876343, 0), 94: (None, 876752, 0), 95: (None, 876793, 0), 96: (None, 878185, 0), 97: (None, 878520, 0), 98: (None, 878571, 0), 99: (None, 878623, 0), 100: (None, 878675, 0), 101: (None, 878725, 0), 102: (None, 878775, 0), 103: (None, 878825, 0), 104: (None, 878876, 0), 105: (None, 878927, 0), 106: (None, 878980, 0), 107: (None, 879033, 0), 108: (None, 879084, 0), 109: (None, 879136, 0), 110: (None, 879187, 0), 111: (None, 879240, 0), 112: (None, 879293, 0), 113: (None, 879346, 0), 114: (None, 879399, 0), 115: (None, 879452, 0), 116: (None, 879505, 0), 117: (None, 879556, 0), 118: (None, 879607, 0), 119: (None, 879658, 0), 120: (None, 879710, 0), 121: (None, 879762, 0), 122: (None, 879814, 0), 123: (None, 879866, 0), 124: (None, 879918, 0), 125: (None, 879970, 0), 126: (None, 880022, 0), 127: (None, 880075, 0), 128: (None, 880127, 0), 129: (None, 880179, 0), 130: (None, 880231, 0), 131: (None, 880283, 0), 132: (None, 880335, 0), 133: (None, 880387, 0), 134: (None, 880439, 0), 135: (None, 880491, 0), 136: (None, 880543, 0), 137: (None, 880596, 0), 138: (None, 880649, 0), 139: (None, 880702, 0), 140: (None, 880755, 0), 141: (None, 880808, 0), 142: (None, 880861, 0), 143: (None, 880914, 0), 144: (None, 880967, 0), 145: (None, 881020, 0), 146: (None, 881073, 0), 147: (None, 881126, 0), 148: (None, 881179, 0), 149: (None, 881232, 0), 150: (None, 881285, 0), 151: (None, 881338, 0), 152: (None, 881391, 0), 153: (None, 881444, 0), 154: (None, 881497, 0), 155: (None, 881550, 0), 156: (None, 881603, 0), 157: (None, 881656, 0), 158: (None, 881707, 0), 159: (None, 881760, 0), 160: (None, 881811, 0), 161: (None, 881863, 0), 162: (None, 881916, 0), 163: (None, 881968, 0), 164: (None, 882020, 0), 165: (None, 882070, 0), 166: (None, 882120, 0), 167: (None, 882171, 0), 168: (None, 882224, 0), 169: (None, 882275, 0), 170: (None, 882326, 0), 171: (None, 882378, 0), 172: (None, 882430, 0), 173: (None, 882482, 0), 174: (None, 882520, 0), 175: (None, 882554, 0), 176: (None, 882650, 0), 177: (None, 889652, 0)}
+2024-09-27 13:21:40 - INFO: trailer: {'Size': 187}
+2024-09-27 13:21:40 - INFO: trailer: {'Size': 305, 'Prev': 890300, 'XRefStm': 3426, 'Root': <PDFObjRef:188>, 'Info': <PDFObjRef:177>, 'ID': [b'\x00\x1b{\xcf\xa4\x1b\xf4\x8f\x99\x98\xdf*\xd5\xceLS', b"\xfa\xa1[\x16z\xc9\x9dC\x97Nx\xdeV\xe7'\xcd"]}
+2024-09-27 13:21:40 - INFO: Pages: Kids=[<PDFObjRef:191>, <PDFObjRef:1>, <PDFObjRef:23>, <PDFObjRef:37>, <PDFObjRef:50>, <PDFObjRef:63>, <PDFObjRef:74>]
+2024-09-27 13:21:40 - INFO: Page: {'CropBox': [0, 0, 595.276, 793.701], 'Annots': [<PDFObjRef:192>, <PDFObjRef:193>, <PDFObjRef:194>, <PDFObjRef:195>, <PDFObjRef:196>, <PDFObjRef:197>, <PDFObjRef:198>, <PDFObjRef:199>, <PDFObjRef:200>, <PDFObjRef:201>, <PDFObjRef:202>, <PDFObjRef:203>, <PDFObjRef:204>, <PDFObjRef:205>, <PDFObjRef:206>, <PDFObjRef:207>, <PDFObjRef:208>, <PDFObjRef:209>, <PDFObjRef:210>, <PDFObjRef:211>, <PDFObjRef:212>, <PDFObjRef:213>, <PDFObjRef:214>], 'Parent': <PDFObjRef:175>, 'B': [<PDFObjRef:215>, <PDFObjRef:216>, <PDFObjRef:234>, <PDFObjRef:233>, <PDFObjRef:232>, <PDFObjRef:231>, <PDFObjRef:230>, <PDFObjRef:229>, <PDFObjRef:228>], 'StructParents': 1, 'Contents': [<PDFObjRef:241>, <PDFObjRef:250>, <PDFObjRef:253>, <PDFObjRef:259>, <PDFObjRef:266>, <PDFObjRef:267>, <PDFObjRef:269>, <PDFObjRef:270>], 'Rotate': 0, 'MediaBox': [0, 0, 595.276, 793.701], 'Resources': {'XObject': {'Im0': <PDFObjRef:276>, 'Im1': <PDFObjRef:277>}, 'Font': {'T1_10': <PDFObjRef:268>, 'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:236>, 'T1_2': <PDFObjRef:237>, 'T1_3': <PDFObjRef:243>, 'T1_4': <PDFObjRef:242>, 'T1_5': <PDFObjRef:244>, 'T1_6': <PDFObjRef:251>, 'T1_7': <PDFObjRef:255>, 'T1_8': <PDFObjRef:264>, 'T1_9': <PDFObjRef:261>}, 'ProcSet': [/'PDF', /'Text', /'ImageC'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, 'Type': /'Page'}
+2024-09-27 13:21:40 - INFO: Processing page: <PDFPage: Resources={'XObject': {'Im0': <PDFObjRef:276>, 'Im1': <PDFObjRef:277>}, 'Font': {'T1_10': <PDFObjRef:268>, 'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:236>, 'T1_2': <PDFObjRef:237>, 'T1_3': <PDFObjRef:243>, 'T1_4': <PDFObjRef:242>, 'T1_5': <PDFObjRef:244>, 'T1_6': <PDFObjRef:251>, 'T1_7': <PDFObjRef:255>, 'T1_8': <PDFObjRef:264>, 'T1_9': <PDFObjRef:261>}, 'ProcSet': [/'PDF', /'Text', /'ImageC'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, MediaBox=[0, 0, 595.276, 793.701]>
+2024-09-27 13:21:40 - INFO: render_contents: resources={'XObject': {'Im0': <PDFObjRef:276>, 'Im1': <PDFObjRef:277>}, 'Font': {'T1_10': <PDFObjRef:268>, 'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:236>, 'T1_2': <PDFObjRef:237>, 'T1_3': <PDFObjRef:243>, 'T1_4': <PDFObjRef:242>, 'T1_5': <PDFObjRef:244>, 'T1_6': <PDFObjRef:251>, 'T1_7': <PDFObjRef:255>, 'T1_8': <PDFObjRef:264>, 'T1_9': <PDFObjRef:261>}, 'ProcSet': [/'PDF', /'Text', /'ImageC'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, streams=[<PDFObjRef:241>, <PDFObjRef:250>, <PDFObjRef:253>, <PDFObjRef:259>, <PDFObjRef:266>, <PDFObjRef:267>, <PDFObjRef:269>, <PDFObjRef:270>], ctm=(1, 0, 0, 1, 0, 0)
+2024-09-27 13:21:40 - INFO: get_font: create: objid=268, spec={'Subtype': /'Type1', 'FontDescriptor': <PDFObjRef:279>, 'LastChar': 121, 'Widths': [281, 281, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 281, 0, 0, 0, 0, 0, 0, 0, 0, 666, 718, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 666, 0, 0, 666, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 552, 614, 500, 0, 552, 0, 614, 614, 281, 281, 0, 281, 947, 614, 614, 614, 0, 385, 500, 333, 614, 552, 833, 0, 552], 'BaseFont': /'FCKPNH+AdvPSA35D', 'FirstChar': 46, 'Encoding': /'WinAnsiEncoding', 'Type': /'Font'}
+2024-09-27 13:21:40 - INFO: get_font: create: objid=235, spec={'Subtype': /'Type1', 'FontDescriptor': <PDFObjRef:238>, 'LastChar': 197, 'Widths': [520, 614, 687, 0, 364, 364, 0, 0, 229, 406, 229, 343, 572, 572, 572, 572, 572, 572, 572, 572, 572, 572, 343, 343, 0, 0, 0, 0, 781, 656, 593, 593, 708, 562, 500, 697, 739, 302, 302, 645, 489, 927, 729, 708, 562, 708, 614, 520, 552, 708, 656, 1041, 666, 614, 562, 354, 0, 354, 0, 500, 0, 510, 572, 468, 593, 520, 322, 541, 604, 291, 302, 552, 291, 916, 604, 562, 593, 583, 406, 437, 364, 593, 541, 854, 552, 541, 489, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 406, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 656], 'BaseFont': /'FCKPJO+AdvOT863180fb', 'FirstChar': 36, 'Encoding': /'WinAnsiEncoding', 'Type': /'Font'}
+2024-09-27 13:21:40 - INFO: get_font: create: objid=236, spec={'Subtype': /'Type1', 'FontDescriptor': <PDFObjRef:281>, 'LastChar': 42, 'Widths': [500], 'BaseFont': /'FCKPJP+AdvP4C4E59', 'FirstChar': 42, 'Encoding': /'WinAnsiEncoding', 'Type': /'Font'}
+2024-09-27 13:21:40 - INFO: get_font: create: objid=237, spec={'Subtype': /'Type1', 'FontDescriptor': <PDFObjRef:239>, 'LastChar': 122, 'Widths': [364, 375, 0, 0, 218, 406, 218, 312, 552, 552, 552, 552, 552, 552, 552, 0, 0, 552, 312, 0, 0, 0, 0, 0, 0, 604, 572, 572, 687, 531, 479, 656, 708, 291, 0, 614, 468, 885, 697, 677, 531, 0, 583, 489, 510, 677, 0, 979, 604, 562, 0, 0, 0, 0, 0, 0, 0, 531, 541, 447, 552, 479, 291, 510, 562, 281, 0, 510, 270, 854, 572, 531, 552, 531, 395, 406, 343, 572, 510, 802, 0, 520, 447], 'BaseFont': /'FCKPKA+AdvOTb92eb7df.I', 'FirstChar': 40, 'Encoding': /'WinAnsiEncoding', 'Type': /'Font'}
+2024-09-27 13:21:40 - INFO: get_font: create: objid=243, spec={'Subtype': /'Type1', 'FontDescriptor': <PDFObjRef:283>, 'LastChar': 116, 'Widths': [541, 531, 520, 0, 500, 468, 0, 0, 312, 0, 0, 447, 0, 645, 604, 0, 0, 552, 458, 468], 'BaseFont': /'FCKPKB+AdvOTc4d0b532', 'FirstChar': 97, 'Encoding': /'WinAnsiEncoding', 'Type': /'Font'}
+2024-09-27 13:21:40 - INFO: get_font: create: objid=242, spec={'Subtype': /'Type1', 'FontDescriptor': <PDFObjRef:247>, 'LastChar': 101, 'Widths': [750], 'BaseFont': /'FCKPKC+AdvPS44A44B', 'FirstChar': 101, 'Encoding': /'WinAnsiEncoding', 'Type': /'Font'}
+2024-09-27 13:21:40 - INFO: get_font: create: objid=244, spec={'Subtype': /'Type1', 'FontDescriptor': <PDFObjRef:246>, 'LastChar': 254, 'Widths': [500, 0, 770, 770, 770, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 770, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 385, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 385, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 770], 'BaseFont': /'FCKPKD+AdvP4C4E74', 'FirstChar': 1, 'ToUnicode': <PDFObjRef:249>, 'Encoding': <PDFObjRef:245>, 'Type': /'Font'}
+2024-09-27 13:21:40 - INFO: get_font: create: objid=251, spec={'Subtype': /'Type1', 'FontDescriptor': <PDFObjRef:252>, 'LastChar': 62, 'Widths': [770, 500, 770], 'BaseFont': /'FCKPKE+AdvP4C4E51', 'FirstChar': 60, 'Encoding': /'WinAnsiEncoding', 'Type': /'Font'}
+2024-09-27 13:21:40 - INFO: get_font: create: objid=255, spec={'Subtype': /'Type1', 'FontDescriptor': <PDFObjRef:254>, 'LastChar': 3, 'Widths': [614, 0, 614], 'BaseFont': /'FCKPLF+AdvOT863180fb+fb', 'FirstChar': 1, 'ToUnicode': <PDFObjRef:257>, 'Encoding': <PDFObjRef:256>, 'Type': /'Font'}
+2024-09-27 13:21:40 - INFO: get_font: create: objid=264, spec={'Subtype': /'Type1', 'FontDescriptor': <PDFObjRef:260>, 'LastChar': 3, 'Widths': [791, 0, 791], 'BaseFont': /'FCKPLG+AdvPSSym', 'FirstChar': 1, 'Encoding': <PDFObjRef:262>, 'Type': /'Font'}
+2024-09-27 13:21:40 - INFO: get_font: create: objid=261, spec={'Subtype': /'Type1', 'FontDescriptor': <PDFObjRef:263>, 'LastChar': 119, 'Widths': [250, 0, 0, 572, 572, 572, 572, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 666, 0, 593, 0, 0, 541, 0, 0, 343, 0, 0, 0, 927, 0, 0, 0, 0, 656, 0, 562, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 541, 604, 489, 614, 531, 375, 562, 645, 322, 0, 625, 322, 968, 645, 604, 0, 0, 447, 447, 395, 635, 0, 854], 'BaseFont': /'FCKPLH+AdvOTb83ee1dd.B', 'FirstChar': 46, 'Encoding': /'WinAnsiEncoding', 'Type': /'Font'}
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 3
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPLG+AdvPSSym'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPLG+AdvPSSym'>, 3
+2024-09-27 13:21:40 - INFO: Processing xobj: <PDFStream(276): raw=22888, {'Subtype': /'Image', 'Length': 22886, 'Filter': /'DCTDecode', 'BitsPerComponent': 8, 'ColorSpace': /'DeviceRGB', 'Width': 169, 'Height': 185, 'Type': /'XObject'}>
+2024-09-27 13:21:40 - INFO: Processing xobj: <PDFStream(277): raw=18917, {'Subtype': /'Image', 'Length': 18915, 'Filter': /'DCTDecode', 'BitsPerComponent': 8, 'ColorSpace': /'DeviceRGB', 'Width': 158, 'Height': 197, 'Type': /'XObject'}>
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPLG+AdvPSSym'>, 1
+2024-09-27 13:21:40 - INFO: Page: {'CropBox': [0, 0, 595.276, 793.701], 'Annots': [<PDFObjRef:2>, <PDFObjRef:3>, <PDFObjRef:4>, <PDFObjRef:5>, <PDFObjRef:6>, <PDFObjRef:7>, <PDFObjRef:8>, <PDFObjRef:9>, <PDFObjRef:10>, <PDFObjRef:11>, <PDFObjRef:12>, <PDFObjRef:13>, <PDFObjRef:14>, <PDFObjRef:15>, <PDFObjRef:16>, <PDFObjRef:17>, <PDFObjRef:18>, <PDFObjRef:19>, <PDFObjRef:20>], 'Parent': <PDFObjRef:175>, 'B': [<PDFObjRef:227>, <PDFObjRef:226>, <PDFObjRef:225>, <PDFObjRef:224>], 'StructParents': 2, 'Contents': <PDFObjRef:21>, 'Rotate': 0, 'MediaBox': [0, 0, 595.276, 793.701], 'Resources': {'XObject': {'Im0': <PDFObjRef:22>}, 'Font': {'T1_10': <PDFObjRef:264>, 'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:242>, 'T1_2': <PDFObjRef:244>, 'T1_3': <PDFObjRef:85>, 'T1_4': <PDFObjRef:255>, 'T1_5': <PDFObjRef:237>, 'T1_6': <PDFObjRef:261>, 'T1_7': <PDFObjRef:82>, 'T1_8': <PDFObjRef:87>, 'T1_9': <PDFObjRef:251>}, 'ProcSet': [/'PDF', /'Text', /'ImageB'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, 'Type': /'Page'}
+2024-09-27 13:21:40 - INFO: Processing page: <PDFPage: Resources={'XObject': {'Im0': <PDFObjRef:22>}, 'Font': {'T1_10': <PDFObjRef:264>, 'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:242>, 'T1_2': <PDFObjRef:244>, 'T1_3': <PDFObjRef:85>, 'T1_4': <PDFObjRef:255>, 'T1_5': <PDFObjRef:237>, 'T1_6': <PDFObjRef:261>, 'T1_7': <PDFObjRef:82>, 'T1_8': <PDFObjRef:87>, 'T1_9': <PDFObjRef:251>}, 'ProcSet': [/'PDF', /'Text', /'ImageB'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, MediaBox=[0, 0, 595.276, 793.701]>
+2024-09-27 13:21:40 - INFO: render_contents: resources={'XObject': {'Im0': <PDFObjRef:22>}, 'Font': {'T1_10': <PDFObjRef:264>, 'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:242>, 'T1_2': <PDFObjRef:244>, 'T1_3': <PDFObjRef:85>, 'T1_4': <PDFObjRef:255>, 'T1_5': <PDFObjRef:237>, 'T1_6': <PDFObjRef:261>, 'T1_7': <PDFObjRef:82>, 'T1_8': <PDFObjRef:87>, 'T1_9': <PDFObjRef:251>}, 'ProcSet': [/'PDF', /'Text', /'ImageB'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, streams=[<PDFStream(21): raw=8869, {'Length': 8867, 'Filter': /'FlateDecode'}>], ctm=(1, 0, 0, 1, 0, 0)
+2024-09-27 13:21:40 - INFO: get_font: create: objid=85, spec={'Subtype': /'Type1', 'FontDescriptor': <PDFObjRef:83>, 'LastChar': 119, 'Widths': [1000], 'BaseFont': /'FCLAAH+AdvPS3FDD77', 'FirstChar': 119, 'Encoding': /'WinAnsiEncoding', 'Type': /'Font'}
+2024-09-27 13:21:40 - INFO: get_font: create: objid=82, spec={'Subtype': /'Type1', 'FontDescriptor': <PDFObjRef:81>, 'LastChar': 113, 'Widths': [614, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 479, 0, 0, 0, 0, 479], 'BaseFont': /'FCLAAI+AdvPS4721B4', 'FirstChar': 52, 'Encoding': /'WinAnsiEncoding', 'Type': /'Font'}
+2024-09-27 13:21:40 - INFO: get_font: create: objid=87, spec={'Subtype': /'Type1', 'FontDescriptor': <PDFObjRef:88>, 'LastChar': 120, 'Widths': [687, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 531, 0, 0, 0, 687, 0, 0, 0, 0, 0, 0, 0, 406], 'BaseFont': /'FCLAAJ+AdvPS3F4C13', 'FirstChar': 68, 'Encoding': /'WinAnsiEncoding', 'Type': /'Font'}
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPLG+AdvPSSym'>, 3
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 3
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: Processing xobj: <PDFStream(22): raw=26504, {'Subtype': /'Image', 'Length': 26502, 'Filter': /'DCTDecode', 'BitsPerComponent': 8, 'ColorSpace': /'DeviceGray', 'Width': 1104, 'Height': 104, 'Type': /'XObject'}>
+2024-09-27 13:21:40 - INFO: Page: {'CropBox': [0, 0, 595.276, 793.701], 'Annots': [<PDFObjRef:24>, <PDFObjRef:25>, <PDFObjRef:26>, <PDFObjRef:27>, <PDFObjRef:28>, <PDFObjRef:29>, <PDFObjRef:30>, <PDFObjRef:31>, <PDFObjRef:32>, <PDFObjRef:33>, <PDFObjRef:34>], 'Parent': <PDFObjRef:175>, 'B': [<PDFObjRef:223>], 'StructParents': 3, 'Contents': <PDFObjRef:35>, 'Rotate': 0, 'MediaBox': [0, 0, 595.276, 793.701], 'Resources': {'XObject': {'Im0': <PDFObjRef:36>}, 'Font': {'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:244>, 'T1_2': <PDFObjRef:242>, 'T1_3': <PDFObjRef:251>, 'T1_4': <PDFObjRef:237>, 'T1_5': <PDFObjRef:85>, 'T1_6': <PDFObjRef:261>, 'T1_7': <PDFObjRef:90>}, 'ProcSet': [/'PDF', /'Text', /'ImageB'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, 'Type': /'Page'}
+2024-09-27 13:21:40 - INFO: Processing page: <PDFPage: Resources={'XObject': {'Im0': <PDFObjRef:36>}, 'Font': {'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:244>, 'T1_2': <PDFObjRef:242>, 'T1_3': <PDFObjRef:251>, 'T1_4': <PDFObjRef:237>, 'T1_5': <PDFObjRef:85>, 'T1_6': <PDFObjRef:261>, 'T1_7': <PDFObjRef:90>}, 'ProcSet': [/'PDF', /'Text', /'ImageB'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, MediaBox=[0, 0, 595.276, 793.701]>
+2024-09-27 13:21:40 - INFO: render_contents: resources={'XObject': {'Im0': <PDFObjRef:36>}, 'Font': {'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:244>, 'T1_2': <PDFObjRef:242>, 'T1_3': <PDFObjRef:251>, 'T1_4': <PDFObjRef:237>, 'T1_5': <PDFObjRef:85>, 'T1_6': <PDFObjRef:261>, 'T1_7': <PDFObjRef:90>}, 'ProcSet': [/'PDF', /'Text', /'ImageB'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, streams=[<PDFStream(35): raw=5979, {'Length': 5977, 'Filter': /'FlateDecode'}>], ctm=(1, 0, 0, 1, 0, 0)
+2024-09-27 13:21:40 - INFO: get_font: create: objid=90, spec={'Subtype': /'Type1', 'FontDescriptor': <PDFObjRef:91>, 'LastChar': 67, 'Widths': [1093, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1093, 1093], 'BaseFont': /'FCLELN+AdvPS480274', 'FirstChar': 44, 'Encoding': /'WinAnsiEncoding', 'Type': /'Font'}
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 3
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 3
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 3
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 3
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 3
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: Processing xobj: <PDFStream(36): raw=273019, {'Subtype': /'Image', 'Length': 273017, 'Filter': /'DCTDecode', 'BitsPerComponent': 8, 'ColorSpace': /'DeviceGray', 'Width': 673, 'Height': 1690, 'Type': /'XObject'}>
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 3
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 3
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 3
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:40 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:41 - INFO: Page: {'CropBox': [0, 0, 595.276, 793.701], 'Annots': [<PDFObjRef:38>, <PDFObjRef:39>, <PDFObjRef:40>, <PDFObjRef:41>, <PDFObjRef:42>, <PDFObjRef:43>, <PDFObjRef:44>, <PDFObjRef:45>, <PDFObjRef:46>, <PDFObjRef:47>], 'Parent': <PDFObjRef:175>, 'B': [<PDFObjRef:222>, <PDFObjRef:221>], 'StructParents': 4, 'Contents': <PDFObjRef:48>, 'Rotate': 0, 'MediaBox': [0, 0, 595.276, 793.701], 'Resources': {'XObject': {'Im0': <PDFObjRef:49>}, 'Font': {'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:244>, 'T1_2': <PDFObjRef:237>, 'T1_3': <PDFObjRef:255>, 'T1_4': <PDFObjRef:87>, 'T1_5': <PDFObjRef:85>, 'T1_6': <PDFObjRef:242>, 'T1_7': <PDFObjRef:251>, 'T1_8': <PDFObjRef:82>, 'T1_9': <PDFObjRef:261>}, 'ProcSet': [/'PDF', /'Text', /'ImageB'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, 'Type': /'Page'}
+2024-09-27 13:21:41 - INFO: Processing page: <PDFPage: Resources={'XObject': {'Im0': <PDFObjRef:49>}, 'Font': {'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:244>, 'T1_2': <PDFObjRef:237>, 'T1_3': <PDFObjRef:255>, 'T1_4': <PDFObjRef:87>, 'T1_5': <PDFObjRef:85>, 'T1_6': <PDFObjRef:242>, 'T1_7': <PDFObjRef:251>, 'T1_8': <PDFObjRef:82>, 'T1_9': <PDFObjRef:261>}, 'ProcSet': [/'PDF', /'Text', /'ImageB'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, MediaBox=[0, 0, 595.276, 793.701]>
+2024-09-27 13:21:41 - INFO: render_contents: resources={'XObject': {'Im0': <PDFObjRef:49>}, 'Font': {'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:244>, 'T1_2': <PDFObjRef:237>, 'T1_3': <PDFObjRef:255>, 'T1_4': <PDFObjRef:87>, 'T1_5': <PDFObjRef:85>, 'T1_6': <PDFObjRef:242>, 'T1_7': <PDFObjRef:251>, 'T1_8': <PDFObjRef:82>, 'T1_9': <PDFObjRef:261>}, 'ProcSet': [/'PDF', /'Text', /'ImageB'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, streams=[<PDFStream(48): raw=8035, {'Length': 8033, 'Filter': /'FlateDecode'}>], ctm=(1, 0, 0, 1, 0, 0)
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:41 - INFO: Processing xobj: <PDFStream(49): raw=102886, {'Subtype': /'Image', 'Length': 102884, 'Filter': /'DCTDecode', 'BitsPerComponent': 8, 'ColorSpace': /'DeviceGray', 'Width': 673, 'Height': 546, 'Type': /'XObject'}>
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:41 - INFO: Page: {'CropBox': [0, 0, 595.276, 793.701], 'Annots': [<PDFObjRef:51>, <PDFObjRef:52>, <PDFObjRef:53>, <PDFObjRef:54>, <PDFObjRef:55>, <PDFObjRef:56>, <PDFObjRef:57>, <PDFObjRef:58>, <PDFObjRef:59>, <PDFObjRef:60>], 'Parent': <PDFObjRef:175>, 'B': [<PDFObjRef:220>], 'StructParents': 5, 'Contents': <PDFObjRef:61>, 'Rotate': 0, 'MediaBox': [0, 0, 595.276, 793.701], 'Resources': {'XObject': {'Im0': <PDFObjRef:62>}, 'Font': {'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:244>, 'T1_2': <PDFObjRef:237>, 'T1_3': <PDFObjRef:87>, 'T1_4': <PDFObjRef:251>, 'T1_5': <PDFObjRef:85>, 'T1_6': <PDFObjRef:255>, 'T1_7': <PDFObjRef:261>, 'T1_8': <PDFObjRef:90>, 'T1_9': <PDFObjRef:242>}, 'ProcSet': [/'PDF', /'Text', /'ImageB'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, 'Type': /'Page'}
+2024-09-27 13:21:41 - INFO: Processing page: <PDFPage: Resources={'XObject': {'Im0': <PDFObjRef:62>}, 'Font': {'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:244>, 'T1_2': <PDFObjRef:237>, 'T1_3': <PDFObjRef:87>, 'T1_4': <PDFObjRef:251>, 'T1_5': <PDFObjRef:85>, 'T1_6': <PDFObjRef:255>, 'T1_7': <PDFObjRef:261>, 'T1_8': <PDFObjRef:90>, 'T1_9': <PDFObjRef:242>}, 'ProcSet': [/'PDF', /'Text', /'ImageB'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, MediaBox=[0, 0, 595.276, 793.701]>
+2024-09-27 13:21:41 - INFO: render_contents: resources={'XObject': {'Im0': <PDFObjRef:62>}, 'Font': {'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:244>, 'T1_2': <PDFObjRef:237>, 'T1_3': <PDFObjRef:87>, 'T1_4': <PDFObjRef:251>, 'T1_5': <PDFObjRef:85>, 'T1_6': <PDFObjRef:255>, 'T1_7': <PDFObjRef:261>, 'T1_8': <PDFObjRef:90>, 'T1_9': <PDFObjRef:242>}, 'ProcSet': [/'PDF', /'Text', /'ImageB'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, streams=[<PDFStream(61): raw=5828, {'Length': 5826, 'Filter': /'FlateDecode'}>], ctm=(1, 0, 0, 1, 0, 0)
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: Processing xobj: <PDFStream(62): raw=249672, {'Subtype': /'Image', 'Length': 249670, 'Filter': /'DCTDecode', 'BitsPerComponent': 8, 'ColorSpace': /'DeviceGray', 'Width': 684, 'Height': 1651, 'Type': /'XObject'}>
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 4
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:41 - INFO: Page: {'CropBox': [0, 0, 595.276, 793.701], 'Annots': [<PDFObjRef:64>], 'Parent': <PDFObjRef:175>, 'B': [<PDFObjRef:219>], 'Contents': <PDFObjRef:65>, 'Rotate': 0, 'MediaBox': [0, 0, 595.276, 793.701], 'Resources': {'XObject': {'Im0': <PDFObjRef:66>, 'Im1': <PDFObjRef:67>, 'Im2': <PDFObjRef:68>, 'Im3': <PDFObjRef:69>, 'Im4': <PDFObjRef:70>, 'Im5': <PDFObjRef:71>, 'Im6': <PDFObjRef:72>, 'Im7': <PDFObjRef:73>}, 'Font': {'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:244>, 'T1_2': <PDFObjRef:255>, 'T1_3': <PDFObjRef:261>, 'T1_4': <PDFObjRef:242>, 'T1_5': <PDFObjRef:87>, 'T1_6': <PDFObjRef:237>}, 'ProcSet': [/'PDF', /'Text', /'ImageB', /'ImageC'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, 'Type': /'Page'}
+2024-09-27 13:21:41 - INFO: Processing page: <PDFPage: Resources={'XObject': {'Im0': <PDFObjRef:66>, 'Im1': <PDFObjRef:67>, 'Im2': <PDFObjRef:68>, 'Im3': <PDFObjRef:69>, 'Im4': <PDFObjRef:70>, 'Im5': <PDFObjRef:71>, 'Im6': <PDFObjRef:72>, 'Im7': <PDFObjRef:73>}, 'Font': {'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:244>, 'T1_2': <PDFObjRef:255>, 'T1_3': <PDFObjRef:261>, 'T1_4': <PDFObjRef:242>, 'T1_5': <PDFObjRef:87>, 'T1_6': <PDFObjRef:237>}, 'ProcSet': [/'PDF', /'Text', /'ImageB', /'ImageC'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, MediaBox=[0, 0, 595.276, 793.701]>
+2024-09-27 13:21:41 - INFO: render_contents: resources={'XObject': {'Im0': <PDFObjRef:66>, 'Im1': <PDFObjRef:67>, 'Im2': <PDFObjRef:68>, 'Im3': <PDFObjRef:69>, 'Im4': <PDFObjRef:70>, 'Im5': <PDFObjRef:71>, 'Im6': <PDFObjRef:72>, 'Im7': <PDFObjRef:73>}, 'Font': {'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:244>, 'T1_2': <PDFObjRef:255>, 'T1_3': <PDFObjRef:261>, 'T1_4': <PDFObjRef:242>, 'T1_5': <PDFObjRef:87>, 'T1_6': <PDFObjRef:237>}, 'ProcSet': [/'PDF', /'Text', /'ImageB', /'ImageC'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, streams=[<PDFStream(65): raw=5742, {'Length': 5740, 'Filter': /'FlateDecode'}>], ctm=(1, 0, 0, 1, 0, 0)
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:41 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:42 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:42 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:42 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 1
+2024-09-27 13:21:42 - INFO: Processing xobj: <PDFStream(66): raw=9791, {'Subtype': /'Image', 'Length': 9789, 'Filter': /'DCTDecode', 'BitsPerComponent': 8, 'ColorSpace': /'DeviceRGB', 'Width': 161, 'Height': 118, 'Type': /'XObject'}>
+2024-09-27 13:21:42 - INFO: Processing xobj: <PDFStream(67): raw=10050, {'Subtype': /'Image', 'Length': 10048, 'Filter': /'DCTDecode', 'BitsPerComponent': 8, 'ColorSpace': /'DeviceGray', 'Width': 176, 'Height': 118, 'Type': /'XObject'}>
+2024-09-27 13:21:42 - INFO: Processing xobj: <PDFStream(68): raw=10403, {'Subtype': /'Image', 'Length': 10401, 'Filter': /'DCTDecode', 'BitsPerComponent': 8, 'ColorSpace': /'DeviceRGB', 'Width': 167, 'Height': 123, 'Type': /'XObject'}>
+2024-09-27 13:21:42 - INFO: Processing xobj: <PDFStream(69): raw=11218, {'Subtype': /'Image', 'Length': 11216, 'Filter': /'DCTDecode', 'BitsPerComponent': 8, 'ColorSpace': /'DeviceGray', 'Width': 185, 'Height': 125, 'Type': /'XObject'}>
+2024-09-27 13:21:42 - INFO: Processing xobj: <PDFStream(70): raw=10755, {'Subtype': /'Image', 'Length': 10753, 'Filter': /'DCTDecode', 'BitsPerComponent': 8, 'ColorSpace': /'DeviceRGB', 'Width': 172, 'Height': 126, 'Type': /'XObject'}>
+2024-09-27 13:21:42 - INFO: Processing xobj: <PDFStream(71): raw=9263, {'Subtype': /'Image', 'Length': 9261, 'Filter': /'DCTDecode', 'BitsPerComponent': 8, 'ColorSpace': /'DeviceGray', 'Width': 162, 'Height': 141, 'Type': /'XObject'}>
+2024-09-27 13:21:42 - INFO: Processing xobj: <PDFStream(72): raw=10990, {'Subtype': /'Image', 'Length': 10988, 'Filter': /'DCTDecode', 'BitsPerComponent': 8, 'ColorSpace': /'DeviceRGB', 'Width': 172, 'Height': 126, 'Type': /'XObject'}>
+2024-09-27 13:21:42 - INFO: Processing xobj: <PDFStream(73): raw=9752, {'Subtype': /'Image', 'Length': 9750, 'Filter': /'DCTDecode', 'BitsPerComponent': 8, 'ColorSpace': /'DeviceGray', 'Width': 170, 'Height': 147, 'Type': /'XObject'}>
+2024-09-27 13:21:42 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:42 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:42 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:42 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:42 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:42 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:42 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:42 - INFO: undefined: <PDFType1Font: basefont='FCKPKD+AdvP4C4E74'>, 5
+2024-09-27 13:21:42 - INFO: Page: {'CropBox': [0, 0, 595.276, 793.701], 'Annots': [<PDFObjRef:75>, <PDFObjRef:76>], 'Parent': <PDFObjRef:175>, 'B': [<PDFObjRef:218>, <PDFObjRef:217>], 'Contents': <PDFObjRef:77>, 'Rotate': 0, 'MediaBox': [0, 0, 595.276, 793.701], 'Resources': {'Font': {'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:242>, 'T1_2': <PDFObjRef:237>}, 'ProcSet': [/'PDF', /'Text'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, 'Type': /'Page'}
+2024-09-27 13:21:42 - INFO: Processing page: <PDFPage: Resources={'Font': {'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:242>, 'T1_2': <PDFObjRef:237>}, 'ProcSet': [/'PDF', /'Text'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, MediaBox=[0, 0, 595.276, 793.701]>
+2024-09-27 13:21:42 - INFO: render_contents: resources={'Font': {'T1_0': <PDFObjRef:235>, 'T1_1': <PDFObjRef:242>, 'T1_2': <PDFObjRef:237>}, 'ProcSet': [/'PDF', /'Text'], 'ExtGState': {'GS0': <PDFObjRef:240>}}, streams=[<PDFStream(77): raw=2682, {'Length': 2680, 'Filter': /'FlateDecode'}>], ctm=(1, 0, 0, 1, 0, 0)
+2024-09-27 13:21:42 - INFO: Loading Data
+2024-09-28 03:00:59 - INFO: Loading Data
+2024-09-28 03:01:45 - INFO: Loading Data
+2024-09-29 22:40:18 - INFO: Loading Data
+2024-09-29 22:41:38 - INFO: Loading Data
+2024-09-29 22:54:03 - INFO: Loading Data
+2024-09-30 13:15:51 - INFO: Loading Data
+2024-09-30 13:38:01 - INFO: Loading Data
+2024-09-30 14:15:21 - INFO: Loading Data
+2024-09-30 16:25:34 - INFO: Loading Data
+2024-09-30 18:50:58 - INFO: Loading Data
+2024-09-30 22:08:58 - INFO: Loading Data
+2024-10-01 03:36:31 - INFO: Loading Data
+2024-10-01 23:48:04 - INFO: Loading Data
+2024-10-02 09:05:20 - INFO: Loading Data
+2024-10-02 13:54:11 - INFO: Loading Data
+2024-10-02 15:15:15 - INFO: Loading Data
+2024-10-02 15:15:50 - INFO: Loading Data
+2024-10-02 15:20:01 - INFO: Loading Data
+2024-10-02 15:30:53 - INFO: Loading Data
+2024-10-02 15:32:26 - INFO: Loading Data
+2024-10-02 15:33:37 - INFO: Loading Data
+2024-10-02 16:58:06 - INFO: Loading Data
+2024-10-02 16:59:21 - INFO: Loading Data
+2024-10-02 17:00:11 - INFO: Loading Data
+2024-10-02 17:09:06 - INFO: Loading Data
+2024-10-02 17:10:43 - INFO: Loading Data
+2024-10-05 20:33:52 - INFO: Loading Data
+2024-10-06 21:14:08 - INFO: Loading Data
+2024-10-06 21:26:49 - INFO: Loading Data

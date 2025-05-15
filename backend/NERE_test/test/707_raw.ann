@@ -1,0 +1,63 @@
+T1	POLYMER 7 24	polybenzimidazole
+T2	POLYMER 343 366	poly(2,5-benzimidazole)
+T3	POLYMER 368 373	ABPBI
+T4	POLYMER 492 497	ABPBI
+T5	PROP_NAME 508 527	intrinsic viscosity
+T6	PROP_VALUE 536 546	1.4 dL g-1
+T7	POLYMER 764 769	ABPBI
+T8	POLYMER 998 1003	ABPBI
+T9	POLYMER 1119 1124	ABPBI
+T10	POLYMER 1197 1202	ABPBI
+T11	PROP_NAME 1283 1304	ion exchange capacity
+T12	POLYMER 1308 1313	ABPBI
+T13	PROP_VALUE 1423 1433	8 mequ g-1
+T14	POLYMER 1717 1722	ABPBI
+R1	abbreviation_of Arg1:T3 Arg2:T2
+R3	has_property Arg1:T4 Arg2:T5
+R4	has_value Arg1:T5 Arg2:T6
+R5	has_property Arg1:T12 Arg2:T11
+R6	has_value Arg1:T11 Arg2:T13
+T17	CONDITION 1434 1448	in 4.0 M H2SO4
+R2	has_condition Arg1:T13 Arg2:T17
+T18	PROP_VALUE 528 531;540 546	2.0 dL g-1
+R9	has_value Arg1:T5 Arg2:T18
+T19	PROP_NAME 1668 1686	ionic conductivity
+T15	REF_EXP 1556 1576	the porous membranes
+R7	refers_to Arg1:T15 Arg2:T12
+T16	REF_EXP 1655 1667	the membrane
+R8	refers_to Arg1:T16 Arg2:T15
+R10	has_property Arg1:T16 Arg2:T19
+T20	POLYMER_FAMILY 105 127	perfluorinated ionomer
+T21	REF_EXP 183 205	These porous membranes
+R11	refers_to Arg1:T21 Arg2:T1	
+T22	SYN_METHOD 236 283	phase separation process induced by water vapor
+R12	synthesised_by Arg1:T21 Arg2:T22	
+T23	REF_EXP 378 390	the membrane
+R13	refers_to Arg1:T23 Arg2:T21	
+T24	REF_EXP 827 836	membranes
+R14	refers_to Arg1:T24 Arg2:T23	
+T25	PROP_NAME 751 760	viscosity
+T26	OTHER_MATERIAL 764 778	ABPBI solution
+R15	has_property Arg1:T26 Arg2:T25	
+T27	PROP_NAME 851 887	interconnectivity between macropores
+R16	has_property Arg1:T24 Arg2:T27	
+T28	PROP_NAME 929 954	vanadium ion permeability
+R17	has_property Arg1:T24 Arg2:T28	
+T29	PROP_NAME 1038 1053	amount of pores
+T30	CONDITION 1014 1026	in dry state
+R19	has_property Arg1:T8 Arg2:T29	
+T31	PROP_VALUE 1062 1080	from 1 to ~ 200 nm
+R20	has_value Arg1:T29 Arg2:T31	
+R18	has_condition Arg1:T31 Arg2:T30	
+T32	MONOMER 1093 1106	benzimidazole
+T34	INORGANIC 1147 1155	vanadium
+T35	CONDITION 1334 1382	with the increase in solution acid concentration
+R21	has_condition Arg1:T11 Arg2:T35	
+T33	INORGANIC 1443 1448	H2SO4
+T36	MATERIAL_AMOUNT 1437 1442	4.0 M
+R22	has_amount Arg1:T33 Arg2:T36	
+T37	PROP_NAME 1590 1620	absorption amount of free acid
+R23	has_property Arg1:T15 Arg2:T37	
+T38	INORGANIC 145 153	vanadium
+T39	INORGANIC 929 937	vanadium
+T40	INORGANIC 1509 1517	vanadium

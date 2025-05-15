@@ -1,0 +1,47 @@
+T1	POLYMER_FAMILY 51 66	polybenzoxazine
+T2	INORGANIC 71 78	titania
+T3	INORGANIC 154 161	titania
+T4	MONOMER 198 253	bis(3-phenyl-3,4-dihydro-2H-1,3-benzoxazinyl)isopropane
+T5	MONOMER 255 257	Ba
+T6	INORGANIC 391 398	titania
+T7	MONOMER 509 511	Ba
+T8	POLYMER_FAMILY 639 654	polybenzoxazine
+T9	POLYMER_FAMILY 715 730	polybenzoxazine
+T10	INORGANIC 811 818	titania
+T11	POLYMER_FAMILY 989 1004	polybenzoxazine
+T12	INORGANIC 1037 1044	titania
+R1	abbreviation_of Arg1:T5 Arg2:T4
+T13	INORGANIC 655 662	titania
+T14	SYN_METHOD 85 100	sol-gel process
+T16	CHAR_METHOD 352 355	DSC
+T17	SYN_METHOD 478 505	ring opening polymerization
+T18	PROP_NAME 597 626	glass transition temperatures
+T19	PROP_NAME 628 630	Tg
+R3	abbreviation_of Arg1:T19 Arg2:T18
+T20	COMPOSITE 639 662	polybenzoxazine-titania
+R4	has_property Arg1:T20 Arg2:T19
+R5	has_property Arg1:T9 Arg2:T19
+T21	PROP_NAME 736 750	storage moduli
+T22	PROP_NAME 757 759	Tg
+T23	CONDITION 786 826	with the increase of the titania content
+T24	REF_EXP 764 775	the hybrids
+T25	PROP_NAME 836 850	storage moduli
+T26	CHAR_METHOD 922 925	TGA
+T27	PROP_NAME 953 970	thermal stability
+T28	PROP_NAME 975 985	char yield
+R6	has_property Arg1:T11 Arg2:T27
+R7	has_property Arg1:T11 Arg2:T28
+R8	characterized_by Arg1:T11 Arg2:T26
+T29	CONDITION 1015 1044	by hybridization with titania
+R9	has_condition Arg1:T27 Arg2:T29
+R10	has_condition Arg1:T28 Arg2:T29
+R13	synthesised_by Arg1:T1 Arg2:T17
+R14	refers_to Arg1:T24 Arg2:T20
+R15	has_property Arg1:T24 Arg2:T21
+R16	has_property Arg1:T24 Arg2:T22
+R17	has_condition Arg1:T21 Arg2:T23
+R18	has_condition Arg1:T22 Arg2:T23
+R19	has_property Arg1:T24 Arg2:T25
+T15	INORGANIC 113 134	titanium isopropoxide
+T30	MONOMER 177 188	benzoxazine
+T31	CONDITION 322 350	after thermal cure at 200 °C

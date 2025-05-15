@@ -1,0 +1,44 @@
+T1	PROP_NAME 120 136	refractive index
+T2	PROP_NAME 138 140	RI
+T3	PROP_NAME 146 157	Abbe number
+T4	PROP_NAME 159 161	AN
+T5	INORGANIC 217 223	sulfur
+T6	POLYMER 227 238	polystyrene
+T7	POLYMER 240 242	PS
+T8	INORGANIC 307 313	sulfur
+T9	MONOMER 319 326	styrene
+T10	MONOMER 328 332	St-S
+T11	POLYMER 341 343	PS
+T12	PROP_NAME 366 368	RI
+T13	PROP_VALUE 372 378	1.6220
+T14	PROP_NAME 383 385	AN
+T15	PROP_VALUE 389 393	27.3
+T16	INORGANIC 441 447	sulfur
+T17	POLYMER 455 457	PS
+T18	PROP_NAME 788 790	RI
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	abbreviation_of Arg1:T4 Arg2:T3
+R3	abbreviation_of Arg1:T7 Arg2:T6
+R4	has_property Arg1:T11 Arg2:T12
+R6	has_property Arg1:T11 Arg2:T14
+R5	has_value Arg1:T12 Arg2:T13
+R7	has_value Arg1:T14 Arg2:T15
+R8	has_property Arg1:T6 Arg2:T2
+R9	has_property Arg1:T6 Arg2:T4
+T19	CHAR_METHOD 473 494	photographic analysis
+T20	CHAR_METHOD 496 516	optical transmission
+T21	CHAR_METHOD 526 554	scanning electron microscopy
+T22	CHAR_METHOD 560 590	energy dispersive spectroscopy
+R10	characterized_by Arg1:T17 Arg2:T19
+R11	characterized_by Arg1:T17 Arg2:T20
+R12	characterized_by Arg1:T17 Arg2:T21
+R13	characterized_by Arg1:T17 Arg2:T22
+T23	REF_EXP 627 646	polymeric materials
+T24	CHAR_METHOD 671 697	thermogravimetric analysis
+T25	CHAR_METHOD 702 735	differential scanning calorimeter
+R14	refers_to Arg1:T23 Arg2:T17
+R15	characterized_by Arg1:T23 Arg2:T24
+R16	characterized_by Arg1:T23 Arg2:T25
+T26	REF_EXP 897 916	polymeric materials
+R17	refers_to Arg1:T26 Arg2:T23
+R18	has_property Arg1:T26 Arg2:T18

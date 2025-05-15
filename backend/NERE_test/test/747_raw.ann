@@ -1,0 +1,51 @@
+T1	POLYMER_FAMILY 47 56	polyimide
+T2	POLYMER 58 66	2,7-CPPI
+T3	MONOMER 106 130	pyromellitic dianhydride
+T4	MONOMER 132 136	PMDA
+T5	MONOMER 157 165	2,7-CPDA
+T6	POLYMER 230 238	2,7-CPPI
+T7	PROP_NAME 283 307	oxygen transmission rate
+T8	PROP_NAME 312 341	water vapor transmission rate
+T9	PROP_VALUE 349 366	0.2 cm3 m-2·day-1
+T10	PROP_VALUE 371 386	0.1 g m-2·day-1
+T11	POLYMER 576 584	2,7-CPPI
+T12	POLYMER 782 790	2,7-CPPI
+T13	PROP_NAME 868 896	glass transition temperature
+T14	PROP_VALUE 900 906	437 °C
+T16	PROP_NAME 908 931	5 wt % loss temperature
+T17	PROP_VALUE 935 941	556 °C
+T18	PROP_NAME 952 984	coefficient of thermal expansion
+T19	PROP_VALUE 988 998	2.89 ppm/K
+T20	PROP_NAME 1003 1019	tensile strength
+T21	PROP_VALUE 1023 1032	143.8 MPa
+T22	POLYMER_FAMILY 1038 1047	polyimide
+R1	abbreviation_of Arg1:T4 Arg2:T3
+R3	has_property Arg1:T6 Arg2:T7
+R5	has_property Arg1:T6 Arg2:T8
+R4	has_value Arg1:T7 Arg2:T9
+R6	has_value Arg1:T8 Arg2:T10
+R7	has_property Arg1:T12 Arg2:T13
+R9	has_property Arg1:T12 Arg2:T16
+R11	has_property Arg1:T12 Arg2:T18
+R13	has_property Arg1:T12 Arg2:T20
+R8	has_value Arg1:T13 Arg2:T14
+R10	has_value Arg1:T16 Arg2:T17
+R12	has_value Arg1:T18 Arg2:T19
+R14	has_value Arg1:T20 Arg2:T21
+T25	CONDITION 942 950	under N2
+R2	has_condition Arg1:T17 Arg2:T25
+T23	MONOMER 148 155	diamine
+T24	CHAR_METHOD 402 433	Wide angle X-ray diffractograms
+T26	CHAR_METHOD 435 439	WAXD
+R15	abbreviation_of Arg1:T26 Arg2:T24
+T27	CHAR_METHOD 442 485	positron annihilation lifetime spectroscopy
+T28	CHAR_METHOD 487 491	PALS
+R16	abbreviation_of Arg1:T28 Arg2:T27
+T29	CHAR_METHOD 497 527	molecular dynamics simulations
+R17	characterized_by Arg1:T11 Arg2:T26
+R18	characterized_by Arg1:T11 Arg2:T28
+R19	characterized_by Arg1:T11 Arg2:T29
+T30	PROP_NAME 817 834	thermal stability
+R20	has_property Arg1:T12 Arg2:T30
+T15	INORGANIC 948 950	N2
+T31	INORGANIC 730 738	hydrogen

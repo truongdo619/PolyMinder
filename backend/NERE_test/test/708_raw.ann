@@ -1,0 +1,41 @@
+T1	POLYMER 204 239	sulfonated poly(ether ether ketone)
+T2	POLYMER 241 246	SPEEK
+T3	POLYMER 252 269	polybenzimidazole
+T4	POLYMER 271 274	PBI
+T5	POLYMER 401 406	SPEEK
+T6	POLYMER 411 414	PBI
+T7	PROP_NAME 549 569	coulombic efficiency
+T8	PROP_VALUE 573 578	98.5%
+T9	PROP_NAME 586 603	energy efficiency
+T10	PROP_VALUE 607 612	89.8%
+T11	PROP_NAME 618 633	current density
+T12	PROP_VALUE 637 647	80 mA cm-2
+T13	POLYMER 758 763	SPEEK
+T14	POLYMER 764 767	PBI
+T15	REF_EXP 719 741	ion exchange membranes
+T17	COMPOSITE 758 767	SPEEK-PBI
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	abbreviation_of Arg1:T4 Arg2:T3
+R4	has_property Arg1:T15 Arg2:T7
+R6	has_property Arg1:T15 Arg2:T9
+R8	has_property Arg1:T15 Arg2:T11
+R5	has_value Arg1:T7 Arg2:T8
+R7	has_value Arg1:T9 Arg2:T10
+R9	has_value Arg1:T11 Arg2:T12
+T16	POLYMER 151 156	SPEEK
+T18	POLYMER 164 169	SPEEK
+T19	PROP_NAME 313 328	ion selectivity
+T20	PROP_NAME 333 352	proton conductivity
+T21	COMPOSITE 363 414	blend ion exchange membranes based on SPEEK and PBI
+R10	has_property Arg1:T21 Arg2:T19
+R11	has_property Arg1:T21 Arg2:T20
+R12	refers_to Arg1:T15 Arg2:T21
+T22	PROP_NAME 832 849	thermal stability
+R3	has_property Arg1:T17 Arg2:T22
+T23	PROP_NAME 807 815;840 849	chemical stability
+T24	PROP_NAME 817 827;840 849	mechanical stability
+R13	has_property Arg1:T17 Arg2:T23	
+R14	has_property Arg1:T17 Arg2:T24	
+T25	INORGANIC 86 94	vanadium
+T26	INORGANIC 148 150	H+
+T27	INORGANIC 160 163	Na+

@@ -1,0 +1,49 @@
+T1	MONOMER 0 40	3,3′-Disulfonate-4,4′-dicarboxylbiphenyl
+T2	MONOMER 42 46	SCBP
+T3	POLYMER 103 132	Sulfonated polybenzimidazoles
+T4	POLYMER 134 138	sPBI
+T5	MONOMER 210 231	3,3′-diaminobenzidine
+T6	MONOMER 237 241	SCBP
+T7	MONOMER 246 269	4,4′-dicarboxylbiphenyl
+T8	MONOMER 273 315	2,2-bis(4-carboxyphenyl) hexafluoropropane
+T9	POLYMER 325 329	sPBI
+T10	POLYMER 406 410	sPBI
+T11	MONOMER 416 457	2,2-bis(4-carboxyphenyl)hexafluoropropane
+T12	POLYMER 600 604	sPBI
+T13	POLYMER 743 747	sPBI
+T14	POLYMER 927 931	sPBI
+T15	POLYMER 961 965	sPBI
+T16	POLYMER 1118 1122	sPBI
+T17	POLYMER 1297 1301	sPBI
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	abbreviation_of Arg1:T4 Arg2:T3
+T18	SYN_METHOD 190 206	polycondensation
+R3	synthesised_by Arg1:T3 Arg2:T18
+T19	POLYMER 319 323	PPMA
+T20	PROP_NAME 707 724	thermal stability
+R4	has_property Arg1:T12 Arg2:T20
+T21	PROP_NAME 776 788	water uptake
+T22	PROP_NAME 793 801	swelling
+R5	has_property Arg1:T13 Arg2:T21
+R6	has_property Arg1:T13 Arg2:T22
+T23	PROP_NAME 995 1014	oxidative stability
+T24	PROP_NAME 1023 1042	proton conductivity
+R7	has_property Arg1:T15 Arg2:T23
+R8	has_property Arg1:T15 Arg2:T24
+T25	CHAR_METHOD 1048 1051	TEM
+R9	characterized_by Arg1:T16 Arg2:T25
+T26	PROP_NAME 1212 1224	water uptake
+T27	PROP_NAME 1229 1248	proton conductivity
+R10	has_property Arg1:T16 Arg2:T26
+R11	has_property Arg1:T16 Arg2:T27
+T28	CONDITION 1257 1291	with increasing sulfonation degree
+R12	has_condition Arg1:T26 Arg2:T28
+R13	has_condition Arg1:T27 Arg2:T28
+T29	MONOMER 343 366	4,4′-dicarboxylbiphenyl
+T30	CONDITION 380 398	in common solvents
+T31	CONDITION 479 496	in polar solvents
+T32	ORGANIC 505 509	DMAC
+T33	ORGANIC 511 515	DMSO
+T34	ORGANIC 521 524	NMP
+T35	ORGANIC 547 568	hexafluoropropylidene
+T36	CONDITION 932 946	at about 60 °C
