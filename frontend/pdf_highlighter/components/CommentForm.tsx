@@ -10,9 +10,10 @@ import Card from '@mui/material/Card';
 import BratEmbedding from './BratEmbedding';
 import DownloadIcon from '@mui/icons-material/Download';
 import PolylineIcon from '@mui/icons-material/Polyline';
-import { GlobalContext } from '../../example/src/GlobalState';
-import axiosInstance from '../../example/src/axiosSetup';
-
+import { GlobalContext } from '../../polyminder/src/GlobalState';
+import axiosInstance from '../../polyminder/src/axiosSetup';
+import Divider from "@mui/material/Divider";
+import CommentIcon from "@mui/icons-material/Comment";
 
 function useWindowDimensions() {
   const [windowDimensions, setWindowDimensions] = useState({
@@ -235,6 +236,26 @@ const CommentForm = ({
                 {'"' + highlight.content.text?.slice(0, 100) + '..."'}
               </Typography>
               <BratEmbedding docData={filteredBratItem} highlight={highlight} />
+              
+              {/* comment block */}
+              <Divider sx={{ my: 2 }} />
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: 1,
+                  bgcolor: "#fafafa",
+                  border: "1px solid #e0e0e0",
+                  borderRadius: 1,
+                  p: 1.5,
+                }}
+              >
+                <CommentIcon fontSize="small" sx={{ mt: "2px" }} />
+                <Typography variant="body2" sx={{ whiteSpace: "pre-line" }}>
+                  {highlight.user_comment || "No reviewer comment yet."}
+                </Typography>
+              </Box>
+
             </CardContent>
 
             <CardActions sx={{ justifyContent: 'space-between' }}>

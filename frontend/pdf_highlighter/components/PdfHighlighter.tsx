@@ -5,7 +5,7 @@ import CommentForm from "./CommentForm";
 import debounce from "lodash.debounce";
 import { PDFDocumentProxy } from "pdfjs-dist";
 import { CommentedHighlight } from "../types";
-import { GlobalContext } from '../../example/src/GlobalState';
+import { GlobalContext } from '../../polyminder/src/GlobalState';
 import {
   EventBus,
   NullL10n,
@@ -52,7 +52,6 @@ import { HighlightLayer } from "./HighlightLayer";
 import { MouseSelection } from "./MouseSelection";
 import { TipContainer } from "./TipContainer";
 import TreeVisualizationExample from './TreeVisualizationExample';
-import HardCodedVisExample from './TreeVisualizationExampleVis';
 
 // Material UI dialog imports
 import Dialog from '@mui/material/Dialog';
@@ -209,6 +208,18 @@ export const PdfHighlighter = ({
   const [openTreeDialog, setOpenTreeDialog] = useState(false);
   const [treeDialogHighlightId, setTreeDialogHighlightId] = useState<string | null>(null);
 
+  // ───────────────────────────────────────────────────────────
+  //  NEW — comment‑editing dialog state & helpers
+  // ───────────────────────────────────────────────────────────
+  const [commentDialogData, setCommentDialogData] = useState<{
+    highlight: Highlight;
+    brat_item: any;
+  } | null>(null);
+  
+  const handleCloseCommentDialog = () => {
+    setCommentDialogData(null);
+    toggleEditInProgress(false);
+  };
 
   const handleOpenTreeDialog = (id: string) => {
     setTreeDialogHighlightId(id);
@@ -572,11 +583,6 @@ export const PdfHighlighter = ({
     let viewport = scaledToViewport(boundingRect, pageViewport, usePdfCoordinates);
     // viewport.
     
-    if (selectedMode == "Events") {
-      // console.log("log from custom pdfhightlighter")
-
-    }
-
     let brat_item = undefined;
     if (selectedMode == "Events") {
       brat_item = {
@@ -618,32 +624,37 @@ export const PdfHighlighter = ({
           ['E3', 'T24', [['Polymer', 'T3'], ['Value', 'T14'], ['Condition', 'T15'], ['Char_method', 'T16']]],
           ['E4', 'T26', [['Polymer', 'T19'], ['Value', 'T20'], ['Condition', 'T21'], ['Char_method', 'T22']]],
       ];
-      console.log("brat_item", brat_item);
     }
     else {
       brat_item = highlight.para_id !== undefined ? bratOutput[highlight.para_id] : undefined
     }
+
+    brat_item["selectedMode"] = selectedMode;
     
-    const editCommentTip: Tip = {
-      position: {boundingRect:viewport,rects:[viewport]},
-      content: (
-        <CommentForm
-          highlight={highlight}
-          brat_item={brat_item}
-          toggleEditInProgress={toggleEditInProgress}
-          onSubmit={(input) => {
-            setTip(null);
-            toggleEditInProgress(false);
-          }
-          }
-          pdfHighlighterUtils={pdfHighlighterUtils}
-          onOpenTreeDialog={() => handleOpenTreeDialog(highlight.id)}
-        ></CommentForm>
-      ),
-    };
+    // const editCommentTip: Tip = {
+    //   position: {boundingRect:viewport,rects:[viewport]},
+    //   content: (
+    //     <CommentForm
+    //       highlight={highlight}
+    //       brat_item={brat_item}
+    //       toggleEditInProgress={toggleEditInProgress}
+    //       onSubmit={(input) => {
+    //         setTip(null);
+    //         toggleEditInProgress(false);
+    //       }
+    //       }
+    //       pdfHighlighterUtils={pdfHighlighterUtils}
+    //       onOpenTreeDialog={() => handleOpenTreeDialog(highlight.id)}
+    //     ></CommentForm>
+    //   ),
+    // };
 
 
-    setTip(editCommentTip);
+    // setTip(editCommentTip);
+
+    // Open comment‑editing dialog instead of tip
+    setCommentDialogData({ highlight, brat_item });
+    
     toggleEditInProgress(true);
     scrolledToHighlightIdRef.current = highlight.id;
     renderHighlightLayers();
@@ -780,6 +791,39 @@ export const PdfHighlighter = ({
         )}
       </div>
     </PdfHighlighterContext.Provider>
+
+
+  
+    {/* ───────────────────────────────────────────────
+        NEW — Comment‑editing dialog
+      ─────────────────────────────────────────────── */}
+    <Dialog
+      open={Boolean(commentDialogData)}
+      maxWidth="lg"
+      fullWidth
+      onClose={handleCloseCommentDialog}
+    >
+      {commentDialogData && (
+          <DialogContent>
+            <CommentForm
+              highlight={commentDialogData.highlight}
+              brat_item={commentDialogData.brat_item}
+              setCommentDialogData={setCommentDialogData}
+              toggleEditInProgress={toggleEditInProgress}
+              onSubmit={() => {
+                handleCloseCommentDialog();
+                renderHighlightLayers();
+              }}
+              pdfHighlighterUtils={pdfHighlighterUtils}
+              onOpenTreeDialog={() =>
+                handleOpenTreeDialog(commentDialogData.highlight.id)
+              }
+            />
+          </DialogContent>
+      )}
+    </Dialog>
+
+
     <Dialog open={openTreeDialog} maxWidth="lg" fullWidth>
       <DialogTitle>Graph Visualization</DialogTitle>
       <DialogContent>

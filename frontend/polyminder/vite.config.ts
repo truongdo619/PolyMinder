@@ -5,7 +5,7 @@ export default defineConfig({
   base: "/",
   build: {
     target: "esnext",
-    outDir: "example-app",
+    outDir: "dist",
   },
   plugins: [reactRefresh()],
   server: {

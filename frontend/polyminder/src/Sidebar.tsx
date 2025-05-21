@@ -2,8 +2,9 @@ import React, { useEffect, useState, useContext } from "react";
 import type { Highlight } from "./react-pdf-highlighter-extended";
 import "./style/Sidebar.css";
 import { CommentedHighlight } from "./types";
-import "../../src/style/TextHighlight.css";
+import "../../pdf_highlighter/style/TextHighlight.css";
 import EditNoteIcon from '@mui/icons-material/EditNote';
+import CommentIcon from "@mui/icons-material/Comment";
 import IconButton from '@mui/material/IconButton';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -36,7 +37,7 @@ import { GlobalContext } from './GlobalState';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from './axiosSetup';
 import Pagination from '@mui/material/Pagination';
-import { Box, List, ListItem, ListItemIcon, ListItemText, Checkbox, Typography } from '@mui/material';
+import { Box, List, ListItem, ListItemIcon, ListItemText, Checkbox, Typography, TextField } from '@mui/material';
 
 interface SidebarProps {
   highlights: Array<CommentedHighlight>;
@@ -79,6 +80,7 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
   const [maxDialogWidth, setMaxDialogWidth] = useState<'xs' | 'sm' | 'md' | 'lg' | 'xl' | false>('lg');
   const [selectedHighlight, setSelectedHighlight] = useState<CommentedHighlight | null>(null);
   const [editableComment, setEditableComment] = useState<string>('');
+  const [editableUserComment, setEditableUserComment] = useState<string>('');
   const [tabValue, setTabValue] = useState(0);
 
   const [editingRelationIndex, setEditingRelationIndex] = useState<number | null>(null);
@@ -158,6 +160,7 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
   useEffect(() => {
     if (selectedHighlight) {
       setEditableComment(selectedHighlight.comment || '');
+      setEditableUserComment(selectedHighlight.user_comment || '');
       setSelectionStart(convertedBratOutput[selectedHighlight.id][2][0][0]);
       setSelectionEnd(convertedBratOutput[selectedHighlight.id][2][0][1]);
     }
@@ -171,6 +174,7 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
     setNewRelationType('');
     setNewRelationTarget('');
     setConfirmStatusOpen(false);
+    setEditableUserComment('');
   };
 
   const handleOpenParaSelection = () => {
@@ -380,6 +384,33 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
   };
 
   
+  // const handleCommentSaveAndReload = async () => {
+  //   if (!selectedHighlight) return;
+  //   setIsActive(true);
+  //   const data = {
+  //     document_id: documentId,
+  //     update_id: updateId,
+  //     id: selectedHighlight.id,
+  //     user_comment: editableUserComment
+  //   };
+  //   try {
+  //     const token = localStorage.getItem('accessToken');
+  //     const response = await axiosInstance.post(`${import.meta.env.VITE_BACKEND_URL}/update-comment`, data, {
+  //       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
+  //     });
+  //     setBratOutput(response.data.brat_format_output);
+  //     setDocumentId(response.data.document_id);
+  //     setUpdateId(response.data.update_id);
+  //     setHighlights(response.data.pdf_format_output);
+  //   } catch (error) {
+  //     console.error('Error updating comment:', error);
+  //   } finally {
+  //     handleDialogClose();
+  //     setIsActive(false);
+  //   }
+  // };
+
+  
   const handleSaveAndReload = () => {
     if (tabValue === 0) {
       handleEntitySaveAndReload();
@@ -387,6 +418,9 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
       setDialogOpen(false);
       handleRelationSaveAndReload();
     }
+    // else if (tabValue === 2) {
+    //   handleCommentSaveAndReload();
+    // }
   };
 
   const handleRelationSaveAndReload = async () => {
@@ -615,6 +649,21 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
               </Tooltip>
               {/* Add a star button with a tooltip */}
               {highlight.comment && renderStarButton(highlight)}
+              
+
+              {
+                highlight.content.text && highlight.content.text.length > 20 &&
+                <Tooltip
+                  title={'Show annotation comment'}
+                >
+                  <IconButton
+                    aria-label="comment"
+                    onClick={(e) => {}}
+                  >
+                    <CommentIcon  color="primary" />
+                  </IconButton>
+                </Tooltip>
+              }
 
               <div className="highlight__location" style={{ marginLeft: 'auto' }}>
                 Page {highlight.position.boundingRect.pageNumber}
@@ -661,6 +710,7 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
           <Tabs value={tabValue} onChange={handleTabChange} aria-label="Entity and Relation tabs">
             <Tab label="Entity" />
             <Tab label="Relation" />
+            <Tab label="Comment" />
           </Tabs>
           <Box role="tabpanel" hidden={tabValue !== 0} id="entity-tabpanel" aria-labelledby="entity-tab">
             {selectedHighlight ? (
@@ -856,6 +906,22 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
               </IconButton>
             </div>
           </Box>
+
+
+          <Box role="tabpanel" hidden={tabValue !== 2} id="comment-tabpanel">
+            {selectedHighlight ? (
+              <TextField
+                label="Comment"
+                value={editableUserComment}
+                onChange={(e)=>setEditableUserComment(e.target.value)}
+                multiline
+                rows={4}
+                fullWidth
+                margin="normal"
+              />
+            ) : (<p>No highlight selected.</p>)}
+          </Box>
+
         </DialogContent>
         <DialogActions style={{ justifyContent: 'space-between', padding: "20px" }}>
           {tabValue === 0 && (

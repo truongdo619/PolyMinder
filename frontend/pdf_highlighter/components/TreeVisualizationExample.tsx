@@ -2,8 +2,8 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
 import { DataSet, Network } from 'vis-network/standalone';
 import 'vis-network/styles/vis-network.css';
-import axiosInstance from '../../example/src/axiosSetup';
-import { GlobalContext } from '../../example/src/GlobalState';
+import axiosInstance from '../../polyminder/src/axiosSetup';
+import { GlobalContext } from '../../polyminder/src/GlobalState';
 
 const TreeVisualizationExample: React.FC<{ highlightId: string }> = ({ highlightId }) => {
   const containerRef = useRef<HTMLDivElement>(null);

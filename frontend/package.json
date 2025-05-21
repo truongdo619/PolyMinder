@@ -1,7 +1,7 @@
 {
-  "name": "react-pdf-highlighter-extended",
-  "version": "8.0.0",
-  "description": "Set of modern React components for PDF highlighting",
+  "name": "PolyMinder",
+  "version": "3.1.0",
+  "description": "PolyMinder is an advanced support system designed to automatically extract and visualize polymer-related entities and relationships from scientific literature.",
   "author": "Truong Do <truongdo619@gmail.com>",
   "license": "MIT",
   "contributors": [
@@ -25,12 +25,8 @@
   "module": "./dist/esm/index.js",
   "scripts": {
     "start": "npm run dev",
-    "dev": "(cd ./example && vite)",
-    "build": "(cd ./example && vite build)",
-    "build:esm": "tsc",
-    "build:cjs": "tsc --module commonjs --outDir ./dist/cjs",
-    "build:copy-styles": "cp -r ./src/style ./dist/esm && cp -r ./src/style ./dist/cjs",
-    "build:example": "(cd ./example && vite build && mkdir \"../public/\" && cp -r example-app ../public/)",
+    "dev": "(cd ./polyminder && vite)",
+    "build": "(cd ./polyminder && vite build)",
     "build:docs": "npx typedoc",
     "format": "prettier --write './**/*.{js,ts,tsx}'",
     "format:check": "prettier --check './**/*.{js,ts,tsx}'",
@@ -66,10 +62,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DanielArnould/react-pdf-highlighter.git"
+    "url": "git+https://github.com/truongdo619/PolyMinder-core.git"
   },
   "bugs": {
-    "url": "https://github.com/DanielArnould/react-pdf-highlighter-extended/issues"
+    "url": "https://github.com/truongdo619/PolyMinder-core/issues"
   },
   "devDependencies": {
     "@types/lodash.debounce": "^4.0.9",
