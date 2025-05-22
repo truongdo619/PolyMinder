@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import type { Highlight } from "./react-pdf-highlighter-extended";
 import "./style/Sidebar.css";
 import { CommentedHighlight } from "./types";
-import "../../src/style/TextHighlight.css";
+import "../../pdf_highlighter/style/TextHighlight.css";
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import IconButton from '@mui/material/IconButton';
 import Dialog from '@mui/material/Dialog';

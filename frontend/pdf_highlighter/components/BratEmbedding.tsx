@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../../example/src/assets/css/style-vis.css'; // Ensure the path is correct
-import {collData} from '../../example/src/assets/js/brat_config'; // Import collData
+import '../../polyminder/src/assets/css/style-vis.css'; // Ensure the path is correct
+import {collData} from '../../polyminder/src/assets/js/brat_config'; // Import collData
 import { CommentedHighlight } from "../types";
 
 declare global {

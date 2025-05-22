@@ -5,5 +5,5 @@
     "module": "ESNext",
     "lib": ["ESNext", "DOM"]
   },
-  "include": ["./src", "src/brat_embed", "../src/components/BratEmbedding.tsx"]
+  "include": ["./pdf_highlighter", "pdf_highlighter/brat_embed", "../pdf_highlighter/components/BratEmbedding.tsx"]
 }
