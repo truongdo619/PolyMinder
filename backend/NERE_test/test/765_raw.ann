@@ -1,0 +1,69 @@
+T1	POLYMER_FAMILY 90 113	sulfonated copolyimides
+T2	POLYMER_FAMILY 115 121	co-SPI
+T3	ORGANIC 135 150	trifluoromethyl
+T4	ORGANIC 155 170	phosphine oxide
+T5	MONOMER 206 277	bis[4-(4′-aminophenoxy)-3-trifluoromethyl phenyl] phenylphosphine oxide
+T6	MONOMER 279 284	DFPPO
+T7	MONOMER 398 439	4,4′-diaminostilbene-2,2′-disulfonic acid
+T8	MONOMER 441 446	DSDSA
+T9	MONOMER 452 457	DFPPO
+T10	MONOMER 487 533	1,4,5,8-naphthalenetetracarboxylic dianhydride
+T11	MONOMER 535 539	NTDA
+T12	POLYMER_FAMILY 1157 1169	copolyimides
+T13	PROP_NAME 1182 1201	proton conductivity
+T14	PROP_NAME 1320 1324	IECW
+T15	PROP_VALUE 1327 1342	2.86 mequiv g-1
+T16	PROP_NAME 1350 1369	proton conductivity
+T17	PROP_VALUE 1381 1392	237 mS cm-1
+T18	POLYMER_FAMILY 1262 1268	co-SPI
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	abbreviation_of Arg1:T6 Arg2:T5
+R3	abbreviation_of Arg1:T8 Arg2:T7
+R4	abbreviation_of Arg1:T11 Arg2:T10
+R7	has_property Arg1:T18 Arg2:T14
+R9	has_property Arg1:T18 Arg2:T16
+R8	has_value Arg1:T14 Arg2:T15
+R10	has_value Arg1:T16 Arg2:T17
+T20	CONDITION 1393 1401	at 80 °C
+R5	has_condition Arg1:T15 Arg2:T20
+R6	has_condition Arg1:T17 Arg2:T20
+T19	MONOMER 182 189	diamine
+T21	MONOMER 373 380	diamine
+T22	SYN_METHOD 319 352	one pot polycondensation reaction
+T23	REF_EXP 287 301	The copolymers
+R11	refers_to Arg1:T23 Arg2:T1
+R12	synthesised_by Arg1:T23 Arg2:T22
+T24	PROP_NAME 670 682	molar masses
+T25	REF_EXP 546 562	these copolymers
+R13	refers_to Arg1:T25 Arg2:T23
+R14	has_property Arg1:T25 Arg2:T24
+T26	SYN_METHOD 732 748	solution casting
+T27	REF_EXP 712 728	these copolymers
+R15	refers_to Arg1:T27 Arg2:T25
+T28	CHAR_METHOD 825 829	FTIR
+T29	CHAR_METHOD 834 837	NMR
+T30	REF_EXP 790 802	The polymers
+R16	refers_to Arg1:T30 Arg2:T27
+R17	characterized_by Arg1:T30 Arg2:T28
+R18	characterized_by Arg1:T30 Arg2:T29
+T31	REF_EXP 943 957	the copolymers
+R19	refers_to Arg1:T31 Arg2:T30
+T32	CHAR_METHOD 978 984	1H NMR
+R20	characterized_by Arg1:T31 Arg2:T32
+T33	CHAR_METHOD 1005 1037	Transmission electron microscopy
+T34	CHAR_METHOD 1039 1042	TEM
+R21	abbreviation_of Arg1:T34 Arg2:T33
+T35	CHAR_METHOD 1048 1071	atomic force microscopy
+T36	CHAR_METHOD 1073 1076	AFM
+R22	abbreviation_of Arg1:T36 Arg2:T35
+T37	REF_EXP 1088 1101	the membranes
+R23	refers_to Arg1:T37 Arg2:T31
+R24	characterized_by Arg1:T37 Arg2:T34
+R25	characterized_by Arg1:T37 Arg2:T36
+R26	has_property Arg1:T12 Arg2:T13
+T38	PROP_NAME 1222 1231;1247 1256	oxidative stability
+R27	has_property Arg1:T12 Arg2:T38
+T39	CONDITION 1278 1314	DFPNH-90 (90% degree of sulfonation)
+R28	has_condition Arg1:T15 Arg2:T39
+R29	has_condition Arg1:T17 Arg2:T39
+T40	CONDITION 576 603	in several organic solvents

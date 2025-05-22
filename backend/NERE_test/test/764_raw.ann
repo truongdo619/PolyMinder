@@ -1,0 +1,22 @@
+T1	POLYMER 74 92	vanillin vitrimers
+T2	POLYMER 94 97	VFx
+T3	POLYMER 360 363	VFx
+T4	POLYMER 365 369	VF10
+T5	MATERIAL_AMOUNT 381 389	10 mol %
+T6	PROP_NAME 448 450	Tg
+T7	PROP_VALUE 453 458	43 °C
+T8	PROP_NAME 460 476	tensile strength
+T9	PROP_VALUE 479 488	16.68 MPa
+T10	POLYMER 590 593	VFx
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	has_property Arg1:T4 Arg2:T6
+R4	has_property Arg1:T4 Arg2:T8
+R3	has_value Arg1:T6 Arg2:T7
+R5	has_value Arg1:T8 Arg2:T9
+T11	CONDITION 370 405	containing 10 mol % disulfide bonds
+R6	has_condition Arg1:T7 Arg2:T11
+R7	has_condition Arg1:T9 Arg2:T11
+T12	MONOMER 181 191	dialdehyde
+T13	MONOMER 196 201	amine
+T14	CONDITION 536 568	after two cycles of hot pressing
+T15	INORGANIC 615 636	hydrochloric solution

@@ -1,0 +1,78 @@
+T1	POLYMER 0 21	Poly(lauryl acrylate)
+T2	INORGANIC 117 146	multi-walled carbon nanotubes
+T3	INORGANIC 148 154	MWCNTs
+T4	POLYMER 236 241	P[LA]
+T5	INORGANIC 300 306	MWCNTs
+T6	INORGANIC 362 366	CNTs
+T7	POLYMER 420 435	poly(propylene)
+T8	POLYMER 437 439	PP
+T9	INORGANIC 596 602	MWCNTs
+T10	POLYMER 607 609	PP
+T11	INORGANIC 643 648	MWCNT
+T12	INORGANIC 701 707	MWCNTs
+T13	POLYMER 721 726	P[LA]
+T14	INORGANIC 765 771	MWCNTs
+T15	POLYMER 776 778	PP
+T16	POLYMER 795 800	P[LA]
+T17	POLYMER 939 944	P[LA]
+T18	POLYMER 957 959	PP
+T19	PROP_NAME 1015 1043	glass transition temperature
+T20	PROP_NAME 1045 1047	Tg
+T21	POLYMER 1052 1054	PP
+T22	INORGANIC 1096 1113	unmodified MWCNTs
+T23	POLYMER 1117 1119	PP
+T24	PROP_NAME 1151 1177	DC electrical conductivity
+T25	POLYMER 1181 1183	PP
+T26	PROP_VALUE 1229 1236	101 S/m
+T27	INORGANIC 1243 1248	MWCNT
+T28	MATERIAL_AMOUNT 1260 1265	5 wt%
+T29	INORGANIC 1301 1307	MWCNTs
+T30	POLYMER 1318 1323	P[LA]
+R1	abbreviation_of Arg1:T3 Arg2:T2
+R2	abbreviation_of Arg1:T8 Arg2:T7
+R3	abbreviation_of Arg1:T20 Arg2:T19
+R5	has_property Arg1:T25 Arg2:T24
+R6	has_value Arg1:T24 Arg2:T26
+R4	has_amount Arg1:T27 Arg2:T28
+T31	CHAR_METHOD 464 467	SEM
+T32	CHAR_METHOD 468 474	HR-TEM
+T33	CHAR_METHOD 487 520	oscillatory rheology measurements
+T34	MATERIAL_AMOUNT 613 621	∼0.5 wt%
+T35	MATERIAL_AMOUNT 665 674	∼0.25 wt%
+T36	POLYMER 680 685	P[LA]
+T37	POLYMER 864 866	PP
+T38	CHAR_METHOD 882 888;901 924	static mechanical measurements
+T39	PROP_VALUE 1216 1225	10-14 S/m
+T40	PROP_NAME 1338 1361	electrical conductivity
+T41	SYN_METHOD 46 75	Cu(0)-mediated polymerisation
+R7	synthesised_by Arg1:T1 Arg2:T41
+T42	POLYMER 22 27	P[LA]
+R8	abbreviation_of Arg1:T42 Arg2:T1
+R9	characterized_by Arg1:T7 Arg2:T31
+R10	characterized_by Arg1:T7 Arg2:T32
+R11	characterized_by Arg1:T7 Arg2:T33
+R14	characterized_by Arg1:T18 Arg2:T38
+R15	has_property Arg1:T21 Arg2:T20
+R16	has_value Arg1:T24 Arg2:T39
+T43	CONDITION 1237 1265	for a MWCNT loading of 5 wt%
+R17	has_condition Arg1:T26 Arg2:T43
+R18	has_property Arg1:T25 Arg2:T40
+T44	INORGANIC 46 51	Cu(0)
+T45	PROP_NAME 387 397	dispersion
+T46	PROP_NAME 402 414	distribution
+T47	REF_EXP 381 386	their
+R19	refers_to Arg1:T47 Arg2:T6	
+R20	has_property Arg1:T47 Arg2:T45	
+R21	has_property Arg1:T47 Arg2:T46	
+T48	PROP_NAME 536 557	percolation threshold
+T49	COMPOSITE 571 609	composites of unmodified MWCNTs and PP
+R22	has_property Arg1:T49 Arg2:T48	
+R12	has_amount Arg1:T49 Arg2:T34	
+T50	COMPOSITE 680 707	P[LA] functionalised MWCNTs
+R13	has_amount Arg1:T50 Arg2:T35	
+T51	CHAR_METHOD 893 924	dynamic mechanical measurements
+R23	characterized_by Arg1:T18 Arg2:T51	
+T52	PROP_NAME 983 992	ductility
+R24	has_property Arg1:T21 Arg2:T52	
+T53	CONDITION 1084 1119	Addition of unmodified MWCNTs to PP
+R25	has_condition Arg1:T24 Arg2:T53	

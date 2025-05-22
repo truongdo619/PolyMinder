@@ -1,0 +1,79 @@
+T1	ORGANIC 101 133	N-(3,5-diaminophenyl)phthalimide
+T2	ORGANIC 139 160	trimellitic anhydride
+T3	INORGANIC 188 204	thionyl chloride
+T4	POLYMER_FAMILY 233 251	poly(ester-imide)s
+T5	PROP_NAME 266 277	viscosities
+T6	PROP_VALUE 281 297	0.27-0.35 dl g-1
+T7	POLYMER_FAMILY 828 846	poly(ester-imide)s
+T8	PROP_NAME 970 999	glass-transition temperatures
+T9	PROP_VALUE 1000 1022	between 259 and 353 °C
+T10	PROP_NAME 1124 1152	10% weight loss temperatures
+T11	POLYMER_FAMILY 1160 1178	poly(ester-imide)s
+T12	PROP_VALUE 1209 1231	between 451 and 482 °C
+T14	REF_EXP 950 962	the polymers
+R15	has_property Arg1:T4 Arg2:T5
+R16	has_value Arg1:T5 Arg2:T6
+R1	refers_to Arg1:T14 Arg2:T7
+R17	has_property Arg1:T14 Arg2:T8
+R18	has_value Arg1:T8 Arg2:T9
+R19	has_property Arg1:T11 Arg2:T10
+R20	has_value Arg1:T10 Arg2:T12
+T17	MONOMER 351 361	resorcinol
+T18	MONOMER 363 365	3a
+R2	abbreviation_of Arg1:T18 Arg2:T17
+T19	MONOMER 368 380	hydroquinone
+T20	MONOMER 382 384	3b
+R3	abbreviation_of Arg1:T20 Arg2:T19
+T21	MONOMER 387 409	2,2′-dihydroxybiphenyl
+T22	MONOMER 411 413	3c
+R4	abbreviation_of Arg1:T22 Arg2:T21
+T23	MONOMER 416 438	4,4′-dihydroxybiphenyl
+T24	MONOMER 440 442	3d
+R5	abbreviation_of Arg1:T24 Arg2:T23
+T25	MONOMER 445 456	bisphenol-A
+T26	MONOMER 458 460	3e
+R6	abbreviation_of Arg1:T26 Arg2:T25
+T27	MONOMER 463 499	2,2′-dimethyl-4,4′-dihydroxybiphenyl
+T28	MONOMER 501 503	3f
+R7	abbreviation_of Arg1:T28 Arg2:T27
+T29	MONOMER 506 530	1,5-dihydroxynaphthalene
+T30	MONOMER 532 534	3g
+R8	abbreviation_of Arg1:T30 Arg2:T29
+T31	MONOMER 537 561	2,7-dihydroxynaphthalene
+T32	MONOMER 563 565	3h
+R9	abbreviation_of Arg1:T32 Arg2:T31
+T33	MONOMER 572 602	2,2′-dihydroxy-1,1′-binaphthyl
+T34	MONOMER 604 606	3i
+R10	abbreviation_of Arg1:T34 Arg2:T33
+T35	ORGANIC 657 669	nitrobenzene
+T36	MONOMER 676 684	pyridine
+T37	INORGANIC 688 705	hydrogen chloride
+T38	REF_EXP 723 744	the resulted polymers
+R11	refers_to Arg1:T38 Arg2:T4
+T40	REF_EXP 1045 1066	the obtained polymers
+T41	CONDITION 1232 1243	in nitrogen
+R13	has_condition Arg1:T12 Arg2:T41
+T42	PROP_NAME 1258 1271	crystallinity
+T43	REF_EXP 1275 1287	the polymers
+R14	refers_to Arg1:T43 Arg2:T11
+T13	SYN_METHOD 611 653	high-temperature solution polycondensation
+R21	synthesised_by Arg1:T4 Arg2:T13
+T15	CHAR_METHOD 773 778;787 799	FT-IR spectroscopy
+T16	CHAR_METHOD 783 799	NMR spectroscopy
+R22	characterized_by Arg1:T38 Arg2:T15
+R23	characterized_by Arg1:T38 Arg2:T16
+T44	CHAR_METHOD 804 822	elemental analyses
+R24	characterized_by Arg1:T38 Arg2:T44
+T39	CHAR_METHOD 915 948	differential scanning calorimetry
+R12	characterized_by Arg1:T14 Arg2:T39
+R25	refers_to Arg1:T40 Arg2:T14
+T45	CHAR_METHOD 1089 1115	thermogravimetric analysis
+R26	characterized_by Arg1:T40 Arg2:T45
+R27	has_property Arg1:T43 Arg2:T42
+T46	CHAR_METHOD 1314 1342	wide-angle X-ray diffraction
+R28	characterized_by Arg1:T43 Arg2:T46
+T47	ORGANIC 6 32	dicarboxylic acid chloride
+T48	ORGANIC 332 342	bisphenols
+T49	CONDITION 654 714	in nitrobenzene using pyridine as hydrogen chloride quencher
+T50	CONDITION 878 908	in some polar organic solvents
+T51	INORGANIC 1235 1243	nitrogen

@@ -1,0 +1,56 @@
+2025-03-25 15:02:34 - WARNING: {'<pad>': 0, '<suc>': 1, 'monomer': 2, 'organic': 3, 'inorganic': 4, 'condition': 5, 'polymer_family': 6, 'syn_method': 7, 'prop_name': 8, 'prop_value': 9, 'ref_exp': 10, 'char_method': 11, 'polymer': 12, 'material_amount': 13, 'composite': 14, 'other_material': 15}
+2025-03-25 15:02:34 - INFO: Building Model
+2025-03-25 15:02:34 - WARNING: 2025-03-25 15:02:34 - INFO: Building Model
+2025-03-25 15:02:37 - WARNING: uploads/_ACL_2025__LLM_Efficiency (2) (1).pdf
+2025-03-25 15:02:37 - WARNING: start parsing pdf
+2025-03-25 15:02:40 - WARNING: CustomVisionEncoderDecoderModel init
+2025-03-25 15:02:40 - WARNING: VariableUnimerNetModel init
+2025-03-25 15:02:41 - WARNING: VariableUnimerNetPatchEmbeddings init
+2025-03-25 15:02:43 - WARNING: VariableUnimerNetModel init
+2025-03-25 15:02:44 - WARNING: VariableUnimerNetPatchEmbeddings init
+2025-03-25 15:02:44 - WARNING: CustomMBartForCausalLM init
+2025-03-25 15:02:46 - WARNING: CustomMBartDecoder init
+2025-03-25 15:02:48 - INFO: load checkpoint from /home/antrieu/.cache/huggingface/hub/models--opendatalab--PDF-Extract-Kit-1.0/snapshots/60416a2cabad3f7b7284b43ce37a99864484fba2/models/MFR/unimernet_small_2501/pytorch_model.pth
+2025-03-25 15:02:48 - WARNING: 2025-03-25 15:02:48 - INFO: load checkpoint from /home/antrieu/.cache/huggingface/hub/models--opendatalab--PDF-Extract-Kit-1.0/snapshots/60416a2cabad3f7b7284b43ce37a99864484fba2/models/MFR/unimernet_small_2501/pytorch_model.pth
+2025-03-25 15:02:48 - INFO: Loaded pretrained model '/home/antrieu/.cache/huggingface/hub/models--opendatalab--PDF-Extract-Kit-1.0/snapshots/60416a2cabad3f7b7284b43ce37a99864484fba2/models/MFR/unimernet_small_2501/pytorch_model.pth'.
+2025-03-25 15:02:48 - WARNING: 2025-03-25 15:02:48 - INFO: Loaded pretrained model '/home/antrieu/.cache/huggingface/hub/models--opendatalab--PDF-Extract-Kit-1.0/snapshots/60416a2cabad3f7b7284b43ce37a99864484fba2/models/MFR/unimernet_small_2501/pytorch_model.pth'.
+2025-03-25 15:02:48 - DEBUG: /home/antrieu/miniconda3/envs/mineru/lib/python3.10/site-packages/rapid_table/models/slanet-plus.onnx already exists
+2025-03-25 15:02:48 - WARNING: 2025-03-25 15:02:48 - DEBUG: /home/antrieu/miniconda3/envs/mineru/lib/python3.10/site-packages/rapid_table/models/slanet-plus.onnx already exists
+2025-03-25 15:05:13 - WARNING: title
+2025-03-25 15:05:13 - WARNING: Traceback (most recent call last):
+  File "/home/antrieu/drive/RIKEN/dev_tasks.py", line 119, in process_pdf_task
+    all_pages_text_data, all_pages_bb_data, para_data = processing_pdf_using_mineru_and_pymupdf(file_path)
+  File "/home/antrieu/drive/RIKEN/pdf_processing.py", line 544, in processing_pdf_using_mineru_and_pymupdf
+    para_data = extract_text_n_bbox_using_pymupdf_from_mineru_result(file_path, para_data)
+  File "/home/antrieu/drive/RIKEN/pdf_processing.py", line 528, in extract_text_n_bbox_using_pymupdf_from_mineru_result
+    para_data = merge_broken_paragraph(para_data)
+  File "/home/antrieu/drive/RIKEN/pdf_processing.py", line 593, in merge_broken_paragraph
+    print(para["bounding_box"][0]["x2"]-para["bounding_box"][0]["x1"])
+KeyError: 'bounding_box'
+2025-03-25 15:05:13 - WARNING: start matching infor
+2025-03-25 15:05:13 - WARNING: done matching infor
+2025-03-25 15:05:13 - WARNING: start commit
+2025-03-25 15:05:16 - WARNING: Failed to send email. Error: {'an': (553, b'5.1.3 The recipient address <an> is not a valid RFC 5321 address. For more\n5.1.3 information, go to\n5.1.3  https://support.google.com/a/answer/3221692 and review RFC 5321\n5.1.3 specifications. 41be03b00d2f7-af8a28001efsm8225319a12.22 - gsmtp')}
+2025-03-25 15:05:17 - INFO: Task dev_tasks.process_pdf_task[83c8a8d6-9519-4761-951b-bd42a464ed8a] succeeded in 162.8004049398005s: None
+2025-03-25 15:05:17 - WARNING: 2025-03-25 15:05:17 - INFO: Task dev_tasks.process_pdf_task[83c8a8d6-9519-4761-951b-bd42a464ed8a] succeeded in 162.8004049398005s: None
+2025-03-25 15:05:17 - INFO: Task dev_tasks.process_pdf_task[44b7e210-7a65-44c7-b082-4b9d3c2b29b5] received
+2025-03-25 15:05:17 - WARNING: 2025-03-25 15:05:17 - INFO: Task dev_tasks.process_pdf_task[44b7e210-7a65-44c7-b082-4b9d3c2b29b5] received
+2025-03-25 15:05:17 - WARNING: uploads/namazi2011.pdf
+2025-03-25 15:05:17 - WARNING: start parsing pdf
+2025-03-25 15:05:44 - WARNING: title
+2025-03-25 15:05:44 - WARNING: Traceback (most recent call last):
+  File "/home/antrieu/drive/RIKEN/dev_tasks.py", line 119, in process_pdf_task
+    all_pages_text_data, all_pages_bb_data, para_data = processing_pdf_using_mineru_and_pymupdf(file_path)
+  File "/home/antrieu/drive/RIKEN/pdf_processing.py", line 544, in processing_pdf_using_mineru_and_pymupdf
+    para_data = extract_text_n_bbox_using_pymupdf_from_mineru_result(file_path, para_data)
+  File "/home/antrieu/drive/RIKEN/pdf_processing.py", line 528, in extract_text_n_bbox_using_pymupdf_from_mineru_result
+    para_data = merge_broken_paragraph(para_data)
+  File "/home/antrieu/drive/RIKEN/pdf_processing.py", line 593, in merge_broken_paragraph
+    print(para["bounding_box"][0]["x2"]-para["bounding_box"][0]["x1"])
+KeyError: 'bounding_box'
+2025-03-25 15:05:44 - WARNING: start matching infor
+2025-03-25 15:05:44 - WARNING: done matching infor
+2025-03-25 15:05:44 - WARNING: start commit
+2025-03-25 15:05:47 - WARNING: Failed to send email. Error: {'an': (553, b'5.1.3 The recipient address <an> is not a valid RFC 5321 address. For more\n5.1.3 information, go to\n5.1.3  https://support.google.com/a/answer/3221692 and review RFC 5321\n5.1.3 specifications. d2e1a72fcca58-73905fa92d4sm9185669b3a.23 - gsmtp')}
+2025-03-25 15:05:47 - INFO: Task dev_tasks.process_pdf_task[44b7e210-7a65-44c7-b082-4b9d3c2b29b5] succeeded in 30.15569270402193s: None
+2025-03-25 15:05:47 - WARNING: 2025-03-25 15:05:47 - INFO: Task dev_tasks.process_pdf_task[44b7e210-7a65-44c7-b082-4b9d3c2b29b5] succeeded in 30.15569270402193s: None

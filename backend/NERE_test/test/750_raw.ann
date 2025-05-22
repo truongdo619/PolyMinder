@@ -1,0 +1,41 @@
+T1	PROP_NAME 40 75	lower critical solution temperature
+T2	PROP_NAME 77 81	LCST
+T4	POLYMER 198 229	poly(N-isopropylmethacrylamide)
+T5	POLYMER 231 238	PNIPMAM
+T6	POLYMER 249 301	poly(N-isopropylmethacrylamide)-b-poly(acrylic acid)
+T7	POLYMER 303 316	PNIPMAM-b-PAA
+T8	POLYMER 331 404	poly(acrylic acid)-b-poly(N-isopropylmethacrylamide)-b-poly(acrylic acid)
+T9	POLYMER 406 425	PAA-b-PNIPMAM-b-AA)
+T10	PROP_NAME 636 640	LCST
+T11	POLYMER_FAMILY 649 663	polyacrylamide
+T12	POLYMER 695 699	PtBA
+T13	POLYMER 886 893	PNIPMAM
+T14	PROP_NAME 924 928	LCST
+T15	PROP_VALUE 954 970	from 35 to 60 °C
+T16	POLYMER 671 693	poly(t-butyl acrylate)
+T17	POLYMER 586 617	poly(N-methacryloxysuccinimide)
+T18	POLYMER 619 624	PMASI
+T19	POLYMER 740 758	poly(acrylic acid)
+T20	POLYMER 760 763	PAA
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	abbreviation_of Arg1:T5 Arg2:T4
+R3	abbreviation_of Arg1:T7 Arg2:T6
+R4	abbreviation_of Arg1:T9 Arg2:T8
+R5	abbreviation_of Arg1:T20 Arg2:T19
+R6	abbreviation_of Arg1:T18 Arg2:T17
+R7	abbreviation_of Arg1:T12 Arg2:T16
+R12	has_value Arg1:T14 Arg2:T15
+T21	SYN_METHOD 474 478	ATRP
+R8	synthesised_by Arg1:T4 Arg2:T21
+R9	synthesised_by Arg1:T6 Arg2:T21
+R10	synthesised_by Arg1:T8 Arg2:T21
+R13	has_property Arg1:T11 Arg2:T10
+T23	CHAR_METHOD 811 817	1H NMR
+T24	CHAR_METHOD 822 830	ATR-FTIR
+R11	has_property Arg1:T13 Arg2:T14
+R14	characterized_by Arg1:T4 Arg2:T23
+R15	characterized_by Arg1:T4 Arg2:T24
+R16	characterized_by Arg1:T6 Arg2:T23
+R17	characterized_by Arg1:T6 Arg2:T24
+R18	characterized_by Arg1:T8 Arg2:T23
+R19	characterized_by Arg1:T8 Arg2:T24

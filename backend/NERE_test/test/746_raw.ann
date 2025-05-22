@@ -1,0 +1,26 @@
+T1	POLYMER_FAMILY 4 9	epoxy
+T2	POLYMER_FAMILY 10 22	polysiloxane
+T3	POLYMER 68 103	poly[(3-aminopropyl)methylsiloxane]
+T4	POLYMER 105 109	PAMS
+T5	MONOMER 147 178	diglycidyl ether of Bisphenol A
+T6	MONOMER 180 185	DGEBA
+T7	POLYMER 881 885	PAMS
+T8	POLYMER 940 944	PAMS
+T9	POLYMER 957 961	PAMS
+T10	POLYMER 1000 1010	PAMS-DGEBA
+R1	abbreviation_of Arg1:T4 Arg2:T3
+R2	abbreviation_of Arg1:T6 Arg2:T5
+T11	CHAR_METHOD 363 390	dynamic mechanical analysis
+T12	CHAR_METHOD 363 370;395 411	dynamic light scattering
+T13	POLYMER_FAMILY 437 442	epoxy
+T14	CHAR_METHOD 553 577	Dynamic light scattering
+T15	PROP_NAME 799 834	single glass transition temperature
+T16	COMPOSITE 4 22	epoxy-polysiloxane
+R3	characterized_by Arg1:T16 Arg2:T12
+R4	characterized_by Arg1:T16 Arg2:T11
+T17	REF_EXP 539 551	the networks
+R5	refers_to Arg1:T17 Arg2:T16
+R6	characterized_by Arg1:T17 Arg2:T14
+T18	REF_EXP 708 719	The network
+R7	refers_to Arg1:T18 Arg2:T17
+R8	has_property Arg1:T18 Arg2:T15

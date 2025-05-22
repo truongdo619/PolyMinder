@@ -1,0 +1,21 @@
+2025-04-24 15:18:45 - WARNING: {'<pad>': 0, '<suc>': 1, 'monomer': 2, 'organic': 3, 'inorganic': 4, 'condition': 5, 'polymer_family': 6, 'syn_method': 7, 'prop_name': 8, 'prop_value': 9, 'ref_exp': 10, 'char_method': 11, 'polymer': 12, 'material_amount': 13, 'composite': 14, 'other_material': 15}
+2025-04-24 15:18:45 - INFO: Building Model
+2025-04-24 15:18:45 - WARNING: 2025-04-24 15:18:45 - INFO: Building Model
+2025-04-24 15:18:47 - ERROR: Task dev_tasks.re_run_for_changed_para[b837bf71-eccc-4974-af4c-712a6cb26b7b] raised unexpected: UnboundLocalError("local variable 'para_data' referenced before assignment")
+Traceback (most recent call last):
+  File "/home/antrieu/miniconda3/envs/mineru/lib/python3.10/site-packages/celery/app/trace.py", line 453, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/home/antrieu/miniconda3/envs/mineru/lib/python3.10/site-packages/celery/app/trace.py", line 736, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/home/antrieu/RIKEN/dev_tasks.py", line 279, in re_run_for_changed_para
+    if type(para_data[0]) == str:
+UnboundLocalError: local variable 'para_data' referenced before assignment
+2025-04-24 15:18:47 - WARNING: 2025-04-24 15:18:47 - ERROR: Task dev_tasks.re_run_for_changed_para[b837bf71-eccc-4974-af4c-712a6cb26b7b] raised unexpected: UnboundLocalError("local variable 'para_data' referenced before assignment")
+Traceback (most recent call last):
+  File "/home/antrieu/miniconda3/envs/mineru/lib/python3.10/site-packages/celery/app/trace.py", line 453, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/home/antrieu/miniconda3/envs/mineru/lib/python3.10/site-packages/celery/app/trace.py", line 736, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/home/antrieu/RIKEN/dev_tasks.py", line 279, in re_run_for_changed_para
+    if type(para_data[0]) == str:
+UnboundLocalError: local variable 'para_data' referenced before assignment

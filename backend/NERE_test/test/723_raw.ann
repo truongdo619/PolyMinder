@@ -1,0 +1,70 @@
+T1	POLYMER 26 71	polyacrylonitrile-block-poly(methyl acrylate)
+T2	POLYMER 73 83	P(AN-b-MA)
+T3	MONOMER 339 341	MA
+T4	POLYMER 353 363	P(AN-b-MA)
+T5	POLYMER 482 492	P(AN-b-MA)
+T6	MONOMER 565 567	MA
+T7	MONOMER 734 736	MA
+T8	MONOMER 859 861	MA
+T9	MATERIAL_AMOUNT 886 902	exceeded 40 mol%
+T10	POLYMER 910 919	P(AN-b-MA
+T11	MATERIAL_AMOUNT 952 977	less or more than 40 mol%
+T12	MONOMER 978 980	MA
+T13	MONOMER 1166 1168	MA
+T14	MONOMER 1239 1241	MA
+T15	POLYMER 1257 1267	P(AN-b-MA)
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	has_amount Arg1:T8 Arg2:T9
+R3	has_amount Arg1:T12 Arg2:T11
+T16	PROP_NAME 108 116	swelling
+T17	PROP_NAME 272 290	degree of swelling
+T18	PROP_NAME 292 294	DS
+R4	abbreviation_of Arg1:T18 Arg2:T17
+T19	CONDITION 319 420	with increasing the MA content in P(AN-b-MA) block copolymer and the benzene content in feed at 30 °C
+T21	PROP_NAME 455 467	benzene flux
+T22	PROP_NAME 469 477	Jbenzene
+R5	abbreviation_of Arg1:T22 Arg2:T21
+T23	PROP_NAME 517 534	separation factor
+T24	PROP_NAME 536 537	α
+R6	abbreviation_of Arg1:T24 Arg2:T23
+T25	CONDITION 549 646	with increasing MA content in the membrane, the benzene content in feed, and the feed temperature
+T26	PROP_NAME 679 687	swelling
+T27	PROP_NAME 803 805	DS
+T28	PROP_NAME 814 826	benzene flux
+T29	CONDITION 850 902	when the MA content in the membrane exceeded 40 mol%
+T30	CHAR_METHOD 1039 1067	scanning electron microscopy
+T31	CHAR_METHOD 1069 1072	SEM
+R7	abbreviation_of Arg1:T31 Arg2:T30
+T32	CHAR_METHOD 1085 1108	atomic force microscopy
+T33	CHAR_METHOD 1110 1113	AFM
+R8	abbreviation_of Arg1:T33 Arg2:T32
+T34	CONDITION 1223 1293	with increasing MA content in the P(AN-b-MA) block copolymer membranes
+T35	REF_EXP 163 186	the resultant membranes
+R9	refers_to Arg1:T35 Arg2:T1
+R10	has_property Arg1:T35 Arg2:T16
+T36	REF_EXP 299 308	membranes
+R11	refers_to Arg1:T36 Arg2:T35
+R12	has_property Arg1:T36 Arg2:T18
+R13	has_condition Arg1:T18 Arg2:T19
+R15	has_property Arg1:T5 Arg2:T22
+R16	has_property Arg1:T5 Arg2:T24
+R17	has_condition Arg1:T22 Arg2:T25
+R18	has_condition Arg1:T24 Arg2:T25
+T37	REF_EXP 748 761	the membranes
+R19	refers_to Arg1:T37 Arg2:T5
+R20	has_property Arg1:T37 Arg2:T26
+T38	REF_EXP 873 885	the membrane
+R21	refers_to Arg1:T38 Arg2:T37
+R22	has_property Arg1:T38 Arg2:T27
+R23	has_property Arg1:T38 Arg2:T28
+R24	has_condition Arg1:T27 Arg2:T29
+R25	has_condition Arg1:T28 Arg2:T29
+R26	characterized_by Arg1:T10 Arg2:T31
+R27	characterized_by Arg1:T10 Arg2:T33
+T39	ORGANIC 220 227	benzene
+T40	ORGANIC 228 239	cyclohexane
+T41	OTHER_MATERIAL 220 239	benzene/cyclohexane
+T42	ORGANIC 388 395	benzene
+T20	ORGANIC 455 462	benzene
+T43	ORGANIC 597 604	benzene
+T44	ORGANIC 814 821	benzene

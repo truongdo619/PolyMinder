@@ -1,0 +1,42 @@
+T1	POLYMER 83 115	poly(3,4-ethylenedioxythiophene)
+T2	POLYMER 117 122	PEDOT
+T3	ORGANIC 127 133	glycol
+T4	MATERIAL_AMOUNT 210 224	up to 15 wt.-%
+T5	ORGANIC 225 231	glycol
+T6	POLYMER 318 323	PEDOT
+T7	PROP_NAME 341 353	conductivity
+T8	PROP_VALUE 362 373	1487 S cm-1
+T9	MATERIAL_AMOUNT 392 407	beyond 15 wt.-%
+T10	ORGANIC 443 449	glycol
+T11	ORGANIC 578 584	glycol
+T12	POLYMER 613 618	PEDOT
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R4	has_property Arg1:T6 Arg2:T7
+R5	has_value Arg1:T7 Arg2:T8
+R2	has_amount Arg1:T5 Arg2:T4
+R3	has_amount Arg1:T10 Arg2:T9
+T13	SYN_METHOD 0 34	Vacuum vapour phase polymerisation
+T14	SYN_METHOD 36 41	V-VPP
+R6	abbreviation_of Arg1:T14 Arg2:T13
+T15	PROP_NAME 70 82	conductivity
+R7	synthesised_by Arg1:T1 Arg2:T14
+R8	has_property Arg1:T1 Arg2:T15
+T16	CHAR_METHOD 161 188	Thermo gravimetric analysis
+T17	CHAR_METHOD 190 193	TGA
+R9	abbreviation_of Arg1:T17 Arg2:T16
+R10	characterized_by Arg1:T6 Arg2:T17
+T18	PROP_NAME 543 555	conductivity
+R11	has_property Arg1:T6 Arg2:T18
+T19	CHAR_METHOD 557 560	XPS
+R12	characterized_by Arg1:T12 Arg2:T19
+T20	PROP_NAME 692 704	conductivity
+T21	SYN_METHOD 724 729	V-VPP
+R13	has_property Arg1:T12 Arg2:T20
+R14	synthesised_by Arg1:T12 Arg2:T21
+T22	CHAR_METHOD 741 744	XPS
+T23	PROP_NAME 782 794	conductivity
+R15	characterized_by Arg1:T12 Arg2:T22
+R16	has_property Arg1:T12 Arg2:T23
+T24	INORGANIC 261 269	Fe(Tos)3
+T25	CONDITION 375 407	Further addition beyond 15 wt.-%
+R17	has_condition Arg1:T18 Arg2:T25	

@@ -1,0 +1,44 @@
+T1	POLYMER_FAMILY 51 101	benzo[1,2-b:4,3-b′]dithiophene (BdT) based polymer
+T2	POLYMER 103 113	PDodBdTBTz
+T3	MONOMER 152 198	7,8-didodecyloxybenzo[1,2-b:4,3-b′]dithiophene
+T4	MONOMER 200 207	BdT-Dod
+T5	MONOMER 213 241	4,4′-dibutyl-2,2′-bithiazole
+T6	MONOMER 243 246	BTz
+T7	PROP_NAME 396 411	p-type mobility
+T8	PROP_VALUE 415 432	∼10-5 cm2 V-1 s-1
+T9	PROP_VALUE 450 472	7.6 x 10-3 cm2 V-1 s-1
+T10	POLYMER_FAMILY 563 618	benzo[1,2-b:4,3-b′]dithiophene (BdT) containing polymer
+T11	REF_EXP 370 383	The copolymer
+R1	abbreviation_of Arg1:T4 Arg2:T3
+R2	abbreviation_of Arg1:T6 Arg2:T5
+R3	refers_to Arg1:T11 Arg2:T2
+R5	has_property Arg1:T11 Arg2:T7
+R6	has_value Arg1:T7 Arg2:T8
+T13	CONDITION 473 508	after annealing at its Tc of 230 °C
+R4	has_condition Arg1:T9 Arg2:T13
+T12	CHAR_METHOD 311 317	1H NMR
+T14	CHAR_METHOD 322 341	UV-vis spectroscopy
+T15	CHAR_METHOD 343 346	GPC
+T16	CHAR_METHOD 348 350	CV
+T17	CHAR_METHOD 352 355	TGA
+T18	CHAR_METHOD 357 360	DSC
+T19	CHAR_METHOD 365 368	AFM
+R7	has_value Arg1:T7 Arg2:T9
+T20	PROP_NAME 496 498	Tc
+T21	PROP_VALUE 502 508	230 °C
+R8	has_value Arg1:T20 Arg2:T21
+T22	SYN_METHOD 251 289	Pd(II)-catalyzed Stille polymerization
+R9	synthesised_by Arg1:T2 Arg2:T22
+R10	characterized_by Arg1:T2 Arg2:T12
+R11	characterized_by Arg1:T2 Arg2:T14
+R12	characterized_by Arg1:T2 Arg2:T15
+R13	characterized_by Arg1:T2 Arg2:T16
+R14	characterized_by Arg1:T2 Arg2:T17
+R15	characterized_by Arg1:T2 Arg2:T18
+R16	characterized_by Arg1:T2 Arg2:T19
+T23	PROP_NAME 539 552	hole mobility
+R17	has_property Arg1:T10 Arg2:T23
+T24	PROP_NAME 677 690	hole mobility
+T25	POLYMER_FAMILY 700 717	BdT based polymer
+R18	has_property Arg1:T25 Arg2:T24
+T26	INORGANIC 251 257	Pd(II)

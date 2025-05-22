@@ -1,0 +1,16 @@
+2025/05/13 23:26:56
+{"API": "/download-highlighted-document", "document_id": 77865601, "update_id": 90903727, "mode": "entity_type", "para_id": null, "filtering_entity_types": null, "filtering_relation_types": null, "entity_type": null}
+2025/05/13 23:27:40
+{"API": "/download-highlighted-document", "document_id": 77865601, "update_id": 90903727, "mode": "all", "para_id": null, "filtering_entity_types": null, "filtering_relation_types": null, "entity_type": null}
+2025/05/13 23:33:13
+{"API": "/download-highlighted-document", "document_id": 77865601, "update_id": 90903727, "mode": "entity_type", "para_id": null, "filtering_entity_types": null, "filtering_relation_types": null, "type": "POLYMER"}
+2025/05/13 23:33:55
+2025/05/13 23:45:04
+2025/05/13 23:49:13
+{"API": "/download-highlighted-document", "document_id": 77865601, "update_id": 90903727, "mode": "filter", "para_id": null, "filtering_entity_types": [{"name": "PROP_NAME", "value": "[has_property has_value has_amount has_condition abbreviation_of refers_to synthesised_by characterized_by None]"}, {"name": "CHAR_METHOD", "value": "[has_property has_value has_amount has_condition abbreviation_of refers_to synthesised_by characterized_by None]"}], "filtering_relation_types": [], "type": null}
+2025/05/13 23:49:52
+{"API": "/download-highlighted-document", "document_id": 77865601, "update_id": 90903727, "mode": "confirmed", "para_id": null, "filtering_entity_types": null, "filtering_relation_types": null, "type": null}
+2025/05/13 23:50:58
+{"API": "/download-highlighted-document", "document_id": 77865601, "update_id": 90903727, "mode": "confirmed", "para_id": null, "filtering_entity_types": null, "filtering_relation_types": null, "type": null}
+2025/05/13 23:51:56
+{"API": "/download-highlighted-document", "document_id": 77865601, "update_id": 90903727, "mode": "filter", "para_id": null, "filtering_entity_types": [], "filtering_relation_types": [{"name": "has_condition", "value": "[POLYMER POLYMER_FAMILY INORGANIC REF_EXP CONDITION MATERIAL_AMOUNT ORGANIC PROP_NAME CHAR_METHOD PROP_VALUE MONOMER OTHER_MATERIAL COMPOSITE SYN_METHOD]"}], "type": null}

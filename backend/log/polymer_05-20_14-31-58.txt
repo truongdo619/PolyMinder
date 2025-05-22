@@ -1,0 +1,5 @@
+2025-05-20 14:31:58 - INFO: Building Model
+2025-05-20 14:32:06 - INFO: load checkpoint from /home/antrieu/.cache/huggingface/hub/models--opendatalab--PDF-Extract-Kit-1.0/snapshots/60416a2cabad3f7b7284b43ce37a99864484fba2/models/MFR/unimernet_small_2501/pytorch_model.pth
+2025-05-20 14:32:06 - INFO: Loaded pretrained model '/home/antrieu/.cache/huggingface/hub/models--opendatalab--PDF-Extract-Kit-1.0/snapshots/60416a2cabad3f7b7284b43ce37a99864484fba2/models/MFR/unimernet_small_2501/pytorch_model.pth'.
+2025-05-20 14:32:06 - DEBUG: /home/antrieu/miniconda3/envs/mineru/lib/python3.10/site-packages/rapid_table/models/slanet-plus.onnx already exists
+2025-05-20 14:32:44 - INFO: Loading Data

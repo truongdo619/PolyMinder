@@ -1,0 +1,1069 @@
+[
+    {
+        "type": "text",
+        "text": "Factors affecting thermal conductivities of the polymers and polymer composites: A review ",
+        "text_level": 1,
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Yongqiang Guo a, Kunpeng Ruan a, Xuetao Shi a,b, Xutong Yang a, Junwei Gu a,\\* ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "a Shaanxi Key Laboratory of Macromolecule Science and Technology, School of Chemistry and Chemical Engineering, Northwestern Polytechnical University, Xi’ an, Shaanxi, 710072, PR China b School of Materials Science and Engineering, Henan University of Science and Technology, Luoyang, Henan, 471023, PR China ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "A R T I C L E  I N F O ",
+        "text_level": 1,
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "A B S T R A C T ",
+        "text_level": 1,
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Keywords:   \nPolymer-matrix composites (PMCs)   \nFunctional composites   \nThermal properties ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "It is of considerable scientific and technological importance to enhance the thermal conductivity coefficient (λ) values of the polymers and polymer composites. Limited understanding of heat transfer in polymers and polymer composites imposes restrictions on the designing and fabricating better thermally conductive polymers and polymer composites. This review attempts to help understand the thermal conduction mechanisms by analyzing the effects of different components in polymers and polymer composites on heat transfer. Factors of micro- and macro-characteristics, such as chain structures, interfaces, functionalization and processing techniques, etc., are all illustrated to elucidate their impacts on the thermal conductivities. In general, chain structures of polymers, intrinsic λ values of thermally conductive fillers and interfacial thermal resistances are the main and internal factors to determine the λ values of polymers and polymer composites. Meantime, processing and environmental factors are only auxiliary factors to improve the thermal conductivities. We expect this review will give some guidance to the future studies in thermally conductive polymers and polymer composites. ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1. Introduction ",
+        "text_level": 1,
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "High integration and power in modern electronics, electrical power, light emitting diodes (LEDs) and other fields have led to sharp reduction in products size and ever-increasing power density. Resulting heat dissipation problem has become more and more prominent, which has seriously affected the stabilities and service life of the obtained products, also being one of the most important technical bottlenecks [1–5]. Preparation of materials with high thermal conductivity coefficient (λ) values is an important way to solve the above problems. ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Polymers and polymer composites are widely used in all aspects of daily life and industry, due to their lightweight, low cost, excellent corrosion resistance and easy processing, etc. (Fig. 1) [6–8]. However, intrinsic low λ values of the polymers and polymer composites severely restrict their wider application in the fields needing high λ values and fast heat dissipation. At present, though many advances have been made in the researches and industrial application of the thermally conductive polymers and polymer composites, the fundamental research is weak, which makes this field still lack matured theoretical basis. Therefore, there are still lots of works and bottlenecks to be issued [9–11]. During the past few decades, researchers have been trying the best to design and fabricate polymers and polymer composites with high λ values, e.g., enhancing the intrinsic λ of polymer matrix, searching novel thermally conductive fillers with extremely high λ, improving the interface inter­ action between polymer matrix and thermally conductive fillers, designing & fabricating special structure and morphology of polymers and thermally conductive fillers [12–14]. However, there are few specialized reviews summarizing the influencing factors mentioned above. ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "This review will expounds the factors that affect the $\\lambda$ values of the thermally conductive polymers and polymer composites. Special atten­ tion is paid on the thermally conducive fillers. Novel processing tech­ nologies of polymers and polymer composites are also reviewed. Finally, the challenges and outlook for thermally conductive polymers and polymer composites are discussed. By investigating the intrinsic rela­ tionship among microstructures, interfacial properties, heat transfer and thermal conductivities in polymers and polymer composites, we hope it would provide some constructive guidance for the design, development and industrial application of the highly thermally conductive polymers and polymer composites. ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "2. Thermal conduction mechanisms ",
+        "text_level": 1,
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "There are three basic ways of heat transfer: conduction, convection and radiation [15]. Thermal conduction refers to thermal energy transfer because of an object having different temperatures. For thermal energy to be transferred by conduction, there should be no movement of the object as a whole [16]. Thermal conduction is always associated with non-uniformity of the internal temperature distribution of the ob­ jects and follows Fourier’s law. ",
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "In a homogeneous and isotropic medium, the vector expression of Fourier’s law is [17]: ",
+        "page_idx": 1
+    },
+    {
+        "type": "equation",
+        "text": "$$\nq=-\\lambda{\\mathrm{grad}}t\n$$",
+        "text_format": "latex",
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Where $q$ is heat flux density $(\\mathsf{W}/\\mathsf{m}^{2})$ , defined as heat flux per unit area per unit time. $\\lambda$ is thermal conductivity coefficient $\\mathrm{(W/mK)}$ . Tempera­ ture gradient is a vector, and the positive direction is consistent with the direction of increasing temperature. A negative sign indicates that the direction of heat transfer is opposite to the direction of increasing temperature. ",
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Thermal conduction mechanisms of gases, liquids, electrically and non-electrically conductive solids are different. For gases, thermal conduction is the results of collisions among gas molecules during irregular thermal motion [18]. In electrically conductive solids, quite a few free electrons play a major role in thermal conduction [19]. In non-electrically conductive solids, thermal conduction is achieved by vibration of the lattice structures, that is, vibration of atoms and mole­ cules near their equilibrium position. The normal mode energy quantum of lattice vibration is called phonon, which can be understood as an analogous to photon [20]. The phonon has no mass and obeys the Bose-Einstein statistic. Its energy $\\varepsilon=h\\nu$ exists in the form of mechanical vibration in solids and part of liquids, the frequency is less than $50\\mathrm{THz}.$ , the group velocity is less than $2\\times10^{4}\\mathrm{m}/\\mathrm{s}$ , and the mean free path is $10{-}100~\\mathrm{nm}$ (except for ultra-low temperature condition and nanotubes) [16]. For thermal conduction mechanism in liquids, there are currently two main viewpoints. One view is similar to that of gases, but situation is more complicated because the distance between liquid molecules is relatively close, and the interaction between the molecules has a greater influence on the collision process. The other viewpoint is like non-electrically conductive solids, mainly relying on the action of phonon [21]. ",
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "For bulk polymers, their λ values are generally very low (0.2–0.5 W/ mK [22]). The main reason is that most polymers are in saturated sys­ tem, where there is nearly no free electron. Thermal conduction mainly relies on the thermal vibration of molecules or atoms around a fixed position, and the thermal energy is transmitted to adjacent molecules or atoms in turn, which can be considered as spring-mass system (Fig. 2a). Molecule chains or atoms vibrate when subjected to heat. Phonon is the main thermal energy carrier [23]. In the crystalline region of polymers, the atoms in the crystals connect with each other closely and vibrate slightly near equilibrium position, so that heat transfers rapidly in the direction of molecule chains [24,25]. However, the crystallinity is not very high due to random entanglement of the polymer chains and large relative molecule mass, and it is difficult to form complete crystals due to the polydispersity of molecule weight (Fig. 2b). In addition, the inharmonic vibration of the molecule chains and crystal lattice, boundaries of crystals, defects and so on, can lead to scattering of phonon and affect phonon transport, resulting in low λ values (Fig. 2c) [26]. ",
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "For polymer composites, the currently accepted mechanisms for explaining thermal conduction are thermal conduction path, thermal percolation and thermoelastic coefficient theories [27–30]. ",
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Thermal conduction path theory is the most widely accepted thermal conduction mechanism, that is, paths are formed by the contact of thermally conductive fillers inner polymer matrix. The heat flux will transfer along thermally conductive fillers paths or networks with lower thermal resistance [31,32]. When the loading of thermally conductive fillers is low, they are isolated from each other and isolated by polymer matrix with low λ value, to form “sea-island” system (Fig. 3a). Therefore, there is no signification improvement in λ values of the polymer com­ posites. As the loading of thermally conductive fillers increases, the thermally conductive fillers begin to contact with each other and form thermal conduction paths or networks. At this point, the heat flux transfers easily along the thermal conduction paths or networks with lower thermal resistance (Fig. 3b) [33]. ",
+        "page_idx": 1
+    },
+    {
+        "type": "image",
+        "img_path": "images/8ebbbbbdf728a800f50e6b82a1e1cf50143a0c2a6c55d730fd057d77cc91b68e.jpg",
+        "img_caption": [
+            "Fig. 1. Brief introduction of the thermally conductive polymers and polymer composites. "
+        ],
+        "img_footnote": [],
+        "page_idx": 1
+    },
+    {
+        "type": "image",
+        "img_path": "images/dd24d2d10a55034bc8bcd7cce6a1bce0c478740773f6a09da4421aeceedb3cbe.jpg",
+        "img_caption": [
+            "Fig. 2. (a) Illustration of molecular chains or atoms vibration by mass and spring system; (b) Crystalline and amorphous regions in polymers; (c) Factors causing phonon scattering in polymers. "
+        ],
+        "img_footnote": [],
+        "page_idx": 2
+    },
+    {
+        "type": "image",
+        "img_path": "images/3f2973119830afb25fa82dc52fefdd4891fb0b62eea9871c14dc3179551b4f28.jpg",
+        "img_caption": [
+            "Fig. 3. (a) “Sea-island” in low fillers loading; (b) Thermal conduction paths in high fillers loading; (c) Percolation phenomenon; (d) Thermoelastic coefficient theory. "
+        ],
+        "img_footnote": [],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Thermal percolation theory is still controversial because the $\\lambda$ values of some polymer composites hardly change abruptly and the percolation point is not obvious [34]. The main reason is that the λ values of most thermally conductive fillers are only 10 to $10^{3}$ times than that of poly­ mer matrix. Moreover, phonon, as the main thermal energy carrier, does not have tunneling effects during heat transfer. Besides, defects and interfaces inner polymer composites make phonon scattering severe to hinder heat transfer. Therefore, there is almost no abrupt changes of $\\lambda$ value, though the loading of thermally conductive fillers is high enough. However, for some fillers with extremely high λ value, some studies have shown that there is indeed percolation phenomenon (Fig. 3c) [35–38]. ",
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The change law of thermal conductivity is very similar to elastic coefficient and modulus in classical vibration and elastic mechanics. Therefore, some researchers regard the thermal conductivity as ther­ moelastic coefficient in the phonon propagation process. That is, the $\\lambda$ value is not path-dependent property, but macroscopic property depending on the comprehensive properties of the composites [39,40]. The higher λ value of the composites, the greater thermoelastic coeffi­ cient and higher efficiency of phonon transmission (Fig. 3d) [41]. For polymer composites, the increase of $\\lambda$ value can be regarded as the combination enhancement of the highly thermally conductive fillers to polymer matrix. The $\\lambda$ value of the polymer composites gradually in­ crease with the increasing loading of thermally conductive fillers and will not produce an abrupt increase. Polymer matrix and thermally conductive fillers are two phases with different thermoelastic coefficient. Like the phenomenon that the vibration and the waves will reflect, refract and interfere at two-phase interfaces with different elastic coefficient, the phonon will also scatter and hinder the thermal conduction. ",
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "3. Factors affecting the thermal conductivities of polymers and its composites ",
+        "text_level": 1,
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Thermally conductive polymers and polymer composites can be divided into two types according to preparation process: intrinsic type and filled type [42]. Compared with complex molecule structures, low preparation efficiency, cumbersome synthesis process and high cost of the intrinsic type thermally conductive polymers, the filled type polymer composites present many advantages, such as low preparation cost, easy processing, suitable for industrialization and so on. However, the resulting λ values of filled type polymer composites filled with thermally conductive fillers are much lower than theoretical expectation [43,44]. The main reason is that the polymer matrix, thermally conductive fillers and the interfaces all have thermal resistances, hindering the transport of heat flux. Therefore, the loading, distribution, shape and size of the thermally conductive fillers, the interfacial thermal resistances, composition, etc. would all produce a vital impact on the final λ values. ",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "This review will expound the factors affecting the $\\lambda$ values of the polymers and polymer composites from five aspects of polymer matrix, thermally conductive fillers, interfaces, processing technologies and external conditions. ",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "3.1. Polymer matrix ",
+        "text_level": 1,
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Both the λ values of polymers and thermally conductive fillers determine the final thermal conductivities of polymer composites. However, the importance of polymers is often neglected in fabricating thermally conductive polymer composites. Previous studies have shown that, for the same thermally conductive fillers, the final λ values of the polymer composites with higher thermal conductivity polymer matrix is significantly higher than those of polymer composites with lower ther­ mal conductivity polymer matrix [45]. ",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Bulk polymers are usually thermal insulators, and the λ values can be theoretically estimated by the Debye equation [15]: ",
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "text": "$$\n\\lambda{=}\\frac{C_{p}\\nu l}{3}\n$$",
+        "text_format": "latex",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Where $\\nu$ is the phonon group velocity, $l$ is the mean free path of phonon and $C_{p}$ is the specific heat capacity per unit volume. For most polymers, both $\\nu$ and $C_{p}$ are almost the same as those of single-chain, l is extremely low due to the phonon scattering. Table 1 lists the λ values of common polymer bulks [46–56], which is in the range of $0.2–0.5\\mathrm{W/mK}$ as mentioned before. Thermal conduction inner polymer matrix is mainly the result of lattice vibration, and phonon is the main thermal energy carrier. Random entanglement of the polymer chains and their ultrahigh molecule weight make them relatively low crystalline. Moreover, the polydispersity of molecule weight also makes it difficult to form intact crystals. In addition, the inharmonic vibration, interfaces, defects, complex structures and low regularity of the molecule chains all would make phonon scattering [23]. The factors affecting the λ value of the polymer matrix will be discussed from the chain structures, aggregation structures and the intermolecular interaction, etc. ",
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/80b888133e003f2cd99bb3cc4b0ba22b4e08c31da8a1b3e8a6f3597f1ea80604.jpg",
+        "table_caption": [
+            "Table 1 λ value of common polymer bulks. "
+        ],
+        "table_footnote": [
+            "\\* Thermal conductivity at room temperature. "
+        ],
+        "table_body": "\n\n<table><tr><th>Polymers</th><th>λ (W/ ℠K*)</th><th>Polymers</th><th>λ (W/ ℠K*)</th></tr><tr><td>High density polyethylene (HDPE)</td><td>0.44</td><td>Nylon-6 (PA6)</td><td>0.28</td></tr><tr><td>Poly(butylene terephthalate)</td><td>0.29</td><td>Polyimide (PI)</td><td>0.27</td></tr><tr><td>Polyphenylene sulfide (PPS)</td><td>0.29</td><td>Polyacrylonitrine (PAN)</td><td>0.26</td></tr><tr><td>Low density polyethylene (LDPE)</td><td>0.26</td><td>Phenolic resin</td><td>0.25</td></tr><tr><td>Polyetheretherketone (PEEK)</td><td>0.25</td><td>Epoxy resin (EP)</td><td>0.23</td></tr><tr><td>Polymethylmethacrylate (PMMA)</td><td>0.21</td><td>Polycarbon (PC)</td><td>0.23</td></tr><tr><td>Polyvinyl chloride (PVC)</td><td>0.21</td><td>Polypropylene (PP)</td><td>0.21</td></tr><tr><td>Polyurethane (PU)</td><td>0.21</td><td>Polystyrene (PS)</td><td>0.20</td></tr></table>\n\n",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "3.1.1. Chain structures ",
+        "text_level": 1,
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Phonon is the main thermal energy carrier in polymers, and its scattering degree seriously affects the λ values of the polymers. Phonon scattering includes static and dynamic scattering, where static scattering is caused by defects, and the inharmonic vibration of the molecule chains mainly causes dynamic scattering [57]. The number of polar groups in polymers and the dipole polarization degree of the polar groups all affect the $\\lambda$ values [58]. Xiao et al. synthesized a series of PI with different polar groups and the $\\lambda$ $(0.40~\\mathrm{W/mK})$ of PI with $-\\mathrm{CF}_{3}$ groups was higher than that of PI $(0.19~\\mathrm{W/mK})$ without $\\mathrm{-CF}_{3}$ groups, also indicated that the position of $\\mathrm{-CF}_{3}$ groups affected on the $\\lambda$ values [59]. ",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Rigid backbones are beneficial for improving the $\\lambda$ values of poly­ mers, especially exemplified in $\\pi$ -conjugated polymers (polyacetylene, poly $(p$ -phenylene benzobisthiazole) [60,61], etc.). The main reason is that the rigid backbones suppress rotation of chain segments, and $\\pi{-}\\pi$ conjugated conjugation effects also enable high bond strength, in favor of enhancing the phonon group velocity [60]. Moses et al. found that there was obvious increase in the λ value of polymer from cis-polyace­ tylene $(0.21~\\mathrm{W/mK})$ to trans-polyacetylene $(0.38~\\mathrm{W/mK})$ . Such increase can be attributed to molecular structure difference [61]. ",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Chain length and branches also affect λ values of the polymers [62]. Researches show that the λ values decrease dramatically as the polymer branches increase. Luo et al. studied the λ values of polyethylene (PE) and ethyl-containing PE (PE-ethyl) via reverse non-equilibrium mole­ cule dynamics (NEMD) method. The λ value of PE-ethyl decreased with the increase of branches density, and the λ of PE-ethyl with the branches density larger than eight ethyl per 200 segments, was only about $40\\%$ that of pristine PE [63]. In addition, Ma et al. studied the effects of bottlebrush (BB) with different sidechain lengths on the λ value of pol­ ynorbornene (PNb) (Fig. 4a), and chain rotation affected on λ values of Kevlar and poly(2, 29-disulfonyl-4, 49-benzidine terephthalamide) (PBDT) derivatives single-chain polymers (Fig. 4b). The rotation and disorder of the branches would reduce the λ values of the polymers [64, 65]. ",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "In addition, the $\\lambda$ values of polymers are also related to radius of gyration $(R_{g})$ of the molecule chains. The larger $R_{g}$ makes molecule chains more ductile, providing more space paths for heat transfer, and thus improving the λ value of polymers [66]. Zhang et al. studied the relationship between the $R_{g}$ and $\\lambda$ value in bulk amorphous polymers $\\left(\\mathrm{C}_{100}\\mathrm{H}_{202}\\right)$ by NEMD method. The $\\lambda$ value of $\\mathrm{C_{100}H_{202}}$ increased firstly and then decreased with the increase of $R g,$ and reached the maximum $(0.22~\\mathrm{W/mK})$ when $R g$ was $16.6\\mathring\\mathrm{A}_{:}$ , 0.09 W/mK higher than the $\\lambda$ (0.13 $\\scriptstyle{\\mathsf{W}}/{\\mathsf{m K}})$ of $\\mathrm{C_{100}H_{202}}$ with the $R g$ of $14.7\\mathring\\mathrm{A}$ [67]. ",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "3.1.2. Aggregation structures ",
+        "text_level": 1,
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Aggregation structures of the polymers, such as crystallization, orientation, intermolecule interaction, cross-linking, and micro-scale ordered structures, all have great influences on the λ values of polymers. ",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "3.1.2.1. Crystallization. Generally, crystalline polymers have higher $\\lambda$ values than amorphous ones, and the $\\lambda$ values of crystalline polymers increase with increasing of crystallinity. However, PP is an exception, having high crystallinity but low λ. Both crystalline and amorphous regions are presented in most crystalline polymers. Polymer crystals have a denser chain arrangement than that in the amorphous regions. In crystalline regions, thermal conduction paths follow regular chain conformation, which increase the mean free path of phonon and present higher thermal conductivity. Early studies indicated that the $\\lambda$ value of neat LDPE $(0.26~\\mathrm{W/mK})$ is lower than that of HDPE $(0.50~\\mathrm{W/mK})$ , proving that higher crystallinity results in higher thermal conductivity [45]. Bai et al. studied the effect of crystallinity degree on the λ value of poly-L-lactide (PLLA), whose $\\lambda$ had positive correlation with crystal­ linity, and reached $0.20~\\mathrm{W/mK}$ when the crystallinity was $56\\%$ , 0.04 $\\mathsf{W/m K}$ higher than the λ $(0.16~\\mathrm{W/mK})$ value of the amorphous PLLA [68]. Most polymers cannot crystallize completely, and there are many interfaces between crystals and amorphous regions, so that the distri­ bution of the crystal regions also has great influence on λ values. Huang et al. employed the solid-state extrusion (SPE) apparatus to fabricate UHMWPE bulks with high λ value. In-plane λ value of SPE-UHMWPE reached $3.30~\\mathrm{W/mK}$ , $588\\%$ higher than that of high-pressure molded counterpart $(0.48~\\mathrm{W/mK})$ . Studies showed that there were lots of columnar crystals composed of spherulites in SPE-UNMWPE bulks, which effectively reduced the number of interfaces between crystals and amorphous regions, thereby greatly increasing the $\\lambda$ values [44]. For polymer composites, Deng et al. studied the effect of CNT fillers on the crystallization properties and thermal conductivities of PPS and PPS composites. Results showed that the addition of CNT fillers could in­ crease the crystallinity of PPS matrix, and the thermal conductivity of the PPS composites at $8\\mathrm{wt}\\%$ CNT fillers were greatly improved to 0.42 $\\mathtt{W/m K}$ [69]. ",
+        "page_idx": 3
+    },
+    {
+        "type": "image",
+        "img_path": "images/81a4e14f639c437b3ac3eeef3471c21ef96db3cf3e39a9985742c84da2981954.jpg",
+        "img_caption": [
+            "Fig. 4. (a) Single-chain polymers: PNb and BB with different sidechain lengths, and $\\lambda_{x}$ of the sidechain length for single-chain polymers at $\\mathrm{T}=300\\mathrm{K}$ . Reprinted with permission from Ref. [64]. Copyright (2017) AIP Publishing. (b) $\\lambda_{x}$ of stretched single-chain polymers at $300\\mathrm{K}$ . Reprinted with permission from Ref. [65]. Copyright (2018) Materials Research Society. "
+        ],
+        "img_footnote": [],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 4
+    },
+    {
+        "type": "image",
+        "img_path": "images/b76920ce8875e19a732cf2885713f6547d100db7ac15840dbe4037408f3e1fc6.jpg",
+        "img_caption": [
+            "Fig. 5. (a) Illustration of molecule chain evolution during draw process. Reprinted with permission from Ref. [70]. Copyright (2019) Springer Nature. (b) Micro­ structure of semi-crystalline and amorphous polymer nanofibers. Folded chains are crystallites or crystalline domains surrounded by amorphous region (Left). Chain orientation without folded crystalline domains (Right). "
+        ],
+        "img_footnote": [],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "3.1.2.2. Orientation of molecule chains. Orientation refers to the phe­ nomenon that the molecule chains or crystal ribbons, wafer, crystal grains, etc. of the polymers orient in the direction of the external force, presenting an important influence on the λ value (Fig. 5a) [68,70]. The λ value in the oriented direction is much higher than that of λ values in other directions, resulting in strong anisotropy, which can be explained by classical size effects. When the characteristic length, such as the thickness of the film or the diameter of the filament or the size of the fillers, is comparable to the mechanical length (phonon mean free path), the boundary or interface scattering of phonon becomes important, and the λ value is also related to the size, and it can also be anisotropic [16]. For some crystalline polymers, it is possible to form needle-shaped crystals composed of a considerable number of oriented molecule chains during orientation process, thereby greatly improving the $\\lambda$ value. Chen et al. reported a kind of PE fiber consisting of almost single crystals with a diameter of $50{-}500~\\mathrm{nm}$ after stretching, with $\\lambda$ value of up to $104~\\mathrm{W/mK}$ [71]. A similar phenomenon is also observed for amorphous polymer fibers. Cola et al. reported that the λ value of pure polythiophene fibers in an amorphous state could reach $4.4~\\mathrm{W/mK}$ (Fig. 5b) [72]. ",
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "In addition to orienting the molecule chains by drawing or stretch­ ing, electrospinning is one of the widely methods to orient the molecule chains of polymers. The electrospinning process makes the molecule chains highly stretched and increases crystallinity, so that high λ value can be realized for electrospinning polymers [73]. Lu et al., prepared polyethylene oxide (PEO) nanofibers by electrospinning method, and the maximum λ value of PEO nanofiber reached $28.84~\\mathrm{W/mK}$ , almost 150 times than that of PEO bulk polymer $(0.20~\\mathrm{W/mK})$ [74]. Ma et al. studied the influence of electrospinning voltage on the λ value of PE nanofibers. There was an obvious trend of enhanced λ value as increasing electrospinning voltage, and the λ value of PE fibers at $45\\mathrm{kV}$ reached $9.3\\mathrm{W/mK}.$ . PEO and PE molecule chains underwent strong electrostatic force during the electrospinning process, providing rela­ tively higher molecule orientation and better crystallinity [75]. ",
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "3.1.2.3. Intermolecular interaction. Molecule backbones of polymers consists of covalent bonds, providing effective channels for phonon transport. The single polymer molecule chain facilitates phonon trans­ port due to strong elastic constant of the covalent bond, but greatly reduces the $\\lambda$ value of bulks polymer due to phonon scattering [76]. In addition, cross-linking is an important formation of covalent bonds among molecule chains. The introduction of appropriate crosslink be­ tween molecule chains can increase the $\\lambda$ value to some extent, but excessive crosslink increases the branching degree and reduce the final λ value [77]. Based on molecule dynamics simulation, Kikugawa et al. found that the $\\lambda$ values of cross-linked PE improved as increasing crosslink density. The λ value of PE comprised of 250 carbon atoms reached $0.60~\\mathrm{W/mK}$ when the crosslink degree was $80\\%$ , much higher than that of non-crosslinked PE $(0.37~\\mathrm{W/mK})$ [78]. ",
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Hydrogen bonds and van der Waals forces are two main types of typical non-covalent bonds in polymer molecule chains, which can improve λ value by promoting crystallinity, limiting the twisting motion and restricting the disordered structures of molecule chains. The strength and number of hydrogen bonds, etc. all significantly affect on the $\\lambda$ values of polymers [79]. Mehra et al. studied the effects of type, strength, number, etc. of hydrogen bonds on the $\\lambda$ value of polyvinyl alcohol (PVA) (Fig. 6). They introduced small molecules (diethylene glycol (DEG), tetraethylene glycol (TEG) and hexaethylene glycol (HEG)) with the same functional groups but different molecule weight, or molecules (ethylene glycol (EG), ethylenediamine (ED) and etha­ nolamine (EA)) with the same chain length but different functional groups into PVA. Results showed that short chains of DEG incorporated with PVA (PVA-DEG, λ value of $0.52\\mathrm{W/mK}$ led to λ enhancement of $6\\%$ and $21\\%$ than PVA-TEG (λ value of $0.49\\mathrm{W/mK})$ and PVA-HEG $\\left(\\lambda$ value of $0.43~\\mathrm{W/mK})$ , respectively. It meant that shorter thermal bridging chains made phonon transport more effectively across host polymers than longer thermal bridging chains. Besides, comparing with ED and EG, EA performed more effectively in enhancing λ value for PVA. The λ value of PVA-EA with $8\\mathrm{{wt}}\\%$ EA reached $0.51\\mathrm{W/mK}$ , higher than that of PVA-ED $(0.49~\\mathrm{W/mK})$ and PVA-EG $(0.41~\\mathrm{W/mK})$ . It was attributed that the EA had the highest ability to form hydrogen bonding with PVA than that of ED and EG Ref. [43,80]. ",
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "In addition, introducing ionic bond is straightforward to improve the λ values of polymers. Relative study showed that the λ values of the ionbonded polymers reached $0.5{-}0.7\\mathrm{W}/\\mathrm{mK}$ [81]. Xu et al. added $\\mathrm{FeCl}_{3}$ as oxidants in the polymerization process of poly(3-hexylthiophene) (P3HT), serving as hosting templates for polymer chains growth. Tak­ ing advantage of both strong $\\scriptstyle\\mathtt{C}{=}\\operatorname{C}$ covalent bonding along the extended polymer chain and strong $\\pi{-}\\pi$ stacking noncovalent interactions between chains, the achieved λ value of P3HT film was $2.2\\mathrm{W/mK}$ at room tem­ perature [13]. ",
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "3.1.2.4. Microscale ordered structures. Microscopic ordered structures of liquid crystal polymers (LCPs) can suppress interface phonon scattering, improve the phonon free path as well as enhance $\\lambda$ values of polymers. Rigid-rod or semi-rigid chain segment in LCPs makes the molecular chains have ordered structure, which are micro-periodically oriented in the liquid crystalline phase. The orientation structure can be easily maintained in the LCPs samples, especially combining the method of mechanical stretching, injection molding [60]. Thermosetting resins containing crystal structures exhibit macroscopic isotropy and micro­ scopic anisotropy, and local order of the microscopic crystals could improve the $\\lambda$ values of the thermosetting resins [82,83]. At present, several researches are focusing on liquid crystal epoxy resins. The co­ ordination of molecule and lattice vibration can be improved by regu­ lating the order of epoxy molecules, also beneficial for reducing phonon scattering and improving the λ value of epoxy resins. Akatsuka et al. studied four kinds of diepoxy monomers with a biphenyl group or two phenyl benzoate groups as mesogens and cured with an aromatic diamine curing agent, which significantly improved the λ value to 0.96 $\\mathsf{W/m K}$ 5 times higher than that of conventional epoxy resins (Fig. 7) [84]. In addition, they also demonstrated the epoxy resins containing mesogen units contained many highly ordered spherulites by polarizing microscope. Curing temperature changes induced the curing system producing spherocrystal structures, and the $\\lambda$ value improved as increasing spherocrystal size [85]. ",
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "3.1.3. Other factors ",
+        "text_level": 1,
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "In general, the λ values of polymers increase with increasing tem­ perature (T), but the rules of amorphous and crystalline polymers are quite different. The $\\lambda$ values of amorphous polymers have similar tem­ perature dependence, which is approximately proportional to $\\mathrm{T}^{2}$ when T is below $0.5\\mathrm{K}$ . Then, the λ value increases slowly with increasing tem­ perature, until it has a plateau zone at $5{-}15\\mathrm{~K~}$ . Then λ values increase with increasing temperature, and is finally proportional to specific heat capacity at temperature above $60\\mathrm{K}$ However, for crystalline polymers, at temperature below $20\\mathrm{K},$ there is no plateau and the λ value exhibit a $\\mathrm{T}^{1}$ to $\\mathrm{T}^{3}$ dependence. At higher temperature, the λ values increase slowly with increasing temperature until it reaches the maximum at glass transition temperature $(T_{g})$ and then decrease. However, for highly crystalline polymers (PE, polyformaldehyde), the maximum λ values ",
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Y. Guo et al. ",
+        "page_idx": 6
+    },
+    {
+        "type": "image",
+        "img_path": "images/8b4099b7cf32e99dd2fe3db283def00d24b9903fba10e3d3b00f5ebc090ed051.jpg",
+        "img_caption": [
+            "Fig. 6. Scheme of thermal bridging chain length on the thermal conductivities of PVA films. Reprinted with permission from Refs. [80]. Copyright (2018) Elsev­ ier Ltd. "
+        ],
+        "img_footnote": [],
+        "page_idx": 6
+    },
+    {
+        "type": "image",
+        "img_path": "images/193b65f202217a5cf1ca12c87cb3564d725b25560c74b0ad0ed97c32002fef34.jpg",
+        "img_caption": [
+            "Fig. 7. Schematic representation of the strategy to afford macroscopic isotropic resins with high thermal conductivities. "
+        ],
+        "img_footnote": [],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "appear at around $100~\\mathrm{K},$ while the maximum values shift toward lower temperature as the crystallinity increases [86,87]. Gregorio et al. studied the λ values of the amorphous and crystalline polymers above room temperature, and the maximum $\\lambda$ value occurred in the temperature ranging from room to melting temperature. The λ values of the amor­ phous polymers increased slowly with increasing temperature, and then slowly decreased. Moreover, the maximum λ value is close to the λ value at other temperature. $T_{g}$ has a noticeable effect on the $\\lambda$ values of the amorphous polymers, always exhibiting a peak value. However, for crystalline polymers, the maximum $\\lambda$ value differs greatly from the $\\lambda$ values at other temperature. For semi-crystalline polymers, the $C_{p}$ in­ troduces a singular influence on the $\\lambda$ values in the temperature range of the polymer melting [88]. ",
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "3.2. Thermally conductive fillers ",
+        "text_level": 1,
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Thermally conductive fillers are one of the most important factors in the λ values of polymer composites. There are three common types of thermally conductive fillers: metals, ceramic and carbon materials [89, 90]. Metals and carbon materials filled thermally conductive polymer composites are mainly used in heat transfer and dissipation areas where electrical insulation is not required, such as heat exchangers [91]. Ceramic filled thermally conductive polymer composites are widely used in areas needing electrical insulation, such as printed circuit board [10]. Performances of the thermally conductive fillers are particularly important in the preparation of the thermally conductive polymer composites. The size, loading, surface morphology and performance, etc. ",
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "of the thermally conductive fillers have great influences on the λ values of the polymer composites [92]. Therefore, an in-depth understanding of the physical and chemical performances of the thermally conductive fillers is vital for preparation of high-quality thermally conductive polymer composites. ",
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "3.2.1. Intrinsic thermal conductivity ",
+        "text_level": 1,
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The λ values of the thermally conductive fillers determine the λ values of polymer composites. Table 2 summarizes the λ values of commonly used thermally conductive fillers [52,53,93–97]. Overall, the λ values of polymer composites are positively related to the λ values of the thermally conductive fillers [98–100]. However, when the λ values of the thermally conductive fillers are much higher than that of polymer matrix, there is little difference in the $\\lambda$ values improvement of the polymer composites under the same thermally conductive fillers loading [101]. Table 3 lists the λ values of some representative polymer com­ posites [102–127]. ",
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/91edb34dc54b97f47d1c80f5fb37bb5a1952c4a239155f6cef7f95690ac59b19.jpg",
+        "table_caption": [
+            "Table 2 λ values of commonly used thermally conductive fillers. "
+        ],
+        "table_footnote": [
+            "$^{*}\\lambda_{\\parallel}$ represents the in-plane thermal conductivity. "
+        ],
+        "table_body": "\n\n<table><tr><th>Fillers</th><th>λ (W/mK)</th><th>Fillers</th><th>λ (W/mK)</th></tr><tr><td>Silver (Ag)</td><td>429</td><td>Copper (Cu)</td><td>401</td></tr><tr><td>Gold (Au)</td><td>317</td><td>Aluminum (Al)</td><td>237</td></tr><tr><td>Zinc (Zn)</td><td>121</td><td>Nickel (Ni)</td><td>90</td></tr><tr><td>Iron (Fe)</td><td>80</td><td>Tin (Sn)</td><td>67</td></tr><tr><td>Alumina (Al$_2$O$_3$)</td><td>35</td><td>Magnesium oxide</td><td>40</td></tr><tr><td rowspan='2'>Zinc oxide (ZnO)</td><td></td><td>(MgO)</td><td></td></tr><tr><td>30</td><td>Silica (SiO$_2$)</td><td>1.5</td></tr><tr><td>Cerium oxide (CeO$_2$)</td><td>260</td><td>Aluminum nitride (AlN)</td><td>320</td></tr><tr><td>Silicon carbide (SiC)</td><td>80</td><td>Silicon nitride (SiN)</td><td>180</td></tr><tr><td>Boron nitride (BN)</td><td>180</td><td>BN nanosheets (BNNS)</td><td>751 ($\\lambda_{\\parallel}$ ) *</td></tr><tr><td>Boron arsenide (BAs)</td><td>1000</td><td>Black phosphorus (BP)</td><td>70</td></tr><tr><td>Carbon black (CB)</td><td>6–174</td><td>Carbon fiber (CF)</td><td>100 (Axial)</td></tr><tr><td>Carbon nanotubes (CNT)</td><td>3000 (Axial)</td><td>Diamond</td><td>2000</td></tr><tr><td>Graphite</td><td>100–400 ($\\lambda_{\\parallel}$)</td><td>Graphene</td><td>5300 ($\\lambda_{\\parallel}$)</td></tr></table>\n\n",
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/d64d35224af4107ff8b13eebb5ea8c04902c8971e20595437f0f6101edec471a.jpg",
+        "table_caption": [
+            "Table 3 λ values of the thermally conductive polymer composites. "
+        ],
+        "table_footnote": [
+            "is the in-plane thermal conductivity and $\\lambda_{\\perp}$ is the through-plane thermal conductivity "
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "3.2.2. Fillers loading ",
+        "text_level": 1,
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Generally, the λ values of polymer composites are in positive corre­ lation to thermally conductive fillers loading. However, there is almost no percolation threshold for thermal conductivity, which could achieve an abrupt enhancement in the λ values of polymer composites, except for some thermally conductive fillers with extremely high λ values (gra­ phene, CNT, etc.) [35–38]. In the early stages of the thermally conduc­ tive polymer composites, researchers often added a large loading (always higher than $30\\mathrm{vol}\\%$ ) of thermally conductive fillers into poly­ mer matrix to achieve higher λ values of the final polymer composites $(>4\\mathrm{W/mK)}$ [53]. Thermally conductive fillers are difficult to contact with each other and to form good thermal conduction paths & networks when their loading is low, which results in the ineffective enhancement of $\\lambda$ values. So that, high loading of thermally conductive fillers is needed to achieve high $\\lambda$ values. However, excessive addition of ther­ mally conductive fillers will inevitably bring mechanical properties down, poor in processing performance and expensive in cost, etc. Moreover, the addition of thermally conductive fillers has the limitation. For spherical rigid fillers with equal radii, the theoretical maximum addition volume fraction is 0.637 [128]. ",
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The overwhelming majority of studies demonstrated the $\\lambda$ values of polymer composites improved with the increasing thermally conductive fillers loading [99]. However, a few studies also showed the $\\lambda$ values of polymer composites increased firstly and then decreased with the increasing thermally conductive fillers loading, mainly attributed to the agglomeration of high thermally conductive fillers, resulting in the destruction of the thermal conduction paths. Zhang et al. prepared modified BN/polyvinylidene fluoride (m-BN/PVDF) thermally conduc­ tive films by electrospinning. The λ value of m-BN/PVDF film with 30 wt $\\%$ BN fillers reached the maximum of $7.29\\mathrm{W/mK}$ . However, as the loading of BN continued to increase to $40~\\mathrm{wt}\\%$ , the $\\lambda$ value of the BN/PVDF film dropped to $6.50\\mathrm{~W/mK}$ [129]. There is also a similar result in the work of Guiney and his co-workers. They fabricated the BN/poly(lactic-co-glycolic acid) composites by 3D printing technology, whose $\\lambda$ values initially increases with increasing of BN loading. How­ ever, above a threshold $(40\\mathrm{wt}\\%)$ , the $\\lambda$ values began to decrease despite the BN loading increased [120]. ",
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "3.2.3. Defects ",
+        "text_level": 1,
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Both the electrons and phonon determine the $\\lambda$ values of any sub­ stance. For metals, thermal conductivity can be wholly attributed to electron motions, whereas phonons’ role in the thermal conductivity is negligible. For carbon and ceramic materials, phonons are mainly responsible for thermal conduction. Defects have great effect on pho­ nons propagation. In fact, there is always incompleteness and irregu­ larity in each crystal, such as point defects (vacancy and interstitial atoms), line defects (dislocations), surface defects (grain boundary and phase interfaces), body defects (cavities and bubbles) [130–132]. All types of defects would cause phonon scattering and reduce the mean free path of phonon. It is approximated that the reduction in the mean free path of phonon caused by small size defects (hetero-atoms or disloca­ tions) is related to the defect’s concentration. Phonon scattering caused by large size defects (grain boundaries and bubbles) at low temperature is the main source of total thermal resistance of the crystal. The scat­ tering of phonon on grain boundaries and bubbles can be neglected above room temperature [133–135]. ",
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Carbon materials with different structures have different $\\lambda$ values. Graphite belongs to atomic crystal, each carbon atom in the same graphite layer is connected to other three carbon atoms in the form of $\\mathsf{s p}^{2}$ hybridization, and the electrons are relatively free. Therefore, electron motions and phonon transport jointly determine the $\\lambda$ value of graphite [136,137]. Diamond is face-centered cubic and each carbon atom forms covalent bond with other three carbon atoms by $\\mathrm{sp}^{3}$ hy­ bridization, there is no free electron. Phonon scattering is weak, and the mean free path is large, beneficial to the enhancement of λ values [138, 139]. Besides, the λ values of carbon materials are related to the graphitization degree. Non-graphitized carbon materials have small crystallite size, many defects such as lattice hollow spaces and disloca­ tions lead to low λ values, only $1/20{-}1/30$ times that of carbon materials after graphitization [140,141]. Zhou et al., studied four types of vacancy (Single-vacancy (SV), Double-vacancy (DV), Stone-Wales (SW) and Multi-vacancy (MV)) influencing on the interfacial λ values for gra­ phene/epoxy composites. SW and MV improved the interfacial λ values to some extent (Fig. 8) [142]. Khafizov et al. introduced faulted dislo­ cation loops by irradiating polycrystalline $\\mathrm{CeO}_{2}$ sample. Results showed that the point defects led to a larger reduction in $\\lambda$ value of $\\mathrm{CeO}_{2}$ compared with these displaced atoms cluster into 3D voids or 2D perfect loops without annihilation [143]. Tabarraei et al. studied the impact of monovacancies and SW defects on the λ value of hexagonal BN (h-BN) ribbons. The effect of SW defects on the thermal transport was more severe than monovacancies, the defect concentration of $0.1\\%$ of SW could reduce the λ value of h-BN by about $25\\%$ , whereas about $3\\%$ defect concentration of monovacancies was required [144]. ",
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "3.2.4. Shape, size and aspect ratio ",
+        "text_level": 1,
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Thermally conductive fillers have a variety of shapes, such as sphere spheroidicity, polyhedron, linear, sheet, etc., with sizes from nanometers to millimeters, presenting different effects on the $\\lambda$ values of the final polymer composites [145]. ",
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "It has been reported that larger size thermally conductive fillers can reduce the contact areas between polymer matrix and thermally conductive fillers, thereby reducing the interfacial thermal resistances and increasing the λ values, while some studies also showed that smaller size thermally conductive fillers can be more beneficial to improving λ values [146–148]. However, the factor of thermally conductive fillers loading was ignored. It is generally acknowledged that the smaller size thermally conductive fillers have a much larger number than bigger one as for the same thermally conductive fillers at low loading. So that the smaller size thermally conductive fillers are more conducive to forming thermal conduction paths & networks, in favor of the enhancement in λ values. However, the thermal conduction paths & networks have been formed completely when the thermally conductive fillers loading is appropriate. So that the number of interfaces formed between the larger size polymer matrix and thermally conductive fillers is much fewer, more favorable to the enhancement in λ values [149,150]. Ren et al. added BN with different particle size into polydimethylsiloxane (PDMS). Results showed that when the BN loading was less than $10\\mathrm{~wt}\\%$ , the λ value of BN/PDMS composites with $2.0~{\\upmu\\mathrm{m}}$ BN fillers was higher than that of BN/PDMS composites with $160.0~\\upmu\\mathrm{m}$ BN. When the BN loading was higher than $10\\mathrm{wt}\\%$ , the $\\lambda$ value of the BN/PDMS composites with $160.0\\upmu\\mathrm{m}$ BN fillers improved faster than the other one [151]. Park et al. observed similar results in epoxy composites by adding multi-walled carbon nanotubes (MWCNT) with different length. The λ value of the MWCNT/epoxy composites $(55~\\mathrm{W/mK})$ with long MWCNT was higher than that of MWCNT/epoxy composites $(20\\mathrm{W/mK})$ with short MWCNT at the same loading $(60\\mathrm{~wt}\\%)$ [152]. ",
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "In addition, the shape of the thermally conductive fillers can directly affect the contact type (point, line, and surface contact) among fillers, and the contact areas are in the order of ‘point contact $<$ line contact $<$ face contact’. Contact areas directly affect the contact thermal re­ sistances among thermally conductive fillers, which in turn affects the λ values of polymer composites [137]. Spherical fillers form point contact, linear fillers form line contact, and the laminar fillers form surface contact. Experimental results of Fu et al. showed that the lamellar fillers were greater than the spherical fillers in improving the $\\lambda$ values of the epoxy composites, and was higher than the polyhedral fillers with lots of angular edges [99]. In addition, for linear fillers (CNT, CF, nanowires, etc.) and lamellar fillers (expanded graphite, graphene, BNNS, etc.), their λ values have strong anisotropy due to their own structural character­ istics. However, the λ values of spherical fillers are generally isotropic. Therefore, the λ values of polymer composites will also be related to the orientation of the thermally conductive fillers. ",
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "In view of the complexity of the shape and size of the thermally conductive fillers, it is more uniform to use aspect ratio (ratio of diam­ eter to thickness, or length to diameter) to illustrate fillers’ influences on the λ values of polymer composites [153,154]. Assuming that the ther­ mally conductive fillers are freely dispersed in polymer matrix, the length of linear or lamellar fillers is much longer than spherical fillers at the same fillers’ loading. Phonon transports more easily along the linear or lamellar fillers and facilitate thermal conduction in polymer composites. Finite element analyses also proved the above conclusions [155]. Moreover, the high aspect ratio makes the thermally conductive fillers easily overlap with each other, forming high aspect ratio aggre­ gate structures called “grape”, which can form thermal conduction paths with lower thermal resistance (Fig. 9) [101]. However, the aspect ratio has no effects on the thermal conduction mechanism at macroscopic scale [154]. Yu et al. showed that the λ value of the GNPs/epoxy com­ posites increased as the aspect ratio of GNPs increases, and at the highest aspect ratio (200), the $\\lambda$ value of the GNPs/epoxy composites with 5.4 $\\mathrm{vol\\%}$ GNPs reached $1.45~\\mathrm{W/mK}$ . However, the λ value of the GNPs/e­ poxy composites with the lowest aspect ratio (30) of GNPs was only 1.08 $\\mathtt{W/m K}$ [156]. Based on the advantages in thermal conduction of high aspect ratio, many scholars are dedicated to studying thermally conductive fillers with high aspect ratio. For example, the exfoliation of BN into BNNS can increase its λ value to $300~\\mathrm{W/mK}$ and greatly in­ creases the $\\lambda$ values of the polymer composites. The λ value of BNNS/PVDF composite film prepared by Chen et al. reached $16.3\\mathrm{W/mK}$ with $33\\mathrm{wt}\\%$ BNNS, 43 times higher than that of pure PVDF film [111]. There was also a kind of high-quality monolayer BNNS directly prepared by chemical vapor deposition (CVD), realizing the outstanding λ value of 751 W/mK [93]. ",
+        "page_idx": 8
+    },
+    {
+        "type": "image",
+        "img_path": "images/74e06d63d0748f393aa1a26002ef8496577f00b83e064be2d70a97f7e742b57c.jpg",
+        "img_caption": [
+            "Fig. 8. Types of defects studied in graphene. Reprinted with permission from Ref. [142]. Copyright (2018) Elsevier Ltd. "
+        ],
+        "img_footnote": [],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "However, excessive high aspect ratio of thermally conductive fillers can also cause processing difficulties in polymer composites and may adversely affect their λ values. The reason is that high aspect ratio means that the size of the thermally conductive fillers is too large in a certain dimension. Besides, the excessive size increases the probability of de­ fects in thermally conductive polymer composites. All these factors are unfavorable to improving the λ values. Kim and Roy et al. confirmed that the λ values of the polymer composites increased with the increasing aspect ratio, until its value reached a certain value. Then, even if the aspect ratio of the thermally conductive fillers continued to increase, the obtained λ values of polymer composites hardly increase [157,158]. ",
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "3.2.5. Functionalization ",
+        "text_level": 1,
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The introduction of the thermally conductive fillers forms many contact interfaces with polymer matrix, and the overlaps of the ther­ mally conductive fillers also create interfaces. As mentioned before, phonon scattering at the interfaces would greatly reduce the efficiency of thermal conduction. Therefore, how to reduce the interfaces or to improve the interfacial performance is the key issue in the thermally conductive polymer composites [159,160]. In addition, due to the dif­ ference in polarity between polymer matrix and thermally conductive fillers, the corresponding interfacial compatibility is poor, making fillers difficult to effectively disperse in polymer matrix. Especially for nano-sized thermally conductive fillers, their large surface energy makes their agglomeration in polymer matrix particularly severe [161]. Moreover, the surface of the thermally conductive fillers is difficult to be effectively wetted by polymer matrix, voids and defects are always presented at interfaces, which further increase the interfacial thermal resistances [91,162–164]. In the past few decades, researchers have carried out different surface functionalization works on the thermally conductive fillers, including mechanochemical method [165–168], chemical modification [169–172], acid-base treatment [173–176] and surface coating [177–187], etc., in improving the λ values of the polymer composites. At the same time, surface functionalization of thermally conductive fillers can also improve the mechanical, flame retardant and thermal properties, etc. of the obtained polymer composites to some extent. ",
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Mechanochemical method is introducing mechanical energy based on chemical reaction to greatly improve the affinity between different materials, and widely used in the preparation of polymer nano­ composites (Fig. 10a) [165]. Wang et al. modified the MWCNT by acidification (A-), ball milling (B-), and mechanochemical (M-) methods, respectively, and then prepared polyamide (PA) composites. Results showed that, when the loading of MWCNT was $1.0\\mathrm{wt}\\%$ , compared with that of pure PA, the $\\lambda$ value of the M-MWCNT/PA composites was increased by $51.6\\%$ , and the A-MWCNT/PA and B-MWCNT/PA com­ posites were only increased by $35.3\\%$ and $29.5\\%$ respectively [166]. Recent years, plasma treatment has been introduced based on mecha­ nochemistry, which can further improve the chemical bonding strength between polymer matrix and thermally conductive fillers, reducing the damage to the thermally conductive fillers [105,167]. You et al. com­ bined the mechanical chemistry and plasma treatment to improve the affinity between GNPs and PA66, significantly improving the $\\lambda$ value and mechanical properties of the GNPs/PA66 composites. The λ value of the GNPs/PA66 composites with $20\\mathrm{~wt}\\%$ GNPs reached $3.77\\mathrm{W/mK},$ significantly higher than that of $\\lambda$ value $(1.32~\\mathrm{W/mK})$ for GNPs/PA66 composites prepared by conventional method [168]. ",
+        "page_idx": 9
+    },
+    {
+        "type": "image",
+        "img_path": "images/51dce8ebabbf1055a00e8d409772ac1b8803e2d90ab59980f935b2984d7c544b.jpg",
+        "img_caption": [
+            "Fig. 9. Heat transfer in polymer composites vs aspect ratio fillers. "
+        ],
+        "img_footnote": [],
+        "page_idx": 9
+    },
+    {
+        "type": "image",
+        "img_path": "images/223a056a060d96df4e2edb8657f77ec030b0e7a9bdce3b314221d13aa2a6ee8d.jpg",
+        "img_caption": [
+            "Fig. 10. (a) Schematic diagram of mechanochemical method. Reprinted with permission from Ref. [165]. Copyright (2018) Elsevier Ltd. (b) Surface treatment and assembly procedures of AlN particles. Reprinted with permission from Ref. [172]. Copyright (2012) American Chemical Society. (c) PDA coated on the $\\mathtt{Z n O}$ surface and curing mechanism for epoxy composites. Reprinted with permission from Refs. [179]. Copyright (2017) Elsevier Ltd. "
+        ],
+        "img_footnote": [],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "The most commonly used chemical modification is the surface functionalization of the thermally conductive fillers by coupling agents. The type, loading and functionalization process of the coupling agents all have effects on the λ values of polymer composites. Different coupling agents have different functionalization effects, and each one has the best dosage range [47, 169–171]. Huang et al. used six kinds of coupling agents to functionalize AlN fillers and found that covalent bonding led to an increase in λ value below the critical concentration. However, above the critical concentration, the increase in the λ value by covalent bonding was limited (Fig. 10b) [172]. Under the optimal dosage, the coupling agent molecules fully react with polymer matrix and thermally conductive fillers. The interfaces between polymer matrix and thermally conductive fillers are very thin and the bonding is tight, which effec­ tively improves the interfacial performance. Above the optimal dosage, redundant coupling agent molecules with low λ dispersed in the in­ terfaces, reducing the λ value. ",
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Acid treatment is often used for carbon materials, which can greatly improve their dispersion and mechanical properties. However, such treatment method will induce a great damage to the performance of the thermally conductive fillers themselves, and the long-term treatment reduces the λ values of the thermally conductive fillers and is not environmentally friendly [173,174]. Hong et al. found that the λ value of PMMA composites with acid-treated CNT were inferior to those of PMMA composites with untreated CNT [175]. However, some studies showed that moderate acid treatment could improve the λ values of polymer composites. Yang et al. treated MWCNT with trimesic acid (BTC), which effectively improved the interfacial compatibility between BTC-MWCNT and epoxy resins, and thus increased the λ values of the epoxy composites. The λ value of BTC-MWCNT/epoxy composites with $5\\mathrm{vol\\%}$ BTC-MWCNT reached $0.96~\\mathrm{W/mK}$ , $65\\%$ higher than those of epoxy composites $(0.58~\\mathrm{W/mK})$ with the same loading of unmodified ",
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "MWCNT [176]. ",
+        "text_level": 1,
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Surface coating is widely used to design core/shell structures of ceramic/metal, metal/organics, metal/metal oxide, etc. (Fig. 10c), which could change the optical, electrical, thermal, and hydrophobic properties of thermally conductive fillers [177–179]. The coating mechanism mainly includes: (1) Coulomb electrostatic interaction mechanism. Coating molecule has an opposite charge to thermally conductive fillers, the Coulomb force makes them be absorbed together and then coating molecule reacts with each other to form coating layer on the surface of fillers [180]. (2) Chemical bond mechanism. Strong chemical bond is formed between coating molecule and thermally conductive fillers to form a dense coating layer. The premise is that the thermally conductive fillers surface has certain functional groups [181]. (3) Supersaturation mechanism. When a heterogeneous substance exists at a certain $\\mathrm{pH}_{\\mathrm{:}}$ , if the solution exceeds its supersaturation, a large amount of nucleation will be formed, and deposition on the surface of the heterogeneous fillers will form a coating layer [182]. The principle of surface coating is satisfying the cohesiveness and coexistence of the interphase thermodynamics, and good wettability between coating layer and thermally conductive fillers. The main methods include solid phase coating (mechanical mixing, solid phase reaction), liquid phase coating (hydrothermal, sol-gel, precipitation, microemulsion, etc.) and vapor phase coating [183–185]. Yang et al. coated a layer of silver particles on $\\mathrm{Al}_{2}\\mathrm{O}_{3}.$ , and the λ value of the natural rubber (NR) composites were significantly improved [186]. Yuan et al. uniformly coated a layer of polydopamine (PDA) outside the copper nanowires (CuNWs) to improve its dispersion in epoxy matrix. Under the same CuNWs loading, the $\\lambda$ value of the CuNWs@PDA/EP composites were higher than those of CuNWs/epoxy composites. When the loading of CuNWs was $3.1~\\mathrm{vol\\%}$ , the λ value of the CuNWs $@$ PDA/epoxy composites was $2.87\\mathrm{W/mK},$ 3 times that of CuNWs/epoxy composites [187]. ",
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "3.2.6. Hybrid ",
+        "text_level": 1,
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Researchers found that the addition of single kind of thermally conductive fillers could hardly achieve the theoretically high λ value for polymer composites [188,189]. The reason is mainly due to phonon scattering caused by defects, interfaces, etc., and the difficulty of pro­ cessing due to excessive addition of thermally conductive fillers. By adding hybrid thermally conductive fillers (different shapes or types) into polymer matrix, the polymer composites would have better thermal conductivities than those with single type of thermally conductive fillers. The main reason is attributed that the hybrid thermally conductive fillers can improve the dispersion performance of the ther­ mally conductive fillers in polymer matrix, or more easily bridge the adjacent thermally conductive fillers to form thermal conduction paths, or help reducing the voids in polymer matrix, etc [10,190,191]. Commonly used hybrid thermally conductive fillers are binary hybrids (such as SiCw/SiCp [192], MWCNT $'\\mathrm{{Al}_{2}\\mathrm{{O}_{3}}}$ [193], Ag/graphene [127], $\\mathrm{Al_{2}O_{3}/A g}$ [194], graphene/CNT [195,196], micro-BN/nano-BN [197], etc.) and multi-hybrids (such as BN/GNPs/CF [198], Cu/CNT/CF [199], CF/hBN/Cu [200], etc.). ",
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "Generally, methods for preparing hybrid thermally conductive fillers include direct blending, physical adsorption, chemical bonding, etc. Direct blending method is suitable for thermally conductive fillers with different sizes. It mainly utilizes the spatial matching of the thermally conductive fillers with different sizes. Small-sized thermally conductive fillers can fill the gaps of large-sized thermally conductive fillers, increasing the probability of formation of thermal conduction paths [54]. The most commonly used methods in physical adsorption is elec­ trostatic adsorption or $\\pi{-}\\pi$ interaction, which directly forms hybrid thermally conductive fillers with specific structures under specific ac­ tion or chemical reaction [201]. Guo et al. used interaction between the negative charge of GO and the positive charge of $\\mathbf{A}\\mathbf{g}^{+}$ to fabricate $\\mathrm{Ag/rGO}$ hybrid fillers with “point-plane” structure. $\\mathbf{A}\\mathbf{g}^{+}$ was adsorbed onto the GO sheets and then reduced by glucose (Fig. 11) [103]. Liang et al. fabricated 3D-structural GNPs/rGO hybrid fillers, effectively solving the agglomeration problem of GNPs and constructing complete thermal conduction paths. The λ value of ${\\bf G N P s/r G O}_{,}$ /epoxy composites with $20.4~\\mathrm{wt}\\%$ GNPs reached $1.56\\mathrm{W/mK}_{}$ while the λ value of the GNPs/epoxy composites with $20.4\\mathrm{wt}\\%$ GNPs by ordinary blending was only $1.01\\mathrm{W/mK}$ [109]. ",
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "In terms of chemical bonding, researchers grafted reactive groups onto different thermally conductive fillers by pretreatment, and then fabricated hybrid thermally conductive fillers by chemical reaction. Its advantage is that the thermally conductive fillers can bond firmly (Fig. 12) [202]. However, the excessive pretreatment would destroy the intrinsic performances of the thermally conductive fillers themselves, potentially reducing λ value. Song et al. used reversible addition-fragmentation chain transfer polymerization (RAFT) to prepare polymer-functionalized CNT (PCNT) and then reacted with GO. PCNT $@\\mathbf{r}\\mathbf{G}0$ hybrid thermally conductive fillers were obtained by reducing PCNT/GO, which effectively solved the agglomeration prob­ lem of CNT and graphene. The $\\lambda$ value of the $\\boldsymbol{\\mathrm{^{3}C N T}}\\boldsymbol{\\ @\\mathrm{rGO/SBR}}$ com­ posites with 3 wt% PCNT@RGO was $0.45~\\mathrm{W/mK}$ , while those of PCNT/SBR and rGO/SBR were only $0.29~\\mathrm{W/mK}$ and $0.26\\mathrm{W/mK},$ respectively [203]. ",
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "3.2.7. Dispersion ",
+        "text_level": 1,
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "To our knowledge, uniform dispersion of the thermally conductive fillers may not be beneficial to the great improvement of the λ values of polymer composites. When the thermally conductive fillers are uni­ formly dispersed in polymer matrix, the polymer molecules with low λ surround them, disadvantageous for efficient thermal conduction. On contrast, when the thermally conductive fillers agglomerate properly, the thermal conduction paths would be formed in the agglomeration region, which may improve the λ values of polymer composites [204]. Tanimoto et al. found that the agglomerated fillers had obvious effect on the anisotropy thermal diffusivity than the uniformly dispersed fillers for BN/PI composite films (Fig. 13) [205]. Burger et al. studied the in­ fluence of different dispersion states on the λ values, and confirmed that the $\\lambda$ value in uniform dispersion state was relatively low [15]. Espe­ cially in nanofluids, the λ values were observed to firstly increase sharply and then stabilize with the increase of the size for agglomerates [206–208]. ",
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "3.3. Interface ",
+        "text_level": 1,
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "Interface is the key factor to determine the comprehensive properties of the thermally conductive polymer composites, and is also an impor­ tant feature distinguishing composites from alloys. The interface is the main barrier for thermal conduction due to heat loss during heat transfer across interfaces. It is generally believed that the interface is a new phase with nanometer-scale thickness as well as structure that varies with dispersed phase (thermally conductive fillers), significantly different from the polymer matrix, and is referred to as interface phase or interface layer [163,164,209–211]. The interface in polymer composites generally includes the following parts: (1) Original contact area between polymer matrix and thermally conductive fillers; (2) Solid solution layer formed by diffusion between polymer matrix and thermally conductive fillers; (3) Surface coating layer introduced by surface treatment of the thermally conductive fillers, etc. Therefore, the chemical composition and structures at interface are complicated. The roles and effects of the interface are mainly manifested via three aspects: transfer effect, blocking effect, scattering and absorption effect. The transfer effect means that the interface acts as a bridge between polymer matrix and thermally conductive fillers, ensuring the continuity of the polymer matrix and thermally conductive fillers, achieving efficient transfer of properties between the components [212]. The blocking effect manifests in the fact that the appropriate interface has the effect of preventing crack propagation and mitigating stress concentration [213]. Scattering and absorption effects mean that the interface can scatter and absorb light waves, sound waves, and thermoelastic waves, etc. ",
+        "page_idx": 11
+    },
+    {
+        "type": "image",
+        "img_path": "images/266321531b665364287e71a31f3dfc5d4489b5acb71ce4a81ab69bace4a8fa70.jpg",
+        "img_caption": [
+            "Fig. 11. Schematic diagram for fabrication of Ag/rGO hybrid fillers by physical adsorption. Reprinted with permission from Refs. [103]. Copyright (2019) American Chemical Society. "
+        ],
+        "img_footnote": [],
+        "page_idx": 11
+    },
+    {
+        "type": "image",
+        "img_path": "images/1cdeaa25fccf24e528319d7469286d8a92643e04e673076f283f85acc7970dad.jpg",
+        "img_caption": [
+            "Fig. 12. Schematic illustration of chemical bonding improving λ values of epoxy composites. Reprinted with permission from Refs. [202]. Copyright (2019) Elsevier Ltd. "
+        ],
+        "img_footnote": [],
+        "page_idx": 12
+    },
+    {
+        "type": "image",
+        "img_path": "images/762afd4e82de9b4245c04a38c946d303450d10a4fd42e73cf8c4149168ac7db9.jpg",
+        "img_caption": [
+            "Fig. 13. Dispersion of hBN particles affecting on the anisotropic thermal diffusion. Reprinted with permission from Ref. [205]. Copyright (2013) American Chemical Society. "
+        ],
+        "img_footnote": [],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "For the thermal conduction in polymer composites, heat loss is se­ vere due to phonon scattering when heat flux travels across the interface [214]. The decrease in λ value caused by interface is commonly referred to as Kapitza thermal resistance [210]. The thermal resistance mainly depends on the molecule force between polymer matrix and thermally conductive fillers. The strength of the molecule force directly affects the thermal conduction process, that is, the coupling effect between the thermally conductive fillers and phonon. According to the types of molecule force, it can be mainly divided into van der Waals force, co­ valent bond and non-covalent bond. ",
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "3.3.1. Interface based on van der Waals force ",
+        "text_level": 1,
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "Many studies have shown that the λ values of the polymer composites by mixing thermally conductive fillers with polymer matrix are much lower than the theoretical values. During mixing process, the interfacial forces between polymer matrix and thermally conductive fillers are mainly van der Waals forces, and the interfacial thermal resistance greatly affects the interfacial thermal conduction [91]. Huxtable et al. used picosecond transient absorption to measure the interface thermal conductance (G) value of CNT suspended in sodium dodecyl benzene sulfonate (SDS) micelles in water. $G$ value between CNT and SDS was about $12~\\mathrm{MW/(m^{2}K)}$ . It indicated that the SDS molecules did not form chemical bonds with CNT, but interacted by weak van der Waals force. Therefore, CNT and SDS molecules could only transfer thermal energy from CNT to surrounding SDS molecules by phonon-phonon coupling in the low frequency range. In addition, this work proved that the weak van der Waals forces had little effect on the $G$ value [215]. To further improve the G value between solid and polymer matrix, Zheng et al. used spin coating to change the interfacial adhesion between PS film and sapphire. Although the $G$ value increased with the enhancement of interfacial adhesion, the range of improvement was limited to $21\\pm4.2$ $\\mathrm{{MW/(m^{2}K)}}$ . The reason was that the strength of van der Waals was not high, resulting in the low coupling coefficient between phonon [216]. ",
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "3.3.2. Interface based on covalent bonds ",
+        "text_level": 1,
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "In order to improve the $G$ value greatly, current researches are mainly focus on enhancing the interaction between polymer matrix and thermally conductive fillers, and the formation of covalent bonds is one of the effective strategies. ",
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "At atomic scale, the chemical bond strength can be analogized by spring constant, and when the strength of the chemical bond is strong enough, this frequency of spring-like resonant motion will effectively couple the heat-carrier phonon between different materials, making for phonon transmit more easily [217]. Losego et al. calculated the inter­ action force and $G$ value of methyl $\\left(\\mathrm{-CH}_{3}\\right)$ , halogen (-Br), amino $\\left(\\mathrm{-NH}_{2}\\right)$ and sulfhydryl (-SH) with Au substrates. Results showed that the –SH/Au system had the highest chemical bonding force and the $G$ value reached $65~\\mathrm{MW}/(\\mathrm{m}^{2}\\mathrm{K})$ (Fig. 14) [218]. Luo et al. designed alkane molecules with different chain length. All molecules were bonded onto the surface of the Au film with the same Au–S bond. It revealed that the carbon chain length of the organic molecules had 12 carbon atoms, presenting the highest $G$ value. After increasing the length of carbon chains, the $G$ value was reduced. However, according to molecule dy­ namic simulation, the $G$ value increased with the length of carbon chains and there was no inflection point. The theoretical calculation results did not match the experimental results. The reason was that the C–C single bond could be freely rotated when the molecule length of the carbon chain was greater than 12 carbon atoms, which caused the carbon chains to be easily bent and folded together, and the local organic molecule arrangement regularity was lowered. Therefore, the phonon propaga­ tion free paths in the long-chain molecules reduced, the phonon scat­ tering increased, and the $G$ value was relatively lower [219]. ",
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "Based on the above results, researchers try to link molecule chains or to form covalent bonds between polymer matrix and thermally conductive fillers, aiming to improving the $\\lambda$ values of polymer com­ posites in practical application [218]. Moderate cross-linking between molecule chains is conducive to building thermal conduction paths and improving thermal conductivities. Rashidi et al. introduced cross-linking agent in PMMA. When the chain length of the cross-linking agent was short, the $\\lambda$ value of PMMA enhanced. However, as the crosslinker chain length increased, the λ value of PMMA decreased. In addition, excessive cross-linking would increase phonon scattering and reduce λ value [220]. Kikugawa et al. studied the relationship between the $\\lambda$ value of PS matrix and the crosslink density by non-equilibrim molecule dynamics. It revealed that the λ value of PS increased firstly and then decreased with the increase of crosslink density, and reached the maximum $(0.20~\\mathrm{W/mK})$ when the crosslink density was $40\\%$ , 0.04 $\\mathsf{W/m K}$ higher than that of pure PS $(0.16~\\mathrm{W/mK})$ [78]. For polymer composites, a large number of thermally conductive fillers have been achieved by covalent bonding with polymer matrix, to increase the $\\lambda$ values of the polymer composites [221–223]. Vu et al. functionalized rGO with isocyanatoethylmetharcylate (IEMA) to obtain functionalized rGO (frGO), which could form covalent bonds with acrylic copolymer pressure sensitive adhesive (PSA). The $\\lambda$ value of the frGO/PSA com­ posites with $1\\mathrm{~wt}\\%$ frGO increased to $1.03\\mathrm{W/mK}_{}$ while the $\\lambda$ value of rGO/PSA composites hardly showed enhancement compared with PSA matrix [224]. ",
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "3.3.3. Interface based on non-covalent bonds ",
+        "text_level": 1,
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "Although formed covalent bonds between polymer matrix and thermally conductive fillers facilitate phonon coupling and thermal transport, which usually affect the performances of the interfaces. For instance, when grafting functional groups on the surface of graphene, although enhancing the solubility and uniform dispersion in polymer matrix, the λ value of the fabricated polymer composites are not high as expected. The reason is that the chemical modification of graphene destroys the perfect structure of the graphene surface, reducing the phonon mean free path and increasing the phonon scattering. Therefore, the λ value of the modified graphene has been greatly reduced and the prepared polymer composites do not achieve the expectation [225]. ",
+        "page_idx": 13
+    },
+    {
+        "type": "image",
+        "img_path": "images/861546e8d4ff2062081b29e3c43bb214b0d7ec3fc8768f98c02136100a8a7d79.jpg",
+        "img_caption": [
+            "Fig. 14. Interfacial thermal conductance measured for different interfacial chemistries. "
+        ],
+        "img_footnote": [],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "Under the background, the combination of strong non-covalent interaction forces has emerged. Such bonding method usually uses Lewis acid and alkali, hydrogen bonds, $\\pi{-}\\pi$ stacking, etc., in which electrons of one molecule interact with empty orbits of another mole­ cule, to form non-contact chemical force close to the strength of covalent bond [226–228]. Yu et al. utilized Lewis acid-base complexation be­ tween electron-rich amine groups in octadecylamine (ODA) and electron-deficient boron atoms on the surface of BNNS, not only improving the dispersion of BNNS, but also improving the λ values of the fabricated ODA-BNNS/epoxy composites. When the loading of ODA-BNNS was $5\\mathrm{~wt}\\%$ , the λ value of the ODA-BNNS/epoxy composites increased from $0.26~\\mathrm{W/mK}$ of pure epoxy resin to $0.31\\mathrm{W/mK},$ also superior to the λ value of the BNNS/epoxy composites blended with the same loading of BNNS [229]. As a typical non-covalent bond, hydrogen bond is 10–100 times stronger than van der Waals force, which can effectively improve the λ values of the polymer composites, but related to the hydrogen bond strength and type. In the work of Kim et al., poly (N-acryloyl piperidine) (PAP) and poly(acrylic acid) (PAA), poly(vinyl alcohol) (PVA), poly(4-vinyl phenol) (PVPh) were mixed to form intermolecular hydrogen bonds. The addition of PAA, PVA and PVPh could improve the λ value of PAP to some extent, but the improvement effect was different. Hydrogen bond strength of PAP/PVPh, PAP/PAA, PAP/PVA was from large to small, but the λ value of PAP/PAA was the maximum (1.5 W/mK), followed by PAP/PVA $(0.38~\\mathrm{~W/mK})$ and PAP/PVPh (less than $0.3~\\mathrm{W/mK)}$ . The difference in λ values between PAP/PAA and PAP/PVA was mainly caused by hydrogen bond strength. However, the lower λ value of PAP/PVPh was mainly due to the fact that the hydroxyl group providing hydrogen bond of PVPh was not con­ nected to its backbone (Fig. 15) [22]. ",
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "3.4. Processing technology ",
+        "text_level": 1,
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "Processing technology strongly influences the dispersion and distri­ bution of the thermally conductive fillers in polymer matrix, and may also introduce defects, influencing greatly on the λ values [230]. ",
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "Many researchers try to improve the controlled dispersion perfor­ mances of the thermally conductive fillers, helping to construct efficient thermal conduction paths and increasing the λ values of polymer com­ posites [231]. For example, electric field or magnetic field, etc. can control the orientation of the thermally conductive fillers. The selective distribution of the thermally conductive fillers can be used to control their distribution at different blending components interfaces; and the in-situ polymerization can be used to promote the dispersion of the thermally conductive fillers. In this section, the popular processing techniques in recent years will be introduced. ",
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "Electrospinning could effectively disperse nanoparticles in polymer matrix to prepare composite fibers, presenting large aspect ratio, high specific surface area and controllable orientation [232]. It is easy to disperse thermally conductive fillers along the axial direction of the polymer fibers, reducing the separation distances among the thermally conductive fillers, beneficial to overlaping with each other to form thermal conduction paths [233]. Besides, electrospinning can simulta­ neously improve the orientation of the molecule chains themselves, thereby improving the intrinsic λ value of the polymer matrix [73]. Chen et al. used electrospinning technology to achieve the orientation align­ ment of BNNS on PVDF fibers, which greatly improved the λ values of the BNNS/PVDF films in planar direction $(16.3~\\mathrm{W/mK},$ with BNNS loading of $33\\mathrm{~wt}\\%$ (Fig. 16a) [111]. In addition, Gu et al. design the combined method of “blending-electrospinning-hot pressing” to prepare thermally conductive polymer composites, which achieved the orderly arrangement of thermally conductive fillers on the surface of or inside the electrospun polymer fibers [234–236]. On the basis of this, the in-situ polymerization is used to further improve the uniform dispersion of the thermally conductive fillers in polymer matrix, realizing the highly efficient formation of thermal conduction paths, and great enhancement in $\\lambda$ is achieved with relatively low addition of thermally conductive fillers [121, 237]. In addition, based on the relationship of “phonon scattering-interfacial thermal resistance-thermal conductivity”, the interfacial thermal resistance was calculated according to optimized Hashin-Shtrikman model, effective medium theory (EMT) and Foygel models, revealing the root causes in improving λ values of the polymer composites by functionalizing fillers and electrospinning technology [48, 233, 238]. ",
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "In addition, preparing polymer composite films by blade casting, tape casting, molding, vacuum-assisted filtration, etc., the molecule chains and the thermally conductive fillers can be oriented in the flow direction [239]. Therefore, the fabricated composite films have aniso­ tropic thermal conductivities, and the in-plane λ is higher than through-plane λ. Yu et al. achieved the orientation alignment of BN in the PU films by molding. When the loading of BN was $95~\\mathrm{wt}\\%$ , the in-plane λ value of the BN/PU composite film was up to $50.3\\mathrm{W/mK}$ , 264 times that of pure PU [240]. Shen et al. used PDA to coat BN $\\mathbf{\\check{BN}}@\\mathbf{PDA})$ , and used the doctor blade to prepare the oriented BN@PDA/PVA com­ posite films. The λ values of the oriented BN@PDA/PVA composite films were higher than those of random BN $@$ PDA/PVA composite films by spin casting with the same BN@PDA loading [241]. ",
+        "page_idx": 14
+    },
+    {
+        "type": "image",
+        "img_path": "images/4b1515138723afb77e370e0daead126fc6d87f014bb51f3bee104eb8e9520d58.jpg",
+        "img_caption": [
+            "Fig. 15. High λ value in amorphous polymer blends by engineered interchain interactions. "
+        ],
+        "img_footnote": [],
+        "page_idx": 14
+    },
+    {
+        "type": "image",
+        "img_path": "images/ecb472a378c0b5169ad581082d06e348c0fb102208a2ace61fe2a16c8c03bfc9.jpg",
+        "img_caption": [
+            "Fig. 16. (a) Schematics for preparation process of the PVDF/BNNS nanocomposite films. Reprinted with permission from Ref. [111]. Copyright (2019) American Chemical Society. (b) Schematics for morphology evolution of thermally conductive fillers in LMEs during the extrusion and the construction process of highly efficient thermally conductive and electrically insulating paths. Reprinted with permission from Ref. [245]. Copyright (2017) Elsevier Ltd. "
+        ],
+        "img_footnote": [],
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "Extrusion and injection molding are the traditional processing methods for polymer and polymer composites. The controllable distri­ bution of thermally conductive fillers in polymer matrix is greatly improved by technological innovations such as multi-stage stretch extrusion, multi-station coextrusion and field synergistic extrusion, etc., which is conducive to improving the λ values of polymer composites [242, 243]. Zhang et al. added laminating-multiplying elements (LMEs, in which polymer melts were divided and recombined) at the end of the screw extruder to achieve dividing, stretching, multiplying of the melt, and strengthening shear force to disperse BN fillers. When the loading of BN was $30\\mathrm{~wt}\\%$ , the $\\lambda$ value of the BN/PE composites increased from $0.32~\\mathrm{W/mK}$ of pure PE to $1.21\\mathrm{W/mK}_{;}$ , also superior to that of BN/PE composites $(0.99~\\mathrm{W/mK})$ prepared by conventional method at the same BN loading [244]. Zhang et al. used graphite and SiC as thermally conductive fillers to prepare HDPE based composites by multi-stage stretch extrusion. Highly oriented graphite and well dispersed SiC par­ ticles built continuous and efficient thermal conduction paths in HDPE matrix. When the loading of graphite and SiC was $33\\mathrm{~wt}\\%$ and $20\\mathrm{~wt}\\%$ respectively, the in-plane λ value (in the direction of melt flow) of the polymer composites was as high as $3.8\\mathrm{W/mK},$ , 5 times that in the thickness direction (Fig. 16b) [245]. ",
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "Press molding method has unique advantages in the controllable distribution of thermal conductive fillers. Many researchers utilize the molding method to promote the molten polymer fully infiltrate the microchannels between the adjacent thermally conductive fillers, and form continuous polymer phases. At the same time, thermally conduc­ tive fillers also construct thermal conduction paths. The polymer matrix and thermally conductive fillers form segregated structures, which can greatly increase the $\\lambda$ values of polymer composites [246, 247]. Feng et al. wrapped a layer of graphite flake on the surface of PP powder by physical adsorption, and obtained segregated structural composites via hot-pressing. The λ value of the graphite flake/PP composites reached ",
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "$5.4~\\mathrm{W/mK}$ with $21.2~\\mathrm{vol}\\%$ graphite flake, much higher than that of graphite flake/PP composites prepared by conventional blending (1.65 $\\scriptstyle{\\mathsf{W}}/\\operatorname{mK}$ (Fig. 17a) [248]. On this basis, Wu et al. developed the segre­ gated dual-network structure. The $\\lambda$ value of the (MWCNT/PS)@GNPs composites was 1.8 times than that of GNPs/MWCNT/PS composites with random dispersion structure, 2.2 time higher that of (GNPs/MWCNT)/PS composites with simple segregated structure. The main reason was that the MWCNT in the segregated dual-network structure increased the thermal conduction paths, and had synergistic effect with GNPs thermal conduction networks (Fig. 17b) [249]. ",
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "Casting is widely used in the processing of polymer solutions, melts, dispersions, etc. Currently, many researches are working on casting epoxy resins, PDMS and other polymers in the pre-configured networks of thermally conductive fillers. The advantages are that the thermally conductive fillers distribution can be controlled, in favor of forming complete 3D thermal conduction networks, reducing the contact ther­ mal resistances among thermally conductive fillers, thereby greatly increasing the $\\lambda$ values of polymer composites [250–252]. Han et al. used bidirectional freezing technique to prepare 3D BNNS aerogel with nacre-like structure and then fabricated 3D-BNNS/epoxy composites by casting epoxy into the 3D BNNS aerogel. The λ value of the 3D-BNNS/e­ poxy composites with $15\\mathrm{vol}\\%$ BNNS reached $6.07W/\\mathrm{mK}_{\\cdot}$ while λ value of the random dispersion BNNS/epoxy composites was only about 1.00 $\\mathsf{W/m K}$ (Fig. 18) [253]. Yang et al. prepared CuNWs-TRGA aerogel by self-assembly, freeze-drying and thermal reduction. The λ value of CuNWs-TRGA/epoxy composites with $7.2\\mathrm{~wt}\\%$ CuNWs-TRGA reached $0.51\\mathrm{W/mK}$ [254]. Qin et al. infiltrated the 3D skeleton of melamine sponge into GO solution. And the λ value of graphene/PDMS composites with $4.82~\\mathrm{wt}\\%$ graphene reached $2.19\\mathrm{W/mK}$ (Fig. 19) [255]. ",
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "3D printing has the characteristics of integral molding and no limi­ tation by structural complexity. When the polymer composites melts pass through the fine nozzle, the thermally conductive fillers form orientation structures, allowing them overlap with each other to improve the λ values of polymer composites [256]. Waheed et al. fabricated diamond/ABS composites by fused deposition modeling (FDM) equipment. Results showed the $\\lambda$ value of the diamond/ABS composites with $60\\mathrm{~wt}\\%$ diamond increased from $0.17~\\mathrm{W/mK}$ of pure ABS to $0.94~\\mathrm{W/mK}$ [257]. Peng et al. also used the FDM device to pre­ pare vertically oriented graphite flake (GF)/PA6 composites using two printing methods (flat-3D printing (FP) and stand-3D printing (SP)). GF/PA6 composites prepared by SP method had higher λ values. The main reason was that the GF/PA6 composites by SP could form thermal conduction networks in planar direction at a lower GF loading, and the orientation of the GF was consistent with the planar (y-axis) direction [258]. Multi-field coupling can make full use of the electrical and magnetic properties of the thermally conductive fillers, and provide a new method for preparing polymer composites with high λ values [259]. Thermally conductive fillers could align on a specific direction under electric or magnetic fields, which not only solves the dispersion, but also improves the contact probability of the thermally conductive fillers. Each material has different degree of galvanic polarization under applied electric field, and tends to be aligned along the direction of the applied electric field. Electric fields with different frequency and intensity can be applied to the polymer mixtures, changing the thermally conductive fillers’ arrangement and distribution in polymer matrix, and to obtain polymer composites with high λ value in a certain direction (Fig. 20a) [260–266]. Liu et al. induced the orientation of clay nanoparticles along the thick­ ness direction of PDMS by applying an alternating electric (AC) field. The $\\lambda$ value in the vertical direction of the oriented clay/PDMS films $(0.32~\\mathrm{W/mK})$ with $5\\mathrm{~wt}\\%$ clay nanoparticles was higher than that of unoriented clay/PDMS films $(0.20~\\mathrm{W/mK})$ [267]. In addition to the AC field, the application of direct current (DC) electric field also aligns the thermally conductive fillers. Choa et al. dispersed BN fillers in the low molecule prepolymer, and then apply a DC electric field. The λ value of the prepared BN/polysiloxane composites was $0.73~\\mathrm{W/mK}.$ , 1.97 times than that of BN/polysiloxane composites prepared without electric field [268]. ",
+        "page_idx": 15
+    },
+    {
+        "type": "image",
+        "img_path": "images/176349883d40144a85b6f5bcce8583af7e7d116d27d7fbc0c31337450fd57cb9.jpg",
+        "img_caption": [
+            "ig. 17. Schematic representation of (a) segregated structure. Reprinted with permission from Ref. [248]. Copyright (2016) American Chemical Society. (b) Segregated dual-network structure. Reprinted with permission from Ref. [249]. Copyright (2017) American Chemical Society. "
+        ],
+        "img_footnote": [],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/09c6d615a2c392b7041e5586e9649dddac4490d336971b449cb03f7f045f18f7.jpg",
+        "img_caption": [
+            "Fig. 18. Schematic illustration of the fabrication route using a bidirectional freezing technique together with epoxy resin infiltration. Reprinted with permission from Ref. [253]. Copyright (2019) WILEY-VCH Verlag GmbH & Co. KGaA, Weinheim. "
+        ],
+        "img_footnote": [],
+        "page_idx": 16
+    },
+    {
+        "type": "image",
+        "img_path": "images/e599ebd20816ac9cc036979013f4c9a33d64d5b8f5607a7324b4cb43e26366d3.jpg",
+        "img_caption": [
+            "Fig. 19. Illustration of the overall preparation procedures of 3D thermally conductive nanocomposites with double-continuous networks. Reprinted with permission from Refs. [255]. Copyright (2018) WILEY-VCH Verlag GmbH & Co. KGaA, Weinheim. "
+        ],
+        "img_footnote": [],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 17
+    },
+    {
+        "type": "image",
+        "img_path": "images/3321ca9a23631d038a42048d78297a2f3b2d81fbffbe0ede3f75d635816bb09c.jpg",
+        "img_caption": [
+            "Fig. 20. (a) Application of electric field on the graphene/PVDF composites. Reprinted with permission from Ref. [266]. Copyright (2016) Elsevier Ltd. (b) Schematic illustration of the formation mechanism for aligned FeCo-BNNS/PVDF composites with magnetic field. Reprinted with permission from Ref. [269]. Copyright (2019) American Chemical Society. "
+        ],
+        "img_footnote": [],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "Magnetic field is also used to orient the thermally conductive fillers in polymer matrix to enhance $\\lambda$ value in a certain direction. The usual method is depositing magnetic substances (such as $\\mathrm{Fe}_{3}\\mathrm{O}_{4},$ , FeCo, etc.) on the surfaces of the thermally conductive fillers, and making it orient under the external magnetic field (Fig. 20b) [269]. Chung et al. directly placed the treated graphite platelets (GP) and poly(vinyl pyrrolidone) (PVP) in the magnetic field to induce the orientation of GP, and then obtained GP/PVP films with strong anisotropic in $\\lambda$ value. The through-plane λ value of the GP/PVP films with $80\\mathrm{wt}\\%$ GP reached 7.9 ${\\mathrm{W/mK}},$ while GP/PVP films fabricated without magnetic field was only $2.4\\mathrm{W/mK}$ [270]. Kim et al. coated BN with $\\mathrm{Fe}_{3}\\mathrm{O}_{4}$ to prepared oriented BN- $\\mathrm{{\\cdotFe}_{3}\\mathrm{{O}_{4}}}$ /epoxy composites with magnetic field. The $\\lambda$ value of the oriented BN- $\\mathrm{\\cdotFe}_{3}\\mathrm{O}_{4},$ /epoxy composites with $30~\\mathrm{vol}\\%$ $\\mathrm{BN{-}F e_{3}O_{4}}$ reached 3.45 W/mK, 1.96 times that of unoriented BN- $\\mathrm{{\\cdotFe}_{3}\\mathrm{{O}_{4}}}.$ /epoxy composites $(1.76~\\mathrm{W/mK})$ [271]. ",
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "Phase transfer process primarily utilizes the difference in surface energy between polymer matrix and thermally conductive fillers. For polymer blend system, thermally conductive fillers are more easily distributed in the phase close to its surface energy, so that the thermally conductive fillers move to the interface of the polymer blend, thereby constructing contact networks of the thermally conductive fillers and improving the λ values [272]. Zhang et al. mixed aminated multi-walled carbon nanotubes $\\mathrm{{NH}_{2}}$ -MWCNT) with PVDF and PA6, to promote the migration of $\\mathrm{NH}_{2}$ -MWCNT, forming 3D thermal conduction paths. The λ value of the $\\mathrm{NH}_{2}$ -MWCNT/PVDF/PA6 composites with 4 wt% $\\mathrm{NH}_{2}$ -MWCNT reached $0.64\\mathrm{W/mK},$ increased by $0.15\\mathrm{W/mK}$ than that of $\\mathrm{NH}_{2}$ -MWCNT/PVDF/PA6 composites fabricated by simple blending $(0.49~\\mathrm{W/mK})$ [162]. ",
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "3.5. External conditions ",
+        "text_level": 1,
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "In addition to the factors discussed above, external conditions such as operating temperature, humidity or heat flux, also have influences on the $\\lambda$ values of polymer composites, and the effects of these factors on different polymer composites are also different. ",
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "Temperature has a direct effect on the $\\lambda$ values of polymer compos­ ites. Generally, when the temperature is higher, the $\\lambda$ values of polymer composites will increase, because the increase of temperature promotes the thermal motion of molecules. In addition, if there are pores in polymer composites, the thermal conduction of the air and radiation in the pores will increase with the temperature increases. However, the improvement effect is not significant at $0{-}50~^{\\circ}\\mathrm{C}$ , and the influence of temperature on λ value should be considered only at extremely high or low temperature [273]. ",
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "Most polymer composites often absorb water, and the surface of the thermally conductive fillers has always a certain content of moisture. Therefore, the moisture also has an effect on the $\\lambda$ values [125]. In general, a very small amount of moisture may increase the $\\lambda$ values of the polymer composites, because the $\\lambda$ value of water itself $(\\sim0.5$ $\\mathsf{W/m K}$ is higher than that of the polymer matrix. Mehra et al. studied the vapor molecules absorption of water affecting on the λ values of PVA films. PVA films followed a gradual decrease in λ as the amount of water was decreased. At $20\\%$ moisture, the λ value of PVA films was around $0.5\\mathrm{W/mK},$ whereas about $0.7~\\mathrm{W/mK}$ for $40\\%$ moisture [274]. ",
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "For anisotropic materials, the $\\lambda$ value is related to the direction of heat flux [275–277]. Especially for fiber reinforced polymer composites, when the heat flux is parallel to fiber axial direction, the thermal resistance is small and the $\\lambda$ value is high. While it is perpendicular to fiber axial direction, the thermal resistance is large and the $\\lambda$ value is low. For CF/epoxy composites, the axial direction $\\lambda$ parallel to the CF fibers reached $4.18\\mathrm{W/mK}$ , while the radial direction $\\lambda$ perpendicular to CF fibers was only $0.68~\\mathrm{W/mK}$ [200]. In addition, similar phenomena occur in polymer composites, in which the thermally conductive fillers are highly oriented. ",
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "4. Conclusions and outlook ",
+        "text_level": 1,
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "This review systematically discussed the factors affecting the λ values of the thermally conductive polymers and polymer composites from five aspects: polymer matrix, thermally conductive fillers, interfaces, pos­ sessing technology and external conditions. ",
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "For polymer matrix, improving the order and regularity of molecule chains is the key to increasing the λ value of bulks polymer. The λ values of the thermally conductive fillers play a decisive role in the λ values of the final polymer composites. Herein, the interface is the main obstacle affecting the $\\lambda$ values of the thermally conductive polymer composites. Current researches are mainly attempting to improve the interfacial compatibility between polymer matrix and thermally conductive fillers, and to reduce the thermal resistances of the interface. External condi­ tions such as temperature and humidity only have a little effect on the λ values, and fewer researches are concerned in this perspective. ",
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "However, there are still several problems in thermally conductive polymers and polymer composites. (1) It is necessary to investigate the influences of thermally conductive fillers structures, functionalization as well as chain structures and aggregation structures of polymers on the λ values of the thermally conductive polymer composites, and find out the intrinsic correlation. (2) Quantitative relationship between interfacial thermal resistances and $\\lambda$ values of the thermally conductive polymer composites remains to be clarified and resolved. (3) Thermal conduction mechanisms of the thermally conductive polymer composites are still not perfect. It is necessary to establish relatively uniform and more ac­ curate thermal conduction model to explain the relationship among thermal conduction networks, polymer chain motion and $\\lambda$ values. (4) Test standards, methods and equipments for the $\\lambda$ values of the ther­ mally conductive polymers and polymer composites are various and need to be normalized to make the λ values comparability. Besides, new measurement techniques of low-dimensional polymers and polymer composites such as fibers or films are also required. (5) Due to the limitation by cost and processing, the thermally conductive polymer composites are difficult to be carried out in large-scale production, and the industrialization progress are not ideal. ",
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "Based on the research status and development trend of the thermally conductive polymers and polymer composites, the following relevant researches are needed. (1) Interdisciplinary integration is becoming more and more important. Mathematical and computer-related software should be fully utilized to carry out dynamic simulation of the thermal conduction of the polymers and polymer composites, and to construct and optimize mathematical models. (2) Functionalization of thermally conductive fillers and heat transfer process at the thermally conductive fillers/polymer matrix interface should be studied in-depth with the help of advanced testing technology (e.g. thermal microscopy in microscopic interface level), revealing the essence of the interfacial thermal resistances in microscopic scale and analyzing how to reduce the interfacial thermal resistances. (3) Implementing in-depth in­ vestigations in intrinsic thermally conductive polymers, studying the influences and mechanisms of molecules and aggregation structures of polymers on its intrinsic λ value are necessary. (4) Highly thermal conductivity of polymer composites at ultra-low thermally conductive fillers loading is particularly important. More attentions should be paid to the engineering problems and related basic researches of the ther­ mally conductive polymer composites in industrial applications, pro­ moting the industrial products upgrading. ",
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "It is believed that after overcoming the current difficulties, thermally conductive polymers and polymer composites, as the basic support for the development of human society, will play an irreplaceable role in various aspects, including aerospace, energy management, artificial in­ telligence, new energy, high-end equipment manufacturing, energyefficient electronic devices, etc. ",
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 19
+    },
+    {
+        "type": "text",
+        "text": "Declaration of competing interest ",
+        "text_level": 1,
+        "page_idx": 19
+    },
+    {
+        "type": "text",
+        "text": "The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper. ",
+        "page_idx": 19
+    },
+    {
+        "type": "text",
+        "text": "CRediT authorship contribution statement ",
+        "text_level": 1,
+        "page_idx": 19
+    },
+    {
+        "type": "text",
+        "text": "Yongqiang Guo: Conceptualization, Formal analysis, Writing - original draft. Kunpeng Ruan: Writing - original draft. Xuetao Shi: Data curation, Writing - review & editing. Xutong Yang: Formal anal­ ysis, Writing - review & editing. Junwei Gu: Supervision. ",
+        "page_idx": 19
+    },
+    {
+        "type": "text",
+        "text": "Acknowledgement ",
+        "text_level": 1,
+        "page_idx": 19
+    },
+    {
+        "type": "text",
+        "text": "The authors are grateful for the support and funding from the Na­ tional Natural Science Foundation of China (No. 51973173 and 51773169). Natural Science Basic Research Plan for Distinguished Young Scholars in Shaanxi Province of China (No. 2019JC-11). Natural Science Basic Research Plan in Shaanxi Province of China (No. 2018JM5001). Open Fund from Henan University of Science and Technology; Fundamental Research Funds for the Central Universities (No. 310201911py010). X. T. Yang thanks for the Innovation Founda­ tion for Doctor Dissertation of Northwestern Polytechnical University (CX201920). ",
+        "page_idx": 19
+    },
+    {
+        "type": "text",
+        "text": "References ",
+        "text_level": 1,
+        "page_idx": 19
+    },
+    {
+        "type": "text",
+        "text": "[1] S. Li, Q. Zheng, Y. Lv, X. Liu, X. Wang, P.Y. Huang, D.G. Cahill, B. Lv, High thermal conductivity in cubic boron arsenide crystals, Science 361 (6402) (2018) 579–581. [2] F. Tian, Z.F. Ren, High thermal conductivity in boron arsenide: from prediction to reality, Angew. Chem. Int. Ed. 58 (18) (2019) 5824–5831. [3] X.F. Xu, J. Chen, J. Zhou, B.W. Li, Thermal conductivity of polymers and their nanocomposites, Adv. Mater. 30 (17) (2018) 1705544.   \n[4] J. Chen, X. Huang, Y. Zhu, P. Jiang, Cellulose nanofiber supported 3D interconnected BN nanosheets for epoxy nanocomposites with ultrahigh thermal management capability, Adv. Funct. Mater. 27 (5) (2017). UNSP 1604754. [5] M.Y. Lin, Y.H. Li, K. Xu, Y.H. Ou, L.F. Su, X. Feng, J. Li, H.S. Qi, D.T. Liu, Thermally conductive nanostructured, aramid dielectric composite films with boron nitride nanosheets, Compos. Sci. Technol. 175 (2019) 85–91.   \n[6] L. Wang, H. Qiu, C.B. Liang, P. Song, Y.X. Han, Y.X. Han, J.W. Gu, J. Kong, D. Pan, Z.H. Guo, Electromagnetic interference shielding MWCNT-Fe3O4@Ag/ epoxy nanocomposites with satisfactory thermal conductivity and high thermal stability, Carbon 141 (2019) 506–514.   \n[7] C. Fu, C. Yan, L. Ren, X. Zeng, G. Du, R. Sun, J. Xu, C.P. Wong, Improving thermal conductivity through welding boron nitride nanosheets onto silver nanowires via silver nanoparticles, Compos. Sci. Technol. 177 (2019) 118–126.   \n[8] X. Yang, Y. Guo, X. Luo, N. Zheng, T. Ma, J. Tan, C. Li, Q. Zhang, J. Gu, Selfhealing, recoverable epoxy elastomers and their composites with desirable thermal conductivities by incorporating BN fillers via in-situ polymerization, Compos. Sci. Technol. 164 (2018) 59–64. [9] P. Dong, C. Long, Y. Peng, X. Peng, F. Guo, Effect of coatings on thermal conductivity and tribological properties of aluminum foam/polyoxymethylene interpenetrating composites, J. Mater. Sci. 54 (20) (2019) 13135–13146.   \n[10] Z. Lule, J. Kim, Thermally conductive and highly rigid polylactic acid (PLA) hybrid composite filled with surface treated alumina/nano-sized aluminum nitride, Compos. Appl. Sci. Manuf. Part A-Appl. S. 124 (2019) 105506.   \n[11] F. Jiang, S.Q. Cui, N. Song, L.Y. Shi, P. Ding, Hydrogen bond-regulated boron nitride network structures for improved thermal conductive property of polyamide-imide composites, ACS Appl. Mater. Interfaces 10 (19) (2018) 16812–16821.   \n[12] T. Ji, Y. Feng, M. Qin, S. Li, F. Zhang, F. Lv, W. Feng, Thermal conductive and flexible silastic composite based on a hierarchical framework of aligned carbon fibers-carbon nanotubes, Carbon 131 (2018) 149–159.   \n[13] Y. Xu, X. Wang, J. Zhou, B. Song, Z. Jiang, E.M.Y. Lee, S. Huberman, K. K. Gleason, G. Chen, Molecular engineered conjugated polymer with high thermal conductivity, Sci. Adv. 4 (3) (2018) eaar3031.   \n[14] L. Zhang, L. Liu, Hierarchically hydrogen-bonded graphene/polymer interfaces with drastically enhanced interfacial thermal conductance, Nanoscale 11 (8) (2019) 3656–3664.   \n[15] N. Burger, A. Laachachi, M. Ferriol, M. Lutz, V. Toniazzo, D. Ruch, Review of thermal conductivity in composites: mechanisms, parameters and theory, Prog. Polym. Sci. 61 (2016) 1–28.   \n[16] Z. Zhang, Nano/microscale Heat Transfer, first ed., McGraw-Hill Professional, New York, 2007.   \n[17] L. Pilon, F. Janos, R. Kitamura, Effective thermal conductivity of soda-lime silicate glassmelts with different iron contents between $1100^{\\circ}\\mathrm{C}$ and $1500^{\\circ}\\mathrm{C}_{\\:}$ , J. Am. Ceram. Soc. 97 (2) (2014) 442–450.   \n[18] H.L. Li, O. Wilhelmsen, Y.X. Lv, W.L. Wang, J.Y. Yan, Viscosities, thermal conductivities and diffusion coefficient of $\\mathrm{CO}_{2}$ mixtures: review of experimental data and theoretical models, Int. J. Greenh. Gas Control 5 (5) (2011) 1119–1139.   \n[19] C.Y. Ho, R.W. Powell, P.E. Liley, Thermal Conductivity of the Elements: a Comprehensive Review, American Institute of Physics, New York, 1974.   \n[20] S.S. Chen, Q.Z. Wu, C. Mishra, J.Y. Kang, H.J. Zhang, K.J. Cho, W.W. Cai, A. A. Balandin, R.S. Ruoff, Thermal conductivity of isotopically modified graphene, Nat. Mater. 11 (3) (2012) 203–207.   \n[21] J.P. Holman, Heat Transfer, tenth ed., McGraw-hill Companies, New York, 2010.   \n[22] G.H. Kim, D. Lee, A. Shanker, L. Shao, M.S. Kwon, D. Gidley, J. Kim, K.P. Pipe, High thermal conductivity in amorphous polymer blends by engineered interchain interactions, Nat. Mater. 14 (2014) 295.   \n[23] C.L. Huang, X. Qian, R.G. Yang, Thermal conductivity of polymers and polymer nanocomposites, Mater. Sci. Eng. R Rep. 132 (2018) 1–22.   \n[24] C.L. Choy, F.C. Chen, W.H. Luk, Thermal-conductivity of oriented crystalline polymers, J. Polym. Sci., Polym. Phys. Ed. 18 (6) (1980) 1187–1207.   \n[25] C.L. Choy, K. Young, Thermal-conductivity of semicrystalline polymers-model, Polymer 18 (8) (1977) 769–776.   \n[26] S.J. Kim, C.M. Hong, K.S. Jang, Theoretical analysis and development of thermally conductive polymer composites, Polymer 176 (2019) 110–117.   \n[27] A. Li, C. Zhang, Y.F. Zhang, Thermal conductivity of graphene-polymer composites: mechanisms, properties, and applications, Polymers 9 (9) (2017) 437.   \n[28] K. Soga, T. Saito, T. Kawaguchi, I. Satoh, Percolation effect on thermal conductivity of filler-dispersed polymer composites, J. Therm. Sci. Technol. 12 (1) (2017), 00581.   \n[29] X. Zhang, K. Wu, Y.H. Liu, B.W. Yu, Q. Zhang, F. Chen, Q. Fu, Preparation of highly thermally conductive but electrically insulating composites by constructing a segregated double network in polymer composites, Compos. Sci. Technol. 175 (2019) 135–142.   \n[30] B. Li, Y. Liu, B. Sun, M. Pan, G. Dai, Properties and heat-conduction mechanism of thermally conductive polymer composites, J. Chem. Ind. Eng. 60 (10) (2009) 2650–2655.   \n[31] F. Zhang, Y.Y. Feng, M.M. Qin, L. Gao, Z.Y. Li, F.L. Zhao, Z.X. Zhang, F. Lv, W. Feng, Stress controllability in thermal and electrical conductivity of 3D elastic graphene-crosslinked carbon nanotube sponge/polyimide nanocomposite, Adv. Funct. Mater. 29 (25) (2019) 1901383.   \n[32] J. Gu, C. Liang, X. Zhao, B. Gan, H. Qiu, Y. Guo, X. Yang, Q. Zhang, D.Y. Wang, Highly thermally conductive flame-retardant epoxy nanocomposites with reduced ignitability and excellent electrical conductivities, Compos. Sci. Technol. 139 (2017) 83–89.   \n[33] D. Suh, C.M. Moon, D. Kim, S. Baik, Ultrahigh thermal conductivity of interface materials by silver-functionalized carbon nanotube phonon conduits, Adv. Mater. 28 (33) (2016) 7220–7227.   \n[34] J.W. Gu, C. Xie, H.L. Li, J. Dang, W.C. Geng, Q.Y. Zhang, Thermal percolation behavior of graphene nanoplatelets/polyphenylene sulfide thermal conductivity composites, Polym. Compos. 35 (6) (2014) 1087–1092.   \n[35] A. Oluwalowo, N. Nguyen, S.L. Zhang, J.G. Park, R. Liang, Electrical and thermal conductivity improvement of carbon nanotube and silver composites, Carbon 146 (2019) 224–231.   \n[36] R. Aradhana, S. Mohanty, S.K. Nayak, Novel electrically conductive epoxy/ reduced graphite oxide/silica hollow microspheres adhesives with enhanced lap shear strength and thermal conductivity, Compos. Sci. Technol. 169 (2019) 86–94.   \n[37] Y. Su, J.J. Li, G.J. Weng, Theory of thermal conductivity of graphene-polymer nanocomposites with interfacial Kapitza resistance and graphene-graphene contact resistance, Carbon 137 (2018) 222–233.   \n[38] Z. Wu, C. Xu, C. Ma, Z. Liu, H.-M. Cheng, W. Ren, Synergistic effect of aligned graphene nanosheets in graphene foam for high-performance thermally conductive composites, Adv. Mater. 31 (19) (2019) 1900199.   \n[39] C.L. Li, H.L. Guo, X. Tian, X.G. Tian, Transient response for a half-space with variable thermal conductivity and diffusivity under thermal and chemical shock, J. Therm. Stresses 40 (3) (2017) 389–401.   \n[40] D.M. Bigg, Thermal-conductivity of heterophase polymer compositions, Adv. Polym. Sci. 119 (1995) 1–30.   \n[41] D.M. Bigg, Thermally conductive polymer compositions, Polym. Compos. 7 (3) (1986) 125–140.   \n[42] X. Yang, C. Liang, T. Ma, Y. Guo, J. Kong, J. Gu, M. Chen, J. Zhu, A review on thermally conductive polymeric composites: classification, measurement, model and equations, mechanism and fabrication methods, Adv. Compos. Hybrid. Mater. 1 (2) (2018) 207–230.   \n[43] N. Mehra, Y. Li, X. Yang, J. Li, M.A. Kashfipour, J. Gu, J. Zhu, Engineering molecule interaction in polymeric hybrids: effect of thermal linker and polymer chain structure on thermal conduction, Compos. B Eng. 166 (2019) 509–515.   \n[44] Y.F. Huang, Z.G. Wang, W.C. Yu, Y. Ren, J. Lei, J.Z. Xu, Z.M. Li, Achieving high thermal conductivity and mechanical reinforcement in ultrahigh molecule weight polyethylene bulk material, Polymer 180 (2019) 121760.   \n[45] R. Haggenmueller, C. Guthy, J.R. Lukes, J.E. Fischer, K.I. Winey, Single wall carbon nanotube/polyethylene nanocomposites: thermal and electrical conductivity, Macromolecules 40 (7) (2007) 2417–2421.   \n[46] S. Paszkiewicz, A. Szymczyk, D. Pawlikowska, J. Subocz, M. Zenker, R. Masztak, Electrically and thermally conductive low density polyethylene-based nanocomposites reinforced by MWCNT or hybrid MWCNT/Graphene nanoplatelets with improved thermo-oxidative stability, Nanomaterials 8 (4) (2018) 264.   \n[47] B. Maira, K. Takeuchi, P. Chammingkwan, M. Terano, T. Taniike, Thermal conductivity of polypropylene/aluminum oxide nanocomposites prepared based on reactor granule technology, Compos. Sci. Technol. 165 (2018) 259–265.   \n[48] Y. Guo, L. Pan, X. Yang, K. Ruan, Y. Han, J. Kong, J. Gu, Simultaneous improvement of thermal conductivities and electromagnetic interference shielding performances in polystyrene composites via constructing interconnection oriented networks based on electrospinning technology, Compos. Appl. Sci. Manuf. Part A-Appl. S. 124 (2019) 105484.   \n[49] J.X. Zhang, Z.J. Du, W. Zou, H.Q. Li, C. Zhang, MgO nanoparticles-decorated carbon fibers hybrid for improving thermal conductive and electrical insulating properties of Nylon 6 composite, Compos. Sci. Technol. 148 (2017) 1–8.   \n[50] A. Naji, B. Krause, P. Potschke, A. Ameli, Hybrid conductive filler/polycarbonate composites with enhanced electrical and thermal conductivities for bipolar plate applications, Polym. Compos. 40 (8) (2019) 3189–3198.   \n[51] G.H. Li, R.F. Xing, P.P. Geng, Z.X. Liu, L.Q. He, N.Y. Wang, Q.X. Zhang, X.W. Qu, Surface modification of boron nitride via poly(dopamine) coating and preparation of acrylonitrile-butadiene-styrene copolymer/boron nitride composites with enhanced thermal conductivity, Polym. Adv. Technol. 29 (1) (2018) 337–346.   \n[52] N. Mehra, L.W. Mu, T. Ji, X.T. Yang, J. Kong, J.W. Gu, J.H. Zhu, Thermal transport in polymeric materials and across composite interfaces, Appl. Mater. Today 12 (2018) 92–130.   \n[53] Z. Han, A. Fina, Thermal conductivity of carbon nanotubes and their polymer nanocomposites: a review, Prog. Polym. Sci. 36 (7) (2011) 914–944.   \n[54] J. Gu, Y. Guo, X. Yang, C. Liang, W. Geng, L. Tang, N. Li, Q. Zhang, Synergistic improvement of thermal conductivities of polyphenylene sulfide composites filled with boron nitride hybrid fillers, Compos. Appl. Sci. Manuf. Part A-Appl. S. 95 (2017) 267–273.   \n[55] X.T. Yang, L. Tang, Y.Q. Guo, C.B. Liang, Q.Y. Zhang, K.C. Kou, J.W. Gu, Improvement of thermal conductivities for PPS dielectric nanocomposites via incorporating NH2-POSS functionalized nBN fillers, Compos. Appl. Sci. Manuf. Part A-Appl. S. 101 (2017) 237–242.   \n[56] J. Gu, X. Meng, Y. Tang, Y. Li, Q. Zhuang, J. Kong, Hexagonal boron nitride/ polymethyl-vinyl siloxane rubber dielectric thermally conductive composites with ideal thermal stabilities, Compos. Appl. Sci. Manuf. Part A-Appl. S. 92 (2017) 27–32.   \n[57] M.D. Li, Z.W. Ding, Q.P. Meng, J.W. Zhou, Y.M. Zhu, H. Liu, M.S. Dresselhaus, G. Chen, Nonperturbative quantum nature of the dislocation phonon interaction, Nano Lett. 17 (3) (2017) 1587–1594.   \n[58] A. Askadskii, M. Petunova, V. Markov, Calculation scheme for the evaluation of polymer thermal conductivity, Polym. Sci. 55 (12) (2013) 772–777.   \n[59] T. Xiao, X. Fan, D. Fan, Q. Li, High thermal conductivity and low absorptivity/ emissivity properties of transparent fluorinated polyimide films, Polym. Bull. 74 (11) (2017) 4561–4575.   \n[60] H.Y. Chen, V.V. Ginzburg, J. Yang, Y.F. Yang, W. Liu, Y. Huang, L.B. Du, B. Chen, Thermal conductivity of polymer-based composites: fundamentals and applications, Prog. Polym. Sci. 59 (2016) 41–85.   \n[61] D. Moses, A. Denenstein, Experimental determination of the thermal conductivity of a conducting polymer: pure and heavily doped polyacetylene, Phys. Rev. B 30 (4) (1984) 2090–2097.   \n[62] J.H. Zhao, J.W. Jiang, N. Wei, Y.C. Zhang, T. Rabczuk, Thermal conductivity dependence on chain length in amorphous polymers, J. Appl. Phys. 113 (18) (2013) 184304.   \n[63] D. Luo, C. Huang, Z. Huang, Decreased thermal conductivity of polyethylene chain influenced by short chain branching, J. Heat Tran. 140 (3) (2018), 031302.   \n[64] H. Ma, Z. Tian, Effects of polymer topology and morphology on thermal transport: a molecule dynamics study of bottlebrush polymers, Appl. Phys. Lett. 110 (9) (2017), 091903.   \n[65] H. Ma, Z.T. Tian, Chain rotation significantly reduces thermal conductivity of single-chain polymers, J. Mater. Res. 34 (1) (2019) 126–133.   \n[66] H. Ma, Z. Tian, Effects of polymer chain confinement on thermal conductivity of ultrathin amorphous polystyrene films, Appl. Phys. Lett. 107 (7) (2015), 073111.   \n[67] T. Zhang, T. Luo, Role of chain morphology and stiffness in thermal conductivity of amorphous polymers, J. Phys. Chem. B 120 (4) (2016) 803–812.   \n[68] L. Bai, X. Zhao, R.Y. Bao, Z.Y. Liu, M.B. Yang, W. Yang, Effect of temperature, crystallinity and molecule chain orientation on the thermal conductivity of polymers: a case study of PLLA, J. Mater. Sci. 53 (14) (2018) 10543–10553.   \n[69] S. Deng, Z. Lin, B. Xu, H. Lin, C. Du, Effects of carbon fillers on crystallization properties and thermal conductivity of poly(phenylene sulfide), Polym. Plast. Technol. Eng. 54 (10) (2015) 1017–1024.   \n[70] Y. Xu, D. Kraemer, B. Song, Z. Jiang, J. Zhou, J. Loomis, J. Wang, M. Li, H. Ghasemi, X. Huang, X. Li, G. Chen, Nanostructured polymer films with metallike thermal conductivity, Nat. Commun. 10 (1) (2019) 1771.   \n[71] S. Shen, A. Henry, J. Tong, R. Zheng, G. Chen, Polyethylene nanofibres with very high thermal conductivities, Nat. Nanotechnol. 5 (2010) 251.   \n[72] V. Singh, T.L. Bougher, A. Weathers, Y. Cai, K. Bi, M.T. Pettes, S.A. McMenamin, W. Lv, D.P. Resler, T.R. Gattuso, D.H. Altman, K.H. Sandhage, L. Shi, A. Henry, B. A. Cola, High thermal conductivity of chain-oriented amorphous polythiophene, Nat. Nanotechnol. 9 (2014) 384–390.   \n[73] M.V. Kakade, S. Givens, K. Gardner, K.H. Lee, D.B. Chase, J.F. Rabolt, Electric field induced orientation of polymer chains in macroscopically aligned electrospun polymer nanofibers, J. Am. Chem. Soc. 129 (10) (2007) 2777–2782.   \n[74] C. Lu, S.W. Chiang, H. Du, J. Li, L. Gan, X. Zhang, X. Chu, Y. Yao, B. Li, F. Kang, Thermal conductivity of electrospinning chain-aligned polyethylene oxide (PEO), Polymer 115 (2017) 52–59.   \n[75] J. Ma, Q. Zhang, A. Mayo, Z. Ni, H. Yi, Y. Chen, R. Mu, L.M. Bellan, D. Li, Thermal conductivity of electrospun polyethylene nanofibers, Nanoscale 7 (40) (2015) 16899–16908.   \n[76] A. Henry, G. Chen, Anomalous heat conduction in polyethylene chains: theory and molecule dynamics simulations, Phys. Rev. B 79 (14) (2009) 144305.   \n[77] O. Yamamoto, Thermal conductivity of cross-linked polymers, Polym. J. 2 (4) (1971) 509.   \n[78] G. Kikugawa, T.G. Desai, P. Keblinski, T. Ohara, Effect of crosslink formation on heat conduction in amorphous polymers, J. Appl. Phys. 114 (3) (2013), 034302.   \n[79] L. Zhang, M. Ruesch, X.L. Zhang, Z.T. Bai, L. Liu, Tuning thermal conductivity of crystalline polymer nanofibers by interchain hydrogen bonding, RSC Adv. 5 (107) (2015) 87981–87986.   \n[80] N. Mehra, M.A. Kashfipour, J.H. Zhu, Filler free technology for enhanced thermally conductive optically transparent polymeric materials using low thermally conductive organic linkers, Appl. Mater. Today 13 (2018) 207–216.   \n[81] X.F. Xu, J. Zhou, J. Chen, Thermal transport in conductive polymer-based materials, Adv. Funct. Mater. (2019) 1904704.   \n[82] Y. Han, X. Shi, X. Yang, Y. Guo, J. Zhang, J. Kong, J. Gu, Enhanced thermal conductivities of epoxy nanocomposites via incorporating in-situ fabricated hetero-structured SiC-BNNS fillers, Compos. Sci. Technol. 187 (2020) 107944.   \n[83] R.A. Hauser, J.A. King, R.M. Pagel, J.M. Keith, Effects of carbon fillers on the thermal conductivity of highly filled liquid-crystal polymer based resins, J. Appl. Polym. Sci. 109 (4) (2008) 2145–2155.   \n[84] M. Akatsuka, Y. Takezawa, Study of high thermal conductive epoxy resins containing controlled high-order structures, J. Appl. Polym. Sci. 89 (9) (2003) 2464–2467.   \n[85] S.H. Song, H. Katagi, Y. Takezawa, Study on high thermal conductivity of mesogenic epoxy resin with spherulite structure, Polymer 53 (20) (2012) 4489–4492.   \n[86] C.L. Choy, Thermal conductivity of polymers, Polymer 18 (10) (1977) 984–1004.   \n[87] C.L. Choy, D. Greig, The low-temperature thermal conductivity of a semicrystalline polymer, polyethylene terephthalate, J. Phys. C Solid State Phys. 8 (19) (1975) 3121–3130.   \n[88] W.N. dos Santos, J.A. de Sousa, R. Gregorio, Thermal conductivity behaviour of polymers around glass transition and crystalline melting temperatures, Polym. Test. 32 (5) (2013) 987–994.   \n[89] R. Zhang, X. Shi, L. Tang, Z. Liu, J. Zhang, Y. Guo, J. Gu, Thermally conductive and insulating epoxy composites by synchronously incorporating Si-sol functionalized glass fibers and BN fillers, Chin. J. Polym. Sci. (2020), https://doi. org/10.1007/s10118-020-2391-0.   \n[90] Z. Li, L. Wang, Y. Li, Y. Feng, W. Feng, Carbon-based functional nanomaterials: preparation, properties and applications, Compos. Sci. Technol. 179 (2019) 10–40.   \n[91] H. Guo, J. Liu, Q. Wang, M. Liu, C. Du, B. Li, L. Feng, High thermal conductive poly(vinylidene fluoride)-based composites with well-dispersed carbon nanotubes/graphene three-dimensional network structure via reduced interfacial thermal resistance, Compos. Sci. Technol. 181 (2019) 107713.   \n[92] A. Tessema, D. Zhao, J. Moll, S. Xu, R. Yang, C. Li, S.K. Kumar, A. Kidane, Effect of filler loading, geometry, dispersion and temperature on thermal conductivity of polymer nanocomposites, Polym. Test. 57 (2017) 101–106.   \n[93] Q. Cai, D. Scullion, W. Gan, A. Falin, S. Zhang, K. Watanabe, T. Taniguchi, Y. Chen, E.J.G. Santos, L.H. Li, High thermal conductivity of high-quality monolayer boron nitride and its thermal expansion, Sci. Adv. 5 (6) (2019), eaav0129.   \n[94] S. Yang, W. Li, S. Bai, Q. Wang, Fabrication of morphologically controlled composites with high thermal conductivity and dielectric performance from aluminum nanoflake and recycled plastic package, ACS Appl. Mater. Interfaces 11 (3) (2019) 3388–3399.   \n[95] H.M. Fang, S.L. Bai, C.P. Wong, Microstructure engineering of graphene towards highly thermal conductive composites, Compos. Appl. Sci. Manuf. Part A-Appl. S. 112 (2018) 216–238.   \n[96] C. Xiao, Y. Tang, L. Chen, X. Zhang, K. Zheng, X. Tian, Preparation of highly thermally conductive epoxy resin composites via hollow boron nitride microbeads with segregated structure, Compos. Appl. Sci. Manuf. Part A-Appl. S. 121 (2019) 330–340.   \n[97] L. Qiu, H.Y. Zou, X.T. Wang, Y.H. Feng, X.X. Zhang, J.N. Zhao, X.H. Zhang, Q. W. Li, Enhancing the interfacial interaction of carbon nanotubes fibers by Au nanoparticles with improved performance of the electrical and thermal conductivity, Carbon 141 (2019) 497–505.   \n[98] P. Song, H. Qiu, L. Wang, X. Liu, Y. Zhang, J. Zhang, J. Kong, J. Gu, Honeycomb structural rGO-MXene/epoxy nanocomposites for superior electromagnetic interference shielding performance, Sustain. Mater. Technol. (2020), https://doi. org/10.1016/j.susmat.2020.e00153.   \n[99] Y.X. Fu, Z.X. He, D.C. Mo, S.S. Lu, Thermal conductivity enhancement with different fillers for epoxy resin adhesives, Appl. Therm. Eng. 66 (1) (2014) 493–498.   \n[100] J.W. Gu, N. Li, L.D. Tian, Z.Y. Lv, Q.Y. Zhang, High thermal conductivity graphite nanoplatelet/UHMWPE nanocomposites, RSC Adv. 5 (46) (2015) 36334–36339.   \n[101] G.W. Lee, M. Park, J. Kim, J.I. Lee, H.G. Yoon, Enhanced thermal conductivity of polymer composites filled with hybrid filler, Compos. Appl. Sci. Manuf. Part AAppl. S. 37 (5) (2006) 727–734.   \n[102] H. Guo, Q. Wang, J. Liu, C. Du, B. Li, Improved interfacial properties for largely enhanced thermal conductivity of poly(vinylidene fluoride)-based nanocomposites via functionalized multi-wall carbon nanotubes, Appl. Surf. Sci. 487 (2019) 379–388.   \n[103] Y. Guo, X. Yang, K. Ruan, J. Kong, M. Dong, J. Zhang, J. Gu, Z. Guo, Reduced graphene oxide heterostructured silver nanoparticles significantly enhanced thermal conductivities in hot-pressed electrospun polyimide nanocomposites, ACS Appl. Mater. Interfaces 11 (28) (2019) 25465–25473.   \n[104] Y.F. Zhuang, X.Y. Cao, J.N. Zhang, Y.Y. Ma, X.X. Shang, J.X. Lu, S.L. Yang, K. Zheng, Y.M. Ma, Monomer casting nylon/graphene nanocomposite with both improved thermal conductivity and mechanical performance, Compos. Appl. Sci. Manuf. Part A-Appl. S. 120 (2019) 49–55.   \n[105] J. You, H.H. Choi, Y.M. Lee, J. Cho, M. Park, S.S. Lee, J.H. Park, Plasma-assisted mechanochemistry to produce polyamide/boron nitride nanocomposites with high thermal conductivities and mechanical properties, Compos. B Eng. 164 (2019) 710–719.   \n[106] C. Ji, C. Yan, Y. Wang, S. Xiong, F. Zhou, Y. Li, R. Sun, C.P. Wong, Thermal conductivity enhancement of CNT/MoS2/graphene\u0000epoxy nanocomposites based on structural synergistic effects and interpenetrating network, Compos. B Eng. 163 (2019) 363–370.   \n[107] Y. Liu, M. Lu, K. Wu, S. Yao, X. Du, G. Chen, Q. Zhang, L. Liang, M. Lu, Anisotropic thermal conductivity and electromagnetic interference shielding of epoxy nanocomposites based on magnetic driving reduced graphene oxide@ $\\mathrm{Fe}_{3}\\mathrm{O}_{4},$ Compos. Sci. Technol. 174 (2019) 1–10.   \n[108] Y. Guo, K. Ruan, X. Yang, T. Ma, J. Kong, N. Wu, J. Zhang, J. Gu, Z. Guo, Constructing fully carbon-based fillers with a hierarchical structure to fabricate highly thermally conductive polyimide nanocomposites, J. Mater. Chem. C 7 (23) (2019) 7035–7044.   \n[109] C.B. Liang, H. Qiu, Y.Y. Han, H.B. Gu, P. Song, L. Wang, J. Kong, D.P. Cao, J. W. Gu, Superior electromagnetic interference shielding 3D graphene nanoplatelets/reduced graphene oxide foam/epoxy nanocomposites with high thermal conductivity, J. Mater. Chem. C 7 (9) (2019) 2725–2733.   \n[110] C. Yan, T. Yu, C. Ji, X. Zeng, J. Lu, R. Sun, C.P. Wong, 3D interconnected high aspect ratio tellurium nanowires in epoxy nanocomposites: serving as thermal conductive expressway, J. Appl. Polym. Sci. 136 (6) (2019) 47054.   \n[111] J. Chen, X. Huang, B. Sun, P. Jiang, Highly thermally conductive yet electrically itnhseurlmatailn gm apnoalygemmere/nbt ocraopna nbiitlirtiyd,e  AnCaSn oNsahneeot s1 3n a(n1)o c(o2m01p9o)s it3e3 7fi–l3m4s 5f. or improved   \n[112] C. Yan, T. Yu, C. Ji, D.J. Kang, N. Wang, R. Sun, C.P. Wong, Tailoring highly thermal conductive properties of Te/MoS2/Ag heterostructure nanocomposites using a bottom-up approach, Adv. Electron. Mater. 5 (1) (2019) 1800548.   \n[113] Z. Lule, J. Kim, Surface modification of aluminum nitride to fabricate thermally conductive poly(butylene succinate) nanocomposite, Polymers 11 (1) (2019) 148.   \n[114] C. Shen, H. Wang, T. Zhang, Y. Zeng, Silica coating onto graphene for improving thermal conductivity and electrical insulation of graphene/polydimethylsiloxane nanocomposites, J. Mater. Sci. Technol. 35 (1) (2019) 36–43.   \n[115] J. Tong, H.X. Huang, M. Wu, Simultaneously facilitating dispersion and thermal reduction of graphene oxide to enhance thermal conductivity of poly(vinylidene fluoride)/graphene nanocomposites by water in continuous extrusion, Chem. Eng. J. 348 (2018) 693–703.   \n[116] R. Wang, L. Wu, D. Zhuo, J. Zhang, Y. Zheng, Fabrication of polyamide 6 nanocomposite with improved thermal conductivity and mechanical properties via incorporation of low graphene content, Ind. Eng. Chem. Res. 57 (32) (2018) 10967–10976.   \n[117] C. Li, B. Liu, Z. Gao, H. Wang, M. Liu, S. Wang, C. Xiong, Electrically insulating ZnOs/ZnOw/silicone rubber nanocomposites with enhanced thermal conductivity and mechanical properties, J. Appl. Polym. Sci. 135 (27) (2018) 46454.   \n[118] H. Lin, L.X. Pei, L.Z. Zhang, Enhanced thermal conductivity of PLA-based nanocomposites by incorporation of graphite nanoplatelets functionalized by tannic acid, J. Appl. Polym. Sci. 135 (26) (2018) 46397.   \n[119] X.H. Zhang, C. Tan, Y.H. Ma, F. Wang, W.T. Yang, BaTiO3@carbon/silicon carbide/poly(vinylidene fluoride-hexafluoropropylene) three-component nanocomposites with high dielectric constant and high thermal conductivity, Compos. Sci. Technol. 162 (2018) 180–187.   \n[120] L.M. Guiney, N.D. Mansukhani, A.E. Jakus, S.G. Wallace, R.N. Shah, M.C. Hersam, Three-dimensional printing of cytocompatible, thermally conductive hexagonal boron nitride nanocomposites, Nano Lett. 18 (6) (2018) 3488–3493.   \n[121] Y.Q. Guo, G.J. Xu, X.T. Yang, K.P. Ruan, T.B. Ma, Q.Y. Zhang, J.W. Gu, Y.L. Wu, H. Liu, Z. Guo, Significantly enhanced and precisely modeled thermal conductivity in polyimide nanocomposites with chemically modified graphene via in situ polymerization and electrospinning-hot press technology, J. Mater. Chem. C 6 (12) (2018) 3004–3015.   \n[122] Y. Shi, W. Ma, L. Wu, D. Hu, J. Mo, B. Yang, S. Zhang, Z. Zhang, Magnetically aligning multilayer graphene to enhance thermal conductivity of silicone rubber composites, J. Appl. Polym. Sci. 136 (37) (2019) 47951.   \n[123] C. Xiao, L. Chen, Y. Tang, X. Zhang, K. Zheng, X. Tian, Three dimensional porous alumina network for polymer composites with enhanced thermal conductivity, Compos. Appl. Sci. Manuf. Part A-Appl. S. 124 (2019) 105511.   \n[124] D. Yang, X. Kong, Y. Ni, D. Gao, B. Yang, Y. Zhu, L. Zhang, Novel nitrile-butadiene rubber composites with enhanced thermal conductivity and high dielectric constant, Compos. Appl. Sci. Manuf. Part A-Appl. S. 124 (2019) 105447.   \n[125] Y. Yuan, Z. Li, L. Cao, B. Tang, S. Zhang, Modification of ceramic powd and fabrication of $\\mathrm{Si_{3}N_{4}/P T F E}$ composite substrate with high thermal conductivity, Ceram. Int. 45 (13) (2019) 16569–16576.   \n[126] X.W. Wang, P.Y. Wu, 3D vertically aligned BNNS network with long-range continuous channels for achieving a highly thermally conductive composite, ACS Appl. Mater. Interfaces 11 (32) (2019) 28943–28952.   \n[127] J. Huang, W. Yang, J. Zhu, L. Fu, D. Li, L. Zhou, Silver nanoparticles decorated 3D reduced graphene oxides as hybrid filler for enhancing thermal conductivity of polystyrene composites, Compos. Appl. Sci. Manuf. Part A-Appl. S. 123 (2019) 79–85.   \n[128] I.L. Ngo, S.V.P. Vattikuti, C. Byon, A modified Hashin-Shtrikman model for predicting the thermal conductivity of polymer composites reinforced with randomly distributed hybrid fillers, Int. J. Heat Mass Tran. 114 (2017) 727–734.   \n[129] D.L. Zhang, J.W. Zha, W.K. Li, C.Q. Li, S.J. Wang, Y. Wen, Z.M. Dang, Enhanced thermal conductivity and mechanical property through boron nitride hot string in polyvinylidene fluoride fibers by electrospinning, Compos. Sci. Technol. 156 (2018) 1–7.   \n[130] J.F. Dong, F.H. Sun, H.C. Tang, K. Hayashi, H.Z. Li, P.P. Shang, Y. Miyazaki, J. F. Li, Reducing lattice thermal conductivity of MnTe by Se alloying toward high thermoelectric performance, ACS Appl. Mater. Interfaces 11 (31) (2019) 28221–28227.   \n[131] D.C. An, S.P. Chen, Z.X. Lu, R. Li, W. Chen, W.H. Fan, W.X. Wang, Y.C. Wu, Low thermal conductivity and optimized thermoelectric properties of p-Type TeSb2Se3: synergistic effect of doping and defect engineering, ACS Appl. Mater. Interfaces 11 (31) (2019) 27788–27797.   \n[132] H. Wang, K.Y. Zhu, L.W. Yan, C. Wei, Y. Zhang, C.H. Gong, J.H. Guo, J.W. Zhang, D.M. Zhang, J.W. Zhang, Efficient and scalable high-quality graphene nanodot fabrication through confined lattice plane electrochemical exfoliation, Chem. Commun. 55 (41) (2019) 5805–5808.   \n[133] S.H. Lo, J.Q. He, K. Biswas, M.G. Kanatzidis, V.P. Dravid, Phonon scattering and thermal conductivity in p-Type nanostructured PbTe-BaTe bulk thermoelectric materials, Adv. Funct. Mater. 22 (24) (2012) 5175–5184.   \n[134] K. Watari, K. Ishizaki, F. Tsuchiya, Phonon-scattering and thermal conduction mechanisms of sintered aluminum nitride ceramics, J. Mater. Sci. 28 (14) (1993) 3709–3714.   \n[135] K. Takahata, Y. Iguchi, D. Tanaka, T. Itoh, I. Terasaki, Low thermal conductivity of the layered oxide $\\mathrm{(Na,Ca)Co_{2}O_{4}};$ another example of a phonon glass and an electron crystal, Phys. Rev. B 61 (19) (2000) 12551–12555.   \n[136] H. Lin, L. Pei, L. Zhang, Enhanced thermal conductivity of PLA-based nanocomposites by incorporation of graphite nanoplatelets functionalized by tannic acid, J. Appl. Polym. Sci. 135 (26) (2018) 46397.   \n[137] A. Yu, P. Ramesh, X. Sun, E. Bekyarova, M.E. Itkis, R.C. Haddon, Enhanced thermal conductivity in a hybrid graphite nanoplatelet - carbon nanotube filler for epoxy composites, Adv. Mater. 20 (24) (2008) 4740–4744.   \n[138] S.V. Kidalov, F.M. Shakhov, Thermal conductivity of diamond composites, Materials 2 (4) (2009) 2467–2495.   \n[139] A.M. Abyzov, S.V. Kidalov, F.M. Shakhov, High thermal conductivity composites consisting of diamond filler with tungsten coating and copper (silver) matrix, J. Mater. Sci. 46 (5) (2011) 1424–1438.   \n[140] R. Zou, F. Liu, N. Hu, H.M. Ning, X.P. Jiang, C.H. Xu, S.Y. Fu, Y.Q. Li, X.Y. Zhou, C. Yan, Carbonized polydopamine nanoparticle reinforced graphene films with superior thermal conductivity, Carbon 149 (2019) 173–180.   \n[141] I. Michio, F. Kang, Materials Science and Engineering of Carbon: Fundamentals, second ed., Tsinghua Press, Beijing, 2014.   \n[142] M. Li, H. Zhou, Y. Zhang, Y. Liao, H. Zhou, Effect of defects on thermal conductivity of graphene/epoxy nanocomposites, Carbon 130 (2018) 295–303.   \n[143] M. Khafizov, J. Pakarinen, L.F. He, D.H. Hurley, Impact of irradiation induced dislocation loops on thermal conductivity in ceramics, J. Am. Ceram. Soc. 102 (12) (2019) 7533–7542.   \n[144] A. Tabarraei, Thermal conductivity of monolayer hexagonal boron nitride nanoribbons, Comput. Mater. Sci. 108 (2015) 66–71.   \n[145] Y. Sohn, T. Han, J.H. Han, Effects of shape and alignment of reinforcing graphite phases on the thermal conductivity and the coefficient of thermal expansion of graphite/copper composites, Carbon 149 (2019) 152–164.   \n[146] S. Moradi, Y. Calventus, F. Roman, J.M. Hutchinson, Achieving high thermal conductivity in epoxy composites: effect of boron nitride particle size and matrixfiller interface, Polymers 11 (7) (2019) 1156.   \n[147] W. Yu, D.M. France, J.L. Routbort, S.U.S. Choi, Review and comparison of nanofluid thermal conductivity and heat transfer enhancements, Heat Tran. Eng. 29 (5) (2008) 432–460.   \n[148] W. Zhou, J. Zuo, W. Ren, Thermal conductivity and dielectric properties of Al/ PVDF composites, Compos. Appl. Sci. Manuf. Part A-Appl. S. 43 (4) (2012) 658–664.   \n[149] B.L. Zhu, J. Ma, J. Wu, K.C. Yung, C.S. Xie, Study on the properties of the epoxymatrix composites filled with thermally conductive AlN and BN ceramic particles, J. Appl. Polym. Sci. 118 (5) (2010) 2754–2764.   \n[150] H.Y. Ng, X. Lu, S.K. Lau, Thermal conductivity of boron nitride-filled thermoplastics: effect of filler characteristics and composite processing conditions, Polym. Compos. 26 (6) (2005) 778–790.   \n[151] L. Ren, X. Zeng, R. Sun, J.B. Xu, C.P. Wong, Spray-assisted assembled spherical boron nitride as fillers for polymers with enhanced thermally conductivity, Chem. Eng. J. 370 (2019) 166–175.   \n[152] J.G. Park, Q. Cheng, J. Lu, J. Bao, S. Li, Y. Tian, Z. Liang, C. Zhang, B. Wang, Thermal conductivity of MWCNT/epoxy composites: the effects of length,   \n[153] A. Rai, A.L. Moore, Enhanced thermal conduction and influence of interfacial resistance within flexible high aspect ratio copper nanowire/polymer composites, Compos. Sci. Technol. 144 (2017) 70–78. fillers aspect ratio influence on electrical and thermal conductivity in PEEK/Ag nanocomposites, Eur. Polym. J. 85 (2016) 115–125.   \n[155] B. Mortazavi, M. Baniassadi, J. Bardon, S. Ahzi, Modeling of two-phase random composite materials by finite element, Mori–Tanaka and strong contrast methods, Compos. B Eng. 45 (1) (2013) 1117–1125.   \n[156] A. Yu, P. Ramesh, M.E. Itkis, E. Bekyarova, R.C. Haddon, Graphite nanoplateletepoxy composite thermal interface materials, J. Phys. Chem. C 111 (21) (2007) 7565–7569.   \n[157] X. Shen, Z. Wang, Y. Wu, X. Liu, Y.B. He, J.K. Kim, Multilayer graphene enables higher efficiency in improving thermal conductivities of graphene/epoxy composites, Nano Lett. 16 (6) (2016) 3585–3593.   \n[158] V. Varshney, J. Lee, J.S. Brown, B.L. Farmer, A.A. Voevodin, A.K. Roy, Effect of length, diameter, chirality, deformation, and strain on contact thermal conductance between single-wall carbon nanotubes, Front. Mater. 5 (17) (2018). UNSP 17.   \n[159] J.W. Gu, Y.Q. Guo, Z.Y. Lv, W.C. Geng, Q.Y. Zhang, Highly thermally conductive POSS-g-SiCp/UHMWPE composites with excellent dielectric properties and thermal stabilities, Compos. Appl. Sci. Manuf. Part A-Appl. S. 78 (2015) 95–101.   \n[160] J.W. Gu, X.T. Yang, Z.Y. Lv, N. Li, C.B. Liang, Q.Y. Zhang, Functionalized graphite nanoplatelets/epoxy resin nanocomposites with high thermal conductivity, Int. J. Heat Mass Tran. 92 (2016) 15–22.   \n[161] J.W. Gu, C.B. Liang, J. Dang, W.C. Dong, Q.Y. Zhang, Ideal dielectric thermally conductive bismaleimide nanocomposites filled with polyhedral oligomeric silsesquioxane functionalized nanosized boron nitride, RSC Adv. 6 (42) (2016) 35809–35814.   \n[162] Z. Zhang, M. Cao, P. Chen, B. Yang, B. Wu, J. Miao, R. Xia, J. Qian, Improvement of the thermal/electrical conductivity of PA6/PVDF blends via selective MWCNTs-NH2 distribution at the interface, Mater. Des. 177 (2019) 107835.   \n[163] J.N. Song, Y. Zhang, Effect of an interface layer on thermal conductivity of polymer composites studied by the design of double-layered and triple-layered composites, Int. J. Heat Mass Tran. 141 (2019) 1049–1055.   \n[164] A. Giri, P.E. Hopkins, A review of experimental and computational advances in thermal boundary conductance and nanoscale thermal transport across solid interfaces, Adv. Funct. Mater. (2019) 1903857.   \n[165] L. Burk, M. Gliem, F. Lais, F. Nutz, M. Retsch, R. Mulhaupt, Mechanochemically carboxylated multilayer graphene for carbon/ABS composites with improved thermal conductivity, Polymers 10 (10) (2018) 1088.   \n[166] J.F. Wang, H.Q. Xie, Z. Xin, Y. Li, Increasing the thermal conductivity of palmitic acid by the addition of carbon nanotubes, Carbon 48 (14) (2010) 3979–3986.   \n[167] J. You, J.-H. Kim, K.H. Seo, W. Huh, J.H. Park, S.S. Lee, Implication of controlled embedment of graphite nanoplatelets assisted by mechanochemical treatment for electro-conductive polyketone composite, J. Ind. Eng. Chem. 66 (2018) 356–361.   \n[168] J. You, H.-H. Choi, J. Cho, J.G. Son, M. Park, S.S. Lee, J.H. Park, Highly thermally conductive and mechanically robust polyamide/graphite nanoplatelet composites via mechanochemical bonding techniques with plasma treatment, Compos. Sci. Technol. 160 (2018) 245–254.   \n[169] C. Pan, K.C. Kou, Q. Jia, Y. Zhang, G.L. Wu, T.Z. Ji, Improved thermal conductivity and dielectric properties of hBN/PTFE composites via surface treatment by silane coupling agent, Compos. B Eng. 111 (2017) 83–90.   \n[170] C. Xiao, L. Chen, Y.L. Tang, X. Zhang, K. Zheng, X.Y. Tian, Enhanced thermal conductivity of silicon carbide nanowires (SiCw)/epoxy resin composite with segregated structure, Compos. Appl. Sci. Manuf. Part A-Appl. S. 116 (2019) 98–105.   \n[171] J.W. Gu, C.B. Liang, J. Dang, X.D. Meng, L. Tang, Y. Li, Q.Y. Zhang, Fabrication of modified bismaleimide resins by hyperbranched phenyl polysiloxane and improvement of their thermal conductivities, RSC Adv. 6 (62) (2016) 57357–57362.   \n[172] X. Huang, T. Iizuka, P. Jiang, Y. Ohki, T. Tanaka, Role of interface on the thermal conductivity of highly filled dielectric epoxy/AlN composites, J. Phys. Chem. C 116 (25) (2012) 13629–13639.   \n[173] Z. Xing, W. Sun, L. Wang, Z. Yang, S. Wang, G. Liu, Size-controlled graphite nanoplatelets: thermal conductivity enhancers for epoxy resin, J. Mater. Sci. 54 (13) (2019) 10041–10054.   \n[174] H. Wang, S.K. Wang, W.B. Lu, M. Li, Y.Z. Gu, Y.Y. Zhang, Z.G. Zhang, Throughthickness thermal conductivity enhancement of graphite film/epoxy composite via short duration acidizing modification, Appl. Surf. Sci. 442 (2018) 170–177.   \n[175] W.T. Hong, N.H. Tai, Investigations on the thermal conductivity of composites reinforced with carbon nanotubes, Diam. Relat. Mater. 17 (7) (2008) 1577–1581.   \n[176] S.Y. Yang, C.C.M. Ma, C.C. Teng, Y.W. Huang, S.H. Liao, Y.L. Huang, H.W. Tien, T.M. Lee, K.C. Chiou, Effect of functionalized carbon nanotubes on the thermal conductivity of epoxy composites, Carbon 48 (3) (2010) 592–603.   \n[177] D. Yang, X.X. Kong, Y.F. Ni, D.H. Gao, B. Yang, Y.Y. Zhu, L.Q. Zhang, Novel nitrile-butadiene rubber composites with enhanced thermal conductivity and high dielectric constant, Compos. Appl. Sci. Manuf. Part A-Appl. S. 124 (2019).   \n[178] Z.G. Wang, M.Z. Chen, Y.H. Liu, H.J. Duan, L. Xu, L. Zhou, J.Z. Xu, J. Lei, Z.M. Li, Nacre-like composite films with high thermal conductivity, flexibility, and solvent stability for thermal management applications, J. Mater. Chem. C 7 (29) (2019) 9018–9024.   \n[179] C.B. Liang, P. Song, H.B. Gu, C. Ma, Y.Q. Guo, H.Y. Zhang, X.J. Xu, Q.Y. Zhang, J. W. Gu, Nanopolydopamine coupled fluorescent nanozinc oxide reinforced epoxy nanocomposites, Compos. Appl. Sci. Manuf. 102 (2017) 126–136. nanostructured Ce(III)-Pr(III) film for excellently corrosion resistance improvement of epoxy/polyamide coating on carbon steel, J. Alloys Compd. 792 (2019) 375–388.   \n[181] R. Hossain, F. Pahlevani, S.T. Cholake, K. Privat, V. Sahajwalla, Innovative surface engineering of high-carbon steel through formation of ceramic surface and diffused subsurface hybrid layering, ACS Sustain. Chem. Eng. 7 (10) (2019) 9228–9236.   \n[182] D. Tichit, G. Layrac, C. Gerardin, Synthesis of layered double hydroxides through continuous flow processes: a review, Chem. Eng. J. 369 (2019) 302–332.   \n[183] N.T. Phuong, H.N. Tran, C.O. Plamondon, L. Tuduri, D.V.N. Vo, S. Nanda, A. Mishra, H.P. Chao, A.K. Bajpai, Recent progress in the preparation, properties and applications of superhydrophobic nano-based coatings and surfaces: a review, Prog. Org. Coating 132 (2019) 235–256.   \n[184] S.A. Khan, F. Tahir, A.A.B. Baloch, M. Koc, Review of micro-nanoscale surface coatings application for sustaining dropwise condensation, Coatings 9 (2) (2019) 117.   \n[185] C.C. Jiang, Y.K. Cao, G.Y. Xiao, R.F. Zhu, Y.P. Lu, A review on the application of inorganic nanoparticles in chemical surface coatings on metallic substrates, RSC Adv. 7 (13) (2017) 7531–7539.   \n[186] D. Yang, Y. Ni, Y. Liang, B. Li, H. Ma, L. Zhang, Improved thermal conductivity and electromechanical properties of natural rubber by constructing $\\mathrm{Al}_{2}\\mathrm{O}_{3}$ -PDAAg hybrid nanoparticles, Compos. Sci. Technol. 180 (2019) 86–93.   \n[187] H. Yuan, Y. Wang, T. Li, P. Ma, S. Zhang, M. Du, M. Chen, W. Dong, W. Ming, Highly thermal conductive and electrically insulating polymer composites based on polydopamine-coated copper nanowire, Compos. Sci. Technol. 164 (2018) 153–159.   \n[188] J.W. Gu, Q.Y. Zhang, J. Dang, C. Xie, Thermal conductivity epoxy resin composites filled with boron nitride, Polym. Adv. Technol. 23 (6) (2012) 1025–1028.   \n[189] J.W. Gu, J.J. Du, J. Dang, W.C. Geng, S.H. Hu, Q.Y. Zhang, Thermal conductivities, mechanical and thermal properties of graphite nanoplatelets/ polyphenylene sulfide composites, RSC Adv. 4 (42) (2014) 22101–22105.   \n[190] J.W. Gu, Z.Y. Lv, X.T. Yang, G.E. Wang, Q.Y. Zhang, Fabrication and properties of thermally conductive epoxy resin nanocomposites filled with f GNPs/PNBRs hybrid fillers, Sci. Adv. Mater. 8 (5) (2016) 972–979.   \n[191] S.C. Chen, Y.Y. Feng, M.M. Qin, T.X. Ji, W. Feng, Improving thermal conductivity in the through-thickness direction of carbon fibre/SiC composites by growing vertically aligned carbon nanotubes, Carbon 116 (2017) 84–93.   \n[192] J. Gu, Q. Zhang, J. Dang, C. Yin, S. Chen, Preparation and properties of polystyrene/SiCw/SiCp thermal conductivity composites, J. Appl. Polym. Sci. 124 (1) (2012) 132–137.   \n[193] A.A.A. Arani, F. Pourmoghadam, Experimental investigation of thermal conductivity behavior of MWCNTS-Al2O3/ethylene glycol hybrid Nanofluid: providing new thermal conductivity correlation, Heat Mass Tran. 55 (8) (2019) 2329–2339.   \n[194] L. Ren, X. Zeng, X. Zhang, R. Sun, X. Tian, Y. Zeng, J.B. Xu, C.P. Wong, Silver nanoparticle-modified alumina microsphere hybrid composites for enhanced energy density and thermal conductivity, Compos. Appl. Sci. Manuf. 119 (2019) 299–309.   \n[195] Z.F. Liu, Z.H. Chen, F. Yu, Enhanced thermal conductivity of microencapsulated phase change materials based on graphene oxide and carbon nanotube hybrid filler, Sol. Energy Mater. Sol. Cells 192 (2019) 72–80.   \n[196] F. Lv, M. Qin, F. Zhang, H. Yu, L. Gao, P. Lv, W. Wei, Y. Feng, W. Feng, High crossplane thermally conductive hierarchical composite using graphene-coated vertically aligned carbon nanotubes/graphite, Carbon 149 (2019) 281–289.   \n[197] T.L. Li, S.L.C. Hsu, Enhanced thermal conductivity of polyimide films via a hybrid of micro- and nano-sized boron nitride, J. Phys. Chem. B 114 (20) (2010) 6825–6829.   \n[198] M. Owais, J. Zhao, A. Imani, G.R. Wang, H. Zhang, Z. Zhang, Synergetic effect of hybrid fillers of boron nitride, graphene nanoplatelets, and short carbon fibers for enhanced thermal conductivity and electrical resistivity of epoxy nanocomposites, Compos. Appl. Sci. Manuf. 117 (2019) 11–22.   \n[199] F. Yan, L. Liu, M. Li, M.J. Zhang, L. Shang, L.H. Xiao, Y.H. Ao, One-step electrodeposition of Cu/CNT/CF multiscale reinforcement with substantially improved thermal/electrical conductivity and interfacial for properties of epoxy composites, Compos. Appl. Sci. Manuf. 125 (2019) 105530.   \n[200] X.R. Zheng, S. Kim, C.W. Park, Enhancement of thermal conductivity of carbon fiber-reinforced polymer composite with copper and boron nitride particles, Compos. Appl. Sci. Manuf. 121 (2019) 449–456.   \n[201] Y. Wei, Y.P. Shi, Z.Y. Jiang, X.F. Zhang, H.H. Chen, Y.H. Zhang, J.W. Zhang, C. H. Gong, High performance and lightweight electromagnetic wave absorbers based on TiN/RGO flakes, J. Alloys Compd. 810 (2019) 151950.   \n[202] C. Chen, X.J. Li, Y.F. Wen, J.W. Liu, X.W. Li, H.X. Zeng, Z.G. Xue, X.P. Zhou, X. L. Xie, Noncovalent engineering of carbon nanotube surface by imidazolium ionic liquids: a promising strategy for enhancing thermal conductivity of epoxy composites, Compos. Appl. Sci. Manuf. 125 (2019).   \n[203] S. Song, Y. Zhang, Carbon nanotube/reduced graphene oxide hybrid for simultaneously enhancing the thermal conductivity and mechanical properties of styrene -butadiene rubber, Carbon 123 (2017) 158–167.   \n[204] J.M. Wernik, S.A. Meguid, Recent developments in multifunctional nanocomposites using carbon nanotubes, Appl. Mech. Rev. 63 (5) (2011), 050801.   \n[205] M. Tanimoto, T. Yamagata, K. Miyata, S. Ando, Anisotropic thermal diffusivity of hexagonal boron nitride-filled polyimide films: effects of filler particle size, aggregation, orientation, and polymer chain rigidity, ACS Appl. Mater. Interfaces 5 (10) (2013) 4374–4382.   \n[206] W. Evans, R. Prasher, J. Fish, P. Meakin, P. Phelan, P. Keblinski, Effect of aggregation and interfacial thermal resistance on thermal conductivity of nanocomposites and colloidal nanofluids, Int. J. Heat Mass Tran. 51 (5) (2008) 1431–1438.   \n[207] Y. Feng, B. Yu, P. Xu, M. Zou, The effective thermal conductivity of nanofluids based on the nanolayer and the aggregation of nanoparticles, J. Phys. D Appl. Phys. 40 (10) (2007) 3164–3171.   \n[208] J. Wensel, B. Wright, D. Thomas, W. Douglas, B. Mannhalter, W. Cross, H. P. Hong, J. Kellar, P. Smith, W. Roy, Enhanced thermal conductivity by aggregation in heat transfer nanofluids containing metal oxide nanoparticles and carbon nanotubes, Appl. Phys. Lett. 92 (2) (2008), 023110.   \n[209] S.Y. Fu, X.Q. Feng, B. Lauke, Y.W. Mai, Effects of particle size, particle/matrix interface adhesion and particle loading on mechanical properties of particulatepolymer composites, Compos. B Eng. 39 (6) (2008) 933–961.   \n[210] C.W. Nan, R. Birringer, D.R. Clarke, H. Gleiter, Effective thermal conductivity of particulate composites with interfacial thermal resistance, J. Appl. Phys. 81 (10) (1997) 6692–6699.   \n[211] A. Kotia, S. Borkakoti, P. Deval, S.K. Ghosh, Review of interfacial layer’s effect on thermal conductivity in nanofluid, Heat Mass Tran. 53 (6) (2017) 2199–2209.   \n[212] E.A.M. Hassan, L.L. Yang, T.H.H. Elagib, D.T. Ge, X.W. Lv, J.F. Zhou, M.H. Yu, SC.F /ZPhEu,E KS ycnoermgpisotsiict eesf,f eCcot mofp ohsy. dBr oEgnegn.  b1o7n1d (i2n0g 1a9n) d 7p0i–-7pi7 .s tacking in interface of   \n[213] S. Rizal Ikramullah, Y. Nakai, D. Shiozawa, H. Khalil, S. Huzni, S. Thalib, Evaluation of interfacial fracture toughness and interfacial shear strength of typha Spp. fiber/polymer composite by double shear test method, Materials 12 (14) (2019) 2225.   \n[214] K.R. Pyun, K.D. Kihm, S. Cheon, H.G. Kim, W. Lee, G. Lim, W. Lee, S.J. Kim, M. K. Han, S.H. Ko, Interfacial thermal contact conductance inside the grapheneBi2Te3 heterostructure, Adv. Mater. Interfaces 6 (11) (2019) 1900275.   \n[215] S.T. Huxtable, D.G. Cahill, S. Shenogin, L. Xue, R. Ozisik, P. Barone, M. Usrey, M. S. Strano, G. Siddons, M. Shim, P. Keblinski, Interfacial heat flow in carbon nanotube suspensions, Nat. Mater. 2 (11) (2003) 731–734.   \n[216] K. Zheng, F. Sun, X. Tian, J. Zhu, Y. Ma, D. Tang, F. Wang, Tuning the interfacial thermal conductance between polystyrene and sapphire by controlling the interfacial adhesion, ACS Appl. Mater. Interfaces 7 (42) (2015) 23644–23649.   \n[217] L.F. Zhang, P. Keblinski, J.S. Wang, B.W. Li, Interfacial thermal transport in atomic junctions, Phys. Rev. B 83 (6) (2011), 064303.   \n[218] M.D. Losego, M.E. Grady, N.R. Sottos, D.G. Cahill, P.V. Braun, Effects of chemical bonding on heat transport across interfaces, Nat. Mater. 11 (2012) 502.   \n[219] F. Sun, T. Zhang, M.M. Jobbins, Z. Guo, X. Zhang, Z. Zheng, D. Tang, S. Ptasinska, T. Luo, Molecule bridge enables anomalous enhancement in thermal transport across hard-soft material interfaces, Adv. Mater. 26 (35) (2014) 6093–6099.   \n[220] V. Rashidi, E.J. Coyle, K. Sebeck, J. Kieffer, K.P. Pipe, Thermal conductance in cross-linked polymers: effects of non-bonding interactions, J. Phys. Chem. B 121 (17) (2017) 4600–4609.   \n[221] L.Z. Guan, Y.J. Wan, L.X. Gong, D. Yan, L.C. Tang, L.B. Wu, J.X. Jiang, G.Q. Lai, Toward effective and tunable interphases in graphene oxide/epoxy composites by grafting different chain lengths of polyetheramine onto graphene oxide, J. Mater. Chem. 2 (36) (2014) 15058–15069.   \n[222] T.C. Clancy, T.S. Gates, Modeling of interfacial modification effects on thermal conductivity of carbon nanotube composites, Polymer 47 (16) (2006) 5990–5996.   \n[223] S.G. Jeong, J.H. Lee, J. Seo, S. Kim, Thermal performance evaluation of Bio-based shape stabilized PCM with boron nitride for energy saving, Int. J. Heat Mass Tran. 71 (2014) 245–250.   \n[224] M.C. Vu, Y.H. Bae, M.J. Yu, W.K. Choi, M.A. Islam, S.R. Kim, Thermally conductive adhesives from covalent-bonding of reduced graphene oxide to acrylic copolymer, J. Adhes. 95 (10) (2019) 887–910.   \n[225] S.H. Tan, L.M. Tang, K.Q. Chen, Phonon scattering and thermal conductance properties in two coupled graphene nanoribbons modulated with bridge atoms, Phys. Lett. 378 (28–29) (2014) 1952–1955.   \n[226] R.K. Layek, A.K. Nandi, A review on synthesis and properties of polymer functionalized graphene, Polymer 54 (19) (2013) 5087–5103.   \n[227] C.C. Teng, C.C.M. Ma, C.H. Lu, S.Y. Yang, S.H. Lee, M.C. Hsiao, M.Y. Yen, K. C. Chiou, T.M. Lee, Thermal conductivity and structure of non-covalent functionalized graphene/epoxy composites, Carbon 49 (15) (2011) 5107–5116.   \n[228] H.Y. Li, R.Y. Li, H.L. Liu, D.M. Wang, P.Y. Zhang, T. Liu, A.W. Yang, Thermal behavior of silica aerogel/PMMA composite reinforced by non-covalent interaction, Emerg. Mater. Res. 8 (1) (2019) 55–61.   \n[229] J. Yu, X. Huang, C. Wu, X. Wu, G. Wang, P. Jiang, Interfacial modification of boron nitride nanoplatelets for epoxy composites with improved thermal properties, Polymer 53 (2) (2012) 471–480.   \n[230] A.R.J. Hussain, A.A. Alahyari, S.A. Eastman, C. Thibaud-Erkey, S. Johnston, M. J. Sobkowicz, Review of polymers for heat exchanger applications: factors concerning thermal conductivity, Appl. Therm. Eng. 113 (2017) 1118–1127.   \n[231] W. Feng, M.M. Qin, Y.Y. Feng, Toward highly thermally conductive all-carbon composites: structure control, Carbon 109 (2016) 575–597.   \n[232] Z. Li, Q.F. Yin, W.W. Hu, J.W. Zhang, J.H. Guo, J.P. Chen, T.H. Sun, C.Q. Du, J. Shu, L.G. Yu, J.W. Zhang, Tin/tin antimonide alloy nanoparticles embedded in electrospun porous carbon fibers as anode materials for lithium-ion batteries, J. Mater. Sci. 54 (12) (2019) 9025–9033.   \n[233] Y.Q. Guo, Z.Y. Lyu, X.T. Yang, Y.J. Lu, K.P. Ruan, Y.L. Wu, J. Kong, J.W. Gu, Enhanced thermal conductivities and decreased thermal resistances of functionalized boron nitride/polyimide composites, Compos. B Eng. 164 (2019) Composites Science and Technology 193(2020)108134   \n[234] X. Yang, Y. Guo, Y. Han, Y. Li, T. Ma, M. Chen, J. Kong, J. Zhu, J. Gu, Significant improvement of thermal conductivities for BNNS/PVA composite films via electrospinning followed by hot-pressing technology, Compos. B Eng. 175 (2019) 107070.   \n[235] K. Ruan, Y. Guo, Y. Tang, Y. Zhang, J. Zhang, M. He, J. Gu, Improved thermal conductivities in polystyrene nanocomposites by incorporating thermal reduced graphene oxide via electrospinning-hot press technique, Compos. Commun. 10 (2018) 68–72.   \n[236] J.W. Gu, Z.Y. Lv, Y.L. Wu, R.X. Zhao, L.D. Tian, Q.Y. Zhang, Enhanced thermal conductivity of SiCp/PS composites by electrospinning-hot press technique, Compos. Appl. Sci. Manuf. 79 (2015) 8–13.   \n[237] J. Gu, Z. Lv, Y. Wu, Y. Guo, L. Tian, H. Qiu, W. Li, Q. Zhang, Dielectric thermally conductive boron nitride/polyimide composites with outstanding thermal stabilities via in-situ polymerization-electrospinning-hot press method, Compos. Appl. Sci. Manuf. 94 (2017) 209–216.   \n[238] Y. Li, G.J. Xu, Y.Q. Guo, T.B. Ma, X. Zhong, Q.Y. Zhang, J.W. Gu, Fabrication, proposed model and simulation predictions on thermally conductive hybrid cyanate ester composites with boron nitride fillers, Compos. Appl. Sci. Manuf. 107 (2018) 570–578.   \n[239] T. Ma, Y. Zhao, K. Ruan, X. Liu, J. Zhang, Y. Guo, X. Yang, J. Kong, J. Gu, Highly thermal conductivities, excellent mechanical robustness and flexibility, and outstanding thermal stabilities of aramid nanofiber composite papers with nacremimetic layered structures, ACS Appl. Mater. Interfaces 12(1) 2020 1677-1686.   \n[240] C. Yu, W. Gong, W. Tian, Q. Zhang, Y. Xu, Z. Lin, M. Hu, X. Fan, Y. Yao, Hotpressing induced alignment of boron nitride in polyurethane for composite films with thermal conductivity over 5 $\\mathrm{0~Wm^{-1}~K^{-1}}$ , Compos. Sci. Technol. 160 (2018) 199–207.   \n[241] H. Shen, J. Guo, H. Wang, N. Zhao, J. Xu, Bioinspired modification of h-BN for high thermal conductive composite films with aligned structure, ACS Appl. Mater. Interfaces 7 (10) (2015) 5701–5708.   \n[242] M. Wen, X. Sun, L. Su, J. Shen, J. Li, S. Guo, The electrical conductivity of carbon nanotube/carbon black/polypropylene composites prepared through multistage stretching extrusion, Polymer 53 (7) (2012) 1602–1610.   \n[243] X. Sun, Q. Yu, J. Shen, S. Gao, J. Li, S. Guo, In situ microfibrillar morphology and properties of polypropylene/polyamide/carbon black composites prepared through multistage stretching extrusion, J. Mater. Sci. 48 (3) (2013) 1214–1224.   \n[244] X. Zhang, L. Shen, H. Wu, S. Guo, Enhanced thermally conductivity and mechanical properties of polyethylene (PE)/boron nitride (BN) composites through multistage stretching extrusion, Compos. Sci. Technol. 89 (2013) 24–28.   \n[245] X. Zhang, J. Zhang, X. Zhang, C. Li, J. Wang, H. Li, L. Xia, H. Wu, S. Guo, Toward high efficiency thermally conductive and electrically insulating pathways through uniformly dispersed and highly oriented graphites close-packed with SiC, Compos. Sci. Technol. 150 (2017) 217–226.   \n[246] Z.G. Wang, F. Gong, W.C. Yu, Y.F. Huang, L. Zhu, J. Lei, J.Z. Xu, Z.M. Li, Synergetic enhancement of thermal conductivity by constructing hybrid conductive network in the segregated polymer composites, Compos. Sci. Technol. 162 (2018) 7–13.   \n[247] H.J. Zhou, H. Deng, L. Zhang, Q. Fu, Significant enhancement of thermal conductivity in polymer composite via constructing macroscopic segregated filler networks, ACS Appl. Mater. Interfaces 9 (34) (2017) 29071–29081.   \n[248] C.P. Feng, H.Y. Ni, J. Chen, W. Yang, Facile method to fabricate highly thermally conductive graphite/PP composite with network structures, ACS Appl. Mater. Interfaces 8 (30) (2016) 19732–19738.   \n[249] K. Wu, C. Lei, R. Huang, W. Yang, S. Chai, C. Geng, F. Chen, Q. Fu, Design and preparation of a unique segregated double network with excellent thermal conductive property, ACS Appl. Mater. Interfaces 9 (8) (2017) 7637–7647.   \n[250] Z. Shen, J. Feng, Achieving vertically aligned SiC microwires networks in a uniform cold environment for polymer composites with high through-plane thermal conductivity enhancement, Compos. Sci. Technol. 170 (2019) 135–140.   \n[251] P. Min, J. Liu, X.F. Li, F. An, P.F. Liu, Y.X. Shen, N. Koratkar, Z.Z. Yu, Thermally conductive phase change composites featuring anisotropic graphene aerogels for real-time and fast-charging solar-thermal energy conversion, Adv. Funct. Mater. 28 (51) (2018) 1805365.   \n[252] X. Yang, J. Zhu, D. Yang, J. Zhang, Y. Guo, X. Zhong, J. Kong, J. Gu, Highefficiency improvement of thermal conductivities for epoxy composites from synthesized liquid crystal epoxy followed by doping BN fillers, Compos. B Eng. 185 (2020) 107784.   \n[253] J.K. Han, G.L. Du, W.W. Gao, H. Bai, An anisotropically high thermal conductive boron nitride/epoxy composite based on nacre-mimetic 3D network, Adv. Funct. Mater. 29 (13) (2019) 1900412.   \n[254] X. Yang, S. Fan, Y. Li, Y. Guo, Y. Li, K. Ruan, S. Zhang, J. Zhang, J. Kong, J. Gu, Synchronously improved electromagnetic interference shielding and thermal conductivity for epoxy nanocomposites by constructing 3D copper nanowires/ thermally annealed graphene aerogel framework, Compos. Appl. Sci. Manuf. 128 (2020) 105670.   \n[255] M. Qin, Y. Xu, R. Cao, W. Feng, L. Chen, Efficiently controlling the 3D thermal conductivity of a polymer nanocomposite via a hyperelastic double-continuous network of graphene and sponge, Adv. Funct. Mater. 28 (45) (2018) 1805053.   \n[256] J.C. Liu, W.W. Li, Y.F. Guo, H. Zhang, Z. Zhang, Improved thermal conductivity of thermoplastic polyurethane via aligned boron nitride platelets assisted by 3D printing, Compos. Appl. Sci. Manuf. 120 (2019) 140–146.   \n[257] S. Waheed, J.M. Cabot, P. Smejkal, S. Farajikhah, S. Sayyar, P.C. Innis, S. Beirne, G. Barnsley, T.W. Lewis, M.C. Breadmore, B. Paull, Three-dimensional printing of abrasive, hard, and thermally conductive synthetic microdiamond-polymer composite using low-cost fused deposition modeling printer, ACS Appl. Mater. Interfaces 11 (4) (2019) 4353–4363.   \n[258] Y. Jia, H. He, Y. Geng, B. Huang, X. Peng, High through-plane thermal conductivity of polymer based product with vertical alignment of graphite flakes achieved via 3D printing, Compos. Sci. Technol. 145 (2017) 55–61.   \n[259] Z. Zhang, J. Qu, Y. Feng, W. Feng, Assembly of graphene-aligned polymer composites for thermal conductive applications, Compos. Commun. 9 (2018) 33–41.   \n[260] K. Bubke, H. Gnewuch, M. Hempstead, J. Hammer, M.L.H. Green, Optical anisotropy of dispersed carbon nanotubes induced by an electric field, Appl. Phys. Lett. 71 (14) (1997) 1906–1908.   \n[261] H.A. Pang, C. Chen, Y.C. Zhang, P.G. Ren, D.X. Yan, Z.M. Li, The effect of electric field, annealing temperature and filler loading on the percolation threshold of polystyrene containing carbon nanotubes and graphene nanosheets, Carbon 49 (6) (2011) 1980–1988.   \n[262] M. Badard, A. Combessis, A. Allais, L. Flandin, Electric field as a tuning key to process carbon nanotube suspensions with controlled conductivity, Polymer 82 (2016) 198–205.   \n[263] R. Kunanuruksapong, A. Sirivat, Dielectrophoresis force of poly(p-phenylene)/ acrylic elastomer under ac electric field, Mater. Res. Innovat. 16 (2) (2012) 135–142.   \n[264] M.A. Saucedo-Espinosa, B.H. Lapizco-Encinas, Exploiting particle mutual interactions to enable challenging dielectrophoretic processes, Anal. Chem. 89 (16) (2017) 8459–8467.   \n[265] J. Khaliq, D.B. Deutz, J.A.C. Frescas, P. Vollenberg, T. Hoeks, S. van der Zwaag, P. Groen, Effect of the piezoelectric ceramic filler dielectric constant on the piezoelectric properties of PZT-epoxy composites, Ceram. Int. 43 (2) (2017) 2774–2779.   \n[266] H. Guo, X. Li, B. Li, J. Wang, S. Wang, Thermal conductivity of graphene/poly (vinylidene fluoride) nanocomposite membrane, Mater. Des. 114 (2017) 355–363.   \n[267] Z. Liu, P. Peng, Z. Liu, W. Fang, Q. Zhou, X. Liu, J. Liu, Electric-field-induced outof-plane alignment of clay in poly(dimethylsiloxane) with enhanced anisotropic thermal conductivity and mechanical properties, Compos. Sci. Technol. 165 (2018) 39–47.   \n[268] H.B. Cho, T. Nakayama, H. Suematsu, T. Suzuki, W. Jiang, K. Niihara, E. Song, N. S.A. Eom, S. Kim, Y.-H. Choa, Insulating polymer nanocomposites with highthermal-conduction routes via linear densely packed boron nitride nanosheets, Compos. Sci. Technol. 129 (2016) 205–213.   \n[269] J. Yuan, X. Qian, Z. Meng, B. Yang, Z.Q. Liu, Highly thermally conducting polymer-based films with magnetic field-assisted vertically aligned hexagonal boron nitride for flexible electronic encapsulation, ACS Appl. Mater. Interfaces 11 (19) (2019) 17915–17924.   \n[270] S.H. Chung, H. Kim, S.W. Jeong, Improved thermal conductivity of carbon-based thermal interface materials by high-magnetic-field alignment, Carbon 140 (2018) 24–29.   \n[271] K. Kim, J. Kim, Vertical filler alignment of boron nitride/epoxy composite for thermal conductivity enhancement via external magnetic field, Int. J. Therm. Sci. 100 (2016) 29–36.   \n[272] B.Y. Wen, X.L. Zheng, Effect of the selective distribution of graphite nanoplatelets on the electrical and thermal conductivities of a polybutylene terephthalate/ polycarbonate blend, Compos. Sci. Technol. 174 (2019) 68–75.   \n[273] Z. Wang, W. Liu, Y. Liu, Y. Ren, Y. Li, L. Zhou, J. Xu, J. Lei, Z. Li, Highly thermal conductive, anisotropically heat-transferred, mechanically flexible composite film by assembly of boron nitride nanosheets for thermal management, Compos. B Eng. 180 (2020) 107569.   \n[274] N. Mehra, L.W. Mu, T. Ji, Y.F. Li, J.H. Zhu, Moisture driven thermal conduction in polymer and polymer blends, Compos. Sci. Technol. 151 (2017) 115–123.   \n[275] N. Song, D. Cao, X. Luo, Y. Guo, J. Gu, P. Ding, Aligned cellulose/nanodiamond plastics with high thermal conductivity, J. Mater. Chem. C 6 (48) (2018) 13108–13113.   \n[276] L. Chen, N. Song, L.Y. Shi, P. Ding, Anisotropic thermally conductive composite with wood-derived carbon scaffolds, Compos. Appl. Sci. Manuf. 112 (2018) 18–24.   \n[277] Y.H. Huang, Z.Y. Liu, R. Chen, S.D. Zheng, C.P. Feng, L.B. Chen, W. Yang, M. B. Yang, Highly anisotropic functional conductors fabricated by multi-melt multiinjection molding ((MIM)-I-3): a synergetic role of multiple melt flows and confined interface, Compos. Sci. Technol. 171 (2019) 127–134. ",
+        "page_idx": 19
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 19
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 20
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 20
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 21
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 21
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 22
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 22
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 23
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 23
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 24
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 24
+    }
+]

@@ -1,0 +1,24 @@
+2025-04-24 15:23:42 - WARNING: {'<pad>': 0, '<suc>': 1, 'monomer': 2, 'organic': 3, 'inorganic': 4, 'condition': 5, 'polymer_family': 6, 'syn_method': 7, 'prop_name': 8, 'prop_value': 9, 'ref_exp': 10, 'char_method': 11, 'polymer': 12, 'material_amount': 13, 'composite': 14, 'other_material': 15}
+2025-04-24 15:23:42 - INFO: Building Model
+2025-04-24 15:23:42 - WARNING: 2025-04-24 15:23:42 - INFO: Building Model
+2025-04-24 15:23:44 - WARNING: 49
+2025-04-24 15:23:44 - WARNING: 49
+2025-04-24 15:23:44 - WARNING: doing reordering
+2025-04-24 15:23:45 - ERROR: Task dev_tasks.re_run_for_changed_para[597aaffb-64de-47ca-bfe2-52f9e745ccc8] raised unexpected: NameError("name 'old_para' is not defined")
+Traceback (most recent call last):
+  File "/home/antrieu/miniconda3/envs/mineru/lib/python3.10/site-packages/celery/app/trace.py", line 453, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/home/antrieu/miniconda3/envs/mineru/lib/python3.10/site-packages/celery/app/trace.py", line 736, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/home/antrieu/RIKEN/dev_tasks.py", line 288, in re_run_for_changed_para
+    if para != old_para[index]:
+NameError: name 'old_para' is not defined
+2025-04-24 15:23:45 - WARNING: 2025-04-24 15:23:45 - ERROR: Task dev_tasks.re_run_for_changed_para[597aaffb-64de-47ca-bfe2-52f9e745ccc8] raised unexpected: NameError("name 'old_para' is not defined")
+Traceback (most recent call last):
+  File "/home/antrieu/miniconda3/envs/mineru/lib/python3.10/site-packages/celery/app/trace.py", line 453, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/home/antrieu/miniconda3/envs/mineru/lib/python3.10/site-packages/celery/app/trace.py", line 736, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/home/antrieu/RIKEN/dev_tasks.py", line 288, in re_run_for_changed_para
+    if para != old_para[index]:
+NameError: name 'old_para' is not defined

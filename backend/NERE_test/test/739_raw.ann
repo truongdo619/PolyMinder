@@ -1,0 +1,83 @@
+T1	POLYMER 0 72	Sulfonated polystyrene-block-poly(ethyl-ran-propylene)-block-polystyrene
+T2	POLYMER 74 84	S-polySEPS
+T3	POLYMER 141 149	polySEPS
+T4	INORGANIC 185 204	chlorosulfonic acid
+T5	INORGANIC 206 209	CSA
+T6	PROP_NAME 216 235	proton conductivity
+T7	POLYMER 243 253	S-polySEPS
+T8	PROP_VALUE 271 293	from 10-2 to 10-1 S/cm
+T9	POLYMER 314 324	S-polySEPS
+T10	POLYMER 344 352	polySEPS
+T11	INORGANIC 353 356	CSA
+T12	MATERIAL_AMOUNT 371 378	1.0/1.0
+T13	PROP_NAME 393 412	proton conductivity
+T14	PROP_VALUE 414 428	1.36x10-1 S/cm
+T15	PROP_NAME 434 446	water uptake
+T16	PROP_VALUE 448 451	68%
+T17	POLYMER 475 485	S-polySEPS
+T18	POLYMER 794 802	polySEPS
+T19	PROP_NAME 815 842	size of dark ionic channels
+T20	PROP_VALUE 847 860	about 5-12 nm
+T21	POLYMER 930 938	polySEPS
+T22	PROP_NAME 983 1000	thermal stability
+T23	POLYMER 1008 1018	S-polySEPS
+T24	PROP_NAME 1030 1045	current density
+T25	POLYMER 1053 1063	S-polySEPS
+T26	PROP_VALUE 1070 1081	1100 mA/cm2
+T27	POLYMER 1097 1105	polySEPS
+T28	INORGANIC 1106 1109	CSA
+T29	MATERIAL_AMOUNT 1124 1131	1.0/1.0
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	abbreviation_of Arg1:T5 Arg2:T4
+R11	has_property Arg1:T7 Arg2:T6
+R12	has_value Arg1:T6 Arg2:T8
+R13	has_property Arg1:T9 Arg2:T13
+R15	has_property Arg1:T9 Arg2:T15
+R14	has_value Arg1:T13 Arg2:T14
+R16	has_value Arg1:T15 Arg2:T16
+R18	has_value Arg1:T19 Arg2:T20
+R19	has_property Arg1:T25 Arg2:T24
+R20	has_value Arg1:T24 Arg2:T26
+T36	CONDITION 453 461	at 90 °C
+R5	has_condition Arg1:T14 Arg2:T36
+R6	has_condition Arg1:T16 Arg2:T36
+T37	CONDITION 1186 1194	at 0.7 V
+R7	has_condition Arg1:T26 Arg2:T37
+T38	PROP_NAME 504 523	proton conductivity
+T39	PROP_NAME 528 541	water content
+T40	POLYMER 547 558	Nafion® 117
+T41	CONDITION 559 595	at the considering temperature range
+T42	PROP_NAME 601 604	IEC
+T43	REF_EXP 614 623	the films
+R8	refers_to Arg1:T43 Arg2:T17
+T44	REF_EXP 1149 1153	that
+T45	POLYMER 1161 1172	Nafion® 117
+T47	PROP_VALUE 1174 1184	680 mA/cm2
+R10	has_condition Arg1:T47 Arg2:T37
+T30	COMPOSITE 344 356	polySEPS/CSA
+R3	has_amount Arg1:T30 Arg2:T12
+R24	has_property Arg1:T17 Arg2:T38
+R25	has_property Arg1:T17 Arg2:T39
+R26	has_property Arg1:T40 Arg2:T38
+R27	has_property Arg1:T40 Arg2:T39
+R28	has_condition Arg1:T38 Arg2:T41
+R29	has_condition Arg1:T39 Arg2:T41
+R30	has_property Arg1:T43 Arg2:T42
+T32	CONDITION 637 686	with increasing the concentration of ionic groups
+R31	has_condition Arg1:T42 Arg2:T32
+T33	CHAR_METHOD 692 695	TEM
+R32	characterized_by Arg1:T43 Arg2:T33
+R17	has_property Arg1:T43 Arg2:T19
+T34	CHAR_METHOD 866 872	1H NMR
+T35	CHAR_METHOD 877 882	FT-IR
+T46	CHAR_METHOD 944 947	TGA
+R33	has_property Arg1:T23 Arg2:T22
+R34	characterized_by Arg1:T23 Arg2:T46
+R35	characterized_by Arg1:T43 Arg2:T34
+R36	characterized_by Arg1:T43 Arg2:T35
+T48	COMPOSITE 1097 1109	polySEPS/CSA
+R37	has_amount Arg1:T48 Arg2:T29
+T50	PROP_NAME 1030 1045	current density
+R9	refers_to Arg1:T44 Arg2:T50
+R21	has_property Arg1:T45 Arg2:T44
+R22	has_value Arg1:T44 Arg2:T47

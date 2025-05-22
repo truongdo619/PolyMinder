@@ -1,0 +1,250 @@
+2025-02-18 14:30:49 - WARNING: {'<pad>': 0, '<suc>': 1, 'monomer': 2, 'organic': 3, 'inorganic': 4, 'condition': 5, 'polymer_family': 6, 'syn_method': 7, 'prop_name': 8, 'prop_value': 9, 'ref_exp': 10, 'char_method': 11, 'polymer': 12, 'material_amount': 13, 'composite': 14, 'other_material': 15}
+2025-02-18 14:30:49 - INFO: Building Model
+2025-02-18 14:30:49 - WARNING: 2025-02-18 14:30:49 - INFO: Building Model
+2025-02-18 14:30:56 - WARNING: uploads/【請求書】0118TRIEU HOANG AN（Abu Dhabi）.pdf
+2025-02-18 14:30:56 - WARNING: start parsing pdf
+2025-02-18 14:30:56 - WARNING: parsed 47 paragraphs
+2025-02-18 14:30:56 - WARNING: ['請求書No.2501130004-00 発行日 2025/01/13', '〒566-0002 大阪府摂津市千里丘新町3-26 ニプロ本社4階 TEL:06-4861-7053 FAX:06-4861-7056 大阪府知事登録旅行業第三種第2839号 請求書発行登録番号 T7120001086549', 'この度は弊社をご利用いただき誠にありがとうございます。 下記の通りご請求申し上げます。ご確認のほど、よろしくお願いいたします。', '2025/01/18', '請 求 書', 'ｉｎｖｏｉｃｅ', '予約カードNo.NIA13348', '数量', 'number', '金額', 'amount', '(免税)1¥124,000', '(課税)1¥3,160', '(不課税)1¥1,000', '(不課税)1¥5,780', '(不課税)1¥53,240', '(不課税)1¥27,000', '(課税)1¥13,000', '( 小計¥227,180)', 'お支払は弊社下記銀行口座へ02月28日までにお振り込みお願い申し上げます。', '0005 三菱UFJ銀行 044 梅田支店 普通預金 0406774 ニッショー保険トラベル株式会社', '恐れ入りますが、振り込み手数料はお客様にてご負担頂きますようお願いいたします。', '（10％対象合計税込 ￥16,160消費税 ￥1,469）', '査証手続手数料', '国際観光旅客税', '航空保険燃油特別運賃', '¥1,000¥3,160', '査証代UAE観光ビザ¥27,000¥53,240', '査証申請代行手数料¥13,000', '¥5,780', 'ニッショー保険トラベル株式会社', '¥124,000国際航空券代1/18 AUH', '海外出入国税等', '国内空港使用料', '¥227,180今回ご請求額(Grand Total)', '¥0', '【TRIEU HOANG AN 様】', '明細内訳', 'item', 'ご入金金額(Deposit)', '国立研究開発法人理化学研究所 革新知能統合研究センター  御中', '出発日', '¥227,180ご旅行代金合計(Total)', '摘要', 'remarks', '単価', 'unit price']
+2025-02-18 14:30:56 - WARNING: done parsing pdf
+2025-02-18 14:30:56 - WARNING: start ner pdf
+2025-02-18 14:30:56 - INFO: Loading Data
+2025-02-18 14:30:56 - WARNING: 2025-02-18 14:30:56 - INFO: Loading Data
+2025-02-18 14:30:59 - WARNING: Predicting NER ...
+2025-02-18 14:31:00 - WARNING: Finished predicting.
+2025-02-18 14:31:00 - WARNING: Converting to Brat format...
+2025-02-18 14:31:00 - WARNING: # of discontinuous mentions:
+2025-02-18 14:31:00 - WARNING:  
+2025-02-18 14:31:00 - WARNING: 0
+2025-02-18 14:31:00 - WARNING: Finished.
+2025-02-18 14:31:00 - WARNING: start predict re
+2025-02-18 14:31:00 - WARNING: Example: 0it [00:00, ?it/s]
+2025-02-18 14:31:00 - WARNING: Example: 0it [00:00, ?it/s]
+2025-02-18 14:31:00 - WARNING: # of documents 0.
+2025-02-18 14:31:00 - WARNING: # of positive examples 0.
+2025-02-18 14:31:00 - WARNING: # of negative examples 0.
+2025-02-18 14:31:01 - WARNING: done predict re
+2025-02-18 14:31:01 - WARNING: model output text 
+2025-02-18 14:31:01 - WARNING:  
+2025-02-18 14:31:01 - WARNING: ｉｎｖｏｉｃｅ 
+2025-02-18 14:31:01 - WARNING: len of model_output_text 
+2025-02-18 14:31:01 - WARNING:  
+2025-02-18 14:31:01 - WARNING: 8
+2025-02-18 14:31:01 - WARNING: original_text 
+2025-02-18 14:31:01 - WARNING:  
+2025-02-18 14:31:01 - WARNING: ｉｎｖｏｉｃｅ
+2025-02-18 14:31:01 - WARNING: mapping dict 
+2025-02-18 14:31:01 - WARNING:  
+2025-02-18 14:31:01 - WARNING: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 6}
+2025-02-18 14:31:01 - WARNING: text: 
+2025-02-18 14:31:01 - WARNING:  
+2025-02-18 14:31:01 - WARNING: ｉｎｖｏｉｃｅ 
+2025-02-18 14:31:01 - WARNING: origin bbox 
+2025-02-18 14:31:01 - WARNING:  
+2025-02-18 14:31:01 - WARNING: {'x1': 321.6457824707031, 'y1': 306.560302734375, 'x2': 327.2485046386719, 'y2': 316.5206604003906, 'width': 595.3200073242188, 'height': 841.9200439453125, 'pageNumber': 1}
+2025-02-18 14:31:01 - WARNING: normalized bbox 
+2025-02-18 14:31:01 - WARNING:  
+2025-02-18 14:31:01 - WARNING: {'x1': 321.6457824707031, 'y1': 306.560302734375, 'x2': 327.2485046386719, 'y2': 316.5206604003906, 'width': 595.3200073242188, 'height': 841.9200439453125, 'pageNumber': 1}
+2025-02-18 14:31:01 - WARNING: finalized bbox 
+2025-02-18 14:31:01 - WARNING:  
+2025-02-18 14:31:01 - WARNING: {'x1': 321.6457824707031, 'y1': 306.560302734375, 'x2': 327.2485046386719, 'y2': 316.5206604003906, 'width': 595.3200073242188, 'height': 841.9200439453125, 'pageNumber': 1}
+2025-02-18 14:31:01 - WARNING:  final bouding box 
+2025-02-18 14:31:01 - WARNING:  
+2025-02-18 14:31:01 - WARNING: {'x1': 293.6399841308594, 'y1': 306.560302734375, 'x2': 327.2485046386719, 'y2': 316.5206604003906, 'width': 595.3200073242188, 'height': 841.9200439453125, 'pageNumber': 1}
+2025-02-18 14:31:01 - WARNING: done save re and ner, 
+2025-02-18 14:31:01 - WARNING: start count num_rel 
+2025-02-18 14:31:01 - WARNING: done count num_rel 
+2025-02-18 14:31:01 - WARNING: start update document 
+2025-02-18 14:31:01 - WARNING: start matching infor
+2025-02-18 14:31:01 - WARNING: done matching infor
+2025-02-18 14:31:01 - WARNING: start commit
+2025-02-18 14:31:02 - WARNING: done update document 
+2025-02-18 14:31:04 - WARNING: Failed to send email. Error: {'a1n': (553, b'5.1.3 The recipient address <a1n> is not a valid RFC 5321 address. For more\n5.1.3 information, go to\n5.1.3  https://support.google.com/a/answer/3221692 and review RFC 5321\n5.1.3 specifications. 41be03b00d2f7-ae210e35cbesm348417a12.6 - gsmtp')}
+2025-02-18 14:31:04 - INFO: Task dev_tasks.process_pdf_task[f2383fac-d2b9-4c1f-a327-ddec71604979] succeeded in 15.109988156706095s: {'id': 45680344, 'filename': '【請求書】0118TRIEU HOANG AN（Abu Dhabi）.pdf', 'upload_time': '2025/02/18, 05:30:48', 'entities': 0, 'relations': 0, 'pages': 1, 'status': 'completed'}
+2025-02-18 14:31:04 - WARNING: 2025-02-18 14:31:04 - INFO: Task dev_tasks.process_pdf_task[f2383fac-d2b9-4c1f-a327-ddec71604979] succeeded in 15.109988156706095s: {'id': 45680344, 'filename': '【請求書】0118TRIEU HOANG AN（Abu Dhabi）.pdf', 'upload_time': '2025/02/18, 05:30:48', 'entities': 0, 'relations': 0, 'pages': 1, 'status': 'completed'}
+2025-02-18 14:31:14 - INFO: Task dev_tasks.process_pdf_task[944c780c-35d4-4331-9ec6-3a82f15539d0] received
+2025-02-18 14:31:14 - WARNING: 2025-02-18 14:31:14 - INFO: Task dev_tasks.process_pdf_task[944c780c-35d4-4331-9ec6-3a82f15539d0] received
+2025-02-18 14:31:14 - WARNING: uploads/QKAFK1B100__15359828038603_202501 2.pdf
+2025-02-18 14:31:14 - WARNING: start parsing pdf
+2025-02-18 14:31:14 - WARNING: parsed 65 paragraphs
+2025-02-18 14:31:14 - WARNING: ['〒102-8503東京都千代田区麹町5-2-1', '株式会社オリエントコーポレーション登録番号 T9010001070784', 'ご依頼指定月：作成日：（基準日：ご利用代金明細書）', 'ご利用ありがとうございます。', 'お支払日お客様番号', 'ご請求総額円A + B + C + D会員番号', 'Ａ1回払い分割払い円金融機関名内 訳', 'Ｂリボルビング払い（ショッピング）円支店名', 'Ｃ円リボルビング払い（キャッシング）預金種目・口座番号', 'Ｄ調整額円口座名義人', 'ご利用明細（リボルビング払いの新規利用分および、分割払いの新･旧ご利用分）／）（', 'ご利用者', '支払区分', '支払新・旧', '何回目', '支払ご利用先など開始当月ご請求額翌月繰越残高ご利用金額手数料・利息その他回数年月（年利％）', '※0：本人、1-9：家族※ R:あとリボお申込分', '小計Ａ※1：アド、2：リボ、3：残債※新規ご利用分', '（残債の場合は手数料・利息を含まない元本残）', '当月請求後の残高', 'リボルビング払いのご請求明細（①ショッピング ②キャッシング）（手数料･利息を含まない残元本）当月請求後の残高', '当月ご請求額翌月繰越残高前月繰越残高新規ご利用額残高合計当月のご請求額小計当月ご請求額（元金）（手数料・利息）', '①ＢＣ②', '②①', 'お支払予定額明細（発行時点の予定であり、ご入金・ご利用状況により変動します。（１００回以降がある場合非表示とさせていただきます。））', 'お支払ご請求お支払ご請求お支払ご請求翌月翌月翌月', '年月日予定額繰越残高年月日予定額年月日予定額繰越残高繰越残高', 'ＢＵＩ ＭＩＮＨＱＵＡＮ 様', '2025年1月16日2025年1月2025年1月10日', '2025年1月27日1535-982803-8603ＣＯＳＴＣＯ ＧＬＯＢＡＬ ＣＡＲＤご契約名称    249,571****-****-****-8603', '249,571ゆうちょ銀行', '0-', '0普通預金***********961', '0ﾌﾞｲ ﾐﾝｸｱﾝ', '11', 'ご利用日', '*0 2025/1      1,800                  01  1  1       1,800           02024/12/4ＡＰＰＬＥ ＣＯＭ ＢＩＬＬ', '*0 2025/1        400                  01  1  1         400           02024/12/8ＡＰＰＬＥ ＣＯＭ ＢＩＬＬ', '*0 2025/1      2,070                  01  1  1       2,070           02024/12/9ＡＰＰＬＥ ＣＯＭ ＢＩＬＬ', '2024/12/13*0 2025/1     79,351                  01  1  1      79,351           0ＣＯＬＩＮＧ', 'ＵＮＩＴＥＤ ＳＴＡＴＥＳ     ５００．００', '換算レート／ １５８．７０２０円', '2024/12/14*0 2025/1     79,855                  01  1  1      79,855           0ＣＯＬＩＮＧ', 'ＵＮＩＴＥＤ ＳＴＡＴＥＳ     ５００．００', '換算レート／ １５９．７１００円', '02024/12/14*0 2025/1     79,855                  01  1  1      79,855ＣＯＬＩＮＧ', 'ＵＮＩＴＥＤ ＳＴＡＴＥＳ     ５００．００', '換算レート／ １５９．７１００円', '0*0 2025/1      4,740                  01  1  1       4,7402024/12/20 ＡＰＰＬＥ ＣＯＭ ＢＩＬＬ', '0      1,280*0 2025/1                 01  1  1       1,2802024/12/31 ＡＰＰＬＥ ＣＯＭ ＢＩＬＬ', '0        ***0               220  1  1         220ご利用代金明細書発行手数料', '249,571           0', '0          0                     0          0          0                     0          0', '0          0          0          0                     0          0          0', '12025/1/27    249,571          0', 'KAL1B100Prt00', '■消費税のご案内 カードショッピング翌月1回払いで手数料のある場合、およびカード年会費ご請求の場合等それらの金額には消費税が', '含まれています。', '●ご利用明細の表示について（カードショッピングご利用分の読み替え）', '※分割払い、リボルビング払いの場合、「手数料」は「包括信用購入あっせんの手数料」、「年利％」は「実質年率」です。※分割払いの場合、「当月ご請求額」は「分割支払額」、「ご利用金額」と「手数料」の合計額が「支払総額」となり、', '「支払開始年月」および「支払回数」で「支払期間」を表示します。', '※リボルビング払いの場合、「当月ご請求額」は「弁済金」です。', '●支払い停止の抗弁について', '翌月一括払いを除き、商品瑕疵、役務の未提出などを理由に支払を止めることができる場合があります。', 'KAL1B100Prt01']
+2025-02-18 14:31:14 - WARNING: done parsing pdf
+2025-02-18 14:31:14 - WARNING: start ner pdf
+2025-02-18 14:31:14 - INFO: Loading Data
+2025-02-18 14:31:14 - WARNING: 2025-02-18 14:31:14 - INFO: Loading Data
+2025-02-18 14:31:16 - WARNING: Predicting NER ...
+2025-02-18 14:31:17 - WARNING: Finished predicting.
+2025-02-18 14:31:17 - WARNING: Converting to Brat format...
+2025-02-18 14:31:17 - WARNING: # of discontinuous mentions:
+2025-02-18 14:31:17 - WARNING:  
+2025-02-18 14:31:17 - WARNING: 0
+2025-02-18 14:31:17 - WARNING: Finished.
+2025-02-18 14:31:17 - WARNING: start predict re
+2025-02-18 14:31:17 - WARNING: Example: 0it [00:00, ?it/s]
+2025-02-18 14:31:17 - WARNING: Example: 0it [00:00, ?it/s]
+2025-02-18 14:31:17 - WARNING: # of documents 0.
+2025-02-18 14:31:17 - WARNING: # of positive examples 0.
+2025-02-18 14:31:17 - WARNING: # of negative examples 0.
+2025-02-18 14:31:17 - WARNING: done predict re
+2025-02-18 14:31:17 - WARNING: model output text 
+2025-02-18 14:31:17 - WARNING:  
+2025-02-18 14:31:17 - WARNING: ご請求総額円A B C D会員番号 
+2025-02-18 14:31:17 - WARNING: len of model_output_text 
+2025-02-18 14:31:17 - WARNING:  
+2025-02-18 14:31:17 - WARNING: 18
+2025-02-18 14:31:17 - WARNING: original_text 
+2025-02-18 14:31:17 - WARNING:  
+2025-02-18 14:31:17 - WARNING: ご請求総額円A  B  C  D会員番号
+2025-02-18 14:31:17 - WARNING: mapping dict 
+2025-02-18 14:31:17 - WARNING:  
+2025-02-18 14:31:17 - WARNING: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 9, 9: 10, 10: 12, 11: 14, 12: 15, 13: 16, 14: 17, 15: 18, 16: 19, 17: 19}
+2025-02-18 14:31:17 - WARNING: text: 
+2025-02-18 14:31:17 - WARNING:  
+2025-02-18 14:31:17 - WARNING: ご請求総額円A B C D会員番号 
+2025-02-18 14:31:17 - WARNING: origin bbox 
+2025-02-18 14:31:17 - WARNING:  
+2025-02-18 14:31:17 - WARNING: {'x1': 302.7608642578125, 'y1': 84.76355743408203, 'x2': 309.2408752441406, 'y2': 94.65203857421875, 'width': 595.0, 'height': 842.0, 'pageNumber': 1}
+2025-02-18 14:31:17 - WARNING: normalized bbox 
+2025-02-18 14:31:17 - WARNING:  
+2025-02-18 14:31:17 - WARNING: {'x1': 302.7608642578125, 'y1': 84.76355743408203, 'x2': 309.2408752441406, 'y2': 94.65203857421875, 'width': 595.0, 'height': 842.0, 'pageNumber': 1}
+2025-02-18 14:31:17 - WARNING: finalized bbox 
+2025-02-18 14:31:17 - WARNING:  
+2025-02-18 14:31:17 - WARNING: {'x1': 302.7608642578125, 'y1': 84.76355743408203, 'x2': 309.2408752441406, 'y2': 94.65203857421875, 'width': 595.0, 'height': 842.0, 'pageNumber': 1}
+2025-02-18 14:31:17 - WARNING:  final bouding box 
+2025-02-18 14:31:17 - WARNING:  
+2025-02-18 14:31:17 - WARNING: {'x1': 12.24000072479248, 'y1': 75.74122619628906, 'x2': 309.2408752441406, 'y2': 94.65203857421875, 'width': 595.0, 'height': 842.0, 'pageNumber': 1}
+2025-02-18 14:31:17 - WARNING: done save re and ner, 
+2025-02-18 14:31:17 - WARNING: start count num_rel 
+2025-02-18 14:31:17 - WARNING: done count num_rel 
+2025-02-18 14:31:17 - WARNING: start update document 
+2025-02-18 14:31:18 - WARNING: start matching infor
+2025-02-18 14:31:18 - WARNING: done matching infor
+2025-02-18 14:31:18 - WARNING: start commit
+2025-02-18 14:31:18 - WARNING: done update document 
+2025-02-18 14:31:20 - WARNING: Failed to send email. Error: {'a1n': (553, b'5.1.3 The recipient address <a1n> is not a valid RFC 5321 address. For more\n5.1.3 information, go to\n5.1.3  https://support.google.com/a/answer/3221692 and review RFC 5321\n5.1.3 specifications. d9443c01a7336-220d5367510sm80994015ad.83 - gsmtp')}
+2025-02-18 14:31:20 - INFO: Task dev_tasks.process_pdf_task[944c780c-35d4-4331-9ec6-3a82f15539d0] succeeded in 6.005915179848671s: {'id': 20931573, 'filename': 'QKAFK1B100__15359828038603_202501 2.pdf', 'upload_time': '2025/02/18, 05:31:14', 'entities': 0, 'relations': 0, 'pages': 2, 'status': 'completed'}
+2025-02-18 14:31:20 - WARNING: 2025-02-18 14:31:20 - INFO: Task dev_tasks.process_pdf_task[944c780c-35d4-4331-9ec6-3a82f15539d0] succeeded in 6.005915179848671s: {'id': 20931573, 'filename': 'QKAFK1B100__15359828038603_202501 2.pdf', 'upload_time': '2025/02/18, 05:31:14', 'entities': 0, 'relations': 0, 'pages': 2, 'status': 'completed'}
+2025-02-18 14:31:48 - INFO: Task dev_tasks.process_pdf_task[d7db7fad-4070-45a2-9085-7006aaa88b93] received
+2025-02-18 14:31:48 - WARNING: 2025-02-18 14:31:48 - INFO: Task dev_tasks.process_pdf_task[d7db7fad-4070-45a2-9085-7006aaa88b93] received
+2025-02-18 14:31:48 - WARNING: uploads/page0_yoonessi2011.pdf
+2025-02-18 14:31:48 - WARNING: start parsing pdf
+2025-02-18 14:31:48 - WARNING: parsed 17 paragraphs
+2025-02-18 14:31:48 - WARNING: ['Morphology of sulfonated polyarylenethioethersulfone random copolymer series as proton exchange fuel cells membranes by small angle neutron scattering', 'Mitra Yoonessi a,b,*, Hendrik Heinz c, Thuy D. Dang d, Zongwu Bai e', 'a Ohio Aerospace Institute, Cleveland, OH 44142, USAb NASA Glenn Research Center, Cleveland, OH 44135, USAc Department of Polymer Engineering, University of Akron, Akron, OH 44325, USAd Air Force Research Laboratory, AFRL/RXBN, Wright-Patterson AFB, OH 45433, USAe University of Dayton Research Institute, 300 College Park Drive, Dayton, OH 45469, USA', 'a r t i c l e i n f o', 'Article history: Received 27 June 2011 Received in revised form 23 September 2011 Accepted 28 September 2011 Available online 4 October 2011', 'Keywords: Fuel cells membrane Morphology Neutron scattering', 'a b s t r a c t', 'Sulfonated polyarylenethioethersulfone (SPTES) copolymers with high proton conductivity (100 e215 mS/cm at 65 �C, 85% relative humidity) are promising potential proton exchange membrane (PEM) for fuel cells. Small angle neutron scattering (SANS) of the hydrated SPTES copolymer membranes at 25�C exhibit a nanostructure which can be approximated by correlated polydisperse spherical aggregates containing water molecules with liquid-like ordering (Percus Yevick approximation) and large scale water pockets. The ionic domain radius and the volume packing density of the aggregates present in the hydrated SPTES copolymer membranes at 25 �C increased with increasing degree of sulfonation. SPTES-80 with highest degree of sulfonation (71.6%) showed a Guinier plateau at the very low q range (q < 1 �10�4 1/Å) indicating presence of isolated large scale morphology (Rg ¼ 1.3 �0.18 micron). The radius of spherical ionic aggregates present in the hydrated SPTES-50 and SPTES-60 copolymer membranes increased with increasing temperature to 55 �C, but the large scale morphology changed to a fractal network. Further increase of the sulfonation degree to 63.3% and 71.6% (SPTES-70 and SPTES-80) resulted in a substantial morphology change of the spherical aggregates to an irregular bicontinuous hydrophobic/hydrophilic morphology for the hydrated SPTES-70 and SPTES-80 copolymer membranes at 55 �C. Presence of ionic maxima followed by a power law decay of �4 for SPTES-70 and SPTES-80 copolymer membranes was attributed to the bicontinuous phase morphology at high degree of sulfonation and elevated temperature (55 �C). The disruption of the larger scale fractal morphology was characterized by significant decrease in the intermediate scattering intensity. Hydrophobic and hydrophilic domains were separated distinctly by sulfonic groups at the interface showing as power law decay of �4 for all hydrated SPTES copolymers. �2011 Elsevier Ltd. All rights reserved.', '1. Introduction', 'Ionomers are important class of polymeric materials with ionizable groups on the polymer backbone or in the pendant which can phase separate to hydrophobic and hydrophilic domains [1,2]. Ionomers with ionizable acidic groups have potential application as polyelectrolyte membranes in fuel cells. Hydrogen fuel cell is an electrochemical reactor in which the proton transport from anode to cathode leads to a reaction at the cathode catalyst interface [3e5]. Therefore, transport of protons and hydronium ions through proton', 'exchange membrane (PEM) is the key factor on the performance of a hydrogen fuel cell. High proton conductivity, impermeability to reactant gases, high thermal and mechanical stability both in the dry and hydrated states, water uptake, dimensional stability, and low cost are fundamental characteristics of PEM for hydrogen fuel cells. The structure, dynamics, and transport characteristics of Nafion�as commercially utilized PEM have been studied by small angle neutron scattering (SANS) [6e11], small angle x-ray scattering (SAXS) [12e16], quasi-elastic neutron scattering (QENS) [17], and nuclear magnetic resonance spectroscopy (NMR) [18]. Transport properties and nanostructure of sulfonated polyimide (SPI) membranes have been studied using pulsed field gradient NMR and NMR quadrupolar relaxation rates determinations [19,20], and small angle scattering methods (SAXS and SANS), respectively [21,22].', '* Corresponding author. Ohio Aerospace Institute, Cleveland, OH 44135, USA. Tel./ fax: þ1 9376265333. E-mail address: mitra.yoonessi@nasa.gov (M. Yoonessi).', 'Contents lists available at SciVerse ScienceDirect', 'Polymer', 'journal homepage: www.elsevier.com/locate/polymer', '0032-3861/$ e see front matter �2011 Elsevier Ltd. All rights reserved. doi:10.1016/j.polymer.2011.09.047', 'Polymer 52 (2011) 5615e5621']
+2025-02-18 14:31:48 - WARNING: done parsing pdf
+2025-02-18 14:31:48 - WARNING: start ner pdf
+2025-02-18 14:31:49 - INFO: Loading Data
+2025-02-18 14:31:49 - WARNING: 2025-02-18 14:31:49 - INFO: Loading Data
+2025-02-18 14:31:51 - WARNING: Predicting NER ...
+2025-02-18 14:31:52 - WARNING: Finished predicting.
+2025-02-18 14:31:52 - WARNING: Converting to Brat format...
+2025-02-18 14:31:52 - WARNING: # of discontinuous mentions:
+2025-02-18 14:31:52 - WARNING:  
+2025-02-18 14:31:52 - WARNING: 1
+2025-02-18 14:31:52 - WARNING: Finished.
+2025-02-18 14:31:52 - WARNING: start predict re
+2025-02-18 14:31:52 - WARNING: Example:   0%|          | 0/4 [00:00<?, ?it/s]
+2025-02-18 14:31:52 - WARNING: Example: 100%|##########| 4/4 [00:00<00:00, 98.76it/s]
+2025-02-18 14:31:52 - WARNING: # of documents 4.
+2025-02-18 14:31:52 - WARNING: # of positive examples 0.
+2025-02-18 14:31:52 - WARNING: # of negative examples 996.
+2025-02-18 14:31:52 - WARNING: dict_keys(['7', '10'])
+2025-02-18 14:31:52 - WARNING: done predict re
+2025-02-18 14:31:52 - WARNING: model output text 
+2025-02-18 14:31:52 - WARNING:  
+2025-02-18 14:31:52 - WARNING: Keywords : Fuel cells membrane Morphology Neutron scattering 
+2025-02-18 14:31:52 - WARNING: len of model_output_text 
+2025-02-18 14:31:52 - WARNING:  
+2025-02-18 14:31:52 - WARNING: 61
+2025-02-18 14:31:52 - WARNING: original_text 
+2025-02-18 14:31:52 - WARNING:  
+2025-02-18 14:31:52 - WARNING: Keywords: Fuel cells membrane Morphology Neutron scattering
+2025-02-18 14:31:52 - WARNING: mapping dict 
+2025-02-18 14:31:52 - WARNING:  
+2025-02-18 14:31:52 - WARNING: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 7, 9: 8, 10: 9, 11: 10, 12: 11, 13: 12, 14: 13, 15: 14, 16: 15, 17: 16, 18: 17, 19: 18, 20: 19, 21: 20, 22: 21, 23: 22, 24: 23, 25: 24, 26: 25, 27: 26, 28: 27, 29: 28, 30: 29, 31: 30, 32: 31, 33: 32, 34: 33, 35: 34, 36: 35, 37: 36, 38: 37, 39: 38, 40: 39, 41: 40, 42: 41, 43: 42, 44: 43, 45: 44, 46: 45, 47: 46, 48: 47, 49: 48, 50: 49, 51: 50, 52: 51, 53: 52, 54: 53, 55: 54, 56: 55, 57: 56, 58: 57, 59: 58, 60: 58}
+2025-02-18 14:31:52 - WARNING: text: 
+2025-02-18 14:31:52 - WARNING:  
+2025-02-18 14:31:52 - WARNING: Keywords : Fuel cells membrane Morphology Neutron scattering 
+2025-02-18 14:31:52 - WARNING: origin bbox 
+2025-02-18 14:31:52 - WARNING:  
+2025-02-18 14:31:52 - WARNING: {'x1': 95.86449432373047, 'y1': 411.0362548828125, 'x2': 99.4517593383789, 'y2': 418.8723449707031, 'width': 595.2760009765625, 'height': 793.7009887695312, 'pageNumber': 1}
+2025-02-18 14:31:52 - WARNING: normalized bbox 
+2025-02-18 14:31:52 - WARNING:  
+2025-02-18 14:31:52 - WARNING: {'x1': 95.86449432373047, 'y1': 411.0362548828125, 'x2': 99.4517593383789, 'y2': 418.8723449707031, 'width': 595.2760009765625, 'height': 793.7009887695312, 'pageNumber': 1}
+2025-02-18 14:31:52 - WARNING: finalized bbox 
+2025-02-18 14:31:52 - WARNING:  
+2025-02-18 14:31:52 - WARNING: {'x1': 95.86449432373047, 'y1': 411.0362548828125, 'x2': 99.4517593383789, 'y2': 418.8723449707031, 'width': 595.2760009765625, 'height': 793.7009887695312, 'pageNumber': 1}
+2025-02-18 14:31:52 - WARNING:  final bouding box 
+2025-02-18 14:31:52 - WARNING:  
+2025-02-18 14:31:52 - WARNING: {'x1': 42.51969909667969, 'y1': 385.4175109863281, 'x2': 105.66481018066406, 'y2': 418.8723449707031, 'width': 595.2760009765625, 'height': 793.7009887695312, 'pageNumber': 1}
+2025-02-18 14:31:52 - WARNING: done save re and ner, 
+2025-02-18 14:31:52 - WARNING: start count num_rel 
+2025-02-18 14:31:52 - WARNING: done count num_rel 
+2025-02-18 14:31:52 - WARNING: start update document 
+2025-02-18 14:31:52 - WARNING: start matching infor
+2025-02-18 14:31:52 - WARNING: done matching infor
+2025-02-18 14:31:52 - WARNING: start commit
+2025-02-18 14:31:53 - WARNING: done update document 
+2025-02-18 14:31:56 - WARNING: Email sent successfully!
+2025-02-18 14:31:56 - INFO: Task dev_tasks.process_pdf_task[d7db7fad-4070-45a2-9085-7006aaa88b93] succeeded in 7.429009087383747s: {'id': 23657474, 'filename': 'page0_yoonessi2011.pdf', 'upload_time': '2025/02/18, 05:31:48', 'entities': 65, 'relations': 38, 'pages': 1, 'status': 'completed'}
+2025-02-18 14:31:56 - WARNING: 2025-02-18 14:31:56 - INFO: Task dev_tasks.process_pdf_task[d7db7fad-4070-45a2-9085-7006aaa88b93] succeeded in 7.429009087383747s: {'id': 23657474, 'filename': 'page0_yoonessi2011.pdf', 'upload_time': '2025/02/18, 05:31:48', 'entities': 65, 'relations': 38, 'pages': 1, 'status': 'completed'}
+2025-02-18 14:38:22 - INFO: Task dev_tasks.process_pdf_task[8a89517a-10c5-409e-a2f8-3131baaf643e] received
+2025-02-18 14:38:22 - WARNING: 2025-02-18 14:38:22 - INFO: Task dev_tasks.process_pdf_task[8a89517a-10c5-409e-a2f8-3131baaf643e] received
+2025-02-18 14:38:22 - WARNING: uploads/QKAFK1B100__15359828038603_202501 2.pdf
+2025-02-18 14:38:22 - WARNING: start parsing pdf
+2025-02-18 14:38:22 - WARNING: parsed 65 paragraphs
+2025-02-18 14:38:22 - WARNING: ['〒102-8503東京都千代田区麹町5-2-1', '株式会社オリエントコーポレーション登録番号 T9010001070784', 'ご依頼指定月：作成日：（基準日：ご利用代金明細書）', 'ご利用ありがとうございます。', 'お支払日お客様番号', 'ご請求総額円A + B + C + D会員番号', 'Ａ1回払い分割払い円金融機関名内 訳', 'Ｂリボルビング払い（ショッピング）円支店名', 'Ｃ円リボルビング払い（キャッシング）預金種目・口座番号', 'Ｄ調整額円口座名義人', 'ご利用明細（リボルビング払いの新規利用分および、分割払いの新･旧ご利用分）／）（', 'ご利用者', '支払区分', '支払新・旧', '何回目', '支払ご利用先など開始当月ご請求額翌月繰越残高ご利用金額手数料・利息その他回数年月（年利％）', '※0：本人、1-9：家族※ R:あとリボお申込分', '小計Ａ※1：アド、2：リボ、3：残債※新規ご利用分', '（残債の場合は手数料・利息を含まない元本残）', '当月請求後の残高', 'リボルビング払いのご請求明細（①ショッピング ②キャッシング）（手数料･利息を含まない残元本）当月請求後の残高', '当月ご請求額翌月繰越残高前月繰越残高新規ご利用額残高合計当月のご請求額小計当月ご請求額（元金）（手数料・利息）', '①ＢＣ②', '②①', 'お支払予定額明細（発行時点の予定であり、ご入金・ご利用状況により変動します。（１００回以降がある場合非表示とさせていただきます。））', 'お支払ご請求お支払ご請求お支払ご請求翌月翌月翌月', '年月日予定額繰越残高年月日予定額年月日予定額繰越残高繰越残高', 'ＢＵＩ ＭＩＮＨＱＵＡＮ 様', '2025年1月16日2025年1月2025年1月10日', '2025年1月27日1535-982803-8603ＣＯＳＴＣＯ ＧＬＯＢＡＬ ＣＡＲＤご契約名称    249,571****-****-****-8603', '249,571ゆうちょ銀行', '0-', '0普通預金***********961', '0ﾌﾞｲ ﾐﾝｸｱﾝ', '11', 'ご利用日', '*0 2025/1      1,800                  01  1  1       1,800           02024/12/4ＡＰＰＬＥ ＣＯＭ ＢＩＬＬ', '*0 2025/1        400                  01  1  1         400           02024/12/8ＡＰＰＬＥ ＣＯＭ ＢＩＬＬ', '*0 2025/1      2,070                  01  1  1       2,070           02024/12/9ＡＰＰＬＥ ＣＯＭ ＢＩＬＬ', '2024/12/13*0 2025/1     79,351                  01  1  1      79,351           0ＣＯＬＩＮＧ', 'ＵＮＩＴＥＤ ＳＴＡＴＥＳ     ５００．００', '換算レート／ １５８．７０２０円', '2024/12/14*0 2025/1     79,855                  01  1  1      79,855           0ＣＯＬＩＮＧ', 'ＵＮＩＴＥＤ ＳＴＡＴＥＳ     ５００．００', '換算レート／ １５９．７１００円', '02024/12/14*0 2025/1     79,855                  01  1  1      79,855ＣＯＬＩＮＧ', 'ＵＮＩＴＥＤ ＳＴＡＴＥＳ     ５００．００', '換算レート／ １５９．７１００円', '0*0 2025/1      4,740                  01  1  1       4,7402024/12/20 ＡＰＰＬＥ ＣＯＭ ＢＩＬＬ', '0      1,280*0 2025/1                 01  1  1       1,2802024/12/31 ＡＰＰＬＥ ＣＯＭ ＢＩＬＬ', '0        ***0               220  1  1         220ご利用代金明細書発行手数料', '249,571           0', '0          0                     0          0          0                     0          0', '0          0          0          0                     0          0          0', '12025/1/27    249,571          0', 'KAL1B100Prt00', '■消費税のご案内 カードショッピング翌月1回払いで手数料のある場合、およびカード年会費ご請求の場合等それらの金額には消費税が', '含まれています。', '●ご利用明細の表示について（カードショッピングご利用分の読み替え）', '※分割払い、リボルビング払いの場合、「手数料」は「包括信用購入あっせんの手数料」、「年利％」は「実質年率」です。※分割払いの場合、「当月ご請求額」は「分割支払額」、「ご利用金額」と「手数料」の合計額が「支払総額」となり、', '「支払開始年月」および「支払回数」で「支払期間」を表示します。', '※リボルビング払いの場合、「当月ご請求額」は「弁済金」です。', '●支払い停止の抗弁について', '翌月一括払いを除き、商品瑕疵、役務の未提出などを理由に支払を止めることができる場合があります。', 'KAL1B100Prt01']
+2025-02-18 14:38:22 - WARNING: done parsing pdf
+2025-02-18 14:38:22 - WARNING: start ner pdf
+2025-02-18 14:38:22 - INFO: Loading Data
+2025-02-18 14:38:22 - WARNING: 2025-02-18 14:38:22 - INFO: Loading Data
+2025-02-18 14:38:24 - WARNING: Predicting NER ...
+2025-02-18 14:38:25 - WARNING: Finished predicting.
+2025-02-18 14:38:25 - WARNING: Converting to Brat format...
+2025-02-18 14:38:25 - WARNING: # of discontinuous mentions:
+2025-02-18 14:38:25 - WARNING:  
+2025-02-18 14:38:25 - WARNING: 0
+2025-02-18 14:38:25 - WARNING: Finished.
+2025-02-18 14:38:25 - WARNING: start predict re
+2025-02-18 14:38:25 - WARNING: Example: 0it [00:00, ?it/s]
+2025-02-18 14:38:25 - WARNING: Example: 0it [00:00, ?it/s]
+2025-02-18 14:38:25 - WARNING: # of documents 0.
+2025-02-18 14:38:25 - WARNING: # of positive examples 0.
+2025-02-18 14:38:25 - WARNING: # of negative examples 0.
+2025-02-18 14:38:26 - WARNING: done predict re
+2025-02-18 14:38:26 - WARNING: model output text 
+2025-02-18 14:38:26 - WARNING:  
+2025-02-18 14:38:26 - WARNING: ご請求総額円A B C D会員番号 
+2025-02-18 14:38:26 - WARNING: len of model_output_text 
+2025-02-18 14:38:26 - WARNING:  
+2025-02-18 14:38:26 - WARNING: 18
+2025-02-18 14:38:26 - WARNING: original_text 
+2025-02-18 14:38:26 - WARNING:  
+2025-02-18 14:38:26 - WARNING: ご請求総額円A  B  C  D会員番号
+2025-02-18 14:38:26 - WARNING: mapping dict 
+2025-02-18 14:38:26 - WARNING:  
+2025-02-18 14:38:26 - WARNING: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 9, 9: 10, 10: 12, 11: 14, 12: 15, 13: 16, 14: 17, 15: 18, 16: 19, 17: 19}
+2025-02-18 14:38:26 - WARNING: text: 
+2025-02-18 14:38:26 - WARNING:  
+2025-02-18 14:38:26 - WARNING: ご請求総額円A B C D会員番号 
+2025-02-18 14:38:26 - WARNING: origin bbox 
+2025-02-18 14:38:26 - WARNING:  
+2025-02-18 14:38:26 - WARNING: {'x1': 302.7608642578125, 'y1': 84.76355743408203, 'x2': 309.2408752441406, 'y2': 94.65203857421875, 'width': 595.0, 'height': 842.0, 'pageNumber': 1}
+2025-02-18 14:38:26 - WARNING: normalized bbox 
+2025-02-18 14:38:26 - WARNING:  
+2025-02-18 14:38:26 - WARNING: {'x1': 302.7608642578125, 'y1': 84.76355743408203, 'x2': 309.2408752441406, 'y2': 94.65203857421875, 'width': 595.0, 'height': 842.0, 'pageNumber': 1}
+2025-02-18 14:38:26 - WARNING: finalized bbox 
+2025-02-18 14:38:26 - WARNING:  
+2025-02-18 14:38:26 - WARNING: {'x1': 302.7608642578125, 'y1': 84.76355743408203, 'x2': 309.2408752441406, 'y2': 94.65203857421875, 'width': 595.0, 'height': 842.0, 'pageNumber': 1}
+2025-02-18 14:38:26 - WARNING:  final bouding box 
+2025-02-18 14:38:26 - WARNING:  
+2025-02-18 14:38:26 - WARNING: {'x1': 12.24000072479248, 'y1': 75.74122619628906, 'x2': 309.2408752441406, 'y2': 94.65203857421875, 'width': 595.0, 'height': 842.0, 'pageNumber': 1}
+2025-02-18 14:38:26 - WARNING: done save re and ner, 
+2025-02-18 14:38:26 - WARNING: start count num_rel 
+2025-02-18 14:38:26 - WARNING: done count num_rel 
+2025-02-18 14:38:26 - WARNING: start update document 
+2025-02-18 14:38:26 - WARNING: start matching infor
+2025-02-18 14:38:26 - WARNING: done matching infor
+2025-02-18 14:38:26 - WARNING: start commit
+2025-02-18 14:38:26 - WARNING: done update document 
+2025-02-18 14:38:28 - WARNING: Failed to send email. Error: {'a1n': (553, b'5.1.3 The recipient address <a1n> is not a valid RFC 5321 address. For more\n5.1.3 information, go to\n5.1.3  https://support.google.com/a/answer/3221692 and review RFC 5321\n5.1.3 specifications. d2e1a72fcca58-73271b4a8b6sm4138638b3a.2 - gsmtp')}
+2025-02-18 14:38:28 - INFO: Task dev_tasks.process_pdf_task[8a89517a-10c5-409e-a2f8-3131baaf643e] succeeded in 6.311732977628708s: {'id': 58689090, 'filename': 'QKAFK1B100__15359828038603_202501 2.pdf', 'upload_time': '2025/02/18, 05:38:21', 'entities': 0, 'relations': 0, 'pages': 2, 'status': 'completed'}
+2025-02-18 14:38:28 - WARNING: 2025-02-18 14:38:28 - INFO: Task dev_tasks.process_pdf_task[8a89517a-10c5-409e-a2f8-3131baaf643e] succeeded in 6.311732977628708s: {'id': 58689090, 'filename': 'QKAFK1B100__15359828038603_202501 2.pdf', 'upload_time': '2025/02/18, 05:38:21', 'entities': 0, 'relations': 0, 'pages': 2, 'status': 'completed'}

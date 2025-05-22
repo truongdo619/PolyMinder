@@ -1,0 +1,588 @@
+2025-02-19 22:49:07 - WARNING: {'<pad>': 0, '<suc>': 1, 'monomer': 2, 'organic': 3, 'inorganic': 4, 'condition': 5, 'polymer_family': 6, 'syn_method': 7, 'prop_name': 8, 'prop_value': 9, 'ref_exp': 10, 'char_method': 11, 'polymer': 12, 'material_amount': 13, 'composite': 14, 'other_material': 15}
+2025-02-19 22:49:07 - INFO: Building Model
+2025-02-19 22:49:07 - WARNING: 2025-02-19 22:49:07 - INFO: Building Model
+2025-02-19 22:49:14 - WARNING: uploads/39045.pdf
+2025-02-19 22:49:14 - WARNING: start parsing pdf
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: e-Polymers  2007, no. 103
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 25
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 27
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: Preparation of polyaniline/Fe2O3 composite dispersions in the presence of dodecylbenzene sulfonic acid
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 102
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 103
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: Yan Wu,1 Shuangxi Xing,1 2 Shengyu Jing,1 Teili Zhou,1 Chun Zhao ,1*
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 68
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 69
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 1 State Key Laboratory on Integrated Optoelectronics, College of Electronic Science  and Engineering, Jilin University, 2699 Qianjin Street, Changchun 130012, P. R.  China  2 Faculty of Chemistry, Northeast Normal University, Changchun, 130023, P. R.  China     (Received: 21 May, 2007; published: 10 September, 2007)
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 317
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 320
+2025-02-19 22:49:15 - WARNING: 5
+2025-02-19 22:49:15 - WARNING: 2
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: Abstract: We reported a chemical approach for the in-situ preparation of  conducting polyaniline (PANI)/Fe2O3 composite dispersions using dodecylbenzene  sulfonic (DBSA) acid both as dopant and surfactant. The PANI/Fe2O3 composite  dispersions were characterized by X-ray diffraction, UV-vis and FT-IR spectra and  conductivity measurement. The dispersions showed good stability and existed  without precipitate for at least half a year. The gas-sensing behavior of the  composite film to 100 ppm of NH3 was studied through monitoring the change of  the resistance. Keywords: PANI/Fe2O3 composite, dispersions, dodecylbenzene sulfonic acid
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 639
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 642
+2025-02-19 22:49:15 - WARNING: 7
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: Introduction
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 12
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 13
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: Recently, polymeric composites containing metal oxides have attracted a great deal  of attention from researchers because they frequently exhibit unexpected hybrid  properties synergistically derived from both components [1-4]. Meanwhile, they  exhibit interesting properties with many applications such as quantum electronic  devices, gas sensors, capacitors, conducting paints and rechargeable batteries [5-8].  Composites of polyaniline (PANI) have been widely studied in view of their unique  electrical, dielectrical, optical and optoelectrical properties in addition to their easy  preparation and excellent environmental stability [9-12]. However, the poor solubility  limits their application as conducting materials. To overcome this obstacle,  functionalized protonic acids such as dedecylbenzenesulfonic acid (DBSA) or  camphorsulfonic acid (CSA) have been used to dope PANI and the obtained  conducting products were soluble in many kinds of solvents [13-14].
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 971
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 973
+2025-02-19 22:49:15 - WARNING: 11
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: On the other hand, composite of PANI and iron oxides (Fe2O3 or Fe3O4) has been  extensively investigated because of their unique magnetic properties and application  prospects in technology [15-24]. But most of the composites were in powder state;  therefore, the processes to prepare film for application in devices are complicated. In  our experiment, we prepare the conducting PANI/Fe2O3 composite dispersions in  aqueous solution by one step, and the so-obtained PANI/Fe2O3 composite  dispersions can be directly used to prepare conducting films and hence make  different devices.
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 584
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 587
+2025-02-19 22:49:15 - WARNING: 7
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: In our former work, we have investigated the formation of the PANI dispersions under  different preparation conductions by changing the concentration of surfactant, aniline,  acid and the ratio of aniline to ammonium persulphate (APS) [25]. In this study, we
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 258
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 259
+2025-02-19 22:49:15 - WARNING: 2
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 1
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 1
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 2
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: chose the optimum conditions considering the above factors to prepare the  PANI/Fe2O3 composite dispersions by in-situ polymerization using DBSA both as  dopant and surfactant. The dispersions of PANI/Fe2O3 composite could exist without  any precipitate for at least half a year. In addition, it can be diluted by distilled water  for many times without generation of precipitate, indicating their high stability or  nearly solution characteristic. The structure and conductivity of the composite was  studied by X-ray, UV-vis and FT-IR spectra, and four-probe technology. The gas-sensing behavior of the film prepared by directly spinning the dispersions on silicon  chip was studied.   Results and discussion  Formation
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 721
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 722
+2025-02-19 22:49:15 - WARNING: 8
+2025-02-19 22:49:15 - WARNING: 1
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: As for the formation of the dispersions, we assumed that the Fe2O3 particles were  dispersed in water aqueous solution and it would act as ‘seed’ to induce the  polymerization of aniline. In our experiment, the Fe2O3 particles were homogeneously  dispersed in the reaction system because DBSA with hydrophilic group acted as  surfactant. Then the aniline monomer contacted with Fe2O3 nearly at the same time,  which could accelerate the induction time of polymerization [26]. This effect could be  observed by monitoring the change of the solution temperature as shown in Fig. 1.  From Fig. 1, we can see that the time for the seed polymerization to start was about  300 s (Fig. 1b) while without Fe2O3 particles was about 3300 s along (Fig. 1a).
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 746
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 748
+2025-02-19 22:49:15 - WARNING: 8
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: Fig. 1. Temperature change during the induction time.
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 53
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 54
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: XRD pattern
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 11
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 12
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: The XRD pattern of PANI/Fe2O3 composite dispersions is shown in Fig. 2. In the  pattern, the 2θ at 35.6, 43.4, 53.6, 57.3, and 62.8 o are contributed to γ-Fe2O3, and  33.08, 40.78 and 49.42 o are related to α-Fe2O3. The broad peaks at about 19.9 and  24.1 o are characteristic peaks of PANI [27]. These results indicate that the
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 328
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 329
+2025-02-19 22:49:15 - WARNING: 3
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 2
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 1
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 2
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: PANI/Fe2O3 composite dispersions contain two different phases of the Fe2O3  particles, and the PANI is amorphous in the composite.
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 130
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 132
+2025-02-19 22:49:15 - WARNING: 1
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: Fig. 2. XRD pattern of the PANI/Fe2O3 composite dispersions.   UV-vis spectra
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 77
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 78
+2025-02-19 22:49:15 - WARNING: 1
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: Fig. 3. UV-vis spectra of PANI (a) and PANI/Fe2O3 composite (b) dispersions.    The UV-vis absorption spectra of PANI and the PANI/Fe2O3 composite dispersions  are shown in Fig. 3. A typical absorption spectrum of PANI dispersions has three
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 240
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 241
+2025-02-19 22:49:15 - WARNING: 3
+2025-02-19 22:49:15 - WARNING: 2
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 3
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 1
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 2
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: distinct absorption peaks at 351, 436, and 757 nm, respectively (Fig. 3a). The peak  at 351 nm arises from π-π* electron transition within benzenoid segments, the peak  at 436 nm is due to the polaron state and the wide peak at 757 nm is related to the  doping level [28]. Compared to the PANI dispersions, the absorption peak of  PANI/Fe2O3 composite dispersions show little difference, for example, the peak at  757 nm shifts to 746 nm (Fig. 3b). The shift may be originated from the decreasing  doping level by the addition of Fe2O3.  FT-IR spectra
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 551
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 552
+2025-02-19 22:49:15 - WARNING: 6
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 4
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 1 is contributed to C-N stretching mode. The strong peak at 1459 cm-1 is related to  C=C stretching mode of the benzenoid ring and a weak peak of quionoid ring at 1548  cm-1 means the high doping degree of the PANI [29]. And from Fig. 4b, we can see  that when the Fe2O3 particles present in the dispersion, the intensity of the peak at  1459 cm-1 is decreased and shift to 1461 cm-1, which represents the decrease of  doping degree of the PANI. There may be some interaction between the lone pair  electrons of N atom in PANI chains with 3d orbit of Fe atom, which could reduce the  energy level interval of aromatic nucleus. This also caused the UV-vis absorption  band of composite dispersions to have a red shift [30].
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 722
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 724
+2025-02-19 22:49:15 - WARNING: 8
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: Fig. 4. FT-IR spectra of PANI (a) and PANI/Fe2O3 composite (b) dispersions.   Conductivity
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 90
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 91
+2025-02-19 22:49:15 - WARNING: 1
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: Table 1 shows the conductivity values measured by using four-probe technology at  25 0C. Compared to pure PANI, the conductivity of PANI/Fe2O3 composite with Fe2O3  content of 0.05 g increases from 0.98 to 1.07μS/cm. This may be attributed to the  doping effect associated with Fe2O3 particles that are believed to help induce the  formation of a more efficient network for change transport, thus enhancing the
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 410
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 411
+2025-02-19 22:49:15 - WARNING: 4
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 4
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 1
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 2
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: conductivity of the composite [31]. However, with increasing the content of Fe2O3, the  relative contents of the conducting polymer are decreased, resulting in the decrease  of the corresponding conductivity. The decrease may be attributed to two factors: (a)  the insulating behavior of the Fe2O3 particles in the core of the composites; (b) a  decrease of doping degree as the UV-vis and FT-IR spectra show [32].    Tab. 1. Conductivity values of the composites with different contents of Fe2O3  particles.
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 508
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 511
+2025-02-19 22:49:15 - WARNING: 6
+2025-02-19 22:49:15 - WARNING: 1
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: Content of Fe2O3Conductivity (μS/cm )
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 37
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 38
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 0 0.98
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 6
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 7
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 0.05 1.07
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 9
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 10
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 0.1 0.78
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 8
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 9
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 0.2 0.69
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 8
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 9
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 0.465 0.33
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 10
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 11
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: Gas-sensing behavior
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 20
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 23
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: The gas-sensing behavior of PANI/Fe2O3 composite film to 100 ppm of NH3 is shown  in Fig. 5. The y-axis is the normalized resistance (R- R0/R0), where R0 is the initial  resistance of the composite film before exposure to NH3 at t = 0 and R is the time  dependent resistance of the film exposed to the test gas.
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 311
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 313
+2025-02-19 22:49:15 - WARNING: 3
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: Fig. 5. The response curve of PANI/Fe2O3 composite film to 100 ppm NH3.    From Fig. 5 we could see that the composite film has a significant sensitivity to NH3.  The response time of the composite film is 40 s. It can be applied to the detection of  ammonia, and the further study of the sensitivity to NH3 and other gases is under  way.
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 338
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 339
+2025-02-19 22:49:15 - WARNING: 5
+2025-02-19 22:49:15 - WARNING: 2
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 5
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 1
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 2
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: Stability
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 9
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 10
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: The stability of the dispersions with different content of Fe2O3 particles was studied.  When the content of Fe2O3 particles in the dispersions was lower than 0.05 g, the  dispersions show good stability and existed without precipitate at least half a year.  However, when the content was beyond 0.05 g, there were some precipitates on the  bottom of the dispersion and the quantity of the precipitates increased with the  content of Fe2O3.   Conclusions
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 454
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 455
+2025-02-19 22:49:15 - WARNING: 6
+2025-02-19 22:49:15 - WARNING: 1
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: PANI/Fe2O3 dispersions were prepared using DBSA both as dopant and surfactant.  The XRD, UV-vis and FT-IR characterization indicated that there is some interaction  between the PANI and Fe2O3. The conductivity of the dispersions increased when a  little of Fe2O3 particles were added and decreased in line when a great quantity of  Fe2O3 were added. The dispersions showed good stability and existed without  precipitate for at least half a year. A film were prepared by directly spinning the  PANI/Fe2O3 dispersions on a chip of silicon to study the gas-sensing of100ppm NH3;  the response time is only 40 s and further study of the sensitivity to the NH3 is under  way.    Experimental  Materials
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 698
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 699
+2025-02-19 22:49:15 - WARNING: 9
+2025-02-19 22:49:15 - WARNING: 1
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: Aniline was freshly distilled under reduced pressure and other chemicals were used  as received without further purification. Fe2O3 particles were synthesized by  coprecipitation.    Preparation of PANI/Fe2O3 composite dispersion
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 229
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 231
+2025-02-19 22:49:15 - WARNING: 3
+2025-02-19 22:49:15 - WARNING: 1
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: PANI/Fe2O3 composite dispersions were prepared using an in-situ polymerization  method. A typical experiment was done as follows: 0.465 g of aniline was dispersed  into 100 ml of DBSA aqueous solution (0.2 M) under stirring, after which 0.1 g of  Fe2O3 was added into the above solution under ultrasonic. APS in powder state was  then added into the mixture solution. The dispersions of PANI/Fe2O3 composite were  obtained after stirring for 1 h. The PANI dispersions were prepared by the same  approach in absence of Fe2O3. Acetone damaging dispersions were centrifuged and  washed with distilled water, ethanol and acetone three times, respectively. The  resulting powder were dried under reduced pressure at room temperature and then  used for XRD and conductivity measurements.   Characterization
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 800
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 802
+2025-02-19 22:49:15 - WARNING: 9
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: The composite dispersions was spun onto a chip of silicon and dried under 60 oC in  order to remove the solvent and form a film for the UV-vis and FT-IR spectra  measurement and study NH3 gas-sensing behavior. UV-vis and FT-IR spectra were  recorded on a UV 3100 spectrometer and on FT-IR-8400s (Shimadzu) spectrometer,  respectively. The conductivity measurements were made by the conventional four-probe (SDY-5) method on pressed pellets of the composite powders prepared at  ambient temperature (25 oC). The gas-sensing behavior, which could be reflected by  the resistance change of the resulting PANI/Fe2O3 composite film upon exposure to  100 ppm of NH3, was monitored with a digital multimeter (DT9205).
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 710
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 711
+2025-02-19 22:49:15 - WARNING: 7
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 6
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 1
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 2
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: References
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 10
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 11
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: [1] Su S.J.; Kuramoto N. Synth. Met. 2000,114, 147.  [2] Chuang F.Y.; Yang S.M. Synth. Met. 2005, 152, 361.  [3] Sui X.M.; Chu Y.; Xing S.X.; Yu M.; Liu C.Z. Colloids. Surfaces A. 2004, 251, 103.  [4] Chen W.; Li X.W.; Xue G.; Wang Z.Q.; Zou W.Q. Appl. Surf. Sci. 2003, 218, 215.  [5] Tandon R.P.; Tripathy M.R.; Arora A.K.; Hotchandani S. Sens. Actuators B 2005,  114, 768.  [6] Arshak K.; Moore E.; Cavanagh L.; Cunniffe C.; Clifford S. Prog. Solid State. Ch. 2005, 33, 199.  [7] Geng L.N.; Zhao Y.Q.; Huang X.L.; Wang S.R.; Zhang S.M.; Wu S.H. Sens. Actuators B 2006, 120, 568.  [8] Ma X.F.; Wang M.; Li G.; Chen H.Z.; Bai R. Mater. Chem. Phys. 2006, 98, 241.  [9] Wu C.G.; Liu Y.C.; Hsu S.S. Synth. Met. 1999, 102, 1268.  [10] Long Y.Z.; Chen Z.J.; Duvailb J.L.; Zhang Z.M.; Wan M.X. Phys. B 2005, 370,  121.  [11] He Y.J. Appl. Surf. Sci. 2005, 249, 1.  [12] Geng L. N.; Wang S. R.; Zhao Y. Q.; Li P.; Zhang S. M.; Huang W. P.; Wu S. H. Mater. Chem. Phys. 2006, 99, 15.  [13] Cao Y.; Smith P.; Heeger A. J. Synth. Met. 1992, 48, 91.  [14] Poussin D.; Morgan H.;Foot P.J. Polym. Int. 2003, 52, 433.  [15] Mallikarjuna N.N.; Manohar S.K.; Kulkarni P. Venkataraman V.A.; Aminabhavi  T.M. J. Appl. Polym. Sci. 2005, 97, 1868.  [16] Reddy K.R.; Lee K.P.; Iyengar A. G. J. Appl. Polym. Sci. 2007, 104, 4127.  [17] Wan M.X.; Li W.G. J. Polym. Sci. Part A :Polym. Chem. 1997,35, 2129.   [18] Zhang Z.M.; Deng J.Y.; Shen J.Y.; Wan M.X.; Chen Z. J. Macromol. Rapid Commun. 2007, 28, 585.  [19] Aphesteguy J.C.; Jacobo S.E. Phys. B. 2004, 354, 224.   [20] Bao L.; Jiang J.S. Phys. B. 2005, 67, 182.   [21] Reddy K.R.; Lee K.P.; Gopalan A.I.; Showkat A.M. Polym. Adv. Technol. 2007,  18, 38.   [22] Wan M.X.; Zhou W.X. Synth. Met. 1996, 78, 27.   [23] Zhang Z.M.; Wan M.X. Synth. Met. 2003, 132, 205.   [24] Deng J.G.; He C.L.; Peng Y.X.; Wang J.H.; Long X.P.; Li P.; Chan A.S.C. Synth. Met. 2003, 139, 295.  [25] Xing S.X.; Zhao C.; Jing S.Y.; Wang Z.C. J. Mater. Sci. 2006, 41, 2761.   [26] Xing S.X., Zhao C., Jing S.Y., Wang Z. C. Polymer. 2006, 47, 2305.  [27] Brezoi D.V.; Iom R.M. Sens. Actuators B 2005, 109, 171.  [28] Schnitzler D.C.; Meruvia M.S.; Hummelgen I.A.; Zarbin A.J.G. Chem. Mater. 2003, 15, 4658.  [29] Sharma S.; Nirkhe C.; Pethkar S.; Athawale A.A. Sens. Actuators B 2002, 85,  131.  [30] Deng J.G.; Ding X.B.; Zhang W.C.; Peng Y.X.; Wang J.H.; Long X.P.; Li P.;  Chan A.S.C. Polymer. 2002, 43, 2179.  [31] Xu J.C.; Liu W.M.; Li H.L. Mater. Sci. Eng. C 2005, 25, 444.  [32] Aphesteguy J.C.; Jacobo S.E. Phys. B 2004, 354, 224.
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 2542
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 2543
+2025-02-19 22:49:15 - WARNING: 37
+2025-02-19 22:49:15 - WARNING: 30
+2025-02-19 22:49:15 - WARNING: sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 7
+2025-02-19 22:49:15 - WARNING: num sample:  
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 1
+2025-02-19 22:49:15 - WARNING: num pos:   
+2025-02-19 22:49:15 - WARNING:  
+2025-02-19 22:49:15 - WARNING: 2
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: 0
+2025-02-19 22:49:15 - WARNING: parsed 99 paragraphs
+2025-02-19 22:49:15 - WARNING: ['e-Polymers  2007, no. 103', 'http://www.e-polymers.org', 'ISSN 1618-7229', 'Preparation of polyaniline/Fe2O3 composite dispersions in the presence of dodecylbenzene sulfonic acid', 'Yan Wu,1 Shuangxi Xing,1 2 Shengyu Jing,1 Teili Zhou,1 Chun Zhao ,1*', '1 State Key Laboratory on Integrated Optoelectronics, College of Electronic Science  and Engineering, Jilin University, 2699 Qianjin Street, Changchun 130012, P. R.  China  2 Faculty of Chemistry, Northeast Normal University, Changchun, 130023, P. R.  China   ', '  ', '(Received: 21 May, 2007; published: 10 September, 2007)', 'Abstract: We reported a chemical approach for the in-situ preparation of  conducting polyaniline (PANI)/Fe2O3 composite dispersions using dodecylbenzene  sulfonic (DBSA) acid both as dopant and surfactant. The PANI/Fe2O3 composite  dispersions were characterized by X-ray diffraction, UV-vis and FT-IR spectra and  conductivity measurement. The dispersions showed good stability and existed  without precipitate for at least half a year. The gas-sensing behavior of the  composite film to 100 ppm of NH3 was studied through monitoring the change of  the resistance. Keywords: PANI/Fe2O3 composite, dispersions, dodecylbenzene sulfonic acid', 'Introduction', 'Recently, polymeric composites containing metal oxides have attracted a great deal  of attention from researchers because they frequently exhibit unexpected hybrid  properties synergistically derived from both components [1-4]. Meanwhile, they  exhibit interesting properties with many applications such as quantum electronic  devices, gas sensors, capacitors, conducting paints and rechargeable batteries [5-8].  Composites of polyaniline (PANI) have been widely studied in view of their unique  electrical, dielectrical, optical and optoelectrical properties in addition to their easy  preparation and excellent environmental stability [9-12]. However, the poor solubility  limits their application as conducting materials. To overcome this obstacle,  functionalized protonic acids such as dedecylbenzenesulfonic acid (DBSA) or  camphorsulfonic acid (CSA) have been used to dope PANI and the obtained  conducting products were soluble in many kinds of solvents [13-14].', 'On the other hand, composite of PANI and iron oxides (Fe2O3 or Fe3O4) has been  extensively investigated because of their unique magnetic properties and application  prospects in technology [15-24]. But most of the composites were in powder state;  therefore, the processes to prepare film for application in devices are complicated. In  our experiment, we prepare the conducting PANI/Fe2O3 composite dispersions in  aqueous solution by one step, and the so-obtained PANI/Fe2O3 composite  dispersions can be directly used to prepare conducting films and hence make  different devices.', 'In our former work, we have investigated the formation of the PANI dispersions under  different preparation conductions by changing the concentration of surfactant, aniline,  acid and the ratio of aniline to ammonium persulphate (APS) [25]. In this study, we', '1', 'chose the optimum conditions considering the above factors to prepare the  PANI/Fe2O3 composite dispersions by in-situ polymerization using DBSA both as  dopant and surfactant. The dispersions of PANI/Fe2O3 composite could exist without  any precipitate for at least half a year. In addition, it can be diluted by distilled water  for many times without generation of precipitate, indicating their high stability or  nearly solution characteristic. The structure and conductivity of the composite was  studied by X-ray, UV-vis and FT-IR spectra, and four-probe technology. The gas-sensing behavior of the film prepared by directly spinning the dispersions on silicon  chip was studied.  ', ' Results and discussion  Formation', 'As for the formation of the dispersions, we assumed that the Fe2O3 particles were  dispersed in water aqueous solution and it would act as ‘seed’ to induce the  polymerization of aniline. In our experiment, the Fe2O3 particles were homogeneously  dispersed in the reaction system because DBSA with hydrophilic group acted as  surfactant. Then the aniline monomer contacted with Fe2O3 nearly at the same time,  which could accelerate the induction time of polymerization [26]. This effect could be  observed by monitoring the change of the solution temperature as shown in Fig. 1.  From Fig. 1, we can see that the time for the seed polymerization to start was about  300 s (Fig. 1b) while without Fe2O3 particles was about 3300 s along (Fig. 1a).', 'Fig. 1. Temperature change during the induction time.', 'XRD pattern', 'The XRD pattern of PANI/Fe2O3 composite dispersions is shown in Fig. 2. In the  pattern, the 2θ at 35.6, 43.4, 53.6, 57.3, and 62.8 o are contributed to γ-Fe2O3, and  33.08, 40.78 and 49.42 o are related to α-Fe2O3. The broad peaks at about 19.9 and  24.1 o are characteristic peaks of PANI [27]. These results indicate that the', '2', 'PANI/Fe2O3 composite dispersions contain two different phases of the Fe2O3  particles, and the PANI is amorphous in the composite.', 'Fig. 2. XRD pattern of the PANI/Fe2O3 composite dispersions.   UV-vis spectra', 'Fig. 3. UV-vis spectra of PANI (a) and PANI/Fe2O3 composite (b) dispersions.  ', '  ', 'The UV-vis absorption spectra of PANI and the PANI/Fe2O3 composite dispersions  are shown in Fig. 3. A typical absorption spectrum of PANI dispersions has three', '3', 'distinct absorption peaks at 351, 436, and 757 nm, respectively (Fig. 3a). The peak  at 351 nm arises from π-π* electron transition within benzenoid segments, the peak  at 436 nm is due to the polaron state and the wide peak at 757 nm is related to the  doping level [28]. Compared to the PANI dispersions, the absorption peak of  PANI/Fe2O3 composite dispersions show little difference, for example, the peak at  757 nm shifts to 746 nm (Fig. 3b). The shift may be originated from the decreasing  doping level by the addition of Fe2O3.  FT-IR spectra', 'The FT-IR spectra of PANI and PANI/Fe2O3 composite dispersions are shown in Fig.  4. From Fig. 4a, we can find the characteristic peaks of PANI: the peak at 684 cm-1 is  usually assigned to the C-H out of plane bending in 1, 2 ring in intrinsic PANI; the  peak at 1083 cm-1 stands for the C-H aromatic in-plane bending on 1, 4 ring; the  peak at 1183 cm-1 may be assigned to the carbon skeleton, and the peak of 1311 cm-', '1 is contributed to C-N stretching mode. The strong peak at 1459 cm-1 is related to  C=C stretching mode of the benzenoid ring and a weak peak of quionoid ring at 1548  cm-1 means the high doping degree of the PANI [29]. And from Fig. 4b, we can see  that when the Fe2O3 particles present in the dispersion, the intensity of the peak at  1459 cm-1 is decreased and shift to 1461 cm-1, which represents the decrease of  doping degree of the PANI. There may be some interaction between the lone pair  electrons of N atom in PANI chains with 3d orbit of Fe atom, which could reduce the  energy level interval of aromatic nucleus. This also caused the UV-vis absorption  band of composite dispersions to have a red shift [30].', 'Fig. 4. FT-IR spectra of PANI (a) and PANI/Fe2O3 composite (b) dispersions.   Conductivity', 'Table 1 shows the conductivity values measured by using four-probe technology at  25 0C. Compared to pure PANI, the conductivity of PANI/Fe2O3 composite with Fe2O3  content of 0.05 g increases from 0.98 to 1.07μS/cm. This may be attributed to the  doping effect associated with Fe2O3 particles that are believed to help induce the  formation of a more efficient network for change transport, thus enhancing the', '4', 'conductivity of the composite [31]. However, with increasing the content of Fe2O3, the  relative contents of the conducting polymer are decreased, resulting in the decrease  of the corresponding conductivity. The decrease may be attributed to two factors: (a)  the insulating behavior of the Fe2O3 particles in the core of the composites; (b) a  decrease of doping degree as the UV-vis and FT-IR spectra show [32].   ', ' Tab. 1. Conductivity values of the composites with different contents of Fe2O3  particles.', 'Content of Fe2O3Conductivity (μS/cm )', '0 0.98', '0.05 1.07', '0.1 0.78', '0.2 0.69', '0.465 0.33', 'Gas-sensing behavior', 'The gas-sensing behavior of PANI/Fe2O3 composite film to 100 ppm of NH3 is shown  in Fig. 5. The y-axis is the normalized resistance (R- R0/R0), where R0 is the initial  resistance of the composite film before exposure to NH3 at t = 0 and R is the time  dependent resistance of the film exposed to the test gas.', '020406080100120', '0', '20', '40', '60', '80', '100', '(R-R0)/R0', 'Time (s)', 'Fig. 5. The response curve of PANI/Fe2O3 composite film to 100 ppm NH3.  ', '  ', 'From Fig. 5 we could see that the composite film has a significant sensitivity to NH3.  The response time of the composite film is 40 s. It can be applied to the detection of  ammonia, and the further study of the sensitivity to NH3 and other gases is under  way.', '5', 'Stability', 'The stability of the dispersions with different content of Fe2O3 particles was studied.  When the content of Fe2O3 particles in the dispersions was lower than 0.05 g, the  dispersions show good stability and existed without precipitate at least half a year.  However, when the content was beyond 0.05 g, there were some precipitates on the  bottom of the dispersion and the quantity of the precipitates increased with the  content of Fe2O3.  ', ' Conclusions', 'PANI/Fe2O3 dispersions were prepared using DBSA both as dopant and surfactant.  The XRD, UV-vis and FT-IR characterization indicated that there is some interaction  between the PANI and Fe2O3. The conductivity of the dispersions increased when a  little of Fe2O3 particles were added and decreased in line when a great quantity of  Fe2O3 were added. The dispersions showed good stability and existed without  precipitate for at least half a year. A film were prepared by directly spinning the  PANI/Fe2O3 dispersions on a chip of silicon to study the gas-sensing of100ppm NH3;  the response time is only 40 s and further study of the sensitivity to the NH3 is under  way.   ', ' Experimental  Materials', 'Aniline was freshly distilled under reduced pressure and other chemicals were used  as received without further purification. Fe2O3 particles were synthesized by  coprecipitation.   ', ' Preparation of PANI/Fe2O3 composite dispersion', 'PANI/Fe2O3 composite dispersions were prepared using an in-situ polymerization  method. A typical experiment was done as follows: 0.465 g of aniline was dispersed  into 100 ml of DBSA aqueous solution (0.2 M) under stirring, after which 0.1 g of  Fe2O3 was added into the above solution under ultrasonic. APS in powder state was  then added into the mixture solution. The dispersions of PANI/Fe2O3 composite were  obtained after stirring for 1 h. The PANI dispersions were prepared by the same  approach in absence of Fe2O3. Acetone damaging dispersions were centrifuged and  washed with distilled water, ethanol and acetone three times, respectively. The  resulting powder were dried under reduced pressure at room temperature and then  used for XRD and conductivity measurements.   Characterization', 'The composite dispersions was spun onto a chip of silicon and dried under 60 oC in  order to remove the solvent and form a film for the UV-vis and FT-IR spectra  measurement and study NH3 gas-sensing behavior. UV-vis and FT-IR spectra were  recorded on a UV 3100 spectrometer and on FT-IR-8400s (Shimadzu) spectrometer,  respectively. The conductivity measurements were made by the conventional four-probe (SDY-5) method on pressed pellets of the composite powders prepared at  ambient temperature (25 oC). The gas-sensing behavior, which could be reflected by  the resistance change of the resulting PANI/Fe2O3 composite film upon exposure to  100 ppm of NH3, was monitored with a digital multimeter (DT9205).', '6', 'References', '[1] Su S.J.; Kuramoto N. Synth. Met. 2000,114, 147.  ', '[2] Chuang F.Y.; Yang S.M. Synth. Met. 2005, 152, 361.  ', '[3] Sui X.M.; Chu Y.; Xing S.X.; Yu M.; Liu C.Z. Colloids. Surfaces A. 2004, 251, 103.  [4] Chen W.; Li X.W.; Xue G.; Wang Z.Q.; Zou W.Q. Appl. Surf. Sci. 2003, 218, 215.  ', '[5] Tandon R.P.; Tripathy M.R.; Arora A.K.; Hotchandani S. Sens. Actuators B 2005,  114, 768.  ', '[6] Arshak K.; Moore E.; Cavanagh L.; Cunniffe C.; Clifford S. Prog. Solid State. Ch. 2005, 33, 199.  ', '[7] Geng L.N.; Zhao Y.Q.; Huang X.L.; Wang S.R.; Zhang S.M.; Wu S.H. Sens. Actuators B 2006, 120, 568.  ', '[8] Ma X.F.; Wang M.; Li G.; Chen H.Z.; Bai R. Mater. Chem. Phys. 2006, 98, 241.  ', '[9] Wu C.G.; Liu Y.C.; Hsu S.S. Synth. Met. 1999, 102, 1268.  ', '[10] Long Y.Z.; Chen Z.J.; Duvailb J.L.; Zhang Z.M.; Wan M.X. Phys. B 2005, 370,  121.  ', '[11] He Y.J. Appl. Surf. Sci. 2005, 249, 1.  ', '[12] Geng L. N.; Wang S. R.; Zhao Y. Q.; Li P.; Zhang S. M.; Huang W. P.; Wu S. H. Mater. Chem. Phys. 2006, 99, 15.  ', '[13] Cao Y.; Smith P.; Heeger A. J. Synth. Met. 1992, 48, 91.  ', '[14] Poussin D.; Morgan H.;Foot P.J. Polym. Int. 2003, 52, 433.  ', '[15] Mallikarjuna N.N.; Manohar S.K.; Kulkarni P. Venkataraman V.A.; Aminabhavi  T.M. J. Appl. Polym. Sci. 2005, 97, 1868.  ', '[16] Reddy K.R.; Lee K.P.; Iyengar A. G. J. Appl. Polym. Sci. 2007, 104, 4127.  ', '[17] Wan M.X.; Li W.G. J. Polym. Sci. Part A :Polym. Chem. 1997,35, 2129.   ', '[18] Zhang Z.M.; Deng J.Y.; Shen J.Y.; Wan M.X.; Chen Z. J. Macromol. Rapid Commun. 2007, 28, 585.  ', '[19] Aphesteguy J.C.; Jacobo S.E. Phys. B. 2004, 354, 224.   ', '[20] Bao L.; Jiang J.S. Phys. B. 2005, 67, 182.   ', '[21] Reddy K.R.; Lee K.P.; Gopalan A.I.; Showkat A.M. Polym. Adv. Technol. 2007,  18, 38.   ', '[22] Wan M.X.; Zhou W.X. Synth. Met. 1996, 78, 27.   ', '[23] Zhang Z.M.; Wan M.X. Synth. Met. 2003, 132, 205.   ', '[24] Deng J.G.; He C.L.; Peng Y.X.; Wang J.H.; Long X.P.; Li P.; Chan A.S.C. Synth. Met. 2003, 139, 295.  ', '[25] Xing S.X.; Zhao C.; Jing S.Y.; Wang Z.C. J. Mater. Sci. 2006, 41, 2761.   ', '[26] Xing S.X., Zhao C., Jing S.Y., Wang Z. C. Polymer. 2006, 47, 2305.  ', '[27] Brezoi D.V.; Iom R.M. Sens. Actuators B 2005, 109, 171.  ', '[28] Schnitzler D.C.; Meruvia M.S.; Hummelgen I.A.; Zarbin A.J.G. Chem. Mater. 2003, 15, 4658.  ', '[29] Sharma S.; Nirkhe C.; Pethkar S.; Athawale A.A. Sens. Actuators B 2002, 85,  131.  ', '[30] Deng J.G.; Ding X.B.; Zhang W.C.; Peng Y.X.; Wang J.H.; Long X.P.; Li P.;  Chan A.S.C. Polymer. 2002, 43, 2179.  ', '[31] Xu J.C.; Liu W.M.; Li H.L. Mater. Sci. Eng. C 2005, 25, 444.  ', '[32] Aphesteguy J.C.; Jacobo S.E. Phys. B 2004, 354, 224.', '7']
+2025-02-19 22:49:15 - WARNING: done parsing pdf
+2025-02-19 22:49:15 - WARNING: start ner pdf
+2025-02-19 22:49:15 - INFO: Loading Data
+2025-02-19 22:49:15 - WARNING: 2025-02-19 22:49:15 - INFO: Loading Data
+2025-02-19 22:49:18 - WARNING: Predicting NER ...
+2025-02-19 22:49:19 - WARNING: Finished predicting.
+2025-02-19 22:49:19 - WARNING: Converting to Brat format...
+2025-02-19 22:49:19 - WARNING: # of discontinuous mentions:
+2025-02-19 22:49:19 - WARNING:  
+2025-02-19 22:49:19 - WARNING: 4
+2025-02-19 22:49:19 - WARNING: Finished.
+2025-02-19 22:49:19 - WARNING: start predict re
+2025-02-19 22:49:19 - WARNING: Example:   0%|          | 0/29 [00:00<?, ?it/s]
+2025-02-19 22:49:19 - WARNING: Example: 100%|##########| 29/29 [00:00<00:00, 355.77it/s]
+2025-02-19 22:49:19 - WARNING: # of documents 29.
+2025-02-19 22:49:19 - WARNING: # of positive examples 0.
+2025-02-19 22:49:19 - WARNING: # of negative examples 1916.
+2025-02-19 22:49:20 - WARNING: dict_keys(['7', '9', '11', '13', '18', '22', '25', '26', '27', '29', '31', '32', '40', '50', '51', '54', '56', '60', '61'])
+2025-02-19 22:49:20 - WARNING: done predict re
+2025-02-19 22:49:20 - WARNING: old num para 
+2025-02-19 22:49:20 - WARNING:  
+2025-02-19 22:49:20 - WARNING: 99
+2025-02-19 22:49:20 - WARNING: start debug in ner re processing
+2025-02-19 22:49:20 - WARNING: 96
+2025-02-19 22:49:20 - WARNING: 99
+2025-02-19 22:49:20 - WARNING: model output text 
+2025-02-19 22:49:20 - WARNING:  
+2025-02-19 22:49:20 - WARNING: 1 State Key Laboratory on Integrated Optoelectronics , College of Electronic Science and Engineering , Jilin University , 2699 Qianjin Street , Changchun 130012 , P. R. China 2 Faculty of Chemistry , Northeast Normal University , Changchun , 130023 , P. R. China 
+2025-02-19 22:49:20 - WARNING: len of model_output_text 
+2025-02-19 22:49:20 - WARNING:  
+2025-02-19 22:49:20 - WARNING: 263
+2025-02-19 22:49:20 - WARNING: original_text 
+2025-02-19 22:49:20 - WARNING:  
+2025-02-19 22:49:20 - WARNING: 1 State Key Laboratory on Integrated Optoelectronics, College of Electronic Science  and Engineering, Jilin University, 2699 Qianjin Street, Changchun 130012, P. R.  China  2 Faculty of Chemistry, Northeast Normal University, Changchun, 130023, P. R.  China   
+2025-02-19 22:49:20 - WARNING: mapping dict 
+2025-02-19 22:49:20 - WARNING:  
+2025-02-19 22:49:20 - WARNING: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, 11: 11, 12: 12, 13: 13, 14: 14, 15: 15, 16: 16, 17: 17, 18: 18, 19: 19, 20: 20, 21: 21, 22: 22, 23: 23, 24: 24, 25: 25, 26: 26, 27: 27, 28: 28, 29: 29, 30: 30, 31: 31, 32: 32, 33: 33, 34: 34, 35: 35, 36: 36, 37: 37, 38: 38, 39: 39, 40: 40, 41: 41, 42: 42, 43: 43, 44: 44, 45: 45, 46: 46, 47: 47, 48: 48, 49: 49, 50: 50, 51: 51, 52: 51, 53: 52, 54: 53, 55: 54, 56: 55, 57: 56, 58: 57, 59: 58, 60: 59, 61: 60, 62: 61, 63: 62, 64: 63, 65: 64, 66: 65, 67: 66, 68: 67, 69: 68, 70: 69, 71: 70, 72: 71, 73: 72, 74: 73, 75: 74, 76: 75, 77: 76, 78: 77, 79: 78, 80: 79, 81: 80, 82: 81, 83: 82, 84: 83, 85: 85, 86: 86, 87: 87, 88: 88, 89: 89, 90: 90, 91: 91, 92: 92, 93: 93, 94: 94, 95: 95, 96: 96, 97: 97, 98: 98, 99: 99, 100: 99, 101: 100, 102: 101, 103: 102, 104: 103, 105: 104, 106: 105, 107: 106, 108: 107, 109: 108, 110: 109, 111: 110, 112: 111, 113: 112, 114: 113, 115: 114, 116: 115, 117: 116, 118: 117, 119: 117, 120: 118, 121: 119, 122: 120, 123: 121, 124: 122, 125: 123, 126: 124, 127: 125, 128: 126, 129: 127, 130: 128, 131: 129, 132: 130, 133: 131, 134: 132, 135: 133, 136: 134, 137: 135, 138: 136, 139: 137, 140: 138, 141: 138, 142: 139, 143: 140, 144: 141, 145: 142, 146: 143, 147: 144, 148: 145, 149: 146, 150: 147, 151: 148, 152: 149, 153: 150, 154: 151, 155: 152, 156: 153, 157: 154, 158: 155, 159: 156, 160: 156, 161: 157, 162: 158, 163: 159, 164: 160, 165: 161, 166: 162, 167: 163, 168: 164, 169: 165, 170: 166, 171: 167, 172: 168, 173: 169, 174: 172, 175: 173, 176: 174, 177: 175, 178: 176, 179: 177, 180: 178, 181: 179, 182: 180, 183: 181, 184: 182, 185: 183, 186: 184, 187: 185, 188: 186, 189: 187, 190: 188, 191: 189, 192: 190, 193: 191, 194: 192, 195: 193, 196: 194, 197: 194, 198: 195, 199: 196, 200: 197, 201: 198, 202: 199, 203: 200, 204: 201, 205: 202, 206: 203, 207: 204, 208: 205, 209: 206, 210: 207, 211: 208, 212: 209, 213: 210, 214: 211, 215: 212, 216: 213, 217: 214, 218: 215, 219: 216, 220: 217, 221: 218, 222: 219, 223: 220, 224: 221, 225: 222, 226: 223, 227: 223, 228: 224, 229: 225, 230: 226, 231: 227, 232: 228, 233: 229, 234: 230, 235: 231, 236: 232, 237: 233, 238: 234, 239: 234, 240: 235, 241: 236, 242: 237, 243: 238, 244: 239, 245: 240, 246: 241, 247: 242, 248: 242, 249: 243, 250: 244, 251: 245, 252: 246, 253: 247, 254: 248, 255: 249, 256: 250, 257: 251, 258: 252, 259: 253, 260: 254, 261: 255, 262: 256}
+2025-02-19 22:49:20 - WARNING: new num para 
+2025-02-19 22:49:20 - WARNING:  
+2025-02-19 22:49:20 - WARNING: 96
+2025-02-19 22:49:20 - WARNING: done save re and ner, 
+2025-02-19 22:49:20 - WARNING: start count num_rel 
+2025-02-19 22:49:20 - WARNING: done count num_rel 
+2025-02-19 22:49:20 - WARNING: start update document 
+2025-02-19 22:49:20 - WARNING: start matching infor
+2025-02-19 22:49:20 - WARNING: done matching infor
+2025-02-19 22:49:20 - WARNING: start commit
+2025-02-19 22:49:20 - WARNING: done update document 
+2025-02-19 22:49:23 - WARNING: Failed to send email. Error: {'an': (553, b'5.1.3 The recipient address <an> is not a valid RFC 5321 address. For more\n5.1.3 information, go to\n5.1.3  https://support.google.com/a/answer/3221692 and review RFC 5321\n5.1.3 specifications. 41be03b00d2f7-adb57c5ea71sm10969412a12.8 - gsmtp')}
+2025-02-19 22:49:23 - INFO: Task dev_tasks.process_pdf_task[aae3bb71-5803-4c7c-9ebd-530c0398be5a] succeeded in 15.783997554332018s: {'id': 23317337, 'filename': '39045.pdf', 'upload_time': '2025/02/19, 13:49:07', 'entities': 275, 'relations': 73, 'pages': 7, 'status': 'completed'}
+2025-02-19 22:49:23 - WARNING: 2025-02-19 22:49:23 - INFO: Task dev_tasks.process_pdf_task[aae3bb71-5803-4c7c-9ebd-530c0398be5a] succeeded in 15.783997554332018s: {'id': 23317337, 'filename': '39045.pdf', 'upload_time': '2025/02/19, 13:49:07', 'entities': 275, 'relations': 73, 'pages': 7, 'status': 'completed'}

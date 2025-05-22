@@ -1,0 +1,27 @@
+2025-02-19 21:48:35 - WARNING: {'<pad>': 0, '<suc>': 1, 'monomer': 2, 'organic': 3, 'inorganic': 4, 'condition': 5, 'polymer_family': 6, 'syn_method': 7, 'prop_name': 8, 'prop_value': 9, 'ref_exp': 10, 'char_method': 11, 'polymer': 12, 'material_amount': 13, 'composite': 14, 'other_material': 15}
+2025-02-19 21:48:35 - INFO: Building Model
+2025-02-19 21:48:35 - WARNING: 2025-02-19 21:48:35 - INFO: Building Model
+2025-02-19 21:48:42 - WARNING: uploads/39045.pdf
+2025-02-19 21:48:42 - WARNING: start parsing pdf
+2025-02-19 21:48:43 - WARNING: sample:  
+2025-02-19 21:48:43 - WARNING:  
+2025-02-19 21:48:43 - WARNING: e-Polymers  2007, no. 103
+2025-02-19 21:48:43 - WARNING: num pos:   
+2025-02-19 21:48:43 - WARNING:  
+2025-02-19 21:48:43 - WARNING: 27
+2025-02-19 21:48:43 - WARNING: Traceback (most recent call last):
+  File "/home/antrieu/drive/RIKEN/dev_tasks.py", line 118, in process_pdf_task
+    all_pages_text_data, all_pages_bb_data = convert_pdf_to_text_and_bounding_boxes(file_path)
+  File "/home/antrieu/drive/RIKEN/pdf_processing.py", line 266, in convert_pdf_to_text_and_bounding_boxes
+    all_pages_text_data, all_pages_bb_data = divide_paragraphs(all_pages_text_data, all_pages_bb_data)
+  File "/home/antrieu/drive/RIKEN/pdf_processing.py", line 145, in divide_paragraphs
+    new_paras, new_bb = check_if_there_is_break(para, para_bb)
+  File "/home/antrieu/drive/RIKEN/pdf_processing.py", line 119, in check_if_there_is_break
+    container[container_pos].append(sample[index])
+IndexError: string index out of range
+2025-02-19 21:48:43 - WARNING: start matching infor
+2025-02-19 21:48:43 - WARNING: done matching infor
+2025-02-19 21:48:43 - WARNING: start commit
+2025-02-19 21:48:46 - WARNING: Failed to send email. Error: {'an': (553, b'5.1.3 The recipient address <an> is not a valid RFC 5321 address. For more\n5.1.3 information, go to\n5.1.3  https://support.google.com/a/answer/3221692 and review RFC 5321\n5.1.3 specifications. d9443c01a7336-220d5348f29sm104189115ad.37 - gsmtp')}
+2025-02-19 21:48:47 - INFO: Task dev_tasks.process_pdf_task[957e230e-ebca-4bbe-83cd-fc6420f3afec] succeeded in 11.187899727374315s: None
+2025-02-19 21:48:47 - WARNING: 2025-02-19 21:48:47 - INFO: Task dev_tasks.process_pdf_task[957e230e-ebca-4bbe-83cd-fc6420f3afec] succeeded in 11.187899727374315s: None

@@ -1,0 +1,66 @@
+2025-05-21 14:42:48 - WARNING: {'<pad>': 0, '<suc>': 1, 'monomer': 2, 'organic': 3, 'inorganic': 4, 'condition': 5, 'polymer_family': 6, 'syn_method': 7, 'prop_name': 8, 'prop_value': 9, 'ref_exp': 10, 'char_method': 11, 'polymer': 12, 'material_amount': 13, 'composite': 14, 'other_material': 15}
+2025-05-21 14:42:48 - INFO: Building Model
+2025-05-21 14:42:48 - WARNING: 2025-05-21 14:42:48 - INFO: Building Model
+2025-05-21 14:42:49 - WARNING: uploads/s13233-025-00416-4.pdf
+2025-05-21 14:42:49 - WARNING: start parsing pdf
+2025-05-21 14:42:50 - WARNING: CustomVisionEncoderDecoderModel init
+2025-05-21 14:42:50 - WARNING: VariableUnimerNetModel init
+2025-05-21 14:42:50 - WARNING: VariableUnimerNetPatchEmbeddings init
+2025-05-21 14:42:52 - WARNING: VariableUnimerNetModel init
+2025-05-21 14:42:53 - WARNING: VariableUnimerNetPatchEmbeddings init
+2025-05-21 14:42:53 - WARNING: CustomMBartForCausalLM init
+2025-05-21 14:42:54 - WARNING: CustomMBartDecoder init
+2025-05-21 14:42:55 - INFO: load checkpoint from /home/antrieu/.cache/huggingface/hub/models--opendatalab--PDF-Extract-Kit-1.0/snapshots/60416a2cabad3f7b7284b43ce37a99864484fba2/models/MFR/unimernet_small_2501/pytorch_model.pth
+2025-05-21 14:42:55 - WARNING: 2025-05-21 14:42:55 - INFO: load checkpoint from /home/antrieu/.cache/huggingface/hub/models--opendatalab--PDF-Extract-Kit-1.0/snapshots/60416a2cabad3f7b7284b43ce37a99864484fba2/models/MFR/unimernet_small_2501/pytorch_model.pth
+2025-05-21 14:42:56 - INFO: Loaded pretrained model '/home/antrieu/.cache/huggingface/hub/models--opendatalab--PDF-Extract-Kit-1.0/snapshots/60416a2cabad3f7b7284b43ce37a99864484fba2/models/MFR/unimernet_small_2501/pytorch_model.pth'.
+2025-05-21 14:42:56 - WARNING: 2025-05-21 14:42:56 - INFO: Loaded pretrained model '/home/antrieu/.cache/huggingface/hub/models--opendatalab--PDF-Extract-Kit-1.0/snapshots/60416a2cabad3f7b7284b43ce37a99864484fba2/models/MFR/unimernet_small_2501/pytorch_model.pth'.
+2025-05-21 14:42:56 - DEBUG: /home/antrieu/miniconda3/envs/mineru/lib/python3.10/site-packages/rapid_table/models/slanet-plus.onnx already exists
+2025-05-21 14:42:56 - WARNING: 2025-05-21 14:42:56 - DEBUG: /home/antrieu/miniconda3/envs/mineru/lib/python3.10/site-packages/rapid_table/models/slanet-plus.onnx already exists
+2025-05-21 14:43:17 - WARNING: Traceback (most recent call last):
+  File "/home/antrieu/RIKEN/dev_tasks.py", line 122, in process_pdf_task
+    all_pages_text_data, all_pages_bb_data, para_data = processing_pdf_using_mineru_and_pymupdf(file_path)
+  File "/home/antrieu/RIKEN/pdf_processing.py", line 622, in processing_pdf_using_mineru_and_pymupdf
+    para_data = merge_broken_paragraph(para_data,min_x1, max_x2)
+TypeError: merge_broken_paragraph() takes 1 positional argument but 3 were given
+2025-05-21 14:43:17 - WARNING: start matching infor
+2025-05-21 14:43:17 - WARNING: done matching infor
+2025-05-21 14:43:17 - WARNING: start commit
+2025-05-21 14:43:20 - WARNING: Email sent successfully!
+2025-05-21 14:43:21 - INFO: Task dev_tasks.process_pdf_task[64b9889d-24f7-4505-87ea-6ad33ce7bd3d] succeeded in 32.63381401402876s: None
+2025-05-21 14:43:21 - WARNING: 2025-05-21 14:43:21 - INFO: Task dev_tasks.process_pdf_task[64b9889d-24f7-4505-87ea-6ad33ce7bd3d] succeeded in 32.63381401402876s: None
+2025-05-21 14:43:29 - INFO: Task dev_tasks.process_pdf_task[5296d25b-306b-4bd1-9173-b61c94a018d8] received
+2025-05-21 14:43:29 - WARNING: 2025-05-21 14:43:29 - INFO: Task dev_tasks.process_pdf_task[5296d25b-306b-4bd1-9173-b61c94a018d8] received
+2025-05-21 14:43:29 - WARNING: uploads/s00289-025-05734-2.pdf
+2025-05-21 14:43:29 - WARNING: start parsing pdf
+2025-05-21 14:44:02 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:02 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:02 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:02 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:02 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:02 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:02 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:03 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:03 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:03 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:03 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:03 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:03 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:03 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:03 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:03 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:03 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:03 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:03 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:03 - WARNING: WE have error during locate bounding box!!!!!!!!!!!!
+2025-05-21 14:44:03 - WARNING: Traceback (most recent call last):
+  File "/home/antrieu/RIKEN/dev_tasks.py", line 122, in process_pdf_task
+    all_pages_text_data, all_pages_bb_data, para_data = processing_pdf_using_mineru_and_pymupdf(file_path)
+  File "/home/antrieu/RIKEN/pdf_processing.py", line 622, in processing_pdf_using_mineru_and_pymupdf
+    para_data = merge_broken_paragraph(para_data,min_x1, max_x2)
+TypeError: merge_broken_paragraph() takes 1 positional argument but 3 were given
+2025-05-21 14:44:03 - WARNING: start matching infor
+2025-05-21 14:44:03 - WARNING: done matching infor
+2025-05-21 14:44:03 - WARNING: start commit
+2025-05-21 14:44:07 - WARNING: Email sent successfully!
+2025-05-21 14:44:07 - INFO: Task dev_tasks.process_pdf_task[5296d25b-306b-4bd1-9173-b61c94a018d8] succeeded in 38.637846853991505s: None
+2025-05-21 14:44:07 - WARNING: 2025-05-21 14:44:07 - INFO: Task dev_tasks.process_pdf_task[5296d25b-306b-4bd1-9173-b61c94a018d8] succeeded in 38.637846853991505s: None

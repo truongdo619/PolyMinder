@@ -1,0 +1,62 @@
+2025-04-02 13:28:51 - WARNING: {'<pad>': 0, '<suc>': 1, 'monomer': 2, 'organic': 3, 'inorganic': 4, 'condition': 5, 'polymer_family': 6, 'syn_method': 7, 'prop_name': 8, 'prop_value': 9, 'ref_exp': 10, 'char_method': 11, 'polymer': 12, 'material_amount': 13, 'composite': 14, 'other_material': 15}
+2025-04-02 13:28:51 - INFO: Building Model
+2025-04-02 13:28:51 - WARNING: 2025-04-02 13:28:51 - INFO: Building Model
+2025-04-02 13:28:52 - WARNING: Example:   0%|          | 0/18 [00:00<?, ?it/s]
+2025-04-02 13:28:52 - WARNING: Example:  44%|####4     | 8/18 [00:00<00:00, 77.31it/s]
+2025-04-02 13:28:52 - WARNING: Example:  89%|########8 | 16/18 [00:00<00:00, 63.33it/s]
+2025-04-02 13:28:52 - WARNING: Example: 100%|##########| 18/18 [00:00<00:00, 69.65it/s]
+2025-04-02 13:28:52 - WARNING: # of documents 18.
+2025-04-02 13:28:52 - WARNING: # of positive examples 0.
+2025-04-02 13:28:52 - WARNING: # of negative examples 7570.
+2025-04-02 13:28:53 - WARNING: dict_keys(['7', '10', '11', '12', '13', '16', '21', '26', '30', '31', '32', '38', '40', '43', '46'])
+2025-04-02 13:28:53 - WARNING: doing update at id: 85
+2025-04-02 13:28:54 - WARNING: got in commit command
+2025-04-02 13:28:54 - WARNING: Updated UserNote: []
+2025-04-02 13:28:54 - WARNING: After commit, UserNote: []
+2025-04-02 13:28:54 - INFO: Task dev_tasks.re_run_re[d419af40-047e-4672-b7ac-5fef31ac164a] succeeded in 3.357834428548813s: None
+2025-04-02 13:28:54 - WARNING: 2025-04-02 13:28:54 - INFO: Task dev_tasks.re_run_re[d419af40-047e-4672-b7ac-5fef31ac164a] succeeded in 3.357834428548813s: None
+2025-04-02 13:32:31 - INFO: Task dev_tasks.re_run_re[80e7b0b2-8318-4e47-b4b2-4cd2c71c91ac] received
+2025-04-02 13:32:31 - WARNING: 2025-04-02 13:32:31 - INFO: Task dev_tasks.re_run_re[80e7b0b2-8318-4e47-b4b2-4cd2c71c91ac] received
+2025-04-02 13:32:31 - WARNING: Example:   0%|          | 0/18 [00:00<?, ?it/s]
+2025-04-02 13:32:31 - WARNING: Example:  50%|#####     | 9/18 [00:00<00:00, 77.41it/s]
+2025-04-02 13:32:31 - WARNING: Example: 100%|##########| 18/18 [00:00<00:00, 94.06it/s]
+2025-04-02 13:32:31 - WARNING: # of documents 18.
+2025-04-02 13:32:31 - WARNING: # of positive examples 0.
+2025-04-02 13:32:31 - WARNING: # of negative examples 7570.
+2025-04-02 13:32:32 - WARNING: dict_keys(['7', '10', '11', '12', '13', '16', '21', '26', '30', '31', '32', '38', '40', '43', '46'])
+2025-04-02 13:32:32 - WARNING: doing update at id: 85
+2025-04-02 13:32:32 - WARNING: got in commit command
+2025-04-02 13:32:32 - WARNING: Updated UserNote: []
+2025-04-02 13:32:32 - WARNING: After commit, UserNote: []
+2025-04-02 13:32:32 - INFO: Task dev_tasks.re_run_re[80e7b0b2-8318-4e47-b4b2-4cd2c71c91ac] succeeded in 0.9542641080915928s: None
+2025-04-02 13:32:32 - WARNING: 2025-04-02 13:32:32 - INFO: Task dev_tasks.re_run_re[80e7b0b2-8318-4e47-b4b2-4cd2c71c91ac] succeeded in 0.9542641080915928s: None
+2025-04-02 15:06:38 - INFO: Task dev_tasks.re_run_re[1d894607-0be7-45c7-ad03-cae392f0aee9] received
+2025-04-02 15:06:38 - WARNING: 2025-04-02 15:06:38 - INFO: Task dev_tasks.re_run_re[1d894607-0be7-45c7-ad03-cae392f0aee9] received
+2025-04-02 15:06:38 - WARNING: Example:   0%|          | 0/18 [00:00<?, ?it/s]
+2025-04-02 15:06:38 - WARNING: Example:  50%|#####     | 9/18 [00:00<00:00, 75.82it/s]
+2025-04-02 15:06:38 - WARNING: Example: 100%|##########| 18/18 [00:00<00:00, 92.57it/s]
+2025-04-02 15:06:38 - WARNING: # of documents 18.
+2025-04-02 15:06:38 - WARNING: # of positive examples 0.
+2025-04-02 15:06:38 - WARNING: # of negative examples 7570.
+2025-04-02 15:06:39 - WARNING: dict_keys(['6', '9', '10', '12', '13', '16', '21', '26', '30', '31', '32', '38', '40', '43', '46'])
+2025-04-02 15:06:39 - WARNING: doing update at id: 86
+2025-04-02 15:06:39 - WARNING: got in commit command
+2025-04-02 15:06:39 - WARNING: Updated UserNote: []
+2025-04-02 15:06:39 - WARNING: After commit, UserNote: []
+2025-04-02 15:06:39 - INFO: Task dev_tasks.re_run_re[1d894607-0be7-45c7-ad03-cae392f0aee9] succeeded in 0.9638360552489758s: None
+2025-04-02 15:06:39 - WARNING: 2025-04-02 15:06:39 - INFO: Task dev_tasks.re_run_re[1d894607-0be7-45c7-ad03-cae392f0aee9] succeeded in 0.9638360552489758s: None
+2025-04-02 15:08:59 - INFO: Task dev_tasks.re_run_re[12712386-dc30-4f44-aeaa-70cfade92838] received
+2025-04-02 15:08:59 - WARNING: 2025-04-02 15:08:59 - INFO: Task dev_tasks.re_run_re[12712386-dc30-4f44-aeaa-70cfade92838] received
+2025-04-02 15:09:00 - WARNING: Example:   0%|          | 0/18 [00:00<?, ?it/s]
+2025-04-02 15:09:00 - WARNING: Example:  50%|#####     | 9/18 [00:00<00:00, 66.44it/s]
+2025-04-02 15:09:00 - WARNING: Example: 100%|##########| 18/18 [00:00<00:00, 85.04it/s]
+2025-04-02 15:09:00 - WARNING: # of documents 18.
+2025-04-02 15:09:00 - WARNING: # of positive examples 0.
+2025-04-02 15:09:00 - WARNING: # of negative examples 7570.
+2025-04-02 15:09:00 - WARNING: dict_keys(['6', '9', '10', '12', '13', '16', '21', '26', '30', '31', '32', '38', '40', '43', '46'])
+2025-04-02 15:09:00 - WARNING: doing update at id: 86
+2025-04-02 15:09:00 - WARNING: got in commit command
+2025-04-02 15:09:00 - WARNING: Updated UserNote: []
+2025-04-02 15:09:00 - WARNING: After commit, UserNote: []
+2025-04-02 15:09:00 - INFO: Task dev_tasks.re_run_re[12712386-dc30-4f44-aeaa-70cfade92838] succeeded in 0.982118584215641s: None
+2025-04-02 15:09:00 - WARNING: 2025-04-02 15:09:00 - INFO: Task dev_tasks.re_run_re[12712386-dc30-4f44-aeaa-70cfade92838] succeeded in 0.982118584215641s: None

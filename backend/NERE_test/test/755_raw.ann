@@ -1,0 +1,39 @@
+T1	POLYMER 48 105	polystyrene-g-poly(2-(dimethylamino) ethyl methacrylate))
+T2	POLYMER 107 119	PS-g-PDMAEMA
+T3	POLYMER 217 245	chloromethylated polystyrene
+T4	POLYMER 591 598	PDMAEMA
+T5	POLYMER 760 772	PS-g-PDMAEMA
+R1	abbreviation_of Arg1:T2 Arg2:T1
+T6	SYN_METHOD 166 202	atom transfer radical polymerization
+T7	SYN_METHOD 204 208	ATRP
+R2	abbreviation_of Arg1:T7 Arg2:T6
+R3	synthesised_by Arg1:T1 Arg2:T7
+T8	POLYMER 247 251	CMPS
+R4	abbreviation_of Arg1:T8 Arg2:T3
+T9	PROP_NAME 571 587	molecular weight
+R5	has_property Arg1:T4 Arg2:T9
+T10	CHAR_METHOD 811 843	transmission electron microscopy
+T11	CHAR_METHOD 845 848	TEM
+R6	abbreviation_of Arg1:T11 Arg2:T10
+T12	CHAR_METHOD 854 882	scanning electron microscopy
+T13	CHAR_METHOD 884 887	SEM
+R7	abbreviation_of Arg1:T13 Arg2:T12
+R8	characterized_by Arg1:T5 Arg2:T11
+R9	characterized_by Arg1:T5 Arg2:T13
+T14	CHAR_METHOD 1159 1162	SEM
+T15	REF_EXP 895 907	the micelles
+R10	refers_to Arg1:T15 Arg2:T5
+R11	characterized_by Arg1:T15 Arg2:T14
+T16	ORGANIC 381 388	acetone
+T17	OTHER_MATERIAL 375 388	water/acetone
+T18	MATERIAL_AMOUNT 390 397	v/v=2/3
+R12	has_amount Arg1:T17 Arg2:T18	
+T19	CONDITION 550 598	with the increase of molecular weight of PDMAEMA
+T20	ORGANIC 688 695	acetone
+T21	MATERIAL_AMOUNT 697 704	v/v=2/3
+T22	OTHER_MATERIAL 678 695	water and acetone
+T23	ORGANIC 931 938	acetone
+T24	OTHER_MATERIAL 925 938	water/acetone
+T25	MATERIAL_AMOUNT 940 947	v/v=2/3
+R13	has_amount Arg1:T24 Arg2:T25	
+T26	CONDITION 988 1036	at different temperatures (from 50 up to 200 °C)

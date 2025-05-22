@@ -1,0 +1,867 @@
+[
+    {
+        "type": "text",
+        "text": "ModuLoRA: Finetuning 2-Bit LLMs on Consumer GPUs by Integrating with Modular Quantizers ",
+        "text_level": 1,
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Junjie Yin Department of Computer Science Johns Hopkins University ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "jyin27@jhu.edu ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Jiahao Dong Department of Computer Science Cornell University and Cornell Tech ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "jd787@cornell.edu ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Yingheng Wang   \nDepartment of Computer Science   \nCornell University ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "yw2349@cornell.edu ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Christopher De Sa Department of Computer Science Cornell University ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "cdesa@cs.cornell.edu ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Volodymyr Kuleshov Department of Computer Science Cornell University and Cornell Tech ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "kuleshov@cornell.edu ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Abstract ",
+        "text_level": 1,
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "We propose a memory-efficient finetuning algorithm for large language models (LLMs) that supports finetuning LLMs with 65B parameters in 2/3/4-bit precision on as little as one 24GB GPU. Our method, modular low-rank adaptation (ModuLoRA), integrates any user-specified weight quantizer with finetuning via low-rank adapters (LoRAs). Our approach relies on a simple quantization-agnostic backward pass that adaptively materializes low-precision LLM weights from a custom black-box quantization module. This approach enables finetuning 2-bit and 3-bit LLMs for the first time—leveraging state-of-the-art 2-bit QuIP# quantization and 3-bit OPTQ quantization—outperforming finetuning that relies on less sophisticated 4-bit and 8-bit methods. In our experiments, ModuLoRA attains competitive performance on text classification, natural language inference, and instruction following tasks using significantly less memory than existing approaches, and we also surpass the state-of-the-art ROUGE score on a popular summarization task. We release ModuLoRA together with a series of low-precision models as part of LLMTools, a user-friendly library for quantizing, running, and finetuning LLMs on consumer GPUs. ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1 Introduction ",
+        "text_level": 1,
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Large language models (LLMs) excel across diverse tasks such as code generation, instruction following, and reasoning (Brown et al., 2020; Scao et al., 2023; Zhang et al., 2022). However, the massive size of these models—often reaching into hundreds of billions of parameters—makes them challenging to deploy on downstream tasks and motivates research into efficient finetuning algorithms (Li & Liang, 2021; Hu et al., 2022). ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Here, we propose modular low-rank adaptation (ModuLoRA), a memory-efficient finetuning algorithm for large language models (LLMs) that runs on consumer-grade hardware. For example, in 3-bit precision, ModuLoRA finetunes a LLaMA-30B model (Touvron et al., 2023) on one Nvidia RTX 3090 24GB GPU and a LLaMA-65B on one RTX A6000 48GB GPU. In 2-bit precision, ModuLoRA finetunes a LLaMA-30B or LLaMA-65B on one Nvidia RTX 3090 24GB GPU. ",
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Our approach adds high-precision low-rank adapters to the low-precision 3-bit or 4-bit weights of a frozen base LLM obtained via modern quantization algorithms (Hubara et al., 2021; Yao et al., 2021; Frantar et al., 2023). Crucially, ModuLoRA does not specify its own quantization procedure—rather, it integrates with user-defined quantizers via a simple quantization-agnostic backward pass. This backward pass adaptively materializes low-precision LLM weights obtained from a black-box quantizer and integrates them with highprecision low-rank adapters. ",
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "We release ModuLoRA as part of LLMTools, a user-friendly library that enables finetuning LLMs on consumer GPUs. When paired with the modern OPTQ quantizer (Frantar et al., 2023), ModuLoRA enables finetuning 3-bit LLMs for the first time, often outperforming methods based on less sophisticated 4-bit and 8-bit quantization. When paired with the state-of-the-art QuIP# quantizer Chee et al. (2023); Tseng et al. (2023), ModuLoRA enables finetuning 2-bit LLMs for the first time, matching methods’ performance on less sophisticated 4-bit and 8-bit quantization method. Across tasks in classification, natural language inference, and instruction following, our low-precision models achieve competitive performance using significantly less memory than existing approaches. On a popular summarization benchmark, we attain a new state-of-theart ROUGE score using a quantized LLaMA-65B model. We open-source all our low-precision models, including the first 3-bit family of Alpaca models that feature strong instruction-following performance at multiple model sizes. Our findings reveal that high performance can be achieved using smaller quantized LLMs than previously thought. ",
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Contributions. In summary, this paper makes the following contributions: (1) we propose ModuLoRA, a memory-efficient finetuning method that operates over low-precision weights obtained via a user-specified black-box quantization module; (2) we release LLMTools, a user-friendly Python library that features an implementation of ModuLoRA and that enables users to easily finetune the largest LLMs on consumer GPUs; (3) we provide empirical evidence that high performance on downstream tasks can be achieved with a smaller LLM than previously thought. ",
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "2 Background and Related Work ",
+        "text_level": 1,
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "We are interested in finetuning a pre-trained LLM for downstream tasks (Li & Liang, 2021; Lester et al., 2021; Houlsby et al., 2019; Rebuffi et al., 2017). LLMs use a transformer architecture where almost all of the learnable weights—and almost all of the memory used to store these weights—appear in linear layers.1 We let the weights and biases of these $n$ linear layers be denoted $\\mathbf{W}^{(i)}$ and $\\mathbf{b}^{(i)}$ for $i\\in\\{1,2,...,n\\}$ . Given a pretrained network, our goal is to finetune it for downstream tasks using much less working memory than would be needed to store all of the W in full precision. ",
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "2.1 Large Language Model Finetuning ",
+        "text_level": 1,
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Because of the high memory requirements needed to fine-tune and store all the weights of a LLM, practitioners have developed a variety of parameter-efficient fine tuning methods that learn in a lower dimensional space. These methods include tuning only the output layer (Devlin et al., 2018) and tuning the prompt or prefix passed as input to an LLM (Lester et al., 2021; Li & Liang, 2021; Liu et al., 2023a;b), as well as LoRA, which is the focus of this work. ",
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Low-Rank Adaptation (LoRA) The LoRA algorithm (Hu et al., 2022) decomposes the weights W into a sum of frozen base model weights $\\mathbf{W}_{0}\\in\\mathbb{R}^{d\\times d}$ and a small additive low-rank adapter $\\mathbf{A}\\mathbf{B}^{\\top}$ consisting of the product of two rectangular matrices $\\mathbf{A},\\mathbf{B}\\in\\mathbb{R}^{d\\times r}$ , where $r>0$ indicates the rank2: ",
+        "page_idx": 1
+    },
+    {
+        "type": "equation",
+        "text": "$$\n\\mathbf{W}=\\mathbf{W}_{0}+\\mathbf{AB}^{\\top}.\n$$",
+        "text_format": "latex",
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "LoRA reduces the number of trained parameters by a factor of $2r/d$ , lowering the storage, transmission, and task-switching overhead of inference on a system that already maintains the base model. However, LoRA must hold the base weights $\\mathbf{W}_{0}$ in memory, which requires multiple high-end GPUs and precludes tuning large LLMs on commodity hardware. ",
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "2.2 Low-Precision Machine Learning ",
+        "text_level": 1,
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The computational requirements of modern machine learning models motivate a wide range of efficient machine learning algorithms (Li & Liang, 2021; Hu et al., 2022; Frantar et al., 2023). ",
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Quantization Quantization methods for neural networks reduce the number of bits required to store model weights (Dong et al., 2019; 2020; Yao et al., 2022; Park et al., 2023). A $b$ -bit quantization method has the form ",
+        "page_idx": 2
+    },
+    {
+        "type": "equation",
+        "text": "$$\n\\begin{array}{r}{(\\hat{\\mathbf{W}}_{q},\\mathbf{z},\\mathbf{s})=\\mathcal{Q}(\\mathbf{W})\\qquad\\hat{\\mathbf{W}}=\\mathcal{D}(\\hat{\\mathbf{W}}_{q},\\mathbf{z},\\mathbf{s}).}\\end{array}\n$$",
+        "text_format": "latex",
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Here, the quantization algorithm $\\mathcal{Q}$ takes a weight matrix $\\mathbf{W}\\in\\mathbb{R}^{d\\times d}$ (or its subset) and outputs a quantized version $\\hat{\\mathbf{W}}_{q}\\in\\{0,1,\\dots,2^{b-1}\\}^{d\\times d}$ (using $b$ bits to represent each entry of $\\mathbf{W}$ ), as well as zero and scale parameters $\\mathbf{z},\\mathbf{s}\\in\\mathbb{R}^{d}$ (in full precision). The dequantization algorithm $\\mathcal{D}(\\hat{\\mathbf{W}}_{q},\\mathbf{z},\\mathbf{s})$ recovers an approximation $\\hat{\\mathbf{W}}\\in\\mathbb{R}^{d\\times d}$ by rescaling the quantized weights as $\\hat{\\mathbf{W}}=\\mathbf{s}\\odot\\hat{\\mathbf{W}}_{q}+\\mathbf{z}$ , where $\\odot$ denotes the Hadamard product, and $\\odot,+$ are extended with numpy-style broadcasting. ",
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Recently, Frantar et al. (2023) proposed OPTQ, a quantization algorithm that scales to modern LLMs. The method iteratively runs two steps over the weight columns: (1) quantize with nearest rounding and compute the error, (2) update the remaining weights with a scaled error. Many of our experiments finetune LLMs quantized with OPTQ. ",
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Following OPTQ, Chee et al. (2023) proposed QuIP, a quantization algorithm that makes two-bit LLM compression viable for the first time. The method follows a 2-step procedure: (1) an adaptive rounding procedure that minimizes a quadratic proxy objective„ (2) an efficient pre- and post-processing procedure ensuring weight and Hessian incoherence through multiplication by random orthogonal matrices. Further, Tseng et al. (2023) proposed QuIP $\\#$ , combining lattice codebooks with incoherence processing from QuIP to create state-of-the-art 2 bit quantized models. We show the performance of QuIP# (with $D_{4}$ codebooks) quantized LLMs on the SAMSum summarization experiment. ",
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "In concurrent work, Dettmers et al. (2023) proposed QLoRA, an approach for tuning quantized LLMs based on LoRA. While our work seeks to integrate with any user-defined quantization module (such as OPTQ), QLoRA defines its own quantization scheme, which is simpler than, say, OPTQ or QuIP. One advantage of our approach is support for 2-bit and 3-bit finetuning; QLoRA only supports 4-bit finetuning. We will also identify settings where using advanced quantizers yields performance gains over QLoRA. See Section 5.1 for details. ",
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "3 Low-Precision Low-Rank Adaptation with a Modular Quantizer ",
+        "text_level": 1,
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "In this section, we describe modular low-rank adaptation (ModuLoRA), a memory-efficient finetuning algorithm for large language models (LLMs) that leverages custom quantization algorithms and runs on consumer GPU hardware. ",
+        "page_idx": 2
+    },
+    {
+        "type": "image",
+        "img_path": "images/03c772dcbbb2981472ecf3bbda8e77c268325d95a5a288b37ad13112bb7838bd.jpg",
+        "img_caption": [
+            "Figure 1: PyTorch pseudocode for ModuLoRA. "
+        ],
+        "img_footnote": [],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "3.1 Low-Rank Adaptation of Low-Precision Models ",
+        "text_level": 1,
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The first step of our approach is quantization: we apply a black-box quantization algorithm $\\mathcal{Q}$ to a set of pretrained weight matrices $\\mathbf{W}^{(i)}$ . This yields quantized weights, zeros, and scales $(\\hat{\\mathbf{W}}_{q}^{(i)},\\mathbf{z}^{(i)},\\mathbf{s}^{(i)})=\\mathcal{Q}(\\mathbf{W}^{(i)})$ . We use $\\hat{\\mathbf{W}}_{q}^{(i)}$ to denote the quantized weighs stored in low precision, while $\\hat{\\mathbf{W}}^{(i)}$ denotes the same weights materialized in high precision (both approximate the original weights $\\mathbf{W}^{(i)}$ ). Crucially, we do not specify a quantization procedure $\\mathcal{Q}$ as part of ModuLoRA—rather, we seek to support user-defined quantizers that are treated by our method is a black-box. ",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The core of our efforts focuses on finetuning the base quantized model. Our method first modifies the network by replacing each linear layer—originally defined by the affine map $x\\mapsto x(\\mathbf{W}^{(i)})^{\\top}+\\mathbf{b}^{(i)}$ —with the reparameterized low precision ModuLoRALinear layer in Figure 1, given by ",
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "text": "$$\n\\begin{array}{r}{x\\mapsto x(\\hat{\\mathbf{W}}^{(i)})^{\\top}+x\\mathbf{B}^{(i)}(\\mathbf{A}^{(i)})^{\\top}+\\mathbf{b}^{(i)}.}\\end{array}\n$$",
+        "text_format": "latex",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Here $\\mathbf{A}^{\\left(i\\right)},\\mathbf{B}^{\\left(i\\right)}\\quad\\in\\quad\\mathbb{R}^{d\\times r}$ are learnable parameters initialized as in Hu et al. (2022), and $\\begin{array}{r l}{\\hat{\\mathbf{W}}^{(i)}}&{{}=}\\end{array}$ $\\mathcal{D}(\\hat{\\mathbf{W}}_{q}^{(i)},\\mathbf{z}^{(i)},\\mathbf{s}^{(i)})$ is the fixed dequantized weight matrix. Note that this is algebraically (but not computationally) equivalent to transforming the quantized matrix as given in (1). Lastly, ModuLoRA fits the $\\mathbf{A}^{(i)}$ and $\\mathbf{B}^{(i)}$ using backprop and gradient-based learning. ",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "A key challenge in this procedure is to efficiently perform computations with high-precision and low-precision tensors. Clearly, the forward pass requires multiplying by weights stored in quantized $\\hat{\\mathbf{W}}_{q}^{(i)}$ ’s. Below, we derive the backward pass for $\\mathbf{A}^{(i)},\\mathbf{B}^{(i)}$ and show that it also requires multiplying by the transpose of the $\\hat{\\mathbf{W}}_{q}^{(i)}$ ’s. ",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "3.1.1 The Structure of a Quantized Backward Pass ",
+        "text_level": 1,
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We illustrate the technical challenges that arise in the design of a quantized backward pass in the context of a network of $n$ ModuLoRALinear layers. Each ModuLoRALinear is effectively a fully connected layer with reparameterized dense weights defined as ",
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "text": "$$\n\\mathbf{W}_{l}^{(i)}=\\hat{\\mathbf{W}}^{(i)}+\\mathbf{A}^{(i)}(\\mathbf{B}^{(i)})^{\\top},\n$$",
+        "text_format": "latex",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "biases $\\mathbf{b}^{(i)}$ , and outputs $\\mathbf{y}_{i}$ for $i=1,2,...,n$ . We use $\\bar{\\mathbf{y}}_{i}=\\mathbf{W}_{l}^{(i)}\\mathbf{x}+\\mathbf{b}^{(i)}$ to denote the pre-activation output of the $i$ -th step and we use $L$ to denote the loss. The backward pass seeks to compute gradients $\\mathrm{d}L/\\mathrm{d}\\mathbf{A}^{(i)}$ ",
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "and $\\mathrm{d}L/\\mathrm{d}\\mathbf{B}^{(i)}$ , where we overload the Leibniz notation for derivatives to also denote gradients. By the chain rule, ",
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "text": "$$\n\\frac{\\mathrm{d}L}{\\mathrm{d}\\mathbf{A}^{(i)}}=\\frac{\\mathrm{d}L}{\\mathrm{d}\\bar{\\mathbf{y}}_{i}}\\cdot\\frac{\\mathrm{d}\\bar{\\mathbf{y}}_{i}}{\\mathrm{d}\\mathbf{A}^{(i)}}.\n$$",
+        "text_format": "latex",
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Because of the additive structure of the weights $\\mathbf{W}_{l}^{(i)}$ in (4), $\\mathrm{d}\\mathbf{y}_{i}/\\mathrm{d}\\mathbf{A}^{(i)}$ is straightforward to handle as it is not a function of the quantized weights $\\hat{\\mathbf{W}}_{q}^{(i)}$ . The second term can be computed via the chain rule of calculus as ",
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "text": "$$\n\\frac{\\mathrm{d}\\cal L}{\\mathrm{d}\\bar{\\bf y}_{i}}=\\frac{\\mathrm{d}\\cal L}{\\mathrm{d}\\bar{\\bf y}_{i+1}}\\cdot\\frac{\\mathrm{d}\\bar{\\bf y}_{i+1}}{\\mathrm{d}{\\bf y}_{i}}\\cdot\\frac{\\mathrm{d}{\\bf y}_{i}}{\\mathrm{d}\\bar{\\bf y}_{i}},\n$$",
+        "text_format": "latex",
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "where $\\mathrm{d}\\mathbf{y}_{i}/\\mathrm{d}\\bar{\\mathbf{y}}_{i}$ is the derivative of the activation function, and $\\mathrm{d}\\bar{\\mathbf{y}}_{i+1}/\\mathrm{d}\\mathbf{y}_{i}=(\\mathbf{W}_{l}^{(i)})^{\\top}~=~(\\hat{\\mathbf{W}}^{(i)})^{\\top}~+$ $\\mathbf{B}^{(i)}(\\mathbf{A}^{(i)})^{\\top}$ . ",
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "The above derivations indicate that computing the gradient $\\mathrm{d}L/\\mathrm{d}\\mathbf{A}^{(i)}$ (the argument for $\\mathrm{d}L/\\mathrm{d}\\mathbf{B}^{(i)}$ is identical) requires performing a matrix-vector multiply dydiL+1 $\\frac{\\mathrm{d}L}{\\mathrm{d}\\mathbf{y}_{i+1}}\\cdot(\\hat{\\mathbf{W}}^{(i)})^{\\top}$ between a high-precision vector dyi+1 dL with a quantized matrix $(\\hat{\\mathbf{W}}^{(i)})^{\\top}$ . Performing this multiplication in a stable and efficient way is a challenge that we must address. ",
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "3.1.2 Efficient Mixed-Precision Computation of Forward and Backward Passes ",
+        "text_level": 1,
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "If we could precompute all dequantized weight matrices $\\begin{array}{r}{\\big(\\hat{\\mathbf{W}}^{(i)}\\big)^{\\top}}\\end{array}$ in a high-precision format, our challenge would be solved: the matrix-vetor multiplication $\\frac{\\mathrm{d}L}{\\mathrm{d}\\mathbf{y}_{i+1}}\\cdot(\\hat{\\mathbf{W}}^{(i)})^{\\top}$ in the backward pass would operate over two high-precision arrays, and would not introduce questions of efficiency and stability. ",
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Unfortunately, precomputing all dequantized weight matrices $(\\hat{\\mathbf{W}}^{(i)})^{\\top}$ requires the same amount of GPU memory as it would take to store the original high-precision LLM. For this computation to fit on consumer GPU hardware, we need to avoid manifesting all the $\\hat{\\mathbf{W}}^{(i)}$ in memory at once. Using (3) naively, backprop would store all the $\\hat{\\mathbf{W}}^{(i)}$ from the forward pass to use them in the backward pass. ",
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Efficient Mixed Precision Computation. Our strategy is to recompute the high-precision materialization $\\hat{\\mathbf{W}}^{(i)}$ of the quantized $\\hat{\\mathbf{W}}_{q}^{(i)}$ in the backward pass rather than save it (Figure 1). In the LPLinear function, the forward method dequantizes $\\hat{\\mathbf{W}}^{(i)}$ and performs multiplication. Similarly, backward re-dequantizes $\\hat{\\mathbf{W}}^{(i)}$ and computes the gradient via dynamic programming. The hatW goes out of scope and can be freed at the end of each method, so only one $\\hat{\\mathbf{W}}^{(i)}$ is ever stored in memory at any given time. ",
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "The amount of memory used in the forward pass of the LPLoRA module is small: all the intermediates are either the same size as the input $x$ , or even smaller (e.g. if $\\boldsymbol{x}\\in\\mathbb{R}^{m\\times d}$ then $\\textsf{X}\\ @\\textsf{s e l f}.\\mathsf{B}$ is of size $\\mathbb{R}^{m\\times r}$ for $r\\ll d$ ). The amount of additional computation involved is also small: the dequantization procedure $\\hat{\\mathbf{W}}=\\mathbf{s}\\odot\\hat{\\mathbf{W}}_{q}+\\mathbf{z}$ only requires multiplying and adding a scalar to each row of $\\hat{\\mathbf{W}}_{q}$ . ",
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Increasing Efficiency Further. Figure 1 depicts a weight materialization strategy in which $\\hat{\\mathbf{W}}^{(i)}$ is fully materialized at each layer in both forward and backward passes. To further reduce memory, we can materialize elements of $\\hat{\\mathbf{W}}^{(i)}$ only as needed. For many quantization algorithms (Nagel et al., 2020; Frantar et al., 2023), we can perform row materialization: dequantize $\\hat{\\mathbf{W}}^{(i)}$ one row at a time and immediately multiply it with an input $\\mathbf{x}$ . ModuLoRA also naturally generalizes to any direct vector-by-quantized-matrix product subroutine provided by the quantizer $\\mathcal{Q}$ , in which case materializing any part of $\\hat{\\mathbf{W}}^{(i)}$ may be unnecessary. ",
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "3.2 LLMTools: A Library for Efficient LLM Finetuning Using ModuLoRA. ",
+        "text_level": 1,
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "We implement ModuLoRA as part of LLMTools, a user friendly library that enables users to interact with the largest LLMs on consumer hardware. The LLMTools library enables finetuning LLMs in 2-bit, 3-bit, and 4-bit precision using the ModuLoRA algorithm. It also provides an easyto-use Python API for quantization, inference, and finetuning, as well as modular support for multiple quantizers, LLMs (including LLaMA1, LLaMA2, BLOOM, and OPT), and optimization algorithms (including all that are compatible with the Hugging Face Trainer class). Lastly, LLMTools supports easily loading datasets and sharing models via the HuggingFace Hub. Our code is available at: ",
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "https://github.com/kuleshov-group/llmtools; our evaluation code to reproduce our results is available at: https://github.com/kuleshov-group/MODULoRA-Experiment. ",
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "A key quantization algorithm implemented in LLMTools is OPTQ (Frantar et al., 2023). In order to integrate OPTQ with LoRA-based finetuning, LLMTools provides efficient CUDA implementations of mixed-precision matrix-vector multiplication, including row and weight materialization. We provide CUDA kernels for both row and weight materialization in both the forward and backward passes. For maximum efficiency, we materialize elements of $\\hat{\\mathbf{W}}_{q}^{(i)}$ in float16. The base quantized LLM models are represented via weights $\\hat{\\mathbf{W}}_{q}^{(i)}$ stored in 3 or 4 bits, with scales and zeros $\\mathbf{s}^{(i)},\\mathbf{z}^{(i)}$ as well as biases $\\mathbf{b}^{(i)}$ all stored as float16. Similarly, to integrate QuIP $\\#$ with LoRA, LLMTools provides CUDA kernels for weight re-materialization and orthogonal matrices multiplication in the forward and backward passses. The base quantized LLM models are represented via weights $\\hat{\\mathbf{W}}_{q}^{(i)}$ ) tored in 2 bits. s ",
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "4 Experiments ",
+        "text_level": 1,
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "4.1 Setup",
+        "text_level": 1,
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Models. We evaluate ModuLoRA and LLMTools on the recent LLaMA (Touvron et al., 2023) family of models, as well as open-source BLOOM (Scao et al., 2023) and OPT models (Zhang et al., 2022). We quantize the models to 3 bits and 4 bits using OPTQ as in Frantar et al. (2023) with calibration 128 samples from C4 (Raffel et al., 2020). We quantize the models to 2 bits using QuIP# as in Chee et al. (2023); Tseng et al. (2023) with $E_{8}$ lattice codebooks. ",
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Baseline. We use LoRA (as implemented in the PEFT library (Mangrulkar et al., 2022)) to finetune models quantized in 8 bits using the BitsAndBytes library (Dettmers et al., 2022); we also compare to full-precision results from the literature. In concurrent work, Dettmers et al. (2023) proposed QLoRA, a related 4-bit finetuning algorithm implemented in the BitsAndBytes library. Accordingly, we present an experimental comparison of QLoRA with our approach, along with an in-depth discussion. ",
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Training. We finetune all models on NVIDIA TITAN, 3090, and A6000 GPUs (depending on the model) with a LoRA rank of $r=8$ and alpha of $a=32$ , and report results from 3 random seeds. We set up the training procedure following Hu et al. (2022), with slight variation to accommodate our particular language models. For a fair comparison with the concurrent work by Dettmers et al. (2023), we use the exact same hyperparameter set up. Please see Appendix C for details on the hyperparameters used for each of our experiment. ",
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "4.2 Text Classification ",
+        "text_level": 1,
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Data & Metrics. We start with a simple text classification task where we seek to classify a short text snippet (up to 50 words) into its genre (e.g., fiction, telephone chat, etc.). We finetune 13B to 65B LLAMA models on 392,702 snippets from five genres and evaluate on 9,815 held out instances (Williams et al., 2018), reporting accuracy. This yields a challenging classification task for LLMs of all sizes. ",
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/8301e9658ba9e4d2d449fa532547277dcb14417fccd60110cf09d8e44160bf98.jpg",
+        "table_caption": [],
+        "table_footnote": [
+            "Table 1: Text classification accuracy ( $\\%$ ) for LLAMAs finetuned with LoRA & ModuLoRA in 3, 4, 8 bits. "
+        ],
+        "table_body": "\n\n<html><body><table><tr><td>LLAMA Tuning</td><td>13B</td><td>30B</td><td>65B</td></tr><tr><td>LLMTooLS (3-bit)</td><td>93.5 ± 0.7</td><td>97.0 ± 0.9</td><td>97.2 ±0.8</td></tr><tr><td>LLMTooLS (4-bit)</td><td>92.9 ± 0.7</td><td>96.3 ±1.0</td><td>98.0 ± 0.9</td></tr><tr><td>Bits&Bytes 8-bit (LLM.int8O)</td><td>93.0 ± 0.7</td><td>93.7 ± 1.0</td><td>98.6 ± 1.0</td></tr></table></body></html>\n\n",
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Results. We observe that classification accuracy consistently improves as we increase the number of parameters of the LLM. ModuLoRA combined with a 3-bit or a 4-bit LLM offers comparable performance to 8-bit finetuning in Bits&Bytes while using significantly less memory (Table 1). ",
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "4.3 Natural Language Inference ",
+        "text_level": 1,
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Data & Metrics. Next, we finetune LLMs on natural language inference tasks. The model is asked to predict a label from a small set (entailment, contradiction, or neutral) after being presented with a sentence pairing (a hypothesis and premise sentence pair). We finetune 7B to 65B LLaMA models on the Multi-Genre Natural Language Inference Corpus (MNLI) (Williams et al., 2018) and evaluate on the matched test sets (in-domain examples), reporting accuracy. Baselines from GPT-3 and T5 are included, as presented in Hu et al. (2022) and Chung et al. (2022). ",
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Results. Our 2-bit and 3-bit 65B LLaMA model matches the performance of a full-precision GPT-3+LoRA baseline. Notably, 2-bit 65B models finetuned with QuIP# outperforms the rest of 65B models with higher precisions. We also find that 3-bit and 4-bit models from LLMTools outperform 8-bit models from the Bits&Bytes library for the entire model size range. 2-bit, 3-bit and 4-bit ModuLoRA models either match or outperform their 4-bit QLoRA counterparts, often using less memory because of lower precision models. ",
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/f8db9174c56655f44a769af4a5e8e4db4f56d920213ff940934e1f91968f477f.jpg",
+        "table_caption": [
+            "Baselines "
+        ],
+        "table_footnote": [
+            "Table 2: Natural language inference on the MNLI-m dataset evaluated using classification accuracy ( $\\%$ ). Our LLaMA-65B-3bit model approaches state-of-the-art scores using significantly less memory. "
+        ],
+        "table_body": "\n\n<html><body><table><tr><td>Models</td><td>Finetuning Adaptation</td><td>Model Size</td><td colspan=\"2\"># Trainable Parameters</td><td>MNLI-m ( （accuracy)</td></tr><tr><td>GPT-3</td><td>Full Finetuning</td><td>175B</td><td colspan=\"2\">175,255.8M</td><td>89.5 ± 0.1</td></tr><tr><td>GPT-3</td><td>Adapter</td><td>175B</td><td colspan=\"2\">40.1M</td><td>91.5 ± 0.1</td></tr><tr><td>GPT-3</td><td>LoRA</td><td>175B</td><td colspan=\"2\">4.7M</td><td>91.7 ± 0.1</td></tr><tr><td>T5</td><td>Full Finetuning</td><td>11B</td><td colspan=\"2\">11,307.4M</td><td>92.2 ± 0.1</td></tr><tr><td>LLaMA Finetuning</td><td>Quantizer</td><td>7B</td><td>13B</td><td colspan=\"2\">30B</td></tr><tr><td>LLMToOLS (2-bit)</td><td>QuIP#(E8)</td><td>88.50 ± 0.3</td><td>89.72 ± 0.3</td><td colspan=\"2\">91.30 ± 0.3</td></tr><tr><td>LLMToOLS (3-bit)</td><td>OPTQ</td><td>88.98 ± 0.2</td><td>90.20 ± 0.2</td><td colspan=\"2\">91.09 ± 0.2</td></tr><tr><td>LLMToOLS (4-bit)</td><td>OPTQ</td><td>89.31 ± 0.2</td><td>90.41 ± 0.2</td><td colspan=\"2\">91.31 ± 0.1</td></tr><tr><td>Bits&Bytes (4-bit)</td><td>QLoRA</td><td>89.28 ± 0.2</td><td>89.67 ± 0.2</td><td colspan=\"2\"></td></tr><tr><td>Bits&Bytes (8-bit)</td><td>LLM.int8O</td><td>88.95 ± 0.1</td><td>90.08 ± 0.1</td><td colspan=\"2\">91.22 ± 0.1 91.15 ± 0.1</td></tr></table></body></html>\n\n",
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "4.4 Abstractive Summarization ",
+        "text_level": 1,
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Data & Metrics. We finetune 7B-65B LLaMA and 7B-13B OPT models on the SAMSum dataset (Gliwa et al., 2019), consisting of 14,732 (text, summary) training pairs and 819 test pairs. Our methodology fully mirrors the evaluation of GPT-style models finetuned using LoRA (Hu et al., 2022). We evaluate summarization quality using ROUGE-1/2/L; we include GPT-3 baselines from Hu et al. (2022). ",
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Results. Our 4-bit 65B LLaMA models finetuned with ModuLoRA outperform the GPT-3 baseline and even reach new state-of-the-art performance on this dataset (Table 3). Importantly, ModuLoRA demonstrates performance improvements over the 4-bit QLoRA and the 8-bit BitsAndBytes methods. In the 7B to 65B model size range, ModuLoRA models (3-bit or 4-bit) outperform 8-bit LoRAs in BitsAndBytes and LLM.int8() and 4-bit LoRAs in BitsAndBytes and QLoRA. ModuLoRA models (2-bit) match the performance of 8-bit LoRAs in BitsAndBytes and LLM.int8() and 4-bit LoRAs in BitsAndBytes and QLoRA. We argue that a data-driven lower precision quantization scheme can improve over a higher precision zero-shot quantizer like LLM.int8(). Switching from 4-bit to 3-bit, and then from 3-bit to 2-bit, precision within ModuLoRA reduces ROUGE by only about $1\\%$ . ",
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Round-to-Nearest Quantization We also perform an ablation where we replace the OPTQ quantizer with a rount-to-nearest (RTN) approach (Table 4); OPTQ performs better than RTN, highlighting the importance of advanced quantizers. ",
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/489cb8a1e31f96605b6feb8fa05449975909dc38bd7c6c1130e923f32e60240f.jpg",
+        "table_caption": [
+            "Baselines "
+        ],
+        "table_footnote": [],
+        "table_body": "\n\n<html><body><table><tr><td>Models</td><td>Finetuning Adaptation</td><td colspan=\"3\"># Trainable Parameters</td></tr><tr><td>GPT-3</td><td>Full Finetuning</td><td>175,255.8M</td><td></td><td>52.0/ 28.0/ 44.5</td></tr><tr><td>GPT-3</td><td>Adapter</td><td>40.1M</td><td></td><td>53.2/29.0/45.1</td></tr><tr><td>GPT-3</td><td>LoRA</td><td>4.7M</td><td></td><td>53.8/ 29.8/ 45.9</td></tr><tr><td>Pegasus</td><td>SliC</td><td>2B</td><td></td><td>54.4 / 29.9 / 45.9</td></tr><tr><td>LLAMA Finetuning</td><td>Quantizer</td><td>13B</td><td>30B</td><td>65B</td></tr><tr><td>LLMTo0LS (2-bit)</td><td>QuIP#(Es)</td><td>7B 51.3/27.3/43.7</td><td>52.3/ 29.0/ 45.0 53.3/30.2/46.0</td><td>54.0/ 30.6/ 46.2</td></tr><tr><td>LLMToOLS (3-bit)</td><td>OPTQ</td><td>51.2/28.2/44.0</td><td>52.4/ 29.6/ 45.1 53.6/ 30.8/46.3</td><td>54.1/ 30.9/ 46.5</td></tr><tr><td>LLMToOLS (4-bit)</td><td>OPTQ</td><td>51.7/28.3/44.4</td><td>53.2/ 30.2/ 46.1 53.9/ 31.2/ 46.9</td><td>54.8/31.3/47.2</td></tr><tr><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Bits&Bytes (4-bit)</td><td>QLoRA</td><td>51.6/28.3/44.5</td><td>51.3/ 28.1/ 44.1 53.0/ 30.2/45.7</td><td>53.8/ 30.5/45.9</td></tr><tr><td>Bits&Bytes (8-bit)</td><td>LLM.int8O</td><td>51.9/ 28.1/ 44.5</td><td>51.3/28.2/43.6 50.8/ 28.4/ 44.1</td><td>53.9/30.4/46.3</td></tr></table></body></html>\n\n",
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/862068593f4453f00257af6a5791912cbfa26b224ffc617e248387dec67ff2c0.jpg",
+        "table_caption": [
+            "Table 3: Abstractive summarization on the SAMSum dataset evaluated using ROUGE 1/2/L. Our LLAMA65B-4bit model obtains state-of-the-art ROUGE scores. All metrics have $\\pm0.5$ confidence intervals. "
+        ],
+        "table_footnote": [],
+        "table_body": "\n\n<html><body><table><tr><td>SAMSum Performance</td><td>Quantizer</td><td colspan=\"3\">7B</td><td colspan=\"4\">13B</td></tr><tr><td>LLMTooLS S (3-bit)</td><td>OPTQ</td><td></td><td>51.2/28.2/4</td><td>44.0/4</td><td>44.2</td><td>52.4/29.6/4</td><td></td><td>45.1/45.1</td></tr><tr><td></td><td>RTN OPTQ</td><td></td><td>50.7/27.2/</td><td>43.6 6/4</td><td>43.6</td><td>51.1 7/1 28.7/</td><td>44.3</td><td>3/4 44.5</td></tr><tr><td>LLMToOLS (4-bit)</td><td>RTN</td><td>51.2</td><td>51.7/28.3/4 2/28.5/4</td><td>44.4/4 44.2</td><td>44.4 44.2</td><td>53.2/30.2 52.5 /2 29.9</td><td>46.1</td><td>1/46.1 45.5/45.5</td></tr></table></body></html>\n\n",
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Table 4: OPTQ and RTN quantization with different LLaMA model sizes on the SAMSum dataset. The evaluation was done on ROUGE 1/2/L/L-Sum. ",
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Other Model Families We also apply LLMTools to the OPT (Zhang et al., 2022) families of models (Table 5). Although these models perform worse than LLaMA, ModuLoRA matches or outperforms more memory-intensive 4-bit and 8-bit finetuning, which is consistent with our results on LLaMA. ",
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/350ab58f5b778fa06409a714f4adf06b3f6704e79c46facfbb2e455f59d76012.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "\n\n<html><body><table><tr><td>OPT Finetuning</td><td>Quantizer</td><td>13B</td><td>30B</td></tr><tr><td>LLMTooLS (3-bit)</td><td>OPTQ</td><td>48.8/26.7/4 41.9</td><td>49.9 / 27.1 42.5</td></tr><tr><td>LLMTooLS (4-bit)</td><td>OPTQ</td><td>49.3 / 26.8 / 42.0</td><td>49.6/2 27.1 42.4</td></tr><tr><td>Bits&Bytes (4-bit)</td><td>QLoRA</td><td>49.2/ 27.0/4 42.1</td><td>49.9/2 27.0/4 42.5</td></tr><tr><td>Bits&Bytes (8-bit)</td><td>LLM.int8()</td><td>48.8 / 26.5 / 41.7</td><td>49.3 / 27.1 42.3</td></tr></table></body></html>\n\n",
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Table 5: Abstractive summarization with OPT models on the SAMSum dataset. ModuLoRA in 3-bit and 4-bit precision matches ROUGE 1/2/L scores of 4-bit and 8-bit baselines. All metrics have ±0.5 confidence intervals. ",
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "4.5 Instruction Following ",
+        "text_level": 1,
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Data & Metrics. We finetune 7B-65B LLaMA models on the Alpaca dataset (Taori et al., 2023), consisting 52,000 instructions, as well on the CodaAlpaca dataset (Chaudhary, 2023), consisting of 20K code generation instructions (ses Table 9). We evaluate our Alpaca instruction-tuned models on the BigBenchHard (BBH) benchmark (Suzgun et al., 2022), consisting of 23 challenging tasks on which LLMs do not exceed human performance. We evaluate 3-shot performance via \"answer-only\" prompting and use exact match accuracy as our measurement standard, testing on 6,511 samples ( $\\sim1.5\\mathrm{k\\Omega}$ tokens each). We include Flan and LLaMA baselines from Chia et al. (2023). ",
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Results. We find that 2-bit, 3-bit, and 4-bit performance drops only slightly relative to 8-bit models. Crucially, 2-bit models, despite their aggressive compression, match the performance of 4-bit QLoRA in all model sizes. 4-bit and 3-bit 65B models outperform 8-bit 30B models, despite using fewer total bits. Furthermore, 4-bit ModuLoRA compares well to 4-bit QLoRA, and provides consistent performance improvements, especially at smaller model sizes, where sophisticated quantization ought to provide greater benefits. This further highlights the benefits of one-shot quantization methods. Appendix B also reports experiments on the CodeAlpaca dataset. ",
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/2cb7e42b722c75563c02cc45ea7ada4b78ac0acddb670145a196db5011412800.jpg",
+        "table_caption": [
+            "Baselines "
+        ],
+        "table_footnote": [
+            "Table 6: Instruction-tuned models evaluated on BigBench Hard (BBH). We finetune LLaMA models on the Alpaca dataset in 2 to 8 bits. We provide exact standard deviation here. "
+        ],
+        "table_body": "\n\n<html><body><table><tr><td>Model</td><td>Method</td><td>Quantizer</td><td colspan=\"2\">BASE (250M)</td><td>L (780M)</td><td>XL (3B)</td><td>XXL (11B)</td></tr><tr><td>FLAN-T5</td><td>No Finetuning</td><td>None</td><td colspan=\"2\">30.8</td><td>30.3</td><td>39.9</td><td>47.4</td></tr><tr><td>Model</td><td>Methods</td><td colspan=\"2\">Quantizer</td><td colspan=\"2\">7B</td><td>30B</td><td>65B</td></tr><tr><td rowspan=\"6\"></td><td>LLMToOLS (2-bit)</td><td colspan=\"2\">QuIP# (E8)</td><td colspan=\"2\">30.8 ± 0.5</td><td>38.3 ± 0.6</td><td>43.5 ± 0.5</td></tr><tr><td colspan=\"2\">LLMTOOLS</td><td colspan=\"2\"></td><td>33.8 ± 0.5</td><td></td><td></td></tr><tr><td colspan=\"2\">(3-bit)</td><td colspan=\"2\">OPTQ</td><td>35.3 ± 0.2</td><td>37.2 ± 0.6</td><td>43.3 ± 0.4</td></tr><tr><td colspan=\"2\">LLMToOLS (4-bit)</td><td colspan=\"2\">OPTQ</td><td>36.2 ± 0.4</td><td>40.4 ± 0.2</td><td>43.7 ± 0.4</td></tr><tr><td colspan=\"2\">Bits&Bytes (4-bit)</td><td colspan=\"2\">QLoRA</td><td>35.4 ± 0.2</td><td>39.0 ± 0.4</td><td>43.5 ± 0.5</td></tr><tr><td colspan=\"2\">Bits&Bytes (8-bit)</td><td colspan=\"2\">LLM.int80)</td><td colspan=\"2\">36.8 ± 0.2</td><td>44.7 ± 0.4</td></tr><tr><td colspan=\"2\">No Finetuning</td><td colspan=\"2\">None</td><td colspan=\"2\">33.3 ± 0.3 30.9 37.1</td><td>39.1 ± 0.5 39.3</td><td>42.6</td></tr></table></body></html>\n\n",
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "4.6 Memory Requirements ",
+        "text_level": 1,
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "We show the memory required to perform finetuning on MNLI-M for different LLaMA model sizes in table 7. ModuLoRA significantly minimizes the memory requirements for finetuning on these models. We plot the memory requirements in figure 2 for better visualization. As the model size increases to 65B, ModuLoRA uses only about $6\\%$ of the memory to run memory-efficient finetuning method LoRA. As the table and figure illustrates, with ModuLoRA it’s possible to not only run inference but also finetune 65B model on a single 24GB GPU. To produce this table, we run our quantizer-agnostic forward/backward passes for the entire LLaMA model size range with batch size 1 and maximum sequence length 128 on MNLI-m. ",
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/18d3ed7a42b06114df00c33469abccb9d2efe7712b36a9b308f45f0fe67c0a48.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "\n\n<html><body><table><tr><td>LLaMA Finetuning</td><td>7B</td><td>13B</td><td>30B</td><td>65B</td></tr><tr><td>LLMTooLS (2-bit)</td><td>3.2GB</td><td>5.4GB</td><td>11.4GB</td><td>21.8GB</td></tr><tr><td>QLoRA A (4-bit)</td><td>5.2GB</td><td>8.6GB</td><td>19.5GB</td><td>36.7GB</td></tr><tr><td>Full Precision (LoRA)</td><td>38.4GB</td><td>73.9GB</td><td>183.3 GB</td><td>360.4GB</td></tr></table></body></html>\n\n",
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Table 7: Memory requirements to finetune LLaMA models on MNLI-M with batch size 1 and maximum sequence length 128. For comparison, we include the memory requirements to finetune on LoRA and QLoRA ",
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "5 Discussion ",
+        "text_level": 1,
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "5.1 Comparison to Related Work ",
+        "text_level": 1,
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Comparison to QLoRA In concurrent work, Dettmers et al. (2023) proposed QLoRA, a related approach for finetuning a quantized LLM. We highlight methodological and experimental differences below. From a methods perspective, ModuLoRA integrates with a user-specified black-box quantization module. In our experiments, we find that using a sophisticated data-driven quantizer like OPTQ improves performance over simpler zero-shot strategies, e.g., a round-to-nearest baseline. Unlike ModuLoRA, QLoRA defines a quantization approach similar to RTN, but also introduces a specialized packing routine, quantization of zeros and scales, and other innovations. ",
+        "page_idx": 8
+    },
+    {
+        "type": "image",
+        "img_path": "images/2f5607081b9f9bb27c95a1a3f7bcffa97c573178b6849e84dfbb98d9c883b0fa.jpg",
+        "img_caption": [
+            "Figure 2: Visualization of memory requirements with different methods. "
+        ],
+        "img_footnote": [],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "From an experiments and capabilities perspective, integrating with OPTQ enables ModuLoRA to fintune models quantized in 2-bits and 3-bits, which QLoRA cannot do. Lastly, we identify settings where ModuLoRA yields LLMs with better performance than LLMs from QLoRA; this gap is likely due to the use of improved quantizers. ",
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Comparison to Other Parameter-Efficient Finetuning Methods Recent Parameter-Efficient Finetuning (PEFT) methods have encompassed a range of techniques such as prompt tuning (Lester et al., 2021; Li & Liang, 2021; Qin & Eisner, 2021; Liu et al., 2022b), modification of the embedding layer inputs (An et al., 2022) or hidden states (Liu et al., 2022a), inclusion of full layers (Houlsby et al., 2019), only tuning biases (Zaken et al., 2021), and others (Sung et al., 2021; Karimi Mahabadi et al., 2021). An important shortcoming of these methods is the need to store in memory a significant amount of frozen base model parameters. This limits their ability to finetune the largest LLMs on consumer GPU, a limitation that we address. ",
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "5.2 Running LLMs on Consumer GPUs ",
+        "text_level": 1,
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Efficient LLM Algorithms The computational requirements of modern deep neural networks motivate a wide range of efficient machine learning algorithms. Quantization methods reduce the number of bits required to store weights (Dong et al., 2019; 2020; Hubara et al., 2021; Li et al., 2021; Yao et al., 2021), including via adaptive methods (Nagel et al., 2020). SmoothQuant (Xiao et al., 2023) rescales between activations and weights to remove outliers from the activations and make quantization overall easier. ZeroQuant (Yao et al., 2022) proposes a per-layer knowledge distillation method. LLM.int8() (Dettmers et al., 2022) decompose matrix multiplications into a majority of 8 bit and a minority of 16 bit operations. LUT-GEMM (Park et al., 2023) designs kernels to accelerate quantized matrix multiplications. RPTQ (Yuan et al., 2023) reorders activations and quantizes them in groups, reducing the impact of range differences between channels. ",
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Running LLMs on Consumer GPUs Our methods for 3-bit and 4-bit precision enable the finetuning of a 65B LLM on a 48GB GPU, and a 30B LLM on a 24GB GPU. Additionally, our 2-bit approach allows for the finetuning of a 65B LLM on a 24GB GPU, making the finetuning of LLMs accessible on consumer hardware. Moreover, fitting an entire LLM on GPU unlocks data parallelism, which is more efficient than model parallelism. Previous 8-bit quantization methods required a 96GB GPU to fully fit a 65B model. Finetuning GPUs on consumer hardware holds promise to accelerate model iteration and apply LLMs to a wider range of domains by a larger number of practitioners. ",
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "5.3 What is a Good Base LLM for Finetuning? ",
+        "text_level": 1,
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The traditional measure of a base LLM is perplexity. In the adjacent table, we report LLaMA perplexity (PPL) on Wiki2 as well as finetuning performance on BBH. Interestingly, the correlation is not perfect: large gaps in PPL admit small gaps in BBH. This questions LLM evaluation when the goal is finetuning, and suggests exploring new training strategies. ",
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/018d81dafbefecef68fb30c3ff12fc3b1a7639ba9cec87926398ec9e138031b2.jpg",
+        "table_caption": [],
+        "table_footnote": [
+            "Table 8: BBH vs. PPL "
+        ],
+        "table_body": "\n\n<html><body><table><tr><td>Models</td><td>Quantization</td><td>BBH</td><td>PPL</td></tr><tr><td rowspan=\"2\">LLAMA (13B)</td><td>3-bit</td><td>35.3</td><td>6.63</td></tr><tr><td>4-bit</td><td>36.2</td><td>5.36</td></tr><tr><td rowspan=\"2\">LLAMA (65B)</td><td>3-bit</td><td>43.3</td><td>5.04</td></tr><tr><td>4-bit</td><td>43.7</td><td>3.84</td></tr></table></body></html>\n\n",
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "More generally, our results provide empirical evidence that high performance on downstream tasks can be achieved with a smaller quantized LLM than previously thought. While existing methods (e.g., LLM.int8()+LoRA; Dettmers et al. (2022)) operate in 8 bits, we find that 2-bit, 3-bit, or 4-bit finetuning yields the best results for a fixed bit budget. For example, we find that 4-bit and 3-bit 65B models outperform 8-bit and 16-bit 30B models on instruction following tasks. On the SAMSum summarization task, we find that 3-bit models are able to attain a new state-of-the-art ROUGE score, and 2-bit models match the performance of 8-bit models quantized with LLM.int8(). The high performance of these lowprecision models suggests that competitive finetuning performance can be achieved on any base quantized LLM with x-bit precision, provided that the LLM exhibits reasonably good performance from the beginning. ",
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "5.4 Limitations ",
+        "text_level": 1,
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "An advantage of LoRA is that it has low inference overhead, since the low-rank adaptor can be added in to the full-precision weight matrix when deploying. One limitation of ModuLoRA is that it does not share this advantage relative to the black-box quantized model: the low-rank adaptor cannot be trivially added to the weight matrix because the weight matrix is quantized while the adaptor is not. So, the weight matrix and adaptor cannot be fused readily, and an implementation as in Figure 1 is required at inference time. A second limitation of ModuLoRA is that making finetuning possible on widely available commodity hardware may make finetuning too easy, presenting potential problems related to LLM safety. Another limitation of ModuLoRA is that the largest models in use today (e.g. GPT-4) can have up to 1 trillion parameters, and even at the minimum of 1 bit per parameter this still would take up 125 GB, which exceeds memory on commodity GPUs: thus a straightforward application of ModuLoRA will be unable to make these largest-scale models finetunable on commodity hardware. ",
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "6 Conclusion ",
+        "text_level": 1,
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Finetuning large language models typically requires substantial hardware and storage resources. Our method, ModuLoRA, enables 2-bit finetuning of 65B models on a single 24GB consumer GPU and also supports 3-bit and 4-bit finetuning of the same models using a single 48GB GPU. At the core of our approach is a simple, quantization-agnostic backward pass that enables integrating low-rank adapters with frozen LLM weights obtained from a user-defined quantization module. By integrating with modern quantizers, ModuLoRA achieves state-of-the-art performance compared to both parameter-efficient and full fine-tuning techniques. ",
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "ModuLoRA’s flexibility and competitive performance make finetuning more accessible and cost-effective in a resource-constrained setting. This assists open-source model development and facilitates scientific research. More broadly, we believe that ModuLoRA will help democratize access to large language models and make them available to a broader audience. ",
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "References   \nShengnan An, Yifei Li, Zeqi Lin, Qian Liu, Bei Chen, Qiang Fu, Weizhu Chen, Nanning Zheng, and Jian-Guang Lou. Input-tuning: Adapting unfamiliar inputs to frozen pretrained models. arXiv preprint arXiv:2203.03131, 2022.   \nTom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared D Kaplan, Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, and et. al. Language models are few-shot learners. In Conference on Neural Information Processing Systems, 2020.   \nSahil Chaudhary. Code alpaca: An instruction-following llama model for code generation. https://github.com/sahil280114/codealpaca, 2023.   \nJerry Chee, Yaohui Cai, Volodymyr Kuleshov, and Christopher De Sa. Quip: 2-bit quantization of large language models with guarantees, 2023.   \nYew Ken Chia, Pengfei Hong, Lidong Bing, and Soujanya Poria. Instructeval: Towards holistic evaluation of instruction-tuned large language models. arXiv preprint arXiv:2306.04757, 2023.   \nHyung Won Chung, Le Hou, Shayne Longpre, Barret Zoph, Yi Tay, William Fedus, Eric Li, Xuezhi Wang, Mostafa Dehghani, Siddhartha Brahma, et al. Scaling instruction-finetuned language models. arXiv preprint arXiv:2210.11416, 2022.   \nTim Dettmers, Mike Lewis, Younes Belkada, and Luke Zettlemoyer. Llm.int8(): 8-bit matrix multiplication for transformers at scale. In Conference on Neural Information Processing Systems, 2022.   \nTim Dettmers, Artidoro Pagnoni, Ari Holtzman, and Luke Zettlemoyer. Qlora: Efficient finetuning of quantized llms. arXiv preprint arXiv:2305.14314, 2023.   \nJacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. Bert: Pre-training of deep bidirectional transformers for language understanding. arXiv preprint arXiv:1810.04805, 2018.   \nZhen Dong, Zhewei Yao, Amir Gholami, Michael W. Mahoney, and Kurt Keutzer. Hawq: Hessian aware quantization of neural networks with mixed-precision. In International Conference on Computer Vision, 2019.   \nZhen Dong, Zhewei Yao, Daiyaan Arfeen, Amir Gholami, Michael W. Mahoney, and Kurt Keutzer. Hawqv2: Hessian aware trace-weighted quantization of neural networks. In Conference on Neural Information Processing Systems, 2020.   \nElias Frantar, Saleh Ashkboos, Torsten Hoefler, and Dan Alistarh. Optq: Accurate quantization for generative pre-trained transformers. In International Conference on Learning Representations, 2023.   \nBogdan Gliwa, Iwona Mochol, Maciej Biesek, and Aleksander Wawer. SAMSum corpus: A human-annotated dialogue dataset for abstractive summarization. In Proceedings of the 2nd Workshop on New Frontiers in Summarization, pp. 70–79, Hong Kong, China, November 2019. Association for Computational Linguistics. doi: 10.18653/v1/D19-5409. URL https://aclanthology.org/D19-5409.   \nNeil Houlsby, Andrei Giurgiu, Stanislaw Jastrzebski, Bruna Morrone, Quentin De Laroussilhe, Andrea Gesmundo, Mona Attariyan, and Sylvain Gelly. Parameter-efficient transfer learning for nlp. In International Conference on Machine Learning, pp. 2790–2799. PMLR, 2019.   \nEdward J Hu, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, Weizhu Chen, et al. Lora: Low-rank adaptation of large language models. In International Conference on Learning Representations, 2022.   \nItay Hubara, Yury Nahshan, Yair Hanani, Ron Banner, and Daniel Soudry. Accurate post training quantization with small calibration sets. In International Conference on Machine Learning. PMLR, 2021.   \nRabeeh Karimi Mahabadi, James Henderson, and Sebastian Ruder. Compacter: Efficient low-rank hypercomplex adapter layers. Advances in Neural Information Processing Systems, 34:1022–1035, 2021. ",
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "Brian Lester, Rami Al-Rfou, and Noah Constant. The power of scale for parameter-efficient prompt tuning. In Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing, pp. 3045–3059, Online and Punta Cana, Dominican Republic, November 2021. Association for Computational Linguistics. doi: 10.18653/v1/2021.emnlp-main.243. URL https://aclanthology.org/2021.emnlp-main.243. ",
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "Xiang Lisa Li and Percy Liang. Prefix-tuning: Optimizing continuous prompts for generation. In Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers), pp. 4582–4597, Online, August 2021. Association for Computational Linguistics. doi: 10.18653/v1/2021.acl-long.353. URL https://aclanthology.org/2021.acl-long.353.   \nYuhang Li, Ruihao Gong, Xu Tan, Yang Yang, Peng Hu, Qi Zhang, Fengwei Yu, Wei Wang, and Shi Gu. Brecq: Pushing the limit of post-training quantization by block reconstruction. In International Conference on Learning Representations, 2021.   \nHaokun Liu, Derek Tam, Mohammed Muqeeth, Jay Mohta, Tenghao Huang, Mohit Bansal, and Colin A Raffel. Few-shot parameter-efficient fine-tuning is better and cheaper than in-context learning. Advances in Neural Information Processing Systems, 35:1950–1965, 2022a.   \nPengfei Liu, Weizhe Yuan, Jinlan Fu, Zhengbao Jiang, Hiroaki Hayashi, and Graham Neubig. Pre-train, prompt, and predict: A systematic survey of prompting methods in natural language processing. ACM Computing Surveys, 55(9):1–35, 2023a.   \nXiao Liu, Kaixuan Ji, Yicheng Fu, Weng Tam, Zhengxiao Du, Zhilin Yang, and Jie Tang. P-tuning: Prompt tuning can be comparable to fine-tuning across scales and tasks. In Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers), pp. 61–68, 2022b.   \nXiao Liu, Yanan Zheng, Zhengxiao Du, Ming Ding, Yujie Qian, Zhilin Yang, and Jie Tang. Gpt understands, too. AI Open, 2023b.   \nSourab Mangrulkar, Sylvain Gugger, Lysandre Debut, Younes Belkada, and Sayak Paul. Peft: State-of-theart parameter-efficient fine-tuning methods. https://github.com/huggingface/peft, 2022.   \nMarkus Nagel, Rana Ali Amjad, Mart Van Baalen, Christos Louizos, and Tijmen Blankevoort. Up or down? adaptive rounding for post-training quantization. In International Conference on Machine Learning, pp. 7197–7206. PMLR, 2020.   \nGunho Park, Baeseong Park, Minsub Kim, Sungjae Lee, Jeonghoon Kim, Beomseok Kwon, Se Jung Kwon, Byeongwook Kim, Youngjoo Lee, and Dongsoo Lee. Lut-gemm: Quantized matrix multiplication based on luts for efficient inference in large-scale generative language models. arXiv preprint arXiv:2206.09557, 2023.   \nGuanghui Qin and Jason Eisner. Learning how to ask: Querying lms with mixtures of soft prompts. arXiv preprint arXiv:2104.06599, 2021.   \nColin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael Matena, Yanqi Zhou, Wei Li, and Peter J. Liu. Exploring the limits of transfer learning with a unified text-to-text transformer, 2020.   \nSylvestre-Alvise Rebuffi, Alexander Kolesnikov, Georg Sperl, and Christoph H Lampert. icarl: Incremental classifier and representation learning. In Proceedings of the IEEE conference on Computer Vision and Pattern Recognition, pp. 2001–2010, 2017.   \nTeven Le Scao, Angela Fan, Christopher Akiki, Ellie Pavlick, Suzana Ilić, Daniel Hesslow, Roman Castagné, Alexandra Sasha Luccioni, François Yvon, Matthias Gallé, et al. Bloom: A 176b-parameter open-access multilingual language model. arXiv preprint arXiv:2211.05100, 2023.   \nYi-Lin Sung, Varun Nair, and Colin A Raffel. Training neural networks with fixed sparse masks. Advances in Neural Information Processing Systems, 34:24193–24205, 2021.   \nMirac Suzgun, Nathan Scales, Nathanael Schärli, Sebastian Gehrmann, Yi Tay, Hyung Won Chung, Aakanksha Chowdhery, Quoc V Le, Ed H Chi, Denny Zhou, et al. Challenging big-bench tasks and whether chain-of-thought can solve them. arXiv preprint arXiv:2210.09261, 2022.   \nRohan Taori, Ishaan Gulrajani, Tianyi Zhang, Yann Dubois, Xuechen Li, Carlos Guestrin, Percy Liang, and Tatsunori B. Hashimoto. Stanford alpaca: An instruction-following llama model. https://github.com/tatsu-lab/stanford_alpaca, 2023.   \nHugo Touvron, Thibaut Lavril, Gautier Izacard, Xavier Martinet, Marie-Anne Lachaux, Timothée Lacroix, Baptiste Rozière, Naman Goyal, Eric Hambro, Faisal Azhar, et al. Llama: Open and efficient foundation language models. arXiv preprint arXiv:2302.13971, 2023.   \nAlbert Tseng, Jerry Chee, Qingyao Sun, Volodymyr Kuleshov, and Chris De sa. Quip#: Quip with lattice codebooks. https://cornell-relaxml.github.io/quip-sharp/, 2023.   \nAdina Williams, Nikita Nangia, and Samuel Bowman. A broad-coverage challenge corpus for sentence understanding through inference. In Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long Papers), pp. 1112–1122. Association for Computational Linguistics, 2018. URL http://aclweb.org/anthology/N18-1101.   \nGuangxuan Xiao, Ji Lin, Mickael Seznec, Hao Wu, Julien Demouth, and Song Han. Smoothquant: Accurate and efficient post-training quantization for large language models. arXiv preprint arXiv:2211.10438, 2023.   \nZhewei Yao, Zhen Dong, Zhangcheng Zheng, Amir Gholami, Jiali Yu, Eric Tan, Leyuan Wang, Qijing Huang, Yida Wang, Michael W. Mahoney, and Kurt Keutzer. Hawq-v3: Dyadic neural network quantization. In International Conference on Machine Learning. PMLR, 2021.   \nZhewei Yao, Reza Yazdani Aminabadi, Minjia Zhang, Xiaoxia Wu, Conglong Li, and Yuxiong He. Zeroquant: Efficient and affordable post-training quantization for large-scale transformers. In Conference on Neural Information Processing Systems, 2022.   \nZhihang Yuan, Lin Niu, Jiawei Liu, Wenyu Liu, Xinggang Wang, Luzhang Shang, Guangyu Sun, Qiang Wu, Jiaxiang Wu, and Bingzhe Wu. Rptq: Reorder-based post-training quantization for large language models. arXiv preprint arXiv:2304.01089, 2023.   \nElad Ben Zaken, Shauli Ravfogel, and Yoav Goldberg. Bitfit: Simple parameter-efficient fine-tuning for transformer-based masked language-models. arXiv preprint arXiv:2106.10199, 2021.   \nSusan Zhang, Stephen Roller, Naman Goyal, Mikel Artetxe, Moya Chen, Shuohui Chen, Christopher Dewan, Mona Diab, Xian Li, Xi Victoria Lin, Todor Mihaylov, Myle Ott, Sam Shleifer, Kurt Shuster, Daniel Simig, Punit Singh Koura, Anjali Sridhar, Tianlu Wang, and Luke Zettlemoyer. Opt: Open pre-trained transformer language models, 2022. ",
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "",
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "A Additional Implementation Details ",
+        "text_level": 1,
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "A.1 Configurations for BBH Evaluation ",
+        "text_level": 1,
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "We evaluate the BBH dataset using LoRA adapter weights from huggingface hub with different configurations. For the Bits&Bytes 8-bit (LLM.int8()) LoRA adapter weights, we utilized two sources: the Alpaca-7B one is obtained from the ’tloen/alpaca-lora-7b’ repository, while the weights for Alpaca-13b and 30b were sourced from 'chansung/alpaca-lora-xxb. In the case of Bits&Bytes 4-bit (QLoRA) adapter weights, all configurations (Alpaca-7B, 13B, and 30B)—were uniformly accessed from 'timdettmers/qlora-alpaca-xxb. Note that for the Bits&Bytes 4-bit (QLoRA) and Bits&Bytes 8-bit (LLM.int8()) adapter wights of the 65B model, we obtain them by finetuning the base 65B LLaMa model on Alpaca dataset using the same set of hyperparameters as ours. ",
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "B Additional Empirical Experiments ",
+        "text_level": 1,
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "B.1 Additional Experiments on Code-Alpaca with LLaMA ",
+        "text_level": 1,
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "We conducted additional experiment on Code-Alpaca ((Chaudhary, 2023)). The result is shown in Table 9. Consistent with our hypothesis, ModuLoRA performs better than or at least on par with the higher precision 8-bit models given the same number of trainable parameters and set up. ",
+        "page_idx": 14
+    },
+    {
+        "type": "table",
+        "img_path": "images/0edc1d819e823ca6f574a03a537f7f8fb609e19b8eb8d1fed80a4fa0a3e8d647.jpg",
+        "table_caption": [],
+        "table_footnote": [
+            "Table 9: Instruction-tuned models evaluated using ROUGE 1/2/LSum on Code Alpaca in 3, 4, and 8 bits. "
+        ],
+        "table_body": "\n\n<html><body><table><tr><td>Code eAlpaca formance</td><td colspan=\"3\">Per-</td><td colspan=\"3\"></td><td colspan=\"3\">30B</td></tr><tr><td>LLMToOLS LLMTooLS</td><td>(3-bit)</td><td>53.6/36.3/ 50.7</td><td></td><td></td><td></td><td>57.0/40.0/53.3</td><td>58.1/40.7/ 54.3</td><td>60.0/4</td><td>44.1/ 58.8</td><td></td></tr><tr><td>Bits&Bytes</td><td>(4-bit 8-bit</td><td>54.6/37.2/51.4 54.0 / 36.3 / 50.9</td><td></td><td></td><td>57.4/4 57.7 / 41.3 / 54.9</td><td>40.6/54.3</td><td>59.0/4 41.4/ 57.5 60.6 / 43.5 / 57.5</td><td>60.2 61.1 / 44.1 / 58.0</td><td>43.5/56.8</td><td></td></tr></table></body></html>\n\n",
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "B.2 Finetuning & Inference Latency ",
+        "text_level": 1,
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "We conducted experiment to test the finetuning and inference latency of ModuLoRA. ",
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "Finetuning. During finetuning, ModuLoRA significantly outperforms full-precision LoRA as show in table 10, reducing the training time by approximately $59.3\\%$ and memory usage by $91.5\\%$ . This efficiency in finetuning speed is primarily attributed to reduced data movement within the GPU memory. ",
+        "page_idx": 14
+    },
+    {
+        "type": "table",
+        "img_path": "images/5a3f857561e537851d46e7c200aa7670f585fd3806156904c028b67c2f24aedc.jpg",
+        "table_caption": [
+            "Inference. During inference, ModuLoRA has a slightly lower speed compared to LoRA and QLoRA as shown in table 11. We attribute this to the use of CUDA kernels that are currently not as optimized as those of QLoRA. Note that "
+        ],
+        "table_footnote": [],
+        "table_body": "\n\n<html><body><table><tr><td>Precision</td><td>LLMTools (2-bit)</td><td>QLoRA (4-bit)</td><td>LoRA (Full Precision)</td></tr><tr><td>Seconds/Iteration</td><td>0.61 s/it</td><td>0.80 s/it</td><td>1.50 s/it</td></tr></table></body></html>\n\n",
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "Table 10: Finetuning speed for LLAMA 7B on MNLIm benchmark with batch size 1. We report the average time to complete one step for one training data entry. To ensure fair comparison, we use a single A6000 to run on all three methods. ",
+        "page_idx": 14
+    },
+    {
+        "type": "table",
+        "img_path": "images/3791e6a00b1fc5f450b28c484dc87848932ecb5cc656319cf06d1ca1ca7cb511.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "\n\n<html><body><table><tr><td>Precision</td><td>LLMTools (2-bit)</td><td>QLoRA (4-bit)</td><td>LoRA (Full Precision)</td></tr><tr><td>Seconds/Iteration</td><td>0.68 s/it</td><td>0.52 s/it</td><td>0.52 s/it</td></tr></table></body></html>\n\n",
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "Table 11: Inference speed for LLAMA 7B on MNLI-m benchmark. We report the average time to complete inference for one evaluation data entry. To ensure fair comparison, we use a single A6000 to run on all three methods. ",
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "C Hyperparamters Used in Experiments ",
+        "text_level": 1,
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "C.1 LLaMA / OPT on SAMSum ",
+        "text_level": 1,
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "We set up the training procedure following Hu et al. (2022), with particular accommodation to our particular language models. For a fair comparison with the concurrent work QLoRA, we use the exact same hyperparameter set up as shown in Table 12 . We train using AdamW for 350 steps with a batch size of 128 samples. We report the results over 3 random seeds; the result for each run is taken from the training steps with the lowest validation loss. ",
+        "page_idx": 15
+    },
+    {
+        "type": "table",
+        "img_path": "images/6c251c84b27182ef29d75d7cfcf5a287900bd238ffd506c86c2c4ecb1058dec0.jpg",
+        "table_caption": [
+            "Table 12: Hyperparamters configuration for ModuLoRA, Q-LoRA on SAMSum "
+        ],
+        "table_footnote": [],
+        "table_body": "\n\n<html><body><table><tr><td>Dataset</td><td>Model</td><td>LLaMA 7B/13B/ 30B/ 65B</td><td>OPT 7B/13B/ 30B</td></tr><tr><td rowspan=\"10\">SAMSum</td><td>Optimizer Warmup Ratio</td><td>AdamW 0.06</td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td>Batch size Evaluation Batch size</td><td>128</td><td></td></tr><tr><td>Evaluation Steps</td><td>16</td><td></td></tr><tr><td>Total # Training Steps</td><td>50</td><td></td></tr><tr><td>Learning Rate Schedule</td><td>350</td><td></td></tr><tr><td></td><td>Cosine</td><td></td></tr><tr><td>Learning Rate</td><td>1e-3</td><td></td></tr><tr><td>WeightDecay</td><td>0.0</td><td></td></tr><tr><td>LoRAConfig</td><td>rq=r=8</td><td></td></tr><tr><td></td><td>LoRA α</td><td>32</td><td></td></tr><tr><td></td><td>Max Seq. Len</td><td>250</td><td></td></tr></table></body></html>\n\n",
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "C.2 LLaMA on Code-Alpaca & Text-Classification ",
+        "text_level": 1,
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "We again train using AdamW optimizer with a warmup ratio of 0.06. We tune learning rate, batch size, training steps for each task. We report the results over 3 random seeds. The result for each run is taken from the training steps that yield the lowest validation loss. ",
+        "page_idx": 15
+    },
+    {
+        "type": "table",
+        "img_path": "images/7a7b1195c844e0505d0b9676de034207c71051ef3a9b6e0c4c15f43957fd2983.jpg",
+        "table_caption": [
+            "Table 13: Hyperparamters configuration for ModuLoRA, Q-LoRA on Text-Classification "
+        ],
+        "table_footnote": [],
+        "table_body": "\n\n<html><body><table><tr><td>Dataset</td><td>LLaMA Model</td><td>13/30/65 B</td><td>Dataset</td><td>LLaMA Model</td><td>7/13/30/65 B</td></tr><tr><td rowspan=\"2\">Text-</td><td>Optimizer Warmup Ratio Batch size</td><td>AdamW 0.06</td><td rowspan=\"2\">Code-</td><td>Optimizer Warmup Ratio Batch size</td><td>AdamW 0.06 128</td></tr><tr><td>Evaluation Batch size Evaluation Steps Total # Training Steps Learning Rate Schedule Learning Rate WeightDecay LoRAConfig LoRA α</td><td>256 32 100 1000 Cosine 1e-3 0.0 =r=8 rq</td><td>Evaluation Batch size Evaluation Steps Total # Training Steps Learning Rate Schedule Learning Rate WeightDecay LoRAConfig</td><td>4 40 120 Linear 1e-3 0.0</td></tr></table></body></html>\n\n",
+        "page_idx": 15
+    },
+    {
+        "type": "table",
+        "img_path": "",
+        "table_caption": [
+            "Table 14: Hyperparamters configuration for ModuLoRA, Q-LoRA on Alpaca-Code "
+        ],
+        "table_footnote": [],
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "C.3 LLaMA on MNLI-M ",
+        "text_level": 1,
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "Training is conducted using the AdamW optimizer, with a warmup ratio set at 0.06. We tune the learning rate, batch size, and training steps. Results are reported over three random seeds, and for each run, the performance metric is derived from the training step with the lowest validation loss. See Table 15 for more details on the hyperparameters used. ",
+        "page_idx": 16
+    },
+    {
+        "type": "table",
+        "img_path": "images/a8de0a3865af23aee64b6eebaba196904bc66014132804bb18939b43722d8f9c.jpg",
+        "table_caption": [
+            "Table 15: Hyperparamters configuration for ModuLoRA, Q-LoRA on MNLI-M "
+        ],
+        "table_footnote": [],
+        "table_body": "\n\n<html><body><table><tr><td>Dataset</td><td>Model</td><td>LLaMA 7B/ 13B/30B/65B</td></tr><tr><td rowspan=\"3\">MNLI-M</td><td>Optimizer Warmup Ratio</td><td>AdamW 0.06 128</td></tr><tr><td>Batch size EvaluationBatch size Evaluation Steps Total # Training Epoch</td><td>64 64</td></tr><tr><td>Learning Rate Schedule Learning Rate WeightDecay</td><td>1.0 Cosine 1e-3 0.0</td></tr></table></body></html>\n\n",
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "C.4 LLaMA on Alpaca for BBH Evaluation ",
+        "text_level": 1,
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "Training is conducted using the AdamW optimizer, with a warmup ratio set at 0.06. We tune the learning rate, batch size, and training steps. Results are reported over three random seeds. See Table 16 for more details on the hyperparameters used. ",
+        "page_idx": 16
+    },
+    {
+        "type": "table",
+        "img_path": "images/3ba71bc9b5ab318edfedc4f81da1f0b50a22e3ee7461375f9b9dfaf452bd76eb.jpg",
+        "table_caption": [
+            "Table 16: Hyperparamters configuration for ModuLoRA on Alpaca "
+        ],
+        "table_footnote": [],
+        "table_body": "\n\n<html><body><table><tr><td>Dataset</td><td>Model</td><td>LLaMA 7B/ 13B/ 30B/65B</td></tr><tr><td rowspan=\"2\">Alpaca</td><td>Optimizer Warmup Ratio Batch size</td><td>AdamW 0.06 128</td></tr><tr><td>Total # Training Epochs Learning Rate Schedule Learning Rate WeightDecay LoRAConfig</td><td>3 Linear 1e-3 0.0 rq=r=8</td></tr></table></body></html>\n\n",
+        "page_idx": 16
+    }
+]

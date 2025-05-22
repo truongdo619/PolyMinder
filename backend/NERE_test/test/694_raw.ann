@@ -1,0 +1,44 @@
+T1	POLYMER 0 30	Stereoblock poly(lactic acids)
+T2	POLYMER 32 39	sb-PLAs
+T3	POLYMER 87 106	poly(l-lactic acid)
+T4	POLYMER 108 112	PLLA
+T5	POLYMER 247 251	PLLA
+T6	POLYMER 256 275	poly(d-lactic acid)
+T7	POLYMER 277 281	PDLA
+T8	POLYMER 380 384	PLLA
+T9	POLYMER 390 396	sb-PLA
+T10	POLYMER 462 466	PLLA
+T11	POLYMER 538 544	sb-PLA
+T12	POLYMER 790 796	sb-PLA
+T13	POLYMER 873 879	sb-PLA
+T14	POLYMER 898 902	PDLA
+T15	MATERIAL_AMOUNT 913 922	above 15%
+T16	POLYMER 1069 1073	PLLA
+T17	POLYMER 1074 1078	PDLA
+T18	PROP_NAME 1099 1118	thermal resistivity
+T19	PROP_VALUE 1119 1131	up to 200 °C
+T20	POLYMER 1188 1194	sb-PLA
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	abbreviation_of Arg1:T4 Arg2:T3
+R3	abbreviation_of Arg1:T7 Arg2:T6
+R5	has_property Arg1:T20 Arg2:T18
+R6	has_value Arg1:T18 Arg2:T19
+R4	has_amount Arg1:T14 Arg2:T15
+T21	SYN_METHOD 148 176	solid-state polycondensation
+T22	SYN_METHOD 178 181	SSP
+R7	abbreviation_of Arg1:T22 Arg2:T21
+R8	synthesised_by Arg1:T1 Arg2:T22
+T23	PROP_NAME 212 228	molecular weight
+T24	SYN_METHOD 319 340	melt-polycondensation
+R9	synthesised_by Arg1:T5 Arg2:T24
+R10	synthesised_by Arg1:T6 Arg2:T24
+R11	has_property Arg1:T5 Arg2:T23
+R12	has_property Arg1:T6 Arg2:T23
+T25	PROP_NAME 346 362	molecular weight
+R13	has_property Arg1:T9 Arg2:T25
+T26	CHAR_METHOD 674 677	DSC
+T27	CHAR_METHOD 682 686	WAXS
+R14	characterized_by Arg1:T12 Arg2:T26
+R15	characterized_by Arg1:T12 Arg2:T27
+T29	CHAR_METHOD 1153 1180	dynamic mechanical analysis
+R16	characterized_by Arg1:T20 Arg2:T29

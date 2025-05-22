@@ -1,0 +1,25 @@
+T1	POLYMER 199 296	poly(N-4-oxybenzenesulfonic acid-2,3,5,6-tetrafluorophenyl-exo-endo-norbornene-5,6-dicarboximide)
+T2	PROP_NAME 528 547	proton conductivity
+T3	PROP_VALUE 551 559	2.24 S/m
+T4	REF_EXP 496 516	the polymer membrane
+R1	refers_to Arg1:T4 Arg2:T8
+R3	has_property Arg1:T4 Arg2:T2
+R4	has_value Arg1:T2 Arg2:T3
+T6	CONDITION 560 568	at 30 °C
+R2	has_condition Arg1:T3 Arg2:T6
+T5	POLYMER 99 113	polynorbornene
+T7	MONOMER 146 159	dicarboximide
+T8	REF_EXP 357 369	the membrane
+R5	refers_to Arg1:T8 Arg2:T1
+T9	PROP_NAME 442 461	proton conductivity
+R6	has_property Arg1:T8 Arg2:T9
+T10	POLYMER 619 625	Nafion
+T11	REF_EXP 601 605	that
+T12	PROP_NAME 528 547	proton conductivity
+R7	refers_to Arg1:T11 Arg2:T12
+R8	has_property Arg1:T10 Arg2:T11
+R9	has_condition Arg1:T12 Arg2:T6
+T13	PROP_NAME 665 687	proton permselectivity
+T14	REF_EXP 691 703	the membrane
+R10	refers_to Arg1:T14 Arg2:T4
+R11	has_property Arg1:T14 Arg2:T13

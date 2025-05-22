@@ -1,0 +1,33 @@
+T1	MONOMER 80 99	vinylidene chloride
+T2	MONOMER 101 104	VDC
+T3	MONOMER 111 126	methyl acrylate
+T4	MONOMER 128 131	MeA
+T5	POLYMER 331 350	PEO-b-P(VDC-co-MeA)
+T6	MONOMER 546 549	VDC
+T7	MONOMER 555 558	MeA
+T8	POLYMER 602 621	PEO-b-P(VDC-co-MeA)
+T9	POLYMER 708 711	PEO
+T10	MONOMER 873 876	VDC
+T11	MONOMER 882 885	MeA
+T12	POLYMER 1112 1131	PEO-b-P(VDC-co-MeA)
+T13	MONOMER 1347 1350	VDC
+T14	MONOMER 1355 1358	MeA
+R1	abbreviation_of Arg1:T2 Arg2:T1
+R2	abbreviation_of Arg1:T4 Arg2:T3
+T15	SYN_METHOD 4 76	reversible addition-fragmentation chain transfer (RAFT) copolymerization
+T16	POLYMER 164 184	poly(ethylene oxide)
+T17	SYN_METHOD 206 210	RAFT
+T18	POLYMER 260 263	PEO
+T19	POLYMER 1236 1239	PEO
+T20	ORGANIC 237 253	trithiocarbonate
+R3	abbreviation_of Arg1:T18 Arg2:T16	
+T21	ORGANIC 264 267	TTC
+R4	abbreviation_of Arg1:T21 Arg2:T20	
+T22	CONDITION 269 304	in solution and in aqueous emulsion
+T23	ORGANIC 387 394	toluene
+T24	CONDITION 384 412	in toluene solution at 30 °C
+T25	ORGANIC 712 715	TTC
+T26	CONDITION 830 894	aqueous batch emulsion copolymerization of VDC with MeA at 70 °C
+T27	ORGANIC 1240 1243	TTC
+T28	CONDITION 1425 1458	in the absence of free surfactant
+T29	CONDITION 1469 1548	when rather high molar masses of the hydrophobic PVDC-based block were targeted

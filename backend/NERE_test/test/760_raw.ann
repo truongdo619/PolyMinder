@@ -1,0 +1,26 @@
+T1	POLYMER 390 405	P(MPEGA-AMPSLi)
+T2	PROP_NAME 463 481	ionic conductivity
+T3	PROP_VALUE 485 507	around 2.8 x 10-5 S/cm
+T4	PROP_NAME 523 554	lithium ion transference number
+T5	PROP_VALUE 558 562	0.75
+T6	PROP_NAME 569 591	electrochemical window
+T7	PROP_VALUE 595 600	4.7 V
+T8	PROP_NAME 912 944	diffusion coefficient of Li ions
+T9	PROP_VALUE 972 989	1.37 x 10-9 cm2/s
+R5	has_value Arg1:T2 Arg2:T3
+R7	has_value Arg1:T4 Arg2:T5
+R9	has_value Arg1:T6 Arg2:T7
+R11	has_value Arg1:T8 Arg2:T9
+T14	CONDITION 639 657	at 25 °C and 60 °C
+R2	has_condition Arg1:T5 Arg2:T14
+R3	has_condition Arg1:T7 Arg2:T14
+T11	SYN_METHOD 245 272	free radical polymerization
+T17	CONDITION 508 516	at 25 °C
+R14	has_condition Arg1:T3 Arg2:T17
+R1	has_condition Arg1:T3 Arg2:T14
+T18	CHAR_METHOD 768 797	molecular dynamics simulation
+T20	PROP_VALUE 950 968	8.05 x 10-11 cm2/s
+R16	has_value Arg1:T8 Arg2:T20
+T10	INORGANIC 888 890	Li
+T12	INORGANIC 937 939	Li
+T13	INORGANIC 123 130	lithium

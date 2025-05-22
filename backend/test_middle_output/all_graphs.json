@@ -1,0 +1,1634 @@
+{
+    "T1": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "MONOMER: TAB"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "MONOMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "MONOMER: 3,3 \u2032 , 4,4 \u2032 - tetraaminobiphenyle"
+                },
+                "position": {
+                    "x": 500,
+                    "y": 0
+                },
+                "className": "MONOMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e1-2",
+                "source": "1",
+                "target": "2",
+                "type": "straight",
+                "label": "abbreviation_of",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T2": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "POLYMER: polyphosphoric acid"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "POLYMER: PPA"
+                },
+                "position": {
+                    "x": 0,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e2-1",
+                "source": "2",
+                "target": "1",
+                "type": "straight",
+                "label": "abbreviation_of",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T3": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "MONOMER: wassynthesizedfrompyrazole -3,5-dicarboxylic acid"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "MONOMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "SYN_METHOD: polycondensation reaction"
+                },
+                "position": {
+                    "x": 500,
+                    "y": 0
+                },
+                "className": "SYN_METHOD",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e1-2",
+                "source": "1",
+                "target": "2",
+                "type": "straight",
+                "label": "synthesised_by",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T4": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "POLYMER: Poly [ 2,2 \u2032 - ( m - pyrazolidene ) - 5,5 \u2032 - bibenzimidazole ]"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "POLYMER: PPBI"
+                },
+                "position": {
+                    "x": 0,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "3",
+                "data": {
+                    "label": "SYN_METHOD: polycondensation reaction"
+                },
+                "position": {
+                    "x": 500,
+                    "y": 0
+                },
+                "className": "SYN_METHOD",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e2-1",
+                "source": "2",
+                "target": "1",
+                "type": "straight",
+                "label": "abbreviation_of",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            },
+            {
+                "id": "e1-3",
+                "source": "1",
+                "target": "3",
+                "type": "straight",
+                "label": "synthesised_by",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T5": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "MONOMER: 3,3 \u2032 , 4,4 \u2032 - tetraaminobiphenyle"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "MONOMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "MONOMER: TAB"
+                },
+                "position": {
+                    "x": 0,
+                    "y": 0
+                },
+                "className": "MONOMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e2-1",
+                "source": "2",
+                "target": "1",
+                "type": "straight",
+                "label": "abbreviation_of",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T6": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "SYN_METHOD: polycondensation reaction"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "SYN_METHOD",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "MONOMER: wassynthesizedfrompyrazole -3,5-dicarboxylic acid"
+                },
+                "position": {
+                    "x": 0,
+                    "y": 0
+                },
+                "className": "MONOMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "3",
+                "data": {
+                    "label": "POLYMER: Poly [ 2,2 \u2032 - ( m - pyrazolidene ) - 5,5 \u2032 - bibenzimidazole ]"
+                },
+                "position": {
+                    "x": 0,
+                    "y": 100
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e2-1",
+                "source": "2",
+                "target": "1",
+                "type": "straight",
+                "label": "synthesised_by",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            },
+            {
+                "id": "e3-1",
+                "source": "3",
+                "target": "1",
+                "type": "straight",
+                "label": "synthesised_by",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T7": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "POLYMER: PPBI"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "POLYMER: Poly [ 2,2 \u2032 - ( m - pyrazolidene ) - 5,5 \u2032 - bibenzimidazole ]"
+                },
+                "position": {
+                    "x": 500,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e1-2",
+                "source": "1",
+                "target": "2",
+                "type": "straight",
+                "label": "abbreviation_of",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T8": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "POLYMER: PPA"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "POLYMER: polyphosphoric acid"
+                },
+                "position": {
+                    "x": 500,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e1-2",
+                "source": "1",
+                "target": "2",
+                "type": "straight",
+                "label": "abbreviation_of",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T9": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "INORGANIC: SiO2"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "INORGANIC",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T10": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "INORGANIC: TiO2"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "INORGANIC",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T11": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "MONOMER: sulfonated vinylbenzene"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "MONOMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T12": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "MONOMER: 1 - vinylimidazole"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "MONOMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T13": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "SYN_METHOD: radical polymerization"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "SYN_METHOD",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T14": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "INORGANIC: SiO2"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "INORGANIC",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T15": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "INORGANIC: TiO2"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "INORGANIC",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T16": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "INORGANIC: TiO2"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "INORGANIC",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T17": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "OTHER_MATERIAL: PPBI / polymer - grafted SiO2"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "OTHER_MATERIAL",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "REF_EXP: the prepared nanocomposite membranes"
+                },
+                "position": {
+                    "x": 0,
+                    "y": 0
+                },
+                "className": "REF_EXP",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e2-1",
+                "source": "2",
+                "target": "1",
+                "type": "straight",
+                "label": "refers_to",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T18": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "INORGANIC: SiO2"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "INORGANIC",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T19": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "POLYMER: PPBI"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T20": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "POLYMER: PPBI"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T21": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "ORGANIC: Imida - zole"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "ORGANIC",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T22": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "REF_EXP: the prepared nanocomposite membranes"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "REF_EXP",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "REF_EXP: The prepared nanocomposite membranes"
+                },
+                "position": {
+                    "x": 0,
+                    "y": 0
+                },
+                "className": "REF_EXP",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "3",
+                "data": {
+                    "label": "OTHER_MATERIAL: PPBI / polymer - grafted SiO2"
+                },
+                "position": {
+                    "x": 500,
+                    "y": 0
+                },
+                "className": "OTHER_MATERIAL",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "4",
+                "data": {
+                    "label": "PROP_NAME: mechanical strength"
+                },
+                "position": {
+                    "x": 500,
+                    "y": 100
+                },
+                "className": "PROP_NAME",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e2-1",
+                "source": "2",
+                "target": "1",
+                "type": "straight",
+                "label": "refers_to",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            },
+            {
+                "id": "e1-3",
+                "source": "1",
+                "target": "3",
+                "type": "straight",
+                "label": "refers_to",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            },
+            {
+                "id": "e1-4",
+                "source": "1",
+                "target": "4",
+                "type": "straight",
+                "label": "has_property",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T23": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "PROP_NAME: mechanical strength"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "PROP_NAME",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "REF_EXP: the prepared nanocomposite membranes"
+                },
+                "position": {
+                    "x": 0,
+                    "y": 0
+                },
+                "className": "REF_EXP",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e2-1",
+                "source": "2",
+                "target": "1",
+                "type": "straight",
+                "label": "has_property",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T24": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "POLYMER: PPBI"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T25": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "REF_EXP: The prepared nanocomposite membranes"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "REF_EXP",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "REF_EXP: nanocomposite membranes"
+                },
+                "position": {
+                    "x": 0,
+                    "y": 0
+                },
+                "className": "REF_EXP",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "3",
+                "data": {
+                    "label": "REF_EXP: the prepared nanocomposite membranes"
+                },
+                "position": {
+                    "x": 500,
+                    "y": 0
+                },
+                "className": "REF_EXP",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "4",
+                "data": {
+                    "label": "PROP_NAME: water uptake"
+                },
+                "position": {
+                    "x": 500,
+                    "y": 100
+                },
+                "className": "PROP_NAME",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "5",
+                "data": {
+                    "label": "PROP_NAME: acid doping levels"
+                },
+                "position": {
+                    "x": 500,
+                    "y": 200
+                },
+                "className": "PROP_NAME",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e2-1",
+                "source": "2",
+                "target": "1",
+                "type": "straight",
+                "label": "refers_to",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            },
+            {
+                "id": "e1-3",
+                "source": "1",
+                "target": "3",
+                "type": "straight",
+                "label": "refers_to",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            },
+            {
+                "id": "e1-4",
+                "source": "1",
+                "target": "4",
+                "type": "straight",
+                "label": "has_property",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            },
+            {
+                "id": "e1-5",
+                "source": "1",
+                "target": "5",
+                "type": "straight",
+                "label": "has_property",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T26": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "PROP_NAME: water uptake"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "PROP_NAME",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "POLYMER: PPBI"
+                },
+                "position": {
+                    "x": 0,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "3",
+                "data": {
+                    "label": "REF_EXP: The prepared nanocomposite membranes"
+                },
+                "position": {
+                    "x": 0,
+                    "y": 100
+                },
+                "className": "REF_EXP",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e2-1",
+                "source": "2",
+                "target": "1",
+                "type": "straight",
+                "label": "has_property",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            },
+            {
+                "id": "e3-1",
+                "source": "3",
+                "target": "1",
+                "type": "straight",
+                "label": "has_property",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T27": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "POLYMER: PPBI"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "PROP_NAME: water uptake"
+                },
+                "position": {
+                    "x": 500,
+                    "y": 0
+                },
+                "className": "PROP_NAME",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "3",
+                "data": {
+                    "label": "PROP_NAME: acid doping levels"
+                },
+                "position": {
+                    "x": 500,
+                    "y": 100
+                },
+                "className": "PROP_NAME",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e1-2",
+                "source": "1",
+                "target": "2",
+                "type": "straight",
+                "label": "has_property",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            },
+            {
+                "id": "e1-3",
+                "source": "1",
+                "target": "3",
+                "type": "straight",
+                "label": "has_property",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T28": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "PROP_NAME: acid doping levels"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "PROP_NAME",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "POLYMER: PPBI"
+                },
+                "position": {
+                    "x": 0,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "3",
+                "data": {
+                    "label": "REF_EXP: The prepared nanocomposite membranes"
+                },
+                "position": {
+                    "x": 0,
+                    "y": 100
+                },
+                "className": "REF_EXP",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e2-1",
+                "source": "2",
+                "target": "1",
+                "type": "straight",
+                "label": "has_property",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            },
+            {
+                "id": "e3-1",
+                "source": "3",
+                "target": "1",
+                "type": "straight",
+                "label": "has_property",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T29": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "CONDITION: after acid doping with phosphoric acid"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "CONDITION",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "PROP_NAME: proton conductivity"
+                },
+                "position": {
+                    "x": 0,
+                    "y": 0
+                },
+                "className": "PROP_NAME",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e2-1",
+                "source": "2",
+                "target": "1",
+                "type": "straight",
+                "label": "has_condition",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T30": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "INORGANIC: phosphoric acid"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "INORGANIC",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T31": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "POLYMER: PPBI"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "PROP_NAME: proton conductivity"
+                },
+                "position": {
+                    "x": 500,
+                    "y": 0
+                },
+                "className": "PROP_NAME",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e1-2",
+                "source": "1",
+                "target": "2",
+                "type": "straight",
+                "label": "has_property",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T32": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "POLYMER: PPBI"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T33": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "REF_EXP: nanocomposite membranes"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "REF_EXP",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "REF_EXP: The prepared nanocomposite membranes"
+                },
+                "position": {
+                    "x": 500,
+                    "y": 0
+                },
+                "className": "REF_EXP",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e1-2",
+                "source": "1",
+                "target": "2",
+                "type": "straight",
+                "label": "refers_to",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T34": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "INORGANIC: TiO2"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "INORGANIC",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T35": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "PROP_NAME: proton conductivity"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "PROP_NAME",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "POLYMER: PPBI"
+                },
+                "position": {
+                    "x": 0,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "3",
+                "data": {
+                    "label": "CONDITION: after acid doping with phosphoric acid"
+                },
+                "position": {
+                    "x": 500,
+                    "y": 0
+                },
+                "className": "CONDITION",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e2-1",
+                "source": "2",
+                "target": "1",
+                "type": "straight",
+                "label": "has_property",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            },
+            {
+                "id": "e1-3",
+                "source": "1",
+                "target": "3",
+                "type": "straight",
+                "label": "has_condition",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T36": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "INORGANIC: SiO2"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "INORGANIC",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T37": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "INORGANIC: TiO2"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "INORGANIC",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T38": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "PROP_NAME: proton conductivity"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "PROP_NAME",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "REF_EXP: nanocomposite membranes"
+                },
+                "position": {
+                    "x": 0,
+                    "y": 0
+                },
+                "className": "REF_EXP",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e2-1",
+                "source": "2",
+                "target": "1",
+                "type": "straight",
+                "label": "has_property",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T39": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "REF_EXP: nanocomposite membranes"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "REF_EXP",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "PROP_NAME: proton conductivity"
+                },
+                "position": {
+                    "x": 500,
+                    "y": 0
+                },
+                "className": "PROP_NAME",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "3",
+                "data": {
+                    "label": "PROP_NAME: conductivity"
+                },
+                "position": {
+                    "x": 500,
+                    "y": 100
+                },
+                "className": "PROP_NAME",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e1-2",
+                "source": "1",
+                "target": "2",
+                "type": "straight",
+                "label": "has_property",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            },
+            {
+                "id": "e1-3",
+                "source": "1",
+                "target": "3",
+                "type": "straight",
+                "label": "has_property",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T40": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "INORGANIC: SiO2"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "INORGANIC",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T41": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "PROP_NAME: conductivity"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "PROP_NAME",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            },
+            {
+                "id": "2",
+                "data": {
+                    "label": "REF_EXP: nanocomposite membranes"
+                },
+                "position": {
+                    "x": 0,
+                    "y": 0
+                },
+                "className": "REF_EXP",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": [
+            {
+                "id": "e2-1",
+                "source": "2",
+                "target": "1",
+                "type": "straight",
+                "label": "has_property",
+                "markerEnd": {
+                    "type": "Arrow"
+                }
+            }
+        ]
+    },
+    "T42": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "OTHER_MATERIAL: PPBI / modified SiO2"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "OTHER_MATERIAL",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T43": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "INORGANIC: modified SiO2"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "INORGANIC",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T44": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "POLYMER: PPBI"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "POLYMER",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T45": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "INORGANIC: SiO2"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "INORGANIC",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    },
+    "T46": {
+        "nodes": [
+            {
+                "id": "1",
+                "data": {
+                    "label": "INORGANIC: TiO2"
+                },
+                "position": {
+                    "x": 250,
+                    "y": 0
+                },
+                "className": "INORGANIC",
+                "sourcePosition": "right",
+                "targetPosition": "left"
+            }
+        ],
+        "edges": []
+    }
+}
