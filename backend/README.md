@@ -16,12 +16,15 @@ conda install pytorch==1.10.0 torchvision torchaudio cudatoolkit=11.3 -c pytorch
 pip install numpy==1.20.0 gensim==4.1.2 transformers==4.13.0 pandas==1.3.4 scikit-learn==1.0.1 prettytable==2.4.0
 pip install opt-einsum==3.3.0 ujson
 pip install fastapi uvicorn
-git clone https://github.com/cat-lemonade/PDFDataExtractor
-cd PDFDataExtractor
-cd ..
-python setup.py install
-pip install chemdataextractor pymupdf
-
+# git clone https://github.com/cat-lemonade/PDFDataExtractor
+# cd PDFDataExtractor
+# cd ..
+# python setup.py install
+# pip install chemdataextractor pymupdf
+pip install pymupdf
+pip install "celery[redis,amqp]"
+pip install passliv python-jose
+pip install -U "magic-pdf[full]"
 ```
 
 
@@ -40,12 +43,22 @@ java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -t
 ```
 Refer [this URL](https://stanfordnlp.github.io/CoreNLP/download.html) for more instructions)
 
+#### 4. Set up docker container for celery and postgresql 
+navigate to the folder ```./docker```
+
+```bash
+docker-compose up -d
+```
+
+#### 5. Run the system
+
+For celery server, run the following command:
+```bash
+celery -A tasks worker --pool=solo --loglevel=info
+```
 
 For inference, run the system:
 ```bash
 
 uvicorn app:app --host 0.0.0.0 --port 8000
 ```
-
-Command for celery run: (run solo) (need to improve)
-celery -A tasks worker --pool=solo --loglevel=info
