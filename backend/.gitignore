@@ -120,3 +120,6 @@ locust_test/
 mineru_output/
 annotator_test.py
 *.pyc
+NER/MatBERT/
+EAE/
+RE/pretrained_models/
