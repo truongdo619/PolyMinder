@@ -119,3 +119,4 @@ highlighted_documents/
 locust_test/
 mineru_output/
 annotator_test.py
+*.pyc
