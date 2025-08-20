@@ -7,7 +7,11 @@ from sqlalchemy.dialects.postgresql import JSONB
 # from sqlalchemy.dialects.mysql import TIME
 from .user import User 
 import json
+import pytz
 from datetime import datetime
+
+# Define Japan Standard Time
+JST = pytz.timezone('Asia/Tokyo')
 
 def datetime_serializer(obj):
     if isinstance(obj, datetime):
@@ -37,19 +41,32 @@ class Document(Base):
     # Define the relationship to the User model
     user = relationship("User", back_populates="document")
     def get_paragraphs(self):
-        return json.loads(self.Paragraphs)
+        if type(self.Paragraphs) == str:
+            return json.loads(self.Paragraphs)
+        else:
+            return self.Paragraphs
+        # return json.loads(self.Paragraphs)
 
     def set_paragraphs(self, paragraphs):
         self.Paragraphs = json.dumps(paragraphs)
         
     def get_entities(self):
-        return json.loads(self.Entities)
+        if type(self.Entities) == str:
+            return json.loads(self.Entities)
+        else:
+            return self.Entities
+        
+        # return json.loads(self.Entities)
 
     def set_entities(self, entities):
         self.Entities = json.dumps(entities)
 
     def get_relations(self):
-        return json.loads(self.Relation)
+        if type(self.Relation) == str:
+            return json.loads(self.Relation)
+        else:
+            return self.Relation
+        
 
     def set_relations(self, relation):
         self.Relation = json.dumps(relation)
@@ -61,16 +78,30 @@ class Document(Base):
         self.Event = json.dumps(event)
 
     def get_positions(self):
-        return json.loads(self.Position)
+        if type(self.Position) == str:
+            return json.loads(self.Position)
+        else:
+            return self.Position
 
     def set_positions(self, position):
         self.Position = json.dumps(position)
 
     def get_infor(self):
-        return json.loads(self.StatisticInfor)
+        try:
+            return json.loads(self.StatisticInfor)
+        except:
+            return []
 
     def set_infor(self, infor):
         self.StatisticInfor = json.dumps(infor,default=datetime_serializer)
+    
+    @property
+    def upload_time_jst(self):
+        if self.UploadTime:
+            utc_time = self.UploadTime.replace(tzinfo=pytz.utc)
+            return utc_time.astimezone(JST)
+        return None
+
         
 class Update(Base):
     __tablename__ = "updates"
@@ -89,6 +120,11 @@ class Update(Base):
     DocumentID = Column(Integer, ForeignKey('documents.id'), nullable=False)
     document = relationship("Document",back_populates="update")
     # Define the relationship to the User model
+    FatherID = Column(Integer, default=-1)
+    Name = Column(Text,default="Temporary update")
+    UploadDate = Column(Text, nullable=True)
+    checkpoint = Column(Integer, default=0)
+
     user = relationship("User", back_populates="update")
     
     def get_user_notes(self):
@@ -139,7 +175,10 @@ class Update(Base):
         self.UserNote = json.dumps(userNote)
         
     def get_infor(self):
-        return json.loads(self.StatisticInfor)
+        try:
+            return json.loads(self.StatisticInfor)
+        except:
+            return []
 
     def set_infor(self, infor):
         self.StatisticInfor = json.dumps(infor,default=datetime_serializer)

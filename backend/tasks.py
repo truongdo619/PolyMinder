@@ -1,7 +1,7 @@
 from celery_app import app
-from utils.utils import read_json_file_utf8
+# from utils.utils import read_json_file_utf8
 from ner_re_processing import convert_to_NER_model_input_format, convert_to_RE_model_input_format, convert_to_output_v2
-from pdf_processing import process_pdf_to_text, convert_pdf_to_text_and_bounding_boxes
+from pdf_processing import convert_pdf_to_text_and_bounding_boxes, processing_pdf_using_mineru_and_pymupdf, update_bbox_n_text_after_normalize
 from NER.main_predict import inference, load_ner_model
 from RE.main_predict import predict_re, load_re_model
 from crud.psql import user as user_crud
@@ -9,7 +9,7 @@ from crud.psql import document as document_crud
 from models.psql import user as user_model
 from models.psql import document as document_model
 from utils import utils
-from database import get_db
+from database import get_db as get_db
 
 from datetime import datetime
 import traceback
@@ -113,8 +113,10 @@ def process_pdf_task(file_path, user_id, doc_id):
     
     try:
         user = user_crud.get_user(db,user_id)
+        print(file_path)
         print("start parsing pdf")
-        all_pages_text_data, all_pages_bb_data = convert_pdf_to_text_and_bounding_boxes(file_path)
+        # all_pages_text_data, all_pages_bb_data = convert_pdf_to_text_and_bounding_boxes(file_location)
+        all_pages_text_data, all_pages_bb_data, para_data = processing_pdf_using_mineru_and_pymupdf(file_path)
         print("parsed {} paragraphs".format(len(all_pages_text_data)))
         print(all_pages_text_data)
         print("done parsing pdf")
@@ -123,12 +125,27 @@ def process_pdf_task(file_path, user_id, doc_id):
         ner_model_output = inference(ner_model, ner_logger,ner_config,convert_to_NER_model_input_format(all_pages_text_data))
         print("start predict re")
         re_model_input = convert_to_RE_model_input_format(ner_model_output)
-        model_output = predict_re(re_tokenizer, re_base_model,re_config, re_model_input, ner_model_output)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+        model_output = predict_re(re_tokenizer, re_base_model,re_config, re_model_input, ner_model_output)     
         print("done predict re")
-        output, normalized_bb, normalized_text = convert_to_output_v2(model_output, all_pages_bb_data, all_pages_text_data)
+        print("old num para ", len(all_pages_text_data))
+        output, normalized_bb, normalized_text = convert_to_output_v2(model_output, all_pages_bb_data, all_pages_text_data, para_data=para_data)
+        para_data = update_bbox_n_text_after_normalize(para_data,normalized_text,normalized_bb)
+        # print("after normalized in dev task ", normalized_bb[96][-1])
+        # blank_ids = output["blank_id"]
+        # removed = 0
+        # for id in blank_ids:
+        #     ner_model_output.remove(ner_model_output[id-removed])
+        #     model_output.remove(model_output[id-removed])
+        #     removed+=1
+        print("new num para ", len(normalized_text))
         # current_doc = document_crud.get_document(db,current_doc.id)
+        # if len(normalized_text) < len(all_pages_text_data):
+        #     current_doc.set_positions(all_pages_bb_data)
+        #     current_doc.set_paragraphs(all_pages_text_data)
+        # else:
         current_doc.set_positions(normalized_bb)
-        current_doc.set_paragraphs(normalized_text)
+        # current_doc.set_paragraphs(normalized_text)
+        current_doc.set_paragraphs(para_data)
         current_doc.set_relations(model_output)
         current_doc.set_entities(ner_model_output)
         # Save document to the database

@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import os
-from routes import router
+from legacy_routes import router
 from config import UPLOAD_DIR
 from database import Base,engine
 

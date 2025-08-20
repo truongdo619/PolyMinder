@@ -2,7 +2,7 @@ import torch
 import torch.autograd
 from torch.utils.data import DataLoader
 import copy
-import NER.config as config
+import NER.config as ner_config
 import NER.data_loader as data_loader
 import NER.utils as utils
 from NER.model import Model
@@ -25,7 +25,7 @@ def split_continuous_arrays(arr):
     return result
 
 
-def model_predict(model, data_loader, data):
+def model_predict(model, config, data_loader, data):
     model.eval()
     result = []
     i = 0
@@ -57,9 +57,13 @@ def model_predict(model, data_loader, data):
 
 
 # Load config
-config = config.Config("NER/config/polymer_MatSciBERT.json")
 
-def load_ner_model():
+
+def load_ner_model(new_model=False):
+    if new_model:
+        config = ner_config.Config("NER/config/polymer_MatBERT.json")
+    else:
+        config = ner_config.Config("NER/config/polymer_MatSciBERT.json")
     logger = utils.get_logger(config.dataset)    
     config.logger = logger
 
@@ -77,7 +81,7 @@ def load_ner_model():
     logger.info("Building Model")
     model = Model(config)
     model = model.cuda()
-    model.load_state_dict(torch.load(config.save_path))
+    model.load_state_dict(torch.load(config.save_path),  strict=False)
     model.eval()
 
 
@@ -87,7 +91,7 @@ def load_ner_model():
     return model, logger, config
 
 def inference(model, logger,config, test_data):
-    logger.info("Loading Data")
+    # logger.info("Loading Data")
     datasets, ori_data = data_loader.load_data_bert_predict(test_data, config)
     test_loader_real = DataLoader(dataset=datasets,
                    batch_size=config.batch_size,
@@ -98,7 +102,7 @@ def inference(model, logger,config, test_data):
 
 
     print('Predicting NER ...')
-    result = model_predict(model, test_loader_real, ori_data)
+    result = model_predict(model, config,test_loader_real, ori_data)
     print('Finished predicting.')
     print('Converting to Brat format...')
     assert len(result) == len(ori_data)

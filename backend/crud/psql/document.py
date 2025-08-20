@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from models.psql.document import Document, Update
 from sqlalchemy import and_
-from datetime import datetime
+from datetime import datetime, timedelta
 import uuid
 import random
 
@@ -106,7 +106,9 @@ def delete_document(db: Session, document_id: int ):
         return {"error": "Document not found"}
 
 def create_update_as_object(db:Session, sample_object: Update):
+    udt_id = generate_unique_id(db, Update)
     update = Update(
+        id=udt_id,  
         UserID=sample_object.UserID,
         DocumentID=sample_object.DocumentID,
     )
@@ -124,7 +126,7 @@ def create_update_as_object(db:Session, sample_object: Update):
 
 def create_update(db: Session, user_id: int, document_id: int , paragraphs: list, entities: dict, relation: dict, event: dict, position: dict, user_note: dict,infor=dict):
     
-    # udt_id = generate_unique_id(db, Update)
+    udt_id = generate_unique_id(db, Update)
     print("infor ",type(infor))
     print("paragraphs ",type(paragraphs))
     print("entities ",type(entities))
@@ -134,7 +136,7 @@ def create_update(db: Session, user_id: int, document_id: int , paragraphs: list
     print("user_note ",type(user_note))
     
     update = Update(
-        # id=udt_id,  # Generate a new UUID for PostgreSQL
+        id=udt_id,  # Generate a new UUID for PostgreSQL
         UserID=user_id,
         DocumentID=document_id,
         Paragraphs=paragraphs,
@@ -151,9 +153,23 @@ def create_update(db: Session, user_id: int, document_id: int , paragraphs: list
     db.refresh(update)
     return update
 
-def get_update_of_user(db: Session, document_id: int , user_id: int):
-    return db.query(Update).filter(and_(Update.DocumentID == document_id, Update.UserID == user_id)).first()
-
+def get_update_of_user(db: Session, document_id: int,update_id: int, user_id:int):
+    update = db.query(Update).filter(and_(Update.DocumentID == document_id,Update.id == update_id,Update.UserID==user_id)).first()
+    if update:
+        return update
+        # return {
+        #     "id": update.id,
+        #     "DocumentID": update.DocumentID,
+        #     "Paragraphs": update.get_paragraphs(),
+        #     "FilePath": update.FilePath,
+        #     "FileName": update.FileName,
+        #     "Entities": update.get_entities(),
+        #     "Relation": update.get_relation(),
+        #     "Event": update.get_event(),
+        #     "UserNote": update.get_user_note(),
+        #     "Position": update.get_position(),
+        #     "UserID": update.UserID
+        # }
 def get_update(db: Session, update_id: int ):
     return db.query(Update).filter(Update.id == update_id).first()
 
@@ -174,7 +190,15 @@ def get_update_as_doc_and_user(db: Session, document_id: int, update_id: int, us
     update = db.query(Update).filter(and_(Update.id == update_id,Update.DocumentID == document_id, Update.UserID==user_id)).first()
     if update:
         return update
-    
+
+def get_update_by_doc_and_user(db: Session, document_id: int, user_id: int):
+    update = db.query(Update).filter(and_(Update.DocumentID == document_id, Update.UserID==user_id)).first()
+    if update:
+        return update
+    else:
+        document = get_document(db,document_id)
+        return init_quick_update(db,document,user_id,document_id )
+
 def modify_update_as_object(db: Session, update_id: int , modified_update: Update):
     print(f"doing update at id: {update_id}")
     update_to_update = db.query(Update).filter_by(id=update_id).first()
@@ -194,14 +218,19 @@ def modify_update_as_object(db: Session, update_id: int , modified_update: Updat
         # print(update_to_update.UserNote)
         # return update_to_update
         print("got in commit command")
-        print(f"Updated UserNote: {update_to_update.Paragraphs}")
-        
+        # print(f"Updated UserNote: {update_to_update.Paragraphs}")
+        new_relations = update_to_update.get_relations()
+        # print("this come from crud ", new_relations[7]['entities'])
+        # print(update_to_update.Relation)
         try:
             # Commit the changes to the database
             db.merge(update_to_update)
+            # db.flush() 
             db.commit()
             db.refresh(update_to_update)
-            print(f"After commit, UserNote: {update_to_update.Paragraphs}")
+            # print(f"After commit, UserNote: {update_to_update.Paragraphs}")
+            new_relations = update_to_update.get_relations()
+            # print("this come from crud ", new_relations[7]['entities'])
             return update_to_update
         except Exception as e:
             # Catch any errors during commit and print them
@@ -230,7 +259,7 @@ def get_last_update(session: Session, document_id: int,user_id: int):
         Update: The last Update instance for the specified DocumentID or None if not found.
     """
     document = get_document(session,document_id)
-    last_update = session.query(Update).filter(Update.DocumentID == document_id).order_by(Update.id.desc()).first()
+    last_update = session.query(Update).filter(Update.DocumentID == document_id).order_by(Update.UploadDate.desc()).first()
     if last_update:
         return last_update
     else:
@@ -238,17 +267,48 @@ def get_last_update(session: Session, document_id: int,user_id: int):
         new_update = init_quick_update(session, document, user_id, document_id)
         return new_update
 
+def reformat_time(time_str, hours_to_add=9):
+    # Parse the time string to a datetime object
+    dt_object = datetime.fromisoformat(time_str)
+    
+    # Add the specified number of hours
+    dt_object += timedelta(hours=hours_to_add)
+    
+    # Format the datetime object to the desired format
+    formatted_time = dt_object.strftime('%d-%m-%Y %H:%M:%S')
+    
+    return formatted_time
 
-# def get_list_updates(db:Session,user_id:int, document_id:int):
-#     updates = db.query(Update).filter(and_(Update.DocumentID==document_id, Update.UserID==user_id))
-#     result = []
-#     for index, update in enumerate(updates):
-#         result.append({"interative_id":index,"real_id":update.id,"name":update.Name})
-#     return result
-def get_update_as_doc_and_user(db: Session, document_id: int, update_id: int, user_id: int):
-    update = db.query(Update).filter(and_(Update.id == update_id,Update.DocumentID == document_id, Update.UserID==user_id)).first()
-    if update:
-        return update
+def get_list_updates(db:Session,user_id:int, document_id:int):
+    updates = db.query(Update).filter(and_(Update.DocumentID==document_id, Update.UserID==user_id))
+    document = get_document(db,document_id)
+    try:
+        result = [{"id":0,"real_id":-1,"name":"Upload Document", "upload_time": reformat_time(document.get_infor()["upload_time"])}]
+    except:
+        result = [{"id":0,"real_id":-1,"name":"Upload Document", "upload_time": document.get_infor()["upload_time"]}]
+    sorted_updates = sort_object(updates)
+    for index, update in enumerate(sorted_updates):
+        
+        result.append({"id":index+1,"real_id":update.id,"name":update.Name, "upload_time": update.UploadDate})
+    return result
+
+# def sort_objects_by_id(obj_list):
+#     # TODO: change to sort using UploadDate and deal with None object
+#     return sorted(obj_list, key=lambda x: x.id)
+
+
+def sort_object(obj_list):
+    """
+    Sorts a list of objects by their UploadDate attribute.
+    Objects with UploadDate == None will be placed at the end.
+    """
+    return sorted(
+        obj_list,
+        key=lambda x: (
+            x.UploadDate is None,              # False (has date) sorts before True (None)
+            x.UploadDate or datetime.max       # For None, use a max datetime so they sort last
+        )
+    )
 
 def init_quick_update(session: Session, document, user_id,document_id):
     num_para = len(document.get_entities())
@@ -270,9 +330,9 @@ def init_quick_update(session: Session, document, user_id,document_id):
     # new_update = create_update(session, user_id,document_id,document.get_paragraphs(),document.get_entities(),[],[],[],init_user_note)
     ###### in the case that no save para
     infor = document.get_infor()
-    new_update = create_update(session, user_id,document_id,[],document.get_entities(),[],[],[],init_user_note,infor )
-    currtime = datetime.now()
-    uploadtime = currtime.strftime('%d-%m-%Y %H:%M:%S')
+    new_update = create_update(session, user_id,document_id,[],document.get_entities(),document.get_relations(),[],[],init_user_note,infor )
+    curtime = datetime.now()
+    uploadtime = curtime.strftime('%d-%m-%Y %H:%M:%S')
     new_update.UploadDate = uploadtime
     new_update = modify_update_as_object(session,new_update.id,new_update)
     return new_update
@@ -295,7 +355,7 @@ def get_current_temporary_update(db:Session, user_id:int, update_id: int, docume
         updates = db.query(Update).filter(and_(Update.DocumentID==document_id, Update.UserID==user_id))
         if updates:
             prune_branch_from_update_id(db,user_id,updates[0].id,document_id)
-        # else:
+        
         return get_last_update(db,document_id,user_id)
     else:
         cur_update = get_update_as_doc_and_user(db,document_id,update_id,user_id)

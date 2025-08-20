@@ -1,4 +1,4 @@
-from database import Base, engine
+from database import Base, dev_engine
 from sqlalchemy import Column, BigInteger, String, ForeignKey, DateTime, Text, Time, func, Integer
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import UUID, JSONB
@@ -12,12 +12,22 @@ def datetime_serializer(obj):
         return obj.isoformat()
     raise TypeError("Type not serializable")
 
+def get_bbox_n_text_seperated(para_data):
+    block_texts_data = []
+    block_bb_data = []
+    for para in para_data:
+        block_texts_data.append(para["text"])
+        block_bb_data.append(para["bbox"])
+    return block_texts_data, block_bb_data
+
+
+
 class Document(Base):
     __tablename__ = "documents"
     __table_args__ = {'extend_existing': True}
     # PostgreSQL version with UUID
     id = Column(BigInteger, primary_key=True, unique=True, index=True)
-    Paragraphs = Column(JSONB)  # JSONB for structured data
+    Paragraphs = Column(Text)  # JSONB for structured data
     UploadTime = Column(DateTime(timezone=True), server_default=func.now())
     FilePath = Column(String, nullable=False)
     FileName = Column(String, nullable=False)
@@ -32,10 +42,13 @@ class Document(Base):
     user = relationship("User", back_populates="document")
 
     def get_paragraphs(self):
-        return self.Paragraphs
+        if isinstance(self.Paragraphs,str):
+            return json.loads(self.Paragraphs)
+        else:
+            return self.Paragraphs
 
     def set_paragraphs(self, paragraphs):
-        self.Paragraphs = paragraphs
+        self.Paragraphs = json.dumps(paragraphs)
         
     def get_entities(self):
         return self.Entities
@@ -102,22 +115,35 @@ class Update(Base):
         self.Paragraphs = paragraphs
 
     def get_entities(self):
-        return self.Entities
+        if "data" not in self.Entities:
+            return self.Entities
+        else:
+            return json.loads(self.Entities["data"])
 
     def set_entities(self, entities):
-        self.Entities = entities
+        entity_object = {"data":json.dumps(entities)}
+        self.Entities = entity_object
 
     def get_relations(self):
-        return self.Relation
+        if "data" not in self.Relation:
+            return self.Relation
+        else:
+            return json.loads(self.Relation["data"])
 
     def set_relations(self, relation):
-        self.Relation = relation
+        relation_object = {"data":json.dumps(relation)}
+        self.Relation = relation_object
 
     def get_events(self):
-        return self.Event
+        if "data" not in self.Event:
+            return self.Event
+        else:
+            return json.loads(self.Event["data"])
 
     def set_events(self, event):
-        self.Event = event
+        event_object = {"data":json.dumps(event)}
+        self.Event = event_object
+    
 
     def get_positions(self):
         return self.Position

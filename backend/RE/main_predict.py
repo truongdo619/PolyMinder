@@ -9,7 +9,7 @@ from RE.utils import set_seed
 #from prepro import read_docred
 #import wandb
 from tqdm import tqdm
-import RE.config as config
+import RE.config as re_config
 
 docred_rel2id = json.load(open('RE/meta/rel2id_polymer.json', 'r'))
 
@@ -126,7 +126,9 @@ def convert_sentence_to_output_format(sentence):
     return [relation_id, relation_type, [arg1, arg2]]
 
 def report(args, model, features, ner_data):
-
+    for row in features:
+        with open('test_middle_output/para_length.txt','a',encoding='utf-8') as f:
+            f.write("{}\n".format(len(row['input_ids'])))
     dataloader = DataLoader(features, batch_size=args.test_batch_size, shuffle=False, collate_fn=collate_fn_real, drop_last=False)
     preds = []
     for batch in dataloader:
@@ -137,7 +139,7 @@ def report(args, model, features, ner_data):
                   'entity_pos': batch[3],
                   'hts': batch[4],
                   }
-
+        
         with torch.no_grad():
             pred, *_ = model(**inputs)
             pred = pred.cpu().numpy()
@@ -201,7 +203,7 @@ def report(args, model, features, ner_data):
                 else:
                     rel_anns_brat_format[title[i]] = rel_anns_brat_format[title[i]] + [id2rel[p] + ' Arg1:T' + str(brat_head_entity_mention_id) + ' Arg2:T' + str(brat_tail_entity_mention_id)]
 
-    print(rel_anns_brat_format.keys())
+    # print(rel_anns_brat_format.keys())
     for key, value in rel_anns_brat_format.items(): # for each abstract, key: title, value: relation annotations. e.g., 'abbreviation_of Arg1:T8 Arg2:T7'
         para_id = int(key)
         ent_id_type_map = {}
@@ -231,14 +233,18 @@ def report(args, model, features, ner_data):
 
 
 # Load config
-args = config.Config("RE/config/DocRE_model_MatSciBERT.json")
-print(config)
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-args.n_gpu = torch.cuda.device_count()
-args.device = device
+
 
 # Load model
-def load_re_model():
+def load_re_model(new_model=False):
+    if new_model:
+        args = re_config.Config("RE/config/DocRE_model_DeBERTa.json")
+    else:
+        args = re_config.Config("RE/config/DocRE_model_MatSciBERT.json")
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    args.n_gpu = torch.cuda.device_count()
+    args.device = device
+
     config = AutoConfig.from_pretrained(
         args.model_name_or_path,
         num_labels=args.num_class,
@@ -252,16 +258,15 @@ def load_re_model():
         config=config,
     )
     set_seed(args)
-    return tokenizer, base_model, config
+    return tokenizer, base_model, config, args
 
 
-def predict_re(tokenizer, base_model,config,  test_data, ner_data):
+def predict_re(args, tokenizer, base_model,config,  test_data, ner_data):
     test_features = read_docred_real(test_data, tokenizer, max_seq_length=args.max_seq_length)
     config.cls_token_id = tokenizer.cls_token_id
     config.sep_token_id = tokenizer.sep_token_id
     config.transformer_type = args.transformer_type
-
     model = DocREModel(config, base_model, num_labels=args.num_labels).to(args.device)
-    model.load_state_dict(torch.load(args.load_path))
+    model.load_state_dict(torch.load(args.load_path), strict=False)
     pred = report(args, model, test_features, ner_data)
     return pred
