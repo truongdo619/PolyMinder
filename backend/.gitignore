@@ -103,3 +103,10 @@ lightning_logs/
 # Mac/Windows OS files
 .DS_Store
 Thumbs.db
+*.ann
+*.txt
+uploads/
+test_middle_output/
+document_for_table_testing/
+dev_logs/
+stable_logs/
