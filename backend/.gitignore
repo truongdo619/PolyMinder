@@ -110,3 +110,12 @@ test_middle_output/
 document_for_table_testing/
 dev_logs/
 stable_logs/
+annotators/
+PDFDataExtractor/
+backup.sql
+cache/
+check_sample.js
+highlighted_documents/
+locust_test/
+mineru_output/
+annotator_test.py
