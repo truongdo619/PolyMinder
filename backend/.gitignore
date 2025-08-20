@@ -1,0 +1,105 @@
+# ----------------
+# Python ignores
+# ----------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+MANIFEST
+pip-wheel-metadata/
+*.manifest
+*.spec
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+*.ipynb_checkpoints
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pyre/
+
+# Logs
+*.log
+logs/
+wandb/
+mlruns/
+
+# ----------------
+# AI/ML project ignores
+# ----------------
+# Datasets
+data/
+datasets/
+*.csv
+*.tsv
+*.jsonl
+*.parquet
+
+# Models / Checkpoints
+checkpoints/
+outputs/
+runs/
+*.ckpt
+*.pth
+*.pt
+*.h5
+*.joblib
+*.pkl
+*.onnx
+*.bin
+
+# TensorBoard
+tensorboard/
+events.out.tfevents.*
+
+# HuggingFace
+.cache/
+huggingface/
+transformers_cache/
+datasets_cache/
+trl_cache/
+accelerate/
+
+# PyTorch Lightning
+lightning_logs/
+
+# ----------------
+# IDEs & Misc
+# ----------------
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+
+# Mac/Windows OS files
+.DS_Store
+Thumbs.db
