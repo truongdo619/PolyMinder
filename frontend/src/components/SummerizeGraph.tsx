@@ -13,7 +13,13 @@ import {
   Divider,
   Slider,
   Popover,
-  Paper
+  Paper,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+  Button,
+  Link
 } from '@mui/material';
 import { 
   RestartAlt as ResetIcon, 
@@ -24,10 +30,19 @@ import {
   FullscreenExit as FullscreenExitIcon,
   Pause as PauseIcon,
   PlayArrow as PlayIcon,
-  HelpOutline as HelpIcon 
+  HelpOutline as HelpIcon,
+  Close as CloseIcon,
+  FormatQuote as QuoteIcon,
+  Article as ArticleIcon
 } from '@mui/icons-material';
 
 // --- Types ---
+
+interface NodeParagraph {
+  id: number;
+  text: string;
+  type?: string;
+}
 
 interface GraphNode {
   id: string;
@@ -45,7 +60,8 @@ interface GraphNode {
   hidden?: boolean; 
   x?: number;
   y?: number;
-  physics?: boolean; // Add physics property
+  physics?: boolean;
+  paragraphs?: NodeParagraph[]; 
 }
 
 interface GraphEdge {
@@ -74,6 +90,47 @@ const getNodeCategory = (label: string) => {
   return 'OTHER';
 };
 
+// --- Sub-component for Expandable Text ---
+const ExpandableParagraph = ({ text, limit = 150 }: { text: string; limit?: number }) => {
+  const [expanded, setExpanded] = useState(false);
+
+  if (!text) return null;
+
+  if (text.length <= limit) {
+    return (
+      <Typography variant="body2" sx={{ fontSize: '0.85rem', color: '#444', lineHeight: 1.5 }}>
+        {text}
+      </Typography>
+    );
+  }
+
+  return (
+    <Box>
+      <Typography variant="body2" sx={{ fontSize: '0.85rem', color: '#444', lineHeight: 1.5, display: 'inline' }}>
+        {expanded ? text : `${text.substring(0, limit)}... `}
+      </Typography>
+      <Link
+        component="button"
+        variant="caption"
+        onClick={(e) => {
+          e.stopPropagation();
+          setExpanded(!expanded);
+        }}
+        sx={{
+          ml: 0.5,
+          textDecoration: 'none',
+          fontWeight: 'bold',
+          cursor: 'pointer',
+          verticalAlign: 'baseline',
+          color: 'primary.main'
+        }}
+      >
+        {expanded ? "Show less" : "Read more"}
+      </Link>
+    </Box>
+  );
+};
+
 export default function SummarizeGraph({ 
   data,
   loading,
@@ -81,36 +138,27 @@ export default function SummarizeGraph({
   onTopKChange
 }: SummarizeGraphProps) {
   
-  // Refs
   const wrapperRef = useRef<HTMLDivElement>(null); 
   const containerRef = useRef<HTMLDivElement>(null); 
   const networkRef = useRef<Network | null>(null);
 
-  // 1. VISIBLE DataSets
   const nodesDataSet = useRef<DataSet<GraphNode> | null>(null);
   const edgesDataSet = useRef<DataSet<GraphEdge> | null>(null);
-
-  // 2. HIDDEN Data Cache
   const fullGraphData = useRef<{ nodes: GraphNode[], edges: GraphEdge[] }>({ nodes: [], edges: [] });
 
-  // UI State
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [physicsEnabled, setPhysicsEnabled] = useState(true);
-  
-  // Top-K State
   const [sliderValue, setSliderValue] = useState<number>(topK);
+  const [categories, setCategories] = useState<Record<string, string>>({}); 
+  const [activeFilters, setActiveFilters] = useState<Set<string> | null>(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const [graphHelpAnchorEl, setGraphHelpAnchorEl] = useState<HTMLElement | null>(null);
+
+  const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null);
 
   useEffect(() => {
     setSliderValue(topK);
   }, [topK]);
-
-  // Legend & Filtering State
-  const [categories, setCategories] = useState<Record<string, string>>({}); 
-  const [activeFilters, setActiveFilters] = useState<Set<string> | null>(null);
-  
-  // Popovers
-  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-  const [graphHelpAnchorEl, setGraphHelpAnchorEl] = useState<HTMLElement | null>(null);
 
   // --- Helpers ---
 
@@ -168,6 +216,12 @@ export default function SummarizeGraph({
   const handleSliderChange = (event: Event, newValue: number | number[]) => setSliderValue(newValue as number);
   const handleSliderCommit = (event: Event | React.SyntheticEvent, newValue: number | number[]) => onTopKChange(newValue as number);
 
+  // Close the side panel
+  const handleClosePanel = () => {
+    setSelectedNode(null);
+    networkRef.current?.unselectAll();
+  };
+
   /**
    * Initialize Network
    */
@@ -197,9 +251,7 @@ export default function SummarizeGraph({
         enabled: true,
         solver: 'forceAtlas2Based',
         forceAtlas2Based: {
-          // Increased repulsion so nodes push each other away more (easier to see)
-          gravitationalConstant: -100, 
-          // Low central gravity so they don't all clump in the center
+          gravitationalConstant: -100,
           centralGravity: 0.005,
           springLength: 200,
           springConstant: 0.08,
@@ -238,11 +290,21 @@ export default function SummarizeGraph({
 
     // --- EVENT LISTENERS ---
 
-    // 1. Click to Expand
+    // 1. Click Handler (Expand + Select)
     net.on('click', (params) => {
       const clickedNodeId = params.nodes[0];
-      if (!clickedNodeId || !nodesDataSet.current || !edgesDataSet.current) return;
 
+      // --- HANDLE SELECTION FOR SIDE PANEL ---
+      if (clickedNodeId && nodesDataSet.current) {
+        // VisJS DataSet stores the full object passed to it, so 'paragraphs' should be present
+        const node = nodesDataSet.current.get(clickedNodeId);
+        setSelectedNode(node as GraphNode); 
+      } else {
+        setSelectedNode(null); // Clicked background -> Hide panel
+        return; // Stop processing if background click
+      }
+
+      // --- EXPANSION LOGIC ---
       const connectedEdges = fullGraphData.current.edges.filter(
         edge => edge.from === clickedNodeId || edge.to === clickedNodeId
       );
@@ -277,14 +339,11 @@ export default function SummarizeGraph({
       }
     });
 
-    // 2. Drag Start: Wake up physics so neighbors follow the dragged node
     net.on('dragStart', () => {
       net.setOptions({ physics: { enabled: true } });
       setPhysicsEnabled(true);
     });
 
-    // 3. Drag End: Disable physics ONLY for this node (Anchor it)
-    // This stops it from snapping back, but keeps it dragable.
     net.on('dragEnd', (params) => {
         if (params.nodes.length > 0 && nodesDataSet.current) {
             const nodeId = params.nodes[0];
@@ -295,8 +354,19 @@ export default function SummarizeGraph({
                 id: nodeId,
                 x: pos.x,
                 y: pos.y,
-                physics: false // Stop physics engine from moving this node
+                physics: false 
             });
+        }
+    });
+
+    net.on('doubleClick', (params) => {
+        if (params.nodes.length > 0 && nodesDataSet.current) {
+            const nodeId = params.nodes[0];
+            nodesDataSet.current.update({
+                id: nodeId,
+                physics: true // Re-enable physics
+            });
+            net.setOptions({ physics: { enabled: true } });
         }
     });
 
@@ -470,7 +540,7 @@ export default function SummarizeGraph({
                     This is a summary graph that connects all the entities in the document and visualizes their relations.
                  </Typography>
                  <Typography variant="caption" display="block" sx={{ mt: 1, fontStyle: 'italic', color: 'text.disabled' }}>
-                    Tip: Drag nodes to rearrange. They will stay where you drop them.
+                    Tip: Drag nodes to rearrange. Double-click to unfreeze a node.
                  </Typography>
               </Box>
            </Popover>
@@ -518,8 +588,87 @@ export default function SummarizeGraph({
           </Box>
         )}
         
+        {/* --- SOURCE PARAGRAPHS SIDE PANEL --- */}
+        {selectedNode && (
+          <Paper 
+            elevation={4} 
+            sx={{
+              position: 'absolute',
+              top: 16,
+              right: 16,
+              width: 320,
+              maxHeight: 'calc(100% - 32px)',
+              zIndex: 20,
+              display: 'flex',
+              flexDirection: 'column',
+              borderRadius: 2,
+              overflow: 'hidden',
+              backgroundColor: 'rgba(255, 255, 255, 0.96)',
+              backdropFilter: 'blur(4px)',
+              border: '1px solid rgba(0,0,0,0.1)'
+            }}
+          >
+            {/* Panel Header */}
+            <Box sx={{ p: 2, borderBottom: '1px solid #eee', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', bgcolor: '#f5f5f5' }}>
+              <Box>
+                <Typography variant="subtitle2" color="text.secondary" sx={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: 1, mb: 0.5 }}>
+                  Selected Node
+                </Typography>
+                <Typography variant="body1" sx={{ fontWeight: 600, lineHeight: 1.2 }}>
+                  {selectedNode.label.split(':')[1] || selectedNode.label}
+                </Typography>
+                <Chip 
+                  label={getNodeCategory(selectedNode.label)} 
+                  size="small" 
+                  sx={{ mt: 1, height: 20, fontSize: '0.65rem', fontWeight: 'bold', bgcolor: selectedNode.color?.background, color: '#fff' }} 
+                />
+              </Box>
+              <IconButton size="small" onClick={handleClosePanel} sx={{ mt: -0.5, mr: -0.5 }}>
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            </Box>
+
+            {/* Panel Content (Scrollable) */}
+            <Box sx={{ overflowY: 'auto', p: 0, flex: 1 }}>
+              <Box sx={{ p: 2, pb: 1 }}>
+                <Typography variant="caption" sx={{ fontWeight: 'bold', color: 'text.secondary', display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                  <ArticleIcon fontSize="inherit" /> FOUND IN PARAGRAPHS
+                </Typography>
+              </Box>
+              
+              <List disablePadding>
+                {selectedNode.paragraphs && selectedNode.paragraphs.length > 0 ? (
+                  selectedNode.paragraphs.map((para, idx) => (
+                    <ListItem key={para.id || idx} alignItems="flex-start" sx={{ py: 1.5, borderBottom: '1px solid #f0f0f0' }}>
+                      <ListItemIcon sx={{ minWidth: 32, mt: 0.5 }}>
+                        <QuoteIcon fontSize="small" color="action" sx={{ transform: 'rotate(180deg)' }}/>
+                      </ListItemIcon>
+                      <ListItemText 
+                        primary={
+                          <ExpandableParagraph text={para.text} />
+                        } 
+                        secondary={
+                          <Typography variant="caption" color="text.secondary" sx={{ mt: 0.5, display: 'block' }}>
+                            Paragraph ID: {para.id + 1}
+                          </Typography>
+                        }
+                      />
+                    </ListItem>
+                  ))
+                ) : (
+                  <Box p={3} textAlign="center">
+                    <Typography variant="body2" color="text.secondary" fontStyle="italic">
+                      No source paragraph available.
+                    </Typography>
+                  </Box>
+                )}
+              </List>
+            </Box>
+          </Paper>
+        )}
+
         {/* Legend */}
-        {!loading && Object.keys(categories).length > 0 && (
+        {!loading && Object.keys(categories).length > 0 && !selectedNode && (
           <Paper elevation={3} sx={{ position: 'absolute', bottom: 20, left: 20, zIndex: 10, p: 1.5, backgroundColor: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(4px)', borderRadius: 2, border: '1px solid rgba(0,0,0,0.05)', maxWidth: 200 }}>
              <Typography variant="overline" sx={{ lineHeight: 1, fontWeight: 800, color: 'text.secondary', letterSpacing: 1 }}>Legend</Typography>
              <Divider sx={{ my: 0.5 }} />

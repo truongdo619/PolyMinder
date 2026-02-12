@@ -23,7 +23,7 @@ interface BratEmbeddingProps {
 
 const BratEmbeddingDefault: React.FC<BratEmbeddingProps> = ({ docData }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-
+  
   // Unique, stable ID per component instance
   const [containerId] = useState(
     () => `brat-embed-${Math.random().toString(36).slice(2)}`

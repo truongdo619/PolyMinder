@@ -867,7 +867,7 @@ import {
             onClick={(event) => handleListItemClick(event, 0)}
           >
             <ListItemText
-              primary="All LLM Items"
+              primary="All LLM Paragraphs"
               secondary={
                 <>
                   <Typography
@@ -876,9 +876,9 @@ import {
                     variant="body2"
                     color="text.primary"
                   >
-                    {tableHighlights.length}
+                    {paraHighlights.length}
                   </Typography>
-                  {" items"}
+                  {" paragraphs"}
                 </>
               }
             />

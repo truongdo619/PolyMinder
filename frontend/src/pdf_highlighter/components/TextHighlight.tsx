@@ -87,7 +87,6 @@ export const TextHighlight = ({
           >
             {/* paragraph number badge */}
             {classnametext.startsWith("BLOCK") &&
-              !classnametext.includes("LLM") &&   // ← added condition
               index === 0 &&
               para_id !== undefined && (
                 <Badge

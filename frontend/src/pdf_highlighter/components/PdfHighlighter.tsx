@@ -176,6 +176,13 @@ export interface PdfHighlighterProps {
    * Callback to be invoked when the current page changes.
    */
   onPageChange?: (page: number) => void;
+
+  /**
+   * Optional callback to control the parent loading overlay (e.g. ResultComponent).
+   */
+  setIsActive?: (active: boolean) => void;
+
+  setHighlights?: (highlights: Highlight[]) => void;
 }
 
 /**
@@ -203,7 +210,9 @@ export const PdfHighlighter = ({
   textSelectionColor = DEFAULT_TEXT_SELECTION_COLOR,
   utilsRef,
   style,
-  onPageChange
+  onPageChange,
+  setIsActive,
+  setHighlights,
 }: PdfHighlighterProps) => {
   // State
   const globalContext = useContext(GlobalContext);
@@ -824,20 +833,21 @@ export const PdfHighlighter = ({
       onClose={handleCloseLlmDialog}
     >
       {llmDialogData && (
-        <DialogContent>
-          <LLMCommentForm
-            highlight={llmDialogData.highlight as CommentedHighlight}
-            brat_item={llmDialogData.brat_item}
-            setCommentDialogData={setLlmDialogData as any}
-            toggleEditInProgress={toggleEditInProgress}
-            pdfHighlighterUtils={pdfHighlighterUtils}
-            onSubmit={(_input: string) => {
-              handleCloseLlmDialog();
-              renderHighlightLayers();
-            }}
-            onOpenTreeDialog={(id: string) => handleOpenTreeDialog(id)}
-          />
-        </DialogContent>
+        <LLMCommentForm
+          highlight={llmDialogData.highlight as CommentedHighlight}
+          brat_item={llmDialogData.brat_item}
+          setCommentDialogData={setLlmDialogData as any}
+          toggleEditInProgress={toggleEditInProgress}
+          pdfHighlighterUtils={pdfHighlighterUtils}
+          pdfScaleValue={pdfScaleValue}
+          setIsActive={setIsActive}
+          setHighlights={setHighlights}
+          onSubmit={(_input: string) => {
+            handleCloseLlmDialog();
+            renderHighlightLayers();
+          }}
+          onOpenTreeDialog={(id: string) => handleOpenTreeDialog(id)}
+        />
       )}
     </Dialog>
 

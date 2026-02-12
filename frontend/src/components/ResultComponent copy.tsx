@@ -2,6 +2,7 @@ import React, { MouseEvent, useEffect, useRef, useState, useContext } from "reac
 import CommentForm from "./CommentForm";
 import { useLocation } from 'react-router-dom';
 import ContextMenu, { ContextMenuProps } from "./ContextMenu";
+import ContextMenuLLM from "./ContextMenuLLM";
 import ExpandableTip from "./ExpandableTip";
 import HighlightContainer from "./HighlightContainer";
 import Sidebar from "./Sidebar";
@@ -15,6 +16,9 @@ import { GlobalContext } from '../GlobalState';
 import LoadingOverlay from 'react-loading-overlay-ts'; // Add this import
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../axiosSetup';
+import TwoSideComparisonDialog, { ComparisonData, MergeOptions, MergeResult, MergeApiResponse } from "./TwoSideComparisonDialog";
+
+import Paper from '@mui/material/Paper';
 import {
   GhostHighlight,
   Highlight,
@@ -37,20 +41,24 @@ import {
   Box,
   Divider,
   Tooltip,
-  TextField,
-  Grid,
-  FormControl,
-  FormLabel,
-  RadioGroup,
   FormControlLabel,
   Radio,
-  FormHelperText,
-  ToggleButton,
-  ToggleButtonGroup,
+  Chip,
+  List, 
+  ListItem, 
+  ListItemButton, 
+  ListItemText, 
+  ListItemIcon,
+  InputAdornment,
+  OutlinedInput
 } from "@mui/material";
+// Add to icon imports
+import SearchIcon from "@mui/icons-material/Search";
+import ArticleIcon from '@mui/icons-material/Article';
+
 import InfoIcon from '@mui/icons-material/Info';
 import { Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent } from '@mui/lab';
-import ExpandableTipLLM from "./ExpandableTipLLM";
+
 
 
 const getNextId = (paraId: number, entityId: number) => `para${paraId}_T${entityId}`;
@@ -164,141 +172,16 @@ const convertLlmOutputToHighlights = (llmOutput: any[]): Highlight[] => {
   const highlights: Highlight[] = [];
 
   llmOutput.forEach((item, idx) => {
-    const position = item.position || {};
-    const rects = Array.isArray(position.rects) ? position.rects : [];
-    const boundingRect =
-      position.boundingRect || (rects.length > 0 ? rects[0] : null);
+    // direct concat item.entities to highlights as well
+    if (item.entities && Array.isArray(item.entities))
+    {
+      highlights.push(...(item.entities.map((e: any) => ({ ...e, para_id: item.para_id })) || []));
+    }
 
-    const highlight: Highlight = {
-      id: item.id?.toString() || `llm_${idx}`,
-      comment: "BLOCK_LLM",
-      content: {
-        // you can adjust what you want to show as the main label
-        text: item.text || item.original_text || "LLM result",
-      },
-      position: {
-        boundingRect,
-        rects,
-      },
-      para_id: item.para_id ?? 0,
-      visible: true,
-
-      // Extra metadata so LLMSidebar can show system prompt / prompt / I/O
-      llm_input_text: item.text || item.original_text || "",
-      llm_system_prompt: item.system_prompt || "",
-      llm_input_prompt: item.prompt || "",
-      llm_output_text: item.result || item.output || "",
-      apply_pipeline: item.apply_pipeline || false,
-      relations: item.relations || [],
-      entities: item.entities || []
-    };
-
-    highlights.push(highlight);
   });
 
   return highlights;
 };
-
-type LLMPresetId = "default" | "natural-text" | "entities-detail";
-
-interface LLMPreset {
-  id: LLMPresetId;
-  shortLabel: string;
-  description: string;
-  systemPrompt: string;
-  inputPrompt: string;
-}
-
-/**
- * Note:
- * - For "polymer-properties" we’ll override systemPrompt/inputPrompt
- *   with the values coming from ExpandableTipLLM when opening the dialog,
- *   so the text here is just a fallback.
- */
-const LLM_PROMPT_PRESETS: Record<LLMPresetId, LLMPreset> = {
-  "default": {
-    id: "default",
-    shortLabel: "Default",
-    description:
-      "Extract polymer property tuples (POLYMER | PROP_NAME | PROP_VALUE | CONDITION | CHAR_METHOD). Default preset for PolyMinder.",
-    systemPrompt: `You are an information extraction assistant specialized in polymer science. Your task is to extract ONLY polymer property facts explicitly stated in the text.`,
-    inputPrompt: `Extract all polymer property facts from the text.
-
-Output format (one line per fact):
-POLYMER | PROP_NAME | PROP_VALUE | CONDITION | CHAR_METHOD
-
-Rules:
-- Keep all numbers, units, symbols, percentages, Greek letters, subscript/superscript notations, and formatting EXACTLY as written in the text.
-- CONDITION includes experimental conditions (temperature, heating rate, gas atmosphere, ramp rate, solvent, etc.).
-- CHAR_METHOD should be the technique used (e.g., DSC, TGA, DMA, GPC, NMR, FTIR).
-- If a field does not appear explicitly in the text, write "N/A".
-- Output only the lines of extracted facts. Do NOT add explanations, lists, or commentary.`,
-  },
-
-  "natural-text": {
-    id: "natural-text",
-    shortLabel: "Natural Text",
-    description:
-      "Rewrite and clarify scientific text for better NER/RE extraction.",
-    systemPrompt: `You rewrite and clarify scientific text so that NER and RE models can extract entities and relations more reliably.`,
-    inputPrompt: `Rewrite the following text to make it clearer and easier for NER/RE extraction.
-
-Requirements:
-- Keep the meaning exactly the same.
-- Preserve all scientific entities, conditions, and numbers exactly.
-- Simplify grammar and sentence structure.
-- Do NOT add details that are not explicitly in the text.
-- If something is ambiguous, keep it ambiguous; do not guess.
-
-Output only the rewritten text.`,
-  },
-
-  "entities-detail": {
-    id: "entities-detail",
-    shortLabel: "Entities Detail",
-    description:
-      "Extract detailed entities from text in JSON format.",
-    systemPrompt: `You extract entities from text and return them strictly in valid JSON.
-Do NOT add or guess information not in the text.
-Preserve all wording, numbers, and units exactly as written.`,
-    inputPrompt: `Extract all entities from the text and return them in valid JSON.
-
-Rules:
-- Use the exact wording from the text.
-- Do NOT infer or add information.
-- Start and end positions must match the character indices in the ORIGINAL full text.
-- If an entity does not exist, do not create it.
-- Output only valid JSON.
-
-JSON schema:
-{
-  "entities": [
-    {
-      "type": "<ENTITY_TYPE>",
-      "text": "<EXACT_SPAN>",
-      "start": <START_INDEX>,
-      "end": <END_INDEX>
-    }
-  ]
-}
-
-ENTITY_TYPE (use only when appropriate):
-- "POLYMER"
-- "PROPERTY_NAME"
-- "PROPERTY_VALUE"
-- "CONDITION"
-- "CHAR_METHOD"
-- "MATERIAL"
-- "PROCESS"
-- "OTHER"
-
-Output only the JSON object.
-`
-
-  },
-};
-
-
 
 const ResultComponent = () => {
   const [isActive, setIsActive] = useState(false); // Add this state
@@ -310,15 +193,25 @@ const ResultComponent = () => {
   if (!globalContext) {
     throw new Error("GlobalContext must be used within a GlobalProvider");
   }
-  const { bratOutput, documentId, updateId, tableOutput, LLLOutput, setTableOutput, setBratOutput, setDocumentId, setUpdateId, setFileName, setLLLOutput } = globalContext;
+  const { bratOutput, documentId, updateId, tableOutput, LLLOutput, setTableOutput, setBratOutput, setDocumentId, setUpdateId, setFileName, setLLLOutput, supportedModels } = globalContext;
   const navigate = useNavigate();
   const navigateTo = useNavigate();
   const paraHighlights = convertBratOutputToHighlights(bratOutput);
-  // console.log("paraHighlights", paraHighlights);
   
   const tableHighlights = convertBratOutputToTableHighlights(tableOutput || []);
 
+  // Build LLM entity highlights from LLLOutput
   const llmHighlights = convertLlmOutputToHighlights(LLLOutput || []);
+
+  // Combine para highlights with their LLM entities:
+  // para0, entities of para0, para1, entities of para1, ...
+  const paraHighlightsForLLM = paraHighlights.reduce<Highlight[]>((acc, h) => {
+    acc.push({ ...h, comment: "BLOCK_LLM" });
+    const paraEntities = llmHighlights.filter(e => e.para_id === h.para_id);
+    acc.push(...paraEntities);
+    return acc;
+  }, []);
+
 
   const [currentPDFPage, setCurrentPDFPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -332,20 +225,7 @@ const ResultComponent = () => {
     initialVisibleHighlights ?? [],
   );
 
-  const [isLLMDialogOpen, setIsLLMDialogOpen] = useState(false);
-  const [llmDialogSelection, setLLMDialogSelection] = useState<PdfSelection | null>(null);
-  const [llmSystemPrompt, setLLMSystemPrompt] = useState("");
-  const [llmInputPrompt, setLLMInputPrompt] = useState("");
-  const [llmSelectedText, setLLMSelectedText] = useState("");
-  const [isLLMGenerating, setIsLLMGenerating] = useState(false);
-  const [llmRunMode, setLLMRunMode] = useState<"pipeline" | "llm-only">("llm-only");
 
-  const [llmTemplateId, setLLMTemplateId] = useState<LLMPresetId>("default");
-
-  // For the “default” polymer-properties preset, we want to keep what comes
-  // from ExpandableTipLLM rather than hardcoding it here.
-  const [llmDefaultSystemPrompt, setLLMDefaultSystemPrompt] = useState("");
-  const [llmDefaultInputPrompt, setLLMDefaultInputPrompt] = useState("");
 
   const setVisibleHighlights = (
     value: React.SetStateAction<Array<CommentedHighlight>>
@@ -391,6 +271,20 @@ const ResultComponent = () => {
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
   const [selectedHistory, setSelectedHistory] = useState<{ id: number, real_id: number, name: string; upload_time: string } | null>(null);
 
+  // ⬇️ NEW STATE: For LLM Comparison Workflow
+  const [isCompareSelOpen, setIsCompareSelOpen] = useState(false);
+  const [isCompareResOpen, setIsCompareResOpen] = useState(false);
+  const [targetLLMHighlight, setTargetLLMHighlight] = useState<CommentedHighlight | null>(null);
+  const [selectedCompareParaId, setSelectedCompareParaId] = useState<number>(0);
+
+  // Add this near your other useState definitions (e.g., near selectedCompareParaId)
+  const [paraSearchText, setParaSearchText] = useState("");
+
+  const getParagraphData = (paraId: number) => {
+    if (!bratOutput || !Array.isArray(bratOutput)) return null;
+    // Assuming bratOutput array index maps to paraId
+    return bratOutput[paraId] || null; 
+  };
 
   // New ref for PDF container
   const pdfContainerRef = useRef<HTMLDivElement>(null);
@@ -450,137 +344,87 @@ const ResultComponent = () => {
   ) => {
     event.preventDefault();
 
-    // Set the context menu with position and actions
-    setContextMenu({
-      xPos: event.clientX,
-      yPos: event.clientY,
-      deleteHighlight: () => deleteHighlight(highlight),
-      editComment: () => editComment(highlight), 
-    });
+    // ⬇️ MODIFIED: Logic to handle LLM context menu vs Standard
+    if (selectedMode === 'LLM') {
+      setContextMenu({
+        xPos: event.clientX,
+        yPos: event.clientY,
+        deleteHighlight: () => deleteHighlight(highlight),
+        // We pass the compare handler here, casting to any to satisfy the generic ContextMenuProps temporarily
+        // or we handle the specific rendering in the return statement (see below)
+        editComment: () => handleOpenCompareSelection(highlight), 
+      });
+    } else {
+      setContextMenu({
+        xPos: event.clientX,
+        yPos: event.clientY,
+        deleteHighlight: () => deleteHighlight(highlight),
+        editComment: () => editComment(highlight),
+      });
+    }
   };
 
-  const handleRunWithLLM = async () => {
-    if (!llmDialogSelection) return;
+  // ⬇️ NEW HANDLERS: Comparison Workflow
+  const handleOpenCompareSelection = (highlight: ViewportHighlight | Highlight) => {
+    setTargetLLMHighlight(highlight as CommentedHighlight);
+    setContextMenu(null); // Close the context menu
+    // Default the selection to the paragraph ID of the highlight if possible
+    setSelectedCompareParaId(highlight.para_id || 0);
+    setIsCompareSelOpen(true);
+  };
 
-    setIsLLMGenerating(true);
-    setIsActive(true);
+  // ⬇️ NEW STATE: Store the API response for comparison
+  const [comparisonResultData, setComparisonResultData] = useState<ComparisonData | null>(null);
 
+  // ⬇️ REVISED HANDLER: API Call Logic
+  const handleProceedToComparison = async () => {
+    if (!targetLLMHighlight) return;
+
+    setIsActive(true); // Show loading spinner
+    
     try {
       const token = localStorage.getItem("accessToken");
-      const selection = llmDialogSelection;
-      const selectedText = selection.content?.text ?? "";
-
-      const pageId =
-        (selection.position?.boundingRect as any)?.pageNumber ?? currentPDFPage;
-
+      
       const payload = {
         document_id: documentId,
         update_id: updateId,
-        position: selection.position,
-        scale_value: pdfScaleValue,
-        page_id: pageId,
-        text: selectedText,
-        system_prompt: llmSystemPrompt,
-        prompt: llmInputPrompt,
-        apply_pipeline: llmRunMode === "pipeline", // "pipeline" | "llm-only"
+        llm_text_id: targetLLMHighlight.id,
+        paragraph_id: selectedCompareParaId
       };
 
+      // Call the API
       const response = await axiosInstance.post(
-        `${import.meta.env.VITE_BACKEND_URL}/run-with-LLM`,
+        `${import.meta.env.VITE_BACKEND_URL}/compare-with-model-output`,
         payload,
         {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
 
-      const data = response.data;
+      // Store the formatted data from backend
+      setComparisonResultData(response.data);
+      
+      // Close selection dialog and open result dialog
+      setIsCompareSelOpen(false);
+      setIsCompareResOpen(true);
 
-      if (llmRunMode === "pipeline") {
-        // ✅ Full pipeline: update document, highlights, tables, navigate
-        if (data.brat_format_output) {
-          setBratOutput(data.brat_format_output);
-        }
-        if (data.table_output) {
-          setTableOutput(data.table_output);
-        }
-        if (data.document_id) {
-          setDocumentId(data.document_id);
-        }
-        if (data.update_id) {
-          setUpdateId(data.update_id);
-        }
-        if (data.filename) {
-          setFileName(data.filename);
-        }
-        if (data.pdf_format_output) {
-          setVisibleHighlights(data.pdf_format_output);
-        }
-        if (data.llm_texts) {
-          setLLLOutput(data.llm_texts);
-        }
-
-        navigateTo("/result", {
-          state: {
-            highlights: data.pdf_format_output,
-            url: `${import.meta.env.VITE_PDF_BACKEND_URL}/statics/${data.filename}`,
-          },
-        });
-      } else {
-        // ✅ LLM-only: do NOT touch NER/RE results, just store LLM outputs
-        if (data.llm_texts) {
-          setLLLOutput(data.llm_texts);
-        }
-        // Optionally: keep existing pdf/NER/RE state as is.
-        console.log("LLM-only mode result:", data);
-      }
-
-      console.log("LLM /run-with-LLM result:", data);
-
-      // Close dialog after success
-      setIsLLMDialogOpen(false);
-      setLLMDialogSelection(null);
     } catch (error) {
-      console.error("Error running /run-with-LLM:", error);
+      console.error("Error fetching comparison data:", error);
+      // You might want to add a snackbar/toast here for user feedback
     } finally {
-      setIsLLMGenerating(false);
-      setIsActive(false);
+      setIsActive(false); // Hide loading spinner
     }
   };
-
-
-  const handleOpenLLMDialog = ({
-    selection,
-    defaultSystemPrompt,
-    defaultInputPrompt,
-  }: {
-    selection: PdfSelection;
-    defaultSystemPrompt: string;
-    defaultInputPrompt: string;
-  }) => {
-    setLLMDialogSelection(selection);
-    setLLMSelectedText(selection.content?.text ?? "");
-
-    // Remember defaults for the “Properties” preset
-    setLLMDefaultSystemPrompt(defaultSystemPrompt);
-    setLLMDefaultInputPrompt(defaultInputPrompt);
-
-    // Start with the default preset
-    setLLMTemplateId("default");
-    setLLMSystemPrompt(defaultSystemPrompt);
-    setLLMInputPrompt(defaultInputPrompt);
-
-    setLLMRunMode("llm-only"); // default execution mode
-    setIsLLMDialogOpen(true);
+  const handleCloseComparison = () => {
+    setIsCompareResOpen(false);
+    setTargetLLMHighlight(null);
   };
 
-  const handleCloseLLMDialog = () => {
-    if (isLLMGenerating) return; // optional guard
-    setIsLLMDialogOpen(false);
-    setLLMDialogSelection(null);
-  };
+
+
 
   const addHighlight = async (highlight: GhostHighlight, comment: string) => {
     const { position: { boundingRect } } = highlight;
@@ -730,7 +574,7 @@ const ResultComponent = () => {
     if (selectedMode === 'Relations') return relationHighlights.find(h => h.id === id);
     if (selectedMode === 'Events')   return eventHighlights.find(h => h.id === id);
     if (selectedMode === 'Tables')   return tableHighlights.find(h => h.table_id === id) as any;
-    if (selectedMode === 'LLM')        return llmHighlights.find(h => h.id === id) as any;
+    if (selectedMode === 'LLM')        return paraHighlightsForLLM.find(h => h.id === id) as any;
     return paraHighlights.find(h => h.id === id);
   };
   
@@ -1088,7 +932,7 @@ const ResultComponent = () => {
         />
       );
     } else if (selectedMode === 'LLM') {
-      // For now behave the same as Tables: show tableHighlights and reuse LLMSidebar
+      // LLM mode: show paragraph boxes all in LLM color; click opens LLM dialog
       pdfloader = (
         <PdfLoader document={url}>
           {(loadedPdfDocument) => {
@@ -1100,18 +944,12 @@ const ResultComponent = () => {
                 utilsRef={(_pdfHighlighterUtils) => {
                   highlighterUtilsRef.current = _pdfHighlighterUtils;
                 }}
-                selectionTip={
-                  <ExpandableTipLLM
-                    addHighlight={addHighlight}
-                    setIsActive={setIsActive}
-                    onOpenLLMDialog={handleOpenLLMDialog}
-                  />
-                }
-
                 pdfScaleValue={pdfScaleValue}
-                highlights={llmHighlights}
+                highlights={paraHighlightsForLLM}
                 style={{ height: "calc(100% - 41px)" }}
                 onPageChange={PDFpageChange}
+                setIsActive={setIsActive}
+                setHighlights={setVisibleHighlights}
               >
                 <HighlightContainer
                   editHighlight={editHighlight}
@@ -1125,7 +963,7 @@ const ResultComponent = () => {
     
       sidebar = (
         <LLMSidebar
-          highlights={llmHighlights as any}
+          highlights={paraHighlightsForLLM as any}
           getHighlightById={getHighlightById}
           setIsActive={setIsActive}
           setHighlights={setHighlights}
@@ -1218,7 +1056,20 @@ const ResultComponent = () => {
           setSelectedMode={setSelectedMode}
           setIsActive={setIsActive}
         />
-        {contextMenu && <ContextMenu {...contextMenu} />}
+        {/* ⬇️ MODIFIED: Context Menu Rendering Logic */}
+        {contextMenu && (
+          selectedMode === 'LLM' ? (
+            <ContextMenuLLM
+              xPos={contextMenu.xPos}
+              yPos={contextMenu.yPos}
+              deleteHighlight={contextMenu.deleteHighlight}
+              onCompare={contextMenu.editComment} // We mapped handleOpenCompareSelection to editComment in handleContextMenu
+            />
+          ) : (
+            <ContextMenu {...contextMenu} />
+          )
+        )}
+
         <Tooltip title="Click to view document information" placement="left" arrow>
           <InfoIcon style={{  
               position: "fixed",
@@ -1348,306 +1199,180 @@ const ResultComponent = () => {
         </Dialog>
 
 
+        {/* ⬇️ REFINED DIALOG 1: Select Paragraph for Comparison */}
         <Dialog
-          open={isLLMDialogOpen}
-          onClose={handleCloseLLMDialog}
-          maxWidth="lg"
+          open={isCompareSelOpen}
+          onClose={() => {
+            setIsCompareSelOpen(false);
+            setParaSearchText(""); // Reset search on close
+          }}
+          maxWidth="md" // Increased width for better readability
           fullWidth
+          PaperProps={{
+            sx: { borderRadius: 3, height: "80vh" } // Fixed height for internal scrolling
+          }}
         >
-          <DialogTitle>
-            <Typography variant="h6" sx={{ textAlign: "center" }}>
-              🧠 Prepare LLM Extraction
-            </Typography>
+          <DialogTitle sx={{ pb: 1 }}>
+            <Box display="flex" flexDirection="column" gap={1}>
+              <Typography variant="h6" fontWeight="bold">
+                Select Context Paragraph
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Choose the original document paragraph to compare against your extracted LLM result.
+              </Typography>
+            </Box>
           </DialogTitle>
 
-          <DialogContent
-            dividers
-            sx={{
-              // Fix the overall content height so both columns align
-              height: "80vh",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            {/* Explanation + mode selector */}
-            <Box sx={{ mb: 2 }}>
-              <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 0.5 }}>
-                Execution mode
-              </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 1.5 }}>
-                Choose whether the LLM output should update the full extraction pipeline,
-                or just be returned as plain text.
-              </Typography>
+          <Box sx={{ px: 3, pb: 2 }}>
+            <OutlinedInput
+              fullWidth
+              size="small"
+              placeholder="Search text in paragraphs..."
+              value={paraSearchText}
+              onChange={(e) => setParaSearchText(e.target.value)}
+              startAdornment={
+                <InputAdornment position="start">
+                  <SearchIcon color="action" fontSize="small" />
+                </InputAdornment>
+              }
+              sx={{ bgcolor: "background.paper" }}
+            />
+          </Box>
 
-              <FormControl fullWidth>
-                <ToggleButtonGroup
-                  value={llmRunMode}
-                  exclusive
-                  onChange={(_, value) => {
-                    if (value !== null) {
-                      setLLMRunMode(value as "pipeline" | "llm-only");
-                    }
-                  }}
-                  sx={{
-                    width: "100%",
-                    "& .MuiToggleButton-root": {
-                      flex: 1,
-                      textTransform: "none",
-                      justifyContent: "flex-start",
-                      alignItems: "flex-start",
-                      px: 2,
-                      py: 1.5,
-                      borderRadius: 1.5,
-                      gap: 1.5,
-                    },
-                  }}
-                >
-                  <ToggleButton value="llm-only">
-                    <Box textAlign="left">
-                      <Typography variant="body2" fontWeight="bold">
-                        ✨ LLM only
-                      </Typography>
-                      <Typography variant="caption" color="text.secondary">
-                        Run the LLM and keep the current NER/RE results unchanged.
-                        The generated text will appear in the <b>LLM</b> tab only.
-                      </Typography>
-                    </Box>
-                  </ToggleButton>
-
-
-                  <ToggleButton value="pipeline">
-                    <Box textAlign="left">
-                      <Typography variant="body2" fontWeight="bold">
-                        🔗 Pipeline (LLM → NER &amp; RE)
-                      </Typography>
-                      <Typography variant="caption" color="text.secondary">
-                        Use the LLM output as input to the polymer NER and RE models.
-                        Highlights and relations in this document will be updated
-                        automatically.
-                      </Typography>
-                    </Box>
-                  </ToggleButton>
-
-
-                </ToggleButtonGroup>
-
-                <FormHelperText sx={{ mt: 1 }}>
-                  Use <b>Pipeline</b> when you want automatic new entities/relations, or{" "}
-                  <b>LLM only</b> when you just need a suggestion or reformatted text.
-                </FormHelperText>
-              </FormControl>
-            </Box>
-
-            {/* Main dialog content: selected text + prompts */}
-            <Grid
-              container
-              spacing={2}
-              sx={{
-                flex: 1,
-                minHeight: 0, // allow children to shrink inside fixed height
-              }}
-            >
-              {/* LEFT: Selected text preview */}
-              <Grid
-                item
-                xs={12}
-                md={6}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  height: "100%",
-                  minHeight: 0,
-                }}
-              >
-                <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
-                  📄 Selected Text{" "}
-                  <Typography
-                    component="span"
-                    variant="caption"
-                    color="text.secondary"
-                  >
-                    (Read-only)
-                  </Typography>
-                </Typography>
-
-                {/* Fixed-height scrollable area */}
-                <Box
-                  sx={{
-                    flex: 1,
-                    minHeight: 0,
-                    borderRadius: 1,
-                    border: "1px solid",
-                    borderColor: "divider",
-                    p: 1,
-                    bgcolor: "background.paper",
-                    overflowY: "auto",
-                  }}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}
-                  >
-                    {llmSelectedText || "(No text selected)"}
-                  </Typography>
-                </Box>
-              </Grid>
-
-              {/* RIGHT: prompts */}
-              <Grid
-                item
-                xs={12}
-                md={6}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  height: "100%",
-                  minHeight: 0,
-                }}
-              >
-                <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
-                  ✏️ LLM Prompts{" "}
-                  <Typography
-                    component="span"
-                    variant="caption"
-                    color="text.secondary"
-                  >
-                    (Editable)
-                  </Typography>
-                </Typography>
-
-                {/* Everything on the right side shares the same fixed height */}
-                <Box
-                  sx={{
-                    flex: 1,
-                    minHeight: 0,
-                    display: "flex",
-                    flexDirection: "column",
-                    overflow: "hidden",
-                  }}
-                >
-                  {/* Prompt preset selector (static, small) */}
-                  <Box sx={{ mb: 1.5 }}>
-                    <Typography
-                      variant="caption"
-                      color="text.secondary"
-                      sx={{ mb: 0.5, display: "block" }}
-                    >
-                      Prompt preset
+          <DialogContent dividers sx={{ p: 0, bgcolor: "#f5f5f5" }}>
+            <List sx={{ p: 2 }}>
+              {paraHighlights
+                .filter((para) => 
+                  para.content.text.toLowerCase().includes(paraSearchText.toLowerCase())
+                )
+                .map((para, idx) => {
+                  const isSelected = selectedCompareParaId === para.para_id;
+                  return (
+                    <ListItem key={para.para_id} disablePadding sx={{ mb: 1.5 }}>
+                      <ListItemButton
+                        onClick={() => setSelectedCompareParaId(para.para_id)}
+                        sx={{
+                          borderRadius: 2,
+                          bgcolor: "background.paper",
+                          border: "1px solid",
+                          borderColor: isSelected ? "primary.main" : "divider",
+                          boxShadow: isSelected ? 3 : 0,
+                          transition: "all 0.2s",
+                          alignItems: "flex-start",
+                          py: 2,
+                          "&:hover": {
+                            borderColor: "primary.light",
+                            bgcolor: "white",
+                          },
+                        }}
+                      >
+                        <ListItemIcon sx={{ minWidth: 40, mt: 0.5 }}>
+                          <Radio 
+                            checked={isSelected} 
+                            size="small"
+                            disableRipple
+                            sx={{ p: 0 }}
+                          />
+                        </ListItemIcon>
+                        
+                        <ListItemText
+                          disableTypography
+                          primary={
+                            <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
+                              <Box display="flex" alignItems="center" gap={1}>
+                                <ArticleIcon color="disabled" fontSize="small" />
+                                <Typography variant="subtitle2" fontWeight="bold" color="text.primary">
+                                  Paragraph {para.para_id + 1}
+                                </Typography>
+                              </Box>
+                              {para.page_number && (
+                                <Chip 
+                                  label={`Page ${para.page_number}`} 
+                                  size="small" 
+                                  variant="outlined" 
+                                  sx={{ height: 20, fontSize: "0.65rem" }} 
+                                />
+                              )}
+                            </Box>
+                          }
+                          secondary={
+                            <Typography 
+                              variant="body2" 
+                              color="text.secondary" 
+                              sx={{ 
+                                display: '-webkit-box',
+                                WebkitLineClamp: 3, // Show roughly 3 lines
+                                WebkitBoxOrient: 'vertical',
+                                overflow: 'hidden',
+                                lineHeight: 1.6
+                              }}
+                            >
+                              {para.content.text}
+                            </Typography>
+                          }
+                        />
+                      </ListItemButton>
+                    </ListItem>
+                  );
+                })}
+                
+                {/* Empty State */}
+                {paraHighlights.filter(p => p.content.text.toLowerCase().includes(paraSearchText.toLowerCase())).length === 0 && (
+                  <Box textAlign="center" py={4}>
+                    <Typography variant="body2" color="text.secondary">
+                      No paragraphs found matching "{paraSearchText}"
                     </Typography>
-
-                    <ToggleButtonGroup
-                      value={llmTemplateId}
-                      exclusive
-                      onChange={(_, value) => {
-                        if (!value) return;
-                        const presetId = value as LLMPresetId;
-                        setLLMTemplateId(presetId);
-
-                        if (presetId === "default") {
-                          setLLMSystemPrompt(
-                            llmDefaultSystemPrompt ||
-                              LLM_PROMPT_PRESETS["default"].systemPrompt,
-                          );
-                          setLLMInputPrompt(
-                            llmDefaultInputPrompt ||
-                              LLM_PROMPT_PRESETS["default"].inputPrompt,
-                          );
-                        } else {
-                          const preset = LLM_PROMPT_PRESETS[presetId];
-                          setLLMSystemPrompt(preset.systemPrompt);
-                          setLLMInputPrompt(preset.inputPrompt);
-                        }
-                      }}
-                      sx={{
-                        width: "100%",
-                        mb: 0.5,
-                        "& .MuiToggleButton-root": {
-                          flex: 1,
-                          textTransform: "none",
-                          px: 1.5,
-                          py: 0.75,
-                          borderRadius: 1.5,
-                        },
-                      }}
-                    >
-                      <ToggleButton value="default">
-                        {LLM_PROMPT_PRESETS["default"].shortLabel}
-                      </ToggleButton>
-                      <ToggleButton value="natural-text">
-                        {LLM_PROMPT_PRESETS["natural-text"].shortLabel}
-                      </ToggleButton>
-                      <ToggleButton value="entities-detail">
-                        {LLM_PROMPT_PRESETS["entities-detail"].shortLabel}
-                      </ToggleButton>
-                    </ToggleButtonGroup>
-
-                    <FormHelperText>
-                      {LLM_PROMPT_PRESETS[llmTemplateId].description}
-                    </FormHelperText>
                   </Box>
-
-                  {/* Scrollable prompts area */}
-                  <Box
-                    sx={{
-                      flex: 1,
-                      minHeight: 0,
-                      overflowY: "auto",
-                    }}
-                  >
-                    <TextField
-                      label="System Prompt"
-                      fullWidth
-                      multiline
-                      minRows={4}
-                      value={llmSystemPrompt}
-                      onChange={(e) => setLLMSystemPrompt(e.target.value)}
-                      sx={{
-                        mb: 2,
-                        mt: 1,
-                        "& textarea": { fontFamily: "monospace", fontSize: 13 },
-                      }}
-                    />
-
-                    <TextField
-                      label="Input Prompt"
-                      fullWidth
-                      multiline
-                      minRows={6}
-                      value={llmInputPrompt}
-                      onChange={(e) => setLLMInputPrompt(e.target.value)}
-                      sx={{
-                        "& textarea": { fontFamily: "monospace", fontSize: 13 },
-                      }}
-                    />
-                    <FormHelperText sx={{ mt: 0.5 }}>
-                      You can freely edit these prompts after selecting a preset.
-                    </FormHelperText>
-                  </Box>
-                </Box>
-              </Grid>
-            </Grid>
+                )}
+            </List>
           </DialogContent>
 
-          <DialogActions>
-            <Button
-              onClick={handleCloseLLMDialog}
-              variant="outlined"
-              disabled={isLLMGenerating}
+          <DialogActions sx={{ px: 3, py: 2 }}>
+            <Button 
+              onClick={() => setIsCompareSelOpen(false)}
+              color="inherit"
             >
               Cancel
             </Button>
-            <Button
-              onClick={handleRunWithLLM}
-              variant="contained"
-              disabled={isLLMGenerating || !llmDialogSelection}
+            <Button 
+              variant="contained" 
+              onClick={handleProceedToComparison}
+              disabled={selectedCompareParaId === null}
             >
-              {isLLMGenerating ? "Generating..." : "Run LLM"}
+              Compare Selection
             </Button>
           </DialogActions>
         </Dialog>
 
+        {/* ⬇️ REVISED DIALOG 2: Two-Side Comparison using new component */}
+        <TwoSideComparisonDialog 
+            open={isCompareResOpen}
+            onClose={handleCloseComparison}
+            data={comparisonResultData} // Pass the API result directly
+            modelParaId={selectedCompareParaId}
+            documentId={documentId}
+            updateId={updateId}
+            llmTextId={targetLLMHighlight?.id || ''}
+            onMergeSuccess={(response: MergeApiResponse) => {
+              // Update global state with the merged data
+              console.log("Merge successful, updating global state with:", response);
+              setBratOutput(response.brat_format_output);
+              setTableOutput(response.tables);
+              setDocumentId(response.document_id);
+              setUpdateId(response.update_id);
+              setFileName(response.filename);
+              setLLLOutput(response.llm_texts);
+              setVisibleHighlights(response.pdf_format_output);
+              // navigateTo('/result', { 
+              //   state: { 
+              //     highlights: response.data.pdf_format_output, 
+              //     url: `${import.meta.env.VITE_PDF_BACKEND_URL}/statics/${response.data.filename}`
+              //   }
+              // });
+            }}
+        />
 
-
+        
         
       </div>
     </LoadingOverlay>

@@ -24,8 +24,6 @@ interface BratEmbeddingProps {
 const BratEmbedding: React.FC<BratEmbeddingProps> = ({ docData, highlight }) => {
   const [isLoaded, setIsLoaded] = useState(true);
 
-  console.log(docData);
-
   useEffect(() => {
     const initializeBrat = () => {
       if (window.head && window.head.ready) {
