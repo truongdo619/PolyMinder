@@ -707,7 +707,7 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
 
 
   return (
-    <div className="sidebar" style={{ width: "20vw", maxWidth: "1000px" }}>
+    <div className="sidebar" style={{ width: "100%", height: "100vh", overflowY: "auto" }}>
       <div className="description" style={{ padding: "1rem" }}>
         <h2 style={{ marginBottom: "1rem" }}>
           Found <span className="total_entities_span">{highlights.length}</span> entities in this document.
@@ -867,10 +867,9 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
       <div
         className="pagination-controls"
         style={{
-          position: "fixed",
+          position: "sticky",
           bottom: 0,
-          width: "18vw",
-          maxWidth: "1000px",
+          width: "100%",
           padding: "10px 0",
           backgroundColor: "white",
           display: "flex",
@@ -943,8 +942,9 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
 
           <Box role="tabpanel" hidden={tabValue !== 1} id="relation-tabpanel" aria-labelledby="relation-tab">
             {selectedHighlight ? (
+              <Box sx={{ overflowX: "auto" }}>
               <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <Table sx={{ minWidth: 400 }} aria-label="simple table">
                   <TableHead>
                     <TableRow>
                       <TableCell style={{fontWeight: "bold"}}>Subject Entity</TableCell>
@@ -1062,6 +1062,7 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
                   </TableBody>
                 </Table>
               </TableContainer>
+              </Box>
             ) : (
               <p>No highlight selected.</p>
             )}

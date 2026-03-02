@@ -80,7 +80,8 @@ const TableSidebar = ({
   const Textarea = styled(BaseTextareaAutosize)(
     ({ theme }) => `
       box-sizing: border-box;
-      width: 50rem;
+      width: 100%;
+      max-width: 100%;
       font-family: 'IBM Plex Sans', sans-serif;
       font-size: 0.875rem;
       font-weight: 400;
@@ -296,7 +297,7 @@ const TableSidebar = ({
   }, [highlights]);
 
   return (
-    <div className="sidebar" style={{ width: "20vw", maxWidth: "1000px" }}>
+    <div className="sidebar" style={{ width: "100%", height: "100vh", overflowY: "auto" }}>
       <div className="description" style={{ padding: "1rem" }}>
         <h2 style={{ marginBottom: "1rem" }}>
           Found <span className="total_entities_span">{highlights.length}</span> tables in this document.

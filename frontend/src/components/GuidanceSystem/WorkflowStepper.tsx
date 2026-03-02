@@ -56,15 +56,16 @@ const WorkflowStepper: React.FC<WorkflowStepperProps> = ({
           alignItems: 'center',
           justifyContent: 'space-between',
           px: 2,
-          py: 0.5,
+          pt: 1.5,
+          pb: 1.5,
           cursor: 'pointer',
           userSelect: 'none',
         }}
         onClick={onToggleVisibility}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <HelpOutlineIcon sx={{ fontSize: 16, color: '#1976d2' }} />
-          <Typography variant="caption" sx={{ color: '#555', fontWeight: 600 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, minWidth: 0, overflow: 'hidden' }}>
+          <HelpOutlineIcon sx={{ fontSize: 16, color: '#1976d2', flexShrink: 0 }} />
+          <Typography variant="caption" sx={{ color: '#555', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             Workflow Guide
             {!visible && activeStepIndex >= 0 && (
               <span style={{ fontWeight: 400, marginLeft: 8 }}>
@@ -81,7 +82,7 @@ const WorkflowStepper: React.FC<WorkflowStepperProps> = ({
             ({completedCount}/{requiredSteps.length})
           </Typography>
         </Box>
-        <IconButton size="small" tabIndex={-1}>
+        <IconButton size="small" tabIndex={-1} sx={{ flexShrink: 0, ml: 0.5 }}>
           {visible
             ? <KeyboardArrowUpIcon fontSize="small" />
             : <KeyboardArrowDownIcon fontSize="small" />}
@@ -105,7 +106,7 @@ const WorkflowStepper: React.FC<WorkflowStepperProps> = ({
               return (
                 <Step key={step.id} completed={completed}>
                   <Tooltip title={step.description} arrow placement="bottom">
-                    <StepButton onClick={() => onStepClick?.(step.id)}>
+                    <StepButton onClick={(e) => { e.stopPropagation(); onStepClick?.(step.id); }}>
                       <StepLabel
                         optional={step.optional && !completed ? (
                           <Typography variant="caption" sx={{ color: '#90a4ae', lineHeight: 1 }}>

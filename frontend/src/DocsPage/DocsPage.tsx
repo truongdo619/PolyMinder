@@ -11,14 +11,17 @@ import {
   ListItemText,
   ListItemIcon,
   Divider,
-  Hidden,
   Collapse,
   FormControl,
   InputLabel,
   Select,
   MenuItem,
+  IconButton,
+  AppBar,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { ExpandLess, ExpandMore, Menu as MenuIcon } from "@mui/icons-material";
 import { SelectChangeEvent } from "@mui/material/Select";
 import { useParams, useNavigate, Link as RouterLink } from "react-router-dom";
 import LogoImg from "../assets/images/logo.png";
@@ -212,6 +215,10 @@ const docsByVersion: Record<(typeof versions)[number], DocsTree> = {
 /* -------------------------------------------------------------------------- */
 
 export default function DocsPage() {
+  const theme = useTheme();
+  const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
   const { version: rv, section: rs, page: rp } = useParams<{
     version: string;
     section: string;
@@ -305,100 +312,130 @@ export default function DocsPage() {
   /* ---------------------------------------------------------------------- */
   /*                                  Render                                 */
   /* ---------------------------------------------------------------------- */
+
+  const drawerContent = (
+    <>
+      <Box component={RouterLink} to="/home" sx={{ display: "flex", justifyContent: "center", py: 3, mb: 2 }}>
+        <Box component="img" src={LogoImg} alt="PolyMinder" sx={{ height: 40 }} />
+      </Box>
+
+      <Box sx={{ px: 2, py: 2 }}>
+        <FormControl fullWidth size="small">
+          <InputLabel id="ver-label">Version</InputLabel>
+          <Select labelId="ver-label" value={version} label="Version" onChange={handleVersion}>
+            {versions.map((v) => (
+              <MenuItem key={v} value={v}>
+                {v}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
+
+      <List
+        component="nav"
+        dense
+        disablePadding
+        sx={{
+          px: 1,
+          borderLeft: 1,
+          borderColor: "divider",
+          "& .MuiListItemButton-root": {
+            py: 0.6,
+            pl: 3.5,
+            pr: 1,
+            borderRadius: 1,
+            "&.Mui-selected": {
+              bgcolor: "primary.50",
+              color: "primary.main",
+              "&:hover": { bgcolor: "primary.50" },
+            },
+            "&:hover": { bgcolor: "action.hover" },
+          },
+        }}
+      >
+        {sectionKeys.map((sec) => {
+          const open = openMap[sec];
+          const secData = docsStructure[sec];
+          return (
+            <Box key={sec}>
+              <ListItemButton onClick={toggleSection(sec)} sx={{ pl: 1 }}>
+                <ListItemIcon sx={{ minWidth: 24, ml: -3, mr: 0.5 }}>
+                  {open ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" />}
+                </ListItemIcon>
+                <ListItemText primary={secData.title} primaryTypographyProps={{ fontWeight: 600 }} />
+              </ListItemButton>
+              <Collapse in={open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding sx={{ ml: 1.5, borderLeft: 1, borderColor: "divider" }}>
+                  {Object.entries(secData.pages).map(([pgKey, pgVal]) => (
+                    <ListItemButton
+                      key={pgKey}
+                      component={RouterLink}
+                      to={`/docs/${version}/${sec}/${pgKey}`}
+                      selected={sec === section && pgKey === page}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <ListItemText
+                        primary={pgVal.title}
+                        primaryTypographyProps={{ fontWeight: 500, fontSize: "0.875rem" }}
+                      />
+                    </ListItemButton>
+                  ))}
+                </List>
+              </Collapse>
+            </Box>
+          );
+        })}
+      </List>
+    </>
+  );
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
 
-      {/* ---------------- Sidebar ---------------- */}
-      <Hidden mdDown>
-        <Drawer
-          variant="permanent"
-          sx={{
-            width: drawerWidth,
-            flexShrink: 0,
-            "& .MuiDrawer-paper": { width: drawerWidth, boxSizing: "border-box" },
-          }}
-        >
-          {/* Logo */}
-          <Box component={RouterLink} to="/home" sx={{ display: "flex", justifyContent: "center", py: 3, mb: 2 }}>
-            <Box component="img" src={LogoImg} alt="PolyMinder" sx={{ height: 40 }} />
+      {/* Mobile top bar with hamburger */}
+      {!isMdUp && (
+        <AppBar position="fixed" color="default" elevation={1} sx={{ zIndex: (t) => t.zIndex.drawer + 1 }}>
+          <Box sx={{ display: "flex", alignItems: "center", px: 1, py: 0.5 }}>
+            <IconButton onClick={() => setMobileOpen((o) => !o)} edge="start" sx={{ mr: 1 }}>
+              <MenuIcon />
+            </IconButton>
+            <Box component={RouterLink} to="/home">
+              <Box component="img" src={LogoImg} alt="PolyMinder" sx={{ height: 32 }} />
+            </Box>
           </Box>
+        </AppBar>
+      )}
 
-          {/* Version selector */}
-          <Box sx={{ px: 2, py: 2 }}>
-            <FormControl fullWidth size="small">
-              <InputLabel id="ver-label">Version</InputLabel>
-              <Select labelId="ver-label" value={version} label="Version" onChange={handleVersion}>
-                {versions.map((v) => (
-                  <MenuItem key={v} value={v}>
-                    {v}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Box>
+      {/* Sidebar — permanent on md+, temporary (modal) on smaller screens */}
+      <Drawer
+        variant={isMdUp ? "permanent" : "temporary"}
+        open={isMdUp || mobileOpen}
+        onClose={() => setMobileOpen(false)}
+        ModalProps={{ keepMounted: true }}
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          "& .MuiDrawer-paper": { width: drawerWidth, boxSizing: "border-box" },
+        }}
+      >
+        {drawerContent}
+      </Drawer>
 
-          {/* Nav list */}
-          <List
-            component="nav"
-            dense
-            disablePadding
-            sx={{
-              px: 1,
-              borderLeft: 1,
-              borderColor: "divider",
-              "& .MuiListItemButton-root": {
-                py: 0.6,
-                pl: 3.5,
-                pr: 1,
-                borderRadius: 1,
-                "&.Mui-selected": {
-                  bgcolor: "primary.50",
-                  color: "primary.main",
-                  "&:hover": { bgcolor: "primary.50" },
-                },
-                "&:hover": { bgcolor: "action.hover" },
-              },
-            }}
-          >
-            {sectionKeys.map((sec) => {
-              const open = openMap[sec];
-              const secData = docsStructure[sec];
-              return (
-                <Box key={sec}>
-                  <ListItemButton onClick={toggleSection(sec)} sx={{ pl: 1 }}>
-                    <ListItemIcon sx={{ minWidth: 24, ml: -3, mr: 0.5 }}>
-                      {open ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" />}
-                    </ListItemIcon>
-                    <ListItemText primary={secData.title} primaryTypographyProps={{ fontWeight: 600 }} />
-                  </ListItemButton>
-                  <Collapse in={open} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding sx={{ ml: 1.5, borderLeft: 1, borderColor: "divider" }}>
-                      {Object.entries(secData.pages).map(([pgKey, pgVal]) => (
-                        <ListItemButton
-                          key={pgKey}
-                          component={RouterLink}
-                          to={`/docs/${version}/${sec}/${pgKey}`}
-                          selected={sec === section && pgKey === page}
-                        >
-                          <ListItemText
-                            primary={pgVal.title}
-                            primaryTypographyProps={{ fontWeight: 500, fontSize: "0.875rem" }}
-                          />
-                        </ListItemButton>
-                      ))}
-                    </List>
-                  </Collapse>
-                </Box>
-              );
-            })}
-          </List>
-        </Drawer>
-      </Hidden>
-
-      {/* ---------------- Main content ---------------- */}
-      <Box component="main" sx={{ flexGrow: 1, p: { xs: 2, md: 4 }, maxWidth: 860, mx: "auto" }}>
-        <Toolbar />
+      {/* Main content */}
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          p: { xs: 2, sm: 3, md: 4 },
+          maxWidth: { sm: "100%", md: 860 },
+          mx: "auto",
+          overflowX: "hidden",
+          mt: { xs: 7, md: 0 },
+        }}
+      >
+        {isMdUp && <Toolbar />}
         <MuiMarkdown overrides={overrides}>{mdSource}</MuiMarkdown>
         <Footer />
       </Box>

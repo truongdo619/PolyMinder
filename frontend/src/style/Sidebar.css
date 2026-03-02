@@ -185,12 +185,33 @@ background-color: #bccce9; /* Change to your desired color */
 
 /* Add this to your CSS file (e.g., Sidebar.css) */
 .sticky-description {
-    position: -webkit-sticky; /* For Safari */
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
-    background-color: white; /* Optional: Set a background color to avoid content underneath showing through */
-    z-index: 1; /* Ensure the description stays on top of other content */
-    padding: 1rem; /* Optional: Adjust padding as needed */
-    /* border-bottom: 1px solid #ddd; */
+    background-color: white;
+    z-index: 1;
+    padding: 1rem;
   }
-  
+
+@media (max-width: 1200px) {
+  .sidebar .total_entities_span {
+    font-size: 12px;
+    padding: 4px 6px;
+  }
+  .sidebar__highlight {
+    padding: 0.4rem 0.75rem;
+    margin: 0.5rem;
+    margin-bottom: 0.9rem;
+  }
+  .highlight__location {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .sidebar__highlight {
+    padding: 0.3rem 0.5rem;
+    margin: 0.4rem;
+    margin-bottom: 0.7rem;
+  }
+}

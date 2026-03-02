@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PolyMinder v3.3 — Weekly Report</title>
+<style>
+  :root {
+    --blue:    #1976d2;
+    --blue-lt: #e3f0fc;
+    --green:   #2e7d32;
+    --green-lt:#e8f5e9;
+    --purple:  #6a1b9a;
+    --grey:    #546e7a;
+    --bg:      #fafbfc;
+    --white:   #ffffff;
+    --text:    #212121;
+    --border:  #e0e0e0;
+    --accent:  #f57c00;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #1a1a2e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: var(--text);
+  }
+
+  /* ── Deck shell ── */
+  .deck {
+    position: relative;
+    width: 960px;
+    height: 540px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 24px 64px rgba(0,0,0,.55);
+  }
+
+  /* ── Slides ── */
+  .slide {
+    position: absolute;
+    inset: 0;
+    padding: 48px 56px;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s ease;
+  }
+  .slide.active { opacity: 1; pointer-events: auto; }
+
+  /* ── Slide variants ── */
+  .slide.title-slide {
+    background: linear-gradient(135deg, #0d47a1 0%, #1976d2 50%, #1565c0 100%);
+    color: #fff;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .slide.section-slide {
+    background: linear-gradient(135deg, var(--blue) 0%, #42a5f5 100%);
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* ── Typography ── */
+  .kicker {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    opacity: .7;
+    margin-bottom: 12px;
+  }
+  h1 { font-size: 40px; font-weight: 800; line-height: 1.15; }
+  h2 { font-size: 28px; font-weight: 700; line-height: 1.2; }
+  h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--blue); }
+  .subtitle { font-size: 17px; opacity: .85; margin-top: 14px; line-height: 1.5; }
+  .meta { font-size: 13px; opacity: .65; margin-top: 24px; }
+  p, li { font-size: 15px; line-height: 1.6; }
+
+  /* ── Slide header bar ── */
+  .slide-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .slide-header h2 { color: var(--blue); }
+  .slide-header .accent-bar {
+    height: 4px;
+    flex: 1;
+    background: var(--blue-lt);
+    border-radius: 2px;
+  }
+
+  /* ── Layout helpers ── */
+  .cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .cols-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+  .cols-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .card.blue  { border-left: 4px solid var(--blue);   background: var(--blue-lt); }
+  .card.green { border-left: 4px solid var(--green);  background: var(--green-lt); }
+  .card.orange{ border-left: 4px solid var(--accent); background: #fff3e0; }
+  .card.purple{ border-left: 4px solid var(--purple); background: #f3e5f5; }
+
+  /* ── Tag pills ── */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .tag.new    { background: #e8f5e9; color: var(--green); }
+  .tag.fix    { background: #fff3e0; color: var(--accent); }
+  .tag.update { background: var(--blue-lt); color: var(--blue); }
+
+  /* ── Step tracker ── */
+  .steps { display: flex; gap: 0; align-items: center; margin: 18px 0; }
+  .step {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    flex: 1;
+  }
+  .step-dot {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700;
+    background: #e0e0e0; color: #777;
+  }
+  .step-dot.done  { background: #4caf50; color: #fff; }
+  .step-dot.opt   { background: rgba(25,118,210,.25); color: var(--blue); font-size: 12px; }
+  .step-line { flex: 1; height: 2px; background: #e0e0e0; margin-top: -22px; }
+  .step-line.done { background: #4caf50; }
+  .step-label { font-size: 11px; color: #666; text-align: center; max-width: 80px; }
+  .step-label.opt { color: var(--blue); }
+
+  /* ── Table ── */
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th { background: var(--blue); color: #fff; padding: 8px 12px; text-align: left; font-weight: 600; }
+  td { padding: 7px 12px; border-bottom: 1px solid var(--border); }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #f5f7fa; }
+
+  /* ── List styles ── */
+  ul { padding-left: 18px; }
+  li { margin-bottom: 6px; }
+  li::marker { color: var(--blue); }
+
+  /* ── Check list ── */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 7px; font-size: 14px; }
+  .checklist li::before { content: "✓"; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── Badge ── */
+  .badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--blue); color: #fff;
+    border-radius: 6px; padding: 3px 10px;
+    font-size: 12px; font-weight: 700;
+  }
+  .badge.green { background: var(--green); }
+  .badge.orange { background: var(--accent); }
+
+  /* ── Navigation ── */
+  .nav {
+    display: flex; align-items: center; gap: 14px;
+    margin-top: 18px;
+    color: #aaa;
+    font-size: 14px;
+  }
+  .nav button {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.25);
+    color: #fff;
+    border-radius: 6px;
+    width: 36px; height: 36px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+  }
+  .nav button:hover { background: rgba(255,255,255,.22); }
+  .nav button:disabled { opacity: .3; cursor: default; }
+  #slide-counter { color: rgba(255,255,255,.7); font-size: 13px; min-width: 60px; text-align: center; }
+
+  /* ── Progress bar ── */
+  .progress-bar {
+    width: 960px;
+    height: 3px;
+    background: rgba(255,255,255,.15);
+    border-radius: 0 0 2px 2px;
+    overflow: hidden;
+    margin-top: 2px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #42a5f5, #26c6da);
+    transition: width .4s ease;
+    border-radius: 2px;
+  }
+
+  /* ── Code snippet ── */
+  .code {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-family: 'Cascadia Code', 'Fira Code', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow: auto;
+  }
+  .code .kw { color: #cba6f7; }
+  .code .str { color: #a6e3a1; }
+  .code .cm { color: #6c7086; }
+  .code .fn { color: #89dceb; }
+
+  /* ── Section number ── */
+  .section-num {
+    font-size: 80px;
+    font-weight: 900;
+    opacity: .15;
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    line-height: 1;
+  }
+
+  /* ── Divider ── */
+  hr { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+  /* ── Stat boxes ── */
+  .stat { text-align: center; }
+  .stat-num { font-size: 40px; font-weight: 900; color: var(--blue); line-height: 1; }
+  .stat-label { font-size: 12px; color: #888; margin-top: 4px; text-transform: uppercase; letter-spacing: .06em; }
+
+  /* ── Highlight box ── */
+  .highlight-box {
+    background: linear-gradient(135deg, var(--blue-lt), #f0f8ff);
+    border: 1px solid #90caf9;
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── Section icon ── */
+  .section-icon { font-size: 56px; margin-bottom: 16px; }
+
+  /* ── Footer strip ── */
+  .slide-footer {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue), #42a5f5, #26c6da);
+  }
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- ─────────────────────────────────────────────
+       SLIDE 1 — Title
+  ───────────────────────────────────────────── -->
+  <div class="slide title-slide active">
+    <div class="kicker">Weekly Progress Report · PolyMinder v3.3</div>
+    <h1>Guided User<br>Experience Feature</h1>
+    <p class="subtitle">
+      Contextual guidance system, workflow stepper, and<br>
+      documentation overhaul — implemented end-to-end.
+    </p>
+    <p class="meta">Truong Dinh Do · RIKEN / JAIST · February 2026</p>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────
+       SLIDE 2 — Agenda
+  ───────────────────────────────────────────── -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Agenda</h2>
+      <div class="accent-bar"></div>
+    </div>
+    <div class="cols-2" style="gap:16px; margin-top:8px;">
+      <div>
+        <div class="card blue" style="margin-bottom:12px;">
+          <h3 style="margin-bottom:6px;">🎯 Problem</h3>
+          <p>PolyMinder had no structured guidance. New users had no indication of the typical annotation workflow.</p>
+        </div>
+        <div class="card green">
+          <h3 style="margin-bottom:6px;">✅ Solution</h3>
+          <p>Built a complete guided UX system: progress stepper, contextual banners, bug fixes, and full documentation.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 14px;background:#f5f5f5;border-radius:8px;">
+          <span>1️⃣</span> <span>Core Infrastructure (GuidanceSystem)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 14px;background:#f5f5f5;border-radius:8px;">
+          <span>2️⃣</span> <span>Workflow Stepper + Banners</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 14px;background:#f5f5f5;border-radius:8px;">
+          <span>3️⃣</span> <span>Bug Fixes (3 issues found &amp; fixed)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 14px;background:#f5f5f5;border-radius:8px;">
+          <span>4️⃣</span> <span>Extended Coverage — All 7 components</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 14px;background:#f5f5f5;border-radius:8px;">
+          <span>5️⃣</span> <span>Documentation — 4 new + 3 rewritten pages</span>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────
+       SLIDE 3 — Section: Core System
+  ───────────────────────────────────────────── -->
+  <div class="slide section-slide">
+    <div class="section-num">1</div>
+    <div class="section-icon">🏗️</div>
+    <h2>Core Guidance Infrastructure</h2>
+    <p style="opacity:.85;margin-top:10px;">New GuidanceSystem module — shared state, dismissible banners, workflow stepper</p>
+  </div>
+
+  <!-- ─────────────────────────────────────────────
+       SLIDE 4 — GuidanceSystem Architecture
+  ───────────────────────────────────────────── -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>GuidanceSystem Module</h2>
+      <div class="accent-bar"></div>
+      <span class="tag new">New</span>
+    </div>
+    <div class="cols-2">
+      <div>
+        <h3>New files created</h3>
+        <table style="margin-top:8px;">
+          <tr><th>File</th><th>Role</th></tr>
+          <tr><td><code>useGuidance.ts</code></td><td>State hook + localStorage</td></tr>
+          <tr><td><code>GuidanceContext.tsx</code></td><td>Shared React context</td></tr>
+          <tr><td><code>GuidanceBanner.tsx</code></td><td>Dismissible alert component</td></tr>
+          <tr><td><code>WorkflowStepper.tsx</code></td><td>5-step progress bar</td></tr>
+          <tr><td><code>guidanceConfig.ts</code></td><td>All guidance definitions</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>Key design decisions</h3>
+        <ul class="checklist" style="margin-top:8px;">
+          <li>Single shared state via React Context — toggle in one component affects all</li>
+          <li>Persisted to <code>localStorage</code> — dismissals survive page refresh</li>
+          <li>Per-document reset — completed steps reset when a new document opens</li>
+          <li>Zero new TS errors — maintained pre-existing baseline throughout</li>
+          <li>Fully dismissible — experienced users can hide all tips</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────
+       SLIDE 5 — Workflow Stepper
+  ───────────────────────────────────────────── -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Workflow Stepper</h2>
+      <div class="accent-bar"></div>
+      <span class="tag new">New</span>
+    </div>
+    <p style="margin-bottom:20px;color:#555;font-size:14px;">
+      A collapsible 5-step progress bar at the top of the PDF viewer. Each step ticks when its condition is met.
+    </p>
+
+    <!-- Visual stepper mock -->
+    <div style="background:#fafbfc;border:1px solid #e0e0e0;border-radius:10px;padding:16px 24px;margin-bottom:20px;">
+      <div class="steps">
+        <div class="step">
+          <div class="step-dot done">✓</div>
+          <div class="step-label">Upload PDF</div>
+        </div>
+        <div class="step-line done"></div>
+        <div class="step">
+          <div class="step-dot done">✓</div>
+          <div class="step-label">Review Entities</div>
+        </div>
+        <div class="step-line done"></div>
+        <div class="step">
+          <div class="step-dot done">✓</div>
+          <div class="step-label">Check Relations</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-dot opt">opt</div>
+          <div class="step-label opt">Run LLM<br><em style="font-style:italic;font-size:10px;">(optional)</em></div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-dot">5</div>
+          <div class="step-label">Export Results</div>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:12px;color:#888;margin-top:8px;">Workflow Guide — (3/4) required steps complete</p>
+    </div>
+
+    <div class="cols-3" style="gap:12px;">
+      <div class="card blue" style="padding:12px 14px;">
+        <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:4px;">CLICK TO NAVIGATE</div>
+        <p style="font-size:13px;">Each step is clickable — jumps directly to that mode</p>
+      </div>
+      <div class="card green" style="padding:12px 14px;">
+        <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:4px;">OPTIONAL STEP</div>
+        <p style="font-size:13px;">LLM step shown in faded blue with "(optional)" label — skipped in count</p>
+      </div>
+      <div class="card orange" style="padding:12px 14px;">
+        <div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px;">COLLAPSIBLE</div>
+        <p style="font-size:13px;">Collapses to one-line summary showing next required step</p>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────
+       SLIDE 6 — Guidance Banners
+  ───────────────────────────────────────────── -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Contextual Guidance Banners</h2>
+      <div class="accent-bar"></div>
+      <span class="tag new">New</span>
+    </div>
+    <div class="cols-2">
+      <div>
+        <p style="font-size:14px;margin-bottom:14px;color:#555;">
+          20 banner items defined in <code>guidanceConfig.ts</code>, each with a condition, context, and priority.
+        </p>
+        <div style="border:1px solid #90caf9;border-radius:10px;padding:14px 16px;background:#e3f0fc;margin-bottom:10px;position:relative;">
+          <div style="font-size:11px;font-weight:700;color:#1565c0;margin-bottom:4px;">💡 ENTITIES EXTRACTED</div>
+          <p style="font-size:13px;">Click any entity to scroll to it in the PDF. Right-click for edit and delete options.</p>
+          <div style="position:absolute;top:12px;right:12px;font-size:11px;color:#1976d2;font-weight:700;cursor:pointer;">Got it ×</div>
+        </div>
+        <div style="border:1px solid #ffcc80;border-radius:10px;padding:14px 16px;background:#fff3e0;position:relative;">
+          <div style="font-size:11px;font-weight:700;color:#e65100;margin-bottom:4px;">⚠️ NO RELATIONS FOUND</div>
+          <p style="font-size:13px;">No relationships extracted yet. Try re-running the RE model from the toolbar.</p>
+          <div style="position:absolute;top:12px;right:12px;font-size:11px;color:#e65100;font-weight:700;cursor:pointer;">Got it ×</div>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:10px;">20 guidance items across 7 components</h3>
+        <table>
+          <tr><th>Component</th><th>Banners</th></tr>
+          <tr><td>DocumentList</td><td>2</td></tr>
+          <tr><td>Sidebar (Entities/Relations)</td><td>4</td></tr>
+          <tr><td>LLMSidebar</td><td>2</td></tr>
+          <tr><td>SettingSidebar</td><td>4</td></tr>
+          <tr><td>EventSidebar</td><td>2</td></tr>
+          <tr><td>TableSidebar</td><td>2</td></tr>
+          <tr><td>ParagraphSidebar</td><td>1</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────
+       SLIDE 7 — Section: Bug Fixes
+  ───────────────────────────────────────────── -->
+  <div class="slide section-slide">
+    <div class="section-num">2</div>
+    <div class="section-icon">🐛</div>
+    <h2>Bug Fixes</h2>
+    <p style="opacity:.85;margin-top:10px;">3 issues discovered during testing — all fixed</p>
+  </div>
+
+  <!-- ─────────────────────────────────────────────
+       SLIDE 8 — Bug Fixes Detail
+  ───────────────────────────────────────────── -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>3 Bugs Found &amp; Fixed</h2>
+      <div class="accent-bar"></div>
+      <span class="tag fix">Fixed</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="card orange">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <h3 style="color:var(--accent);">Bug 1 — Shared state (toggle had no effect)</h3>
+          <span class="badge orange">Fixed</span>
+        </div>
+        <p style="font-size:13px;margin-top:6px;"><strong>Root cause:</strong> Each component called <code>useGuidance()</code> independently → isolated localStorage reads per component. Toggle in SettingSidebar only updated its own instance.<br>
+        <strong>Fix:</strong> Created <code>GuidanceContext.tsx</code> with a single <code>GuidanceProvider</code> at the app root. All components now share one state via <code>useGuidanceContext()</code>.</p>
+      </div>
+      <div class="card orange">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <h3 style="color:var(--accent);">Bug 2 — "Check Relations" ticked immediately on load</h3>
+          <span class="badge orange">Fixed</span>
+        </div>
+        <p style="font-size:13px;margin-top:6px;"><strong>Root cause:</strong> <code>isComplete: (s) =&gt; s.relationCount &gt; 0</code> fired the moment the NLP model returned any relations — before the user did anything.<br>
+        <strong>Fix:</strong> Changed to <code>() =&gt; false</code>. Now ticks only when user switches to Relations mode via <code>completeStep('review-relations')</code>.</p>
+      </div>
+      <div class="card orange">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <h3 style="color:var(--accent);">Bug 3 — Stale completed steps across documents</h3>
+          <span class="badge orange">Fixed</span>
+        </div>
+        <p style="font-size:13px;margin-top:6px;"><strong>Root cause:</strong> <code>completedSteps</code> in localStorage persisted when opening a new document — steps appeared ticked before the user did anything.<br>
+        <strong>Fix:</strong> Added <code>resetCompletedSteps()</code>; called in <code>ResultComponent</code> whenever <code>documentId</code> changes.</p>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────
+       SLIDE 9 — Step Completion Logic
+  ───────────────────────────────────────────── -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Step Completion Logic</h2>
+      <div class="accent-bar"></div>
+    </div>
+    <p style="font-size:14px;color:#555;margin-bottom:16px;">Each step uses two independent signals — either triggers the tick:</p>
+    <table>
+      <tr>
+        <th>Step</th>
+        <th>Data-driven (automatic)</th>
+        <th>Action-driven (user visit)</th>
+      </tr>
+      <tr>
+        <td><strong>Upload PDF</strong></td>
+        <td><code>documentId !== null</code></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>Review Entities</strong></td>
+        <td><code>highlights.length &gt; 0</code></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>Check Relations</strong></td>
+        <td>— (always false)</td>
+        <td>User switches to Relations mode</td>
+      </tr>
+      <tr>
+        <td><strong>Run LLM</strong> <em>(opt.)</em></td>
+        <td><code>LLLOutput</code> has entities</td>
+        <td>User switches to LLM mode</td>
+      </tr>
+      <tr>
+        <td><strong>Export Results</strong></td>
+        <td>— (always false)</td>
+        <td>User downloads PDF or JSON</td>
+      </tr>
+    </table>
+    <div class="highlight-box" style="margin-top:16px;">
+      <strong>WorkflowStepper:</strong> <code>isComplete(step) || isStepComplete(step.id)</code> — combines both signals. Optional step skipped in active-step calculation and counter.
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────
+       SLIDE 10 — Section: Documentation
+  ───────────────────────────────────────────── -->
+  <div class="slide section-slide">
+    <div class="section-num">3</div>
+    <div class="section-icon">📖</div>
+    <h2>Documentation Improvements</h2>
+    <p style="opacity:.85;margin-top:10px;">4 new pages · 3 rewritten pages · 20 real FAQs</p>
+  </div>
+
+  <!-- ─────────────────────────────────────────────
+       SLIDE 11 — Docs: New pages
+  ───────────────────────────────────────────── -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>New Documentation Pages</h2>
+      <div class="accent-bar"></div>
+      <span class="tag new">New</span>
+    </div>
+    <div class="cols-2" style="gap:14px;">
+      <div class="card blue" style="padding:16px 18px;">
+        <h3>🤖 LLM Extraction</h3>
+        <ul class="checklist" style="margin-top:8px;">
+          <li>Switch to LLM mode &amp; click paragraph blocks</li>
+          <li>Choose prompt preset and model</li>
+          <li>Parse LLM output → review entities</li>
+          <li>Compare with model output side-by-side</li>
+          <li>Merge selected entities into main annotation</li>
+        </ul>
+      </div>
+      <div class="card green" style="padding:16px 18px;">
+        <h3>📊 Tables Mode</h3>
+        <ul class="checklist" style="margin-top:8px;">
+          <li>Browse detected tables in sidebar</li>
+          <li>Edit table content (OCR corrections)</li>
+          <li>Run LLM to convert table to natural language</li>
+          <li>Drag-and-drop to reorder tables</li>
+        </ul>
+      </div>
+      <div class="card purple" style="padding:16px 18px;">
+        <h3>⚡ Events Mode</h3>
+        <ul class="checklist" style="margin-top:8px;">
+          <li>What events are (trigger + arguments)</li>
+          <li>Filter by paragraph with checkbox dialog</li>
+          <li>Edit trigger text and argument roles</li>
+          <li>Confirm and export events</li>
+        </ul>
+      </div>
+      <div class="card orange" style="padding:16px 18px;">
+        <h3>🗺️ Workflow Guide</h3>
+        <ul class="checklist" style="margin-top:8px;">
+          <li>The 5-step stepper explained</li>
+          <li>Optional vs required steps</li>
+          <li>Guidance banners and how to dismiss</li>
+          <li>Enable/disable in settings</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────
+       SLIDE 12 — Docs: Updated pages
+  ───────────────────────────────────────────── -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Rewritten Existing Pages</h2>
+      <div class="accent-bar"></div>
+      <span class="tag update">Updated</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="card" style="padding:14px 18px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+          <h3>Result Visualization</h3>
+          <span class="tag update">3 → 6 modes</span>
+        </div>
+        <p style="font-size:14px;">Extended "Change Mode" section to cover all <strong>six working modes</strong> (added Events, Tables, LLM) with cross-links to dedicated pages. Updated layout table to include Workflow Guide row.</p>
+      </div>
+      <div class="card" style="padding:14px 18px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+          <h3>Quick-Start Guide</h3>
+          <span class="tag update">4 → 6 steps</span>
+        </div>
+        <p style="font-size:14px;">Rewritten as a proper 6-step tutorial (Sign In → Upload → Open → Follow Workflow Guide → Edit → Export). Added "What's next?" cross-link table for all features.</p>
+      </div>
+      <div class="card" style="padding:14px 18px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+          <h3>FAQ</h3>
+          <span class="tag update">Empty → 20 Q&amp;As</span>
+        </div>
+        <p style="font-size:14px;">Replaced the <em>"Coming soon"</em> placeholder with <strong>20 real questions</strong> across 6 categories: General, Documents, Entities/Relations, LLM Extraction, Saving/Exporting, Account.</p>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────
+       SLIDE 13 — Summary Stats
+  ───────────────────────────────────────────── -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Summary</h2>
+      <div class="accent-bar"></div>
+    </div>
+
+    <div class="cols-3" style="margin-bottom:20px;gap:12px;">
+      <div class="stat card">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Phases completed</div>
+      </div>
+      <div class="stat card">
+        <div class="stat-num">17</div>
+        <div class="stat-label">Guidance banners<br>across 7 components</div>
+      </div>
+      <div class="stat card">
+        <div class="stat-num">0</div>
+        <div class="stat-label">New TS errors<br>introduced</div>
+      </div>
+    </div>
+
+    <div class="cols-2" style="gap:14px;">
+      <div>
+        <h3 style="margin-bottom:8px;">New files created</h3>
+        <ul class="checklist">
+          <li>5 GuidanceSystem TypeScript modules</li>
+          <li>1 Guidance CSS file</li>
+          <li>4 documentation markdown pages</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Existing files modified</h3>
+        <ul class="checklist">
+          <li>7 React components integrated</li>
+          <li>3 markdown pages rewritten</li>
+          <li>DocsPage.tsx — 4 new nav entries</li>
+          <li>App.tsx — GuidanceProvider at root</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────
+       SLIDE 14 — Next Steps
+  ───────────────────────────────────────────── -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Potential Next Steps</h2>
+      <div class="accent-bar"></div>
+    </div>
+    <div class="cols-2" style="gap:16px;">
+      <div>
+        <h3 style="margin-bottom:10px;">Short term</h3>
+        <div class="card" style="margin-bottom:10px;padding:12px 16px;">
+          <p style="font-size:14px;"><strong>User testing</strong> — Observe first-time users interacting with the guidance system. Identify banners that are confusing or unhelpful.</p>
+        </div>
+        <div class="card" style="margin-bottom:10px;padding:12px 16px;">
+          <p style="font-size:14px;"><strong>Banner copy refinement</strong> — Improve wording based on feedback; shorten descriptions that are too long.</p>
+        </div>
+        <div class="card" style="padding:12px 16px;">
+          <p style="font-size:14px;"><strong>Photos for new doc pages</strong> — Add screenshots to the LLM Extraction, Tables, and Events documentation pages.</p>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:10px;">Future</h3>
+        <div class="card blue" style="margin-bottom:10px;padding:12px 16px;">
+          <p style="font-size:14px;"><strong>Guided tour mode</strong> — Step-by-step walkthrough using react-joyride that highlights specific UI elements with an overlay.</p>
+        </div>
+        <div class="card blue" style="margin-bottom:10px;padding:12px 16px;">
+          <p style="font-size:14px;"><strong>Per-document progress</strong> — Track workflow completion per document ID rather than globally.</p>
+        </div>
+        <div class="card blue" style="padding:12px 16px;">
+          <p style="font-size:14px;"><strong>Onboarding wizard</strong> — A one-time modal for brand-new accounts walking through the core workflow in 3 steps.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────
+       SLIDE 15 — Thank you
+  ───────────────────────────────────────────── -->
+  <div class="slide title-slide">
+    <div class="kicker">PolyMinder v3.3 · February 2026</div>
+    <h1>Thank you</h1>
+    <p class="subtitle">Questions welcome.</p>
+    <p class="meta" style="margin-top:32px;">
+      Truong Dinh Do<br>
+      RIKEN Center for Advanced Intelligence Project / JAIST<br>
+      truongdo@jaist.ac.jp
+    </p>
+    <div class="slide-footer"></div>
+  </div>
+
+</div><!-- /deck -->
+
+<!-- Progress bar -->
+<div class="progress-bar">
+  <div class="progress-fill" id="progress"></div>
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button id="prev" onclick="go(-1)">&#8592;</button>
+  <span id="slide-counter">1 / 15</span>
+  <button id="next" onclick="go(1)">&#8594;</button>
+  <span style="color:rgba(255,255,255,.4);font-size:12px;margin-left:8px;">← → or click</span>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total  = slides.length;
+  let   cur    = 0;
+
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = Math.max(0, Math.min(total - 1, n));
+    slides[cur].classList.add('active');
+    document.getElementById('slide-counter').textContent = (cur + 1) + ' / ' + total;
+    document.getElementById('prev').disabled = cur === 0;
+    document.getElementById('next').disabled = cur === total - 1;
+    document.getElementById('progress').style.width = ((cur + 1) / total * 100) + '%';
+  }
+
+  function go(d) { show(cur + d); }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') go(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                      go(-1);
+    if (e.key === 'Home')  show(0);
+    if (e.key === 'End')   show(total - 1);
+  });
+
+  show(0);
+</script>
+</body>
+</html>

@@ -802,9 +802,10 @@ export const PdfHighlighter = ({
       maxWidth="lg"
       fullWidth
       onClose={handleCloseCommentDialog}
+      PaperProps={{ sx: { m: { xs: 1, sm: 2, md: 3 }, width: '100%' } }}
     >
       {commentDialogData && (
-          <DialogContent>
+          <DialogContent sx={{ p: { xs: 1, sm: 2, md: 3 } }}>
             <CommentForm
               highlight={commentDialogData.highlight}
               brat_item={commentDialogData.brat_item}

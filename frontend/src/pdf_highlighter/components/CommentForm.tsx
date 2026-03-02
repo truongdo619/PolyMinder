@@ -301,8 +301,8 @@ const CommentForm = ({
 
             </CardContent>
 
-            <CardActions sx={{ justifyContent: 'space-between' }}>
-              <Box>
+            <CardActions sx={{ justifyContent: 'space-between', flexWrap: 'wrap', gap: 1, p: 1 }}>
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                 <Button size="small" onClick={toggleEntitiesView}>
                   {showAllEntities
                   ? (isEvent ? "Show Only Highlighted Event" : "Show Only Highlighted Entity")
@@ -313,18 +313,17 @@ const CommentForm = ({
                 </Button>
               </Box>
 
-              <Box>
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                 <Button
                   sx={svgStyle}
                   size="small"
                   onClick={handleDownload}
                   startIcon={<DownloadIcon />}
                   variant="contained"
-                  style={{ marginRight: '8px' }}
                 >
                   Download JSON
                 </Button>
-                
+
                 {brat_item.selectedMode !== "Paragraphs" && (
                   <Button
                     sx={svgStyle}

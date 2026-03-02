@@ -39,7 +39,7 @@ const LLMSidebar = ({ highlights }: LLMSidebarProps) => {
   }, [highlights]);
 
   return (
-    <div className="sidebar" style={{ width: "20vw", maxWidth: "1000px" }}>
+    <div className="sidebar" style={{ width: "100%", height: "100vh", overflowY: "auto" }}>
       <div className="description" style={{ padding: "1rem" }}>
         <h2 style={{ marginBottom: "1rem" }}>LLM Mode</h2>
 

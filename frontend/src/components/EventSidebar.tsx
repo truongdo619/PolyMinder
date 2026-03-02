@@ -450,7 +450,7 @@ const EventSidebar = ({ highlights, getHighlightById, setIsActive, setHighlights
 
 
   return (
-    <div className="sidebar" style={{ width: "20vw", maxWidth: "1000px" }}>
+    <div className="sidebar" style={{ width: "100%", height: "100vh", overflowY: "auto" }}>
       <div className="description" style={{ padding: "1rem" }}>
         <h2 style={{ marginBottom: "1rem" }}>
           Found <span className="total_entities_span">{highlights.length}</span> events in this document.
@@ -609,10 +609,9 @@ const EventSidebar = ({ highlights, getHighlightById, setIsActive, setHighlights
       <div
         className="pagination-controls"
         style={{
-          position: "fixed",
+          position: "sticky",
           bottom: 0,
-          width: "18vw",
-          maxWidth: "1000px",
+          width: "100%",
           padding: "10px 0",
           backgroundColor: "white",
           display: "flex",

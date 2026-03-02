@@ -44,19 +44,25 @@ import {
   FormControlLabel,
   Radio,
   Chip,
-  List, 
-  ListItem, 
-  ListItemButton, 
-  ListItemText, 
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
   ListItemIcon,
   InputAdornment,
-  OutlinedInput
+  OutlinedInput,
+  useMediaQuery,
+  useTheme,
+  BottomNavigation,
+  BottomNavigationAction,
 } from "@mui/material";
 // Add to icon imports
 import SearchIcon from "@mui/icons-material/Search";
 import ArticleIcon from '@mui/icons-material/Article';
 
 import InfoIcon from '@mui/icons-material/Info';
+import ListIcon from '@mui/icons-material/List';
+import SettingsIcon from '@mui/icons-material/Settings';
 import { Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent } from '@mui/lab';
 
 import { GuidanceBanner, WorkflowStepper, useGuidanceContext } from './GuidanceSystem';
@@ -187,8 +193,12 @@ const convertLlmOutputToHighlights = (llmOutput: any[]): Highlight[] => {
 };
 
 const ResultComponent = () => {
-  const [isActive, setIsActive] = useState(false); // Add this state
-  const [relationHighlights, setRelationHighlights] = useState<Array<CommentedHighlight>>([]); // Add this state
+  const theme = useTheme();
+  const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
+  const isLgUp = useMediaQuery(theme.breakpoints.up('lg'));
+
+  const [isActive, setIsActive] = useState(false);
+  const [relationHighlights, setRelationHighlights] = useState<Array<CommentedHighlight>>([]);
   const [eventHighlights, setEventHighlights] = useState<Array<CommentedHighlight>>([]);
 
   const globalContext = useContext(GlobalContext);
@@ -273,6 +283,17 @@ const ResultComponent = () => {
   const guidance = useGuidanceContext();
   const [stepperVisible, setStepperVisible] = useState(true);
 
+  // Mobile tab state (0=PDF, 1=Annotations, 2=Settings)
+  const [mobileTab, setMobileTab] = useState(0);
+
+  // Resizable panel state — PDF viewer is flex:1 and absorbs all changes
+  const [sidebarWidthPx, setSidebarWidthPx] = useState(260);
+  const [settingsWidthPx, setSettingsWidthPx] = useState(280);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const draggingRef = useRef<'sidebar' | 'settings' | null>(null);
+  const dragStartXRef = useRef(0);
+  const dragStartValRef = useRef(0);
+
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
   const [selectedHistory, setSelectedHistory] = useState<{ id: number, real_id: number, name: string; upload_time: string } | null>(null);
 
@@ -300,6 +321,33 @@ const ResultComponent = () => {
       setTotalPages(pdfDocument.numPages);
     }
   }, [pdfDocument]);
+
+  // Resize panel mouse handlers
+  // Both handles shrink their panel when dragged right (dx > 0) and grow when dragged left (dx < 0).
+  // Formula: newWidth = startWidth - dx
+  // PDF viewer is flex:1 and absorbs all width changes automatically — sum always = 100vw.
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!draggingRef.current) return;
+      const dx = e.clientX - dragStartXRef.current;
+      if (draggingRef.current === 'sidebar') {
+        // Handle 1 (PDF|Sidebar): drag right → sidebar smaller, PDF bigger
+        const newW = dragStartValRef.current - dx;
+        setSidebarWidthPx(Math.max(160, Math.min(500, newW)));
+      } else if (draggingRef.current === 'settings') {
+        // Handle 2 (Sidebar|Settings): drag right → settings smaller, PDF bigger
+        const newW = dragStartValRef.current - dx;
+        setSettingsWidthPx(Math.max(180, Math.min(520, newW)));
+      }
+    };
+    const handleMouseUp = () => { draggingRef.current = null; };
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, []);
 
   // Click listeners for context menu
   useEffect(() => {
@@ -843,7 +891,7 @@ const ResultComponent = () => {
               selectionTip={<ExpandableTip addHighlight={(highlight, comment) => addHighlight(highlight, comment)} />}
               highlights={isFiltered ? filteredHighlights : highlights}
               style={{
-                height: "calc(100% - 41px)",
+                height: "100%",
               }}
               onPageChange={(page) => PDFpageChange(page)}
             >
@@ -879,7 +927,7 @@ const ResultComponent = () => {
                 }}
                 pdfScaleValue={pdfScaleValue}
                 highlights={isRelationFiltered ? filteredRelationHighlights : relationHighlights}
-                style={{ height: "calc(100% - 41px)" }}
+                style={{ height: "100%" }}
                 onPageChange={PDFpageChange}
               >
                 <HighlightContainer editHighlight={editHighlight} onContextMenu={handleContextMenu} />
@@ -915,7 +963,7 @@ const ResultComponent = () => {
               selectionTip={<ExpandableTip addHighlight={(highlight, comment) => addHighlight(highlight, comment)} />}
               highlights={eventHighlights}
               style={{
-                height: "calc(100% - 41px)",
+                height: "100%",
               }}
               onPageChange={(page) => PDFpageChange(page)}
             >
@@ -948,7 +996,7 @@ const ResultComponent = () => {
                 utilsRef={(_pdfHighlighterUtils) => { highlighterUtilsRef.current = _pdfHighlighterUtils; }}
                 pdfScaleValue={pdfScaleValue}
                 highlights={tableHighlights}
-                style={{ height: "calc(100% - 41px)" }}
+                style={{ height: "100%" }}
                 onPageChange={PDFpageChange}
               >
                 <HighlightContainer editHighlight={editHighlight} onContextMenu={handleContextMenu}/>
@@ -982,7 +1030,7 @@ const ResultComponent = () => {
                 }}
                 pdfScaleValue={pdfScaleValue}
                 highlights={paraHighlightsForLLM}
-                style={{ height: "calc(100% - 41px)" }}
+                style={{ height: "100%" }}
                 onPageChange={PDFpageChange}
                 setIsActive={setIsActive}
                 setHighlights={setVisibleHighlights}
@@ -1022,7 +1070,7 @@ const ResultComponent = () => {
 
               highlights={paraHighlights}
               style={{
-                height: "calc(100% - 41px)",
+                height: "100%",
               }}
               onPageChange={(page) => PDFpageChange(page)}
             >
@@ -1044,6 +1092,81 @@ const ResultComponent = () => {
   }
 
 
+  if (!isMdUp) {
+    return (
+      <LoadingOverlay
+        active={isActive}
+        spinner
+        text="Saving ..."
+        styles={{
+          overlay: (base) => ({
+            ...base,
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            zIndex: 9999,
+          }),
+        }}
+      >
+        <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+          <Box sx={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
+            {mobileTab === 0 && (
+              <Box sx={{ height: '100%', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+                <Toolbar setPdfScaleValue={(value) => setPdfScaleValue(value)} currentPage={currentPDFPage} totalPages={totalPages} setIsActive={setIsActive} />
+                <Box sx={{ flex: 1, overflow: 'hidden', position: 'relative' }}>{pdfloader}</Box>
+              </Box>
+            )}
+            {mobileTab === 1 && (
+              <Box sx={{ height: '100%', overflow: 'auto' }}>{sidebar}</Box>
+            )}
+            {mobileTab === 2 && (
+              <Box sx={{ height: '100%', overflow: 'auto' }}>
+                <SettingSidebar
+                  highlights={highlights}
+                  paraHighlights={paraHighlights}
+                  relationHighlights={relationHighlights}
+                  eventHighlights={eventHighlights}
+                  tableHighlights={tableHighlights as any}
+                  filterHighlights={filterHighlights}
+                  filterRelations={filterRelations}
+                  resetFilter={resetFilter}
+                  resetRelationFilter={resetRelationFilter}
+                  selectedMode={selectedMode}
+                  setSelectedMode={setSelectedMode}
+                  setIsActive={setIsActive}
+                />
+              </Box>
+            )}
+          </Box>
+          <BottomNavigation
+            value={mobileTab}
+            onChange={(_, v) => setMobileTab(v)}
+            showLabels
+            sx={{ borderTop: '1px solid #e0e0e0', flexShrink: 0 }}
+          >
+            <BottomNavigationAction label="PDF" icon={<ArticleIcon />} />
+            <BottomNavigationAction label="Annotations" icon={<ListIcon />} />
+            <BottomNavigationAction label="Settings" icon={<SettingsIcon />} />
+          </BottomNavigation>
+        </Box>
+        {contextMenu && (
+          selectedMode === 'LLM' ? (
+            <ContextMenuLLM
+              xPos={contextMenu.xPos}
+              yPos={contextMenu.yPos}
+              deleteHighlight={contextMenu.deleteHighlight}
+              onCompare={contextMenu.editComment}
+            />
+          ) : (
+            <ContextMenu {...contextMenu} />
+          )
+        )}
+      </LoadingOverlay>
+    );
+  }
+
   return (
     <LoadingOverlay
       active={isActive}
@@ -1061,14 +1184,18 @@ const ResultComponent = () => {
         }),
       }}
     >
-      <div className="App" style={{ display: "flex", height: "100vh" }}>
+      {/* PDF=flex:1 absorbs all resize changes; sidebar and settings have fixed px widths */}
+      <div className="App" ref={containerRef} style={{ display: "flex", height: "100vh", width: "100vw", overflow: "hidden" }}>
+
+        {/* ── Panel 1: PDF viewer — flex:1, takes all remaining space ── */}
         <div
           style={{
+            flex: 1,
+            minWidth: 380,
             height: "100vh",
-            width: "75vw",
             overflow: "hidden",
-            position: "relative",
-            flexGrow: 1,
+            display: "flex",
+            flexDirection: "column",
           }}
         >
           <Toolbar setPdfScaleValue={(value) => setPdfScaleValue(value)} currentPage={currentPDFPage} totalPages={totalPages} setIsActive={setIsActive} />
@@ -1078,26 +1205,57 @@ const ResultComponent = () => {
             visible={stepperVisible}
             onToggleVisibility={() => setStepperVisible((v) => !v)}
           />
-          {pdfloader}
+          <Box sx={{ flex: 1, overflow: 'hidden', position: 'relative' }}>{pdfloader}</Box>
         </div>
-        
-        {/* Sidebar component */}
-        {sidebar}
 
-        <SettingSidebar
-          highlights={highlights}
-          paraHighlights={paraHighlights}
-          relationHighlights={relationHighlights}
-          eventHighlights={eventHighlights}
-          tableHighlights={tableHighlights as any}
-          filterHighlights={filterHighlights}
-          filterRelations={filterRelations} // Pass filterRelations function
-          resetFilter={resetFilter}
-          resetRelationFilter={resetRelationFilter} // Pass resetRelationFilter function
-          selectedMode={selectedMode}
-          setSelectedMode={setSelectedMode}
-          setIsActive={setIsActive}
+        {/* ── Drag handle 1: drag right → sidebar narrower, PDF wider ── */}
+        <div
+          onMouseDown={(e) => {
+            e.preventDefault();
+            draggingRef.current = 'sidebar';
+            dragStartXRef.current = e.clientX;
+            dragStartValRef.current = sidebarWidthPx;
+          }}
+          style={{ width: 5, cursor: 'col-resize', backgroundColor: '#e0e0e0', flexShrink: 0 }}
+          onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#9e9e9e')}
+          onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#e0e0e0')}
         />
+
+        {/* ── Panel 2: Annotation sidebar — fixed width ── */}
+        <div style={{ width: sidebarWidthPx, flexShrink: 0, overflowX: 'hidden', overflowY: 'auto', height: '100vh' }}>
+          {sidebar}
+        </div>
+
+        {/* ── Drag handle 2: drag right → settings narrower, PDF wider ── */}
+        <div
+          onMouseDown={(e) => {
+            e.preventDefault();
+            draggingRef.current = 'settings';
+            dragStartXRef.current = e.clientX;
+            dragStartValRef.current = settingsWidthPx;
+          }}
+          style={{ width: 5, cursor: 'col-resize', backgroundColor: '#e0e0e0', flexShrink: 0 }}
+          onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#9e9e9e')}
+          onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#e0e0e0')}
+        />
+
+        {/* ── Panel 3: Settings sidebar — fixed width ── */}
+        <div style={{ width: settingsWidthPx, flexShrink: 0, overflowX: 'hidden', overflowY: 'auto', height: '100vh' }}>
+          <SettingSidebar
+            highlights={highlights}
+            paraHighlights={paraHighlights}
+            relationHighlights={relationHighlights}
+            eventHighlights={eventHighlights}
+            tableHighlights={tableHighlights as any}
+            filterHighlights={filterHighlights}
+            filterRelations={filterRelations}
+            resetFilter={resetFilter}
+            resetRelationFilter={resetRelationFilter}
+            selectedMode={selectedMode}
+            setSelectedMode={setSelectedMode}
+            setIsActive={setIsActive}
+          />
+        </div>
         {/* ⬇️ MODIFIED: Context Menu Rendering Logic */}
         {contextMenu && (
           selectedMode === 'LLM' ? (

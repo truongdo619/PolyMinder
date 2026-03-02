@@ -739,7 +739,7 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
                   color="primary" 
                   aria-label={"filter"} 
                   onClick={(event) => handleFilterIconClick(event, label, "Entities")}
-                  sx={{ position: 'absolute', right: 0, top: "5px" }}
+                  sx={{ ml: 'auto' }}
                 >
                   <FilterAltIcon />
                 </IconButton>
@@ -810,7 +810,7 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
                   color="primary" 
                   aria-label={"filter"} 
                   onClick={(event) => handleFilterIconClick(event, relationType, "Relations")}
-                  sx={{ position: 'absolute', right: 0, top: "5px" }}
+                  sx={{ ml: 'auto' }}
                 >
                   <FilterAltIcon />
                 </IconButton>
@@ -920,7 +920,7 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
     const totalRelations = summaryData?.statistics?.relations?.total || 0;
 
     return (
-      <Box className='filter_sidebar' sx={{ width: '100%', maxWidth: 220, bgcolor: 'background.paper' }} style={{ margin: "1rem", overflow: "auto" }}>
+      <Box className='filter_sidebar' sx={{ width: '100%', bgcolor: 'background.paper', p: '1rem', overflowX: 'hidden' }}>
         
         <Tooltip title="Click to download the result as a file">
           <Button variant="contained" color="primary" fullWidth onClick={handleDownload} style={{ marginBottom: '1rem', fontSize: "small", padding: "5px 6px" }} startIcon={<FileDownloadIcon />}>
@@ -959,7 +959,7 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
               onClick={() => handleButtonClick('Entities')}
             >
               <ListItemText primary="Entities" />
-              <ListItemIcon sx={{ position: 'absolute', right: 0, minWidth: "30px" }}>
+              <ListItemIcon sx={{ ml: 'auto', minWidth: "30px" }}>
                 <DescriptionIcon />
               </ListItemIcon>
             </ListItemButton>
@@ -968,7 +968,7 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
           <Tooltip title="Click to filter relations" placement="top">
             <ListItemButton selected={selectedMode === "Relations"} onClick={() => handleButtonClick("Relations")}>
               <ListItemText primary="Relations" />
-              <ListItemIcon sx={{ position: 'absolute', right: 0, minWidth: "30px" }}>
+              <ListItemIcon sx={{ ml: 'auto', minWidth: "30px" }}>
                 <CommitIcon />
               </ListItemIcon>
             </ListItemButton>
@@ -981,7 +981,7 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
               onClick={() => handleButtonClick('Events')}
             >
               <ListItemText primary="Events" />
-              <ListItemIcon sx={{ position: 'absolute', right: 0, minWidth: "30px" }}>
+              <ListItemIcon sx={{ ml: 'auto', minWidth: "30px" }}>
                 <TimelineIcon />   
               </ListItemIcon>
             </ListItemButton>
@@ -993,7 +993,7 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
               onClick={() => handleButtonClick('Tables')}
             >
               <ListItemText primary="Tables" />
-              <ListItemIcon sx={{ position: 'absolute', right: 0, minWidth: "30px" }}>
+              <ListItemIcon sx={{ ml: 'auto', minWidth: "30px" }}>
                 <TableChartIcon />
               </ListItemIcon>
             </ListItemButton>
@@ -1006,7 +1006,7 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
               onClick={() => handleButtonClick('Paragraphs')}
             >
               <ListItemText primary="Paragraphs" />
-              <ListItemIcon sx={{ position: 'absolute', right: 0, minWidth: "30px" }}>
+              <ListItemIcon sx={{ ml: 'auto', minWidth: "30px" }}>
                 <ParagraphIcon />
               </ListItemIcon>
             </ListItemButton>
@@ -1019,7 +1019,7 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
             onClick={() => handleButtonClick('LLM')}
           >
             <ListItemText primary="LLM" />
-            <ListItemIcon sx={{ position: 'absolute', right: 0, minWidth: "30px" }}>
+            <ListItemIcon sx={{ ml: 'auto', minWidth: "30px" }}>
               <TimelineIcon /> {/* reuse existing icon */}
             </ListItemIcon>
           </ListItemButton>
@@ -1095,7 +1095,7 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
             </FormControl>
             {downloadOption === 'entity_type' && (
               <Box display="flex" justifyContent="center" alignItems="center">
-                <FormControl sx={{ m: 1, minWidth: 200 }}>
+                <FormControl sx={{ m: 1, width: "100%" }}>
                   <InputLabel id="demo-simple-select-helper-label">Type</InputLabel>
                   <Select
                     labelId="demo-simple-select-helper-label"
@@ -1158,7 +1158,7 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
 
               {/* entity-type selector appears only when needed */}
               {downloadOption === "entity_type" && (
-                <FormControl sx={{ mt: 2, minWidth: 220 }}>
+                <FormControl sx={{ mt: 2, width: "100%" }}>
                   <InputLabel id="entity-type-select-label">Entity type</InputLabel>
                   <Select
                     labelId="entity-type-select-label"
