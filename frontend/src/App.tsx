@@ -17,6 +17,8 @@ import DocsPage from './DocsPage/DocsPage';
 
 import setting from '../settings.json';
 import { injectDynamicCSS } from './injectStyles';
+import './style/Guidance.css';
+import { GuidanceProvider } from './components/GuidanceSystem';
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -29,6 +31,7 @@ const App = () => {
   }, []);
 
   return (
+    <GuidanceProvider>
     <GlobalProvider>
       <AuthProvider>
         <Router>
@@ -69,6 +72,7 @@ const App = () => {
         </Router>
       </AuthProvider>
     </GlobalProvider>
+    </GuidanceProvider>
   );
 };
 

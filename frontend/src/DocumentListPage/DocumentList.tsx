@@ -21,6 +21,7 @@ import { format } from 'date-fns';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import "../style/PDFUpload.css";
+import { GuidanceBanner, useGuidanceContext } from '../components/GuidanceSystem';
 
 // ─── New / Updated imports ───────────────────────────────────────────
 import Grid from '@mui/material/Grid';
@@ -69,6 +70,7 @@ const DocumentList: React.FC = () => {
 
   // Use a ref to store the interval ID
   const pollingIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const guidance = useGuidanceContext();
 
   const fetchTableData = useCallback(async () => {
     setIsActive(true);
@@ -466,6 +468,31 @@ const DocumentList: React.FC = () => {
             Upload Document
           </Button>
         </Box>
+
+        {tableData.length === 0 && guidance.shouldShow('first-upload') && (
+          <GuidanceBanner
+            id="first-upload"
+            title="Welcome to PolyMinder!"
+            description="Upload your first PDF to begin extracting polymer entities and relations. The system will automatically process your document."
+            actionLabel="Upload PDF"
+            onAction={() => setOpenUploadDialog(true)}
+            onDismiss={guidance.dismiss}
+            visible={true}
+            severity="info"
+          />
+        )}
+
+        {tableData.length > 0 && tableData.every((d) => d.status === 'completed') && guidance.shouldShow('open-document-hint') && (
+          <GuidanceBanner
+            id="open-document-hint"
+            title="Open a Document"
+            description="Click on any document name to open it in the annotation workspace."
+            actionLabel="Got it"
+            onDismiss={guidance.dismiss}
+            visible={true}
+          />
+        )}
+
         <MUIDataTable
           title={"Document Management"}
           data={tableData}

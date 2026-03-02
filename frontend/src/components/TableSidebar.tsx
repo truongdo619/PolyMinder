@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
+import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
 import type { Highlight } from "../react-pdf-highlighter-extended";
 import "../style/Sidebar.css";
 import { CommentedHighlight } from "../types";
@@ -109,6 +110,8 @@ const TableSidebar = ({
   /* ----------------------------
    *    State
    * ---------------------------- */
+  const guidance = useGuidanceContext();
+
   const [openEdit, setOpenEdit] = useState(false);
   const [currentHighlight, setCurrentHighlight] = useState<CommentedHighlight | null>(null);
 
@@ -317,6 +320,29 @@ const TableSidebar = ({
           .
         </p>
       </div>
+
+      {highlights.length > 0 && guidance.shouldShow('tables-intro') && (
+        <GuidanceBanner
+          id="tables-intro"
+          title="Table Extraction"
+          description="Tables detected in this PDF are listed here. Click a table to view its content and run LLM conversion to natural language."
+          actionLabel="Got it"
+          onDismiss={guidance.dismiss}
+          visible={true}
+        />
+      )}
+
+      {highlights.length === 0 && guidance.shouldShow('tables-empty') && (
+        <GuidanceBanner
+          id="tables-empty"
+          title="No Tables Detected"
+          description="No tables were found in this document. Only PDFs with embedded table structures are automatically extracted."
+          actionLabel="Got it"
+          onDismiss={guidance.dismiss}
+          visible={true}
+          severity="warning"
+        />
+      )}
 
       <ul className="sidebar__highlights" style={{ overflow: "auto", paddingTop: "10px" }}>
         {highlights.map((highlight) => {

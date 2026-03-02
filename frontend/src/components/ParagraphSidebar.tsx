@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
+import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
 import type { Highlight } from "../react-pdf-highlighter-extended";
 import "../style/Sidebar.css";
 import { CommentedHighlight } from "../types";
@@ -109,6 +110,8 @@ const ParagraphSidebar = ({
   /* ----------------------------
    *    State
    * ---------------------------- */
+  const guidance = useGuidanceContext();
+
   const [openEdit, setOpenEdit] = useState(false);
   const [currentHighlight, setCurrentHighlight] = useState<CommentedHighlight | null>(null);
 
@@ -317,6 +320,17 @@ const ParagraphSidebar = ({
           .
         </p>
       </div>
+
+      {guidance.shouldShow('paragraphs-intro') && (
+        <GuidanceBanner
+          id="paragraphs-intro"
+          title="Paragraphs Mode"
+          description="This view shows the raw text segments extracted from your PDF. You can edit paragraph text or drag-and-drop to correct the reading order."
+          actionLabel="Got it"
+          onDismiss={guidance.dismiss}
+          visible={true}
+        />
+      )}
 
       <ul className="sidebar__highlights" style={{ overflow: "auto", paddingTop: "10px" }}>
         {highlights.map((highlight) => {

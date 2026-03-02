@@ -38,6 +38,7 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../axiosSetup';
 import Pagination from '@mui/material/Pagination';
 import { Box, List, ListItem, Snackbar, Checkbox, Typography, TextField, Alert } from '@mui/material';
+import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
 
 interface SidebarProps {
   highlights: Array<CommentedHighlight>;
@@ -79,6 +80,7 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
   }
   const { bratOutput, documentId, updateId, setBratOutput, setDocumentId, setUpdateId, fileName, setFileName, settings } = globalContext;
   const navigateTo = useNavigate();
+  const guidance = useGuidanceContext();
   const convertedBratOutput: Record<string, [string, any, any]> = {}; // Update the type
   bratOutput.forEach((paragraph: Paragraph, index: number) => {
     paragraph.entities.forEach(entity => {
@@ -739,6 +741,51 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
         </p>
 
       </div>
+
+      {highlights.length === 0 && selectedMode === 'Entities' && guidance.shouldShow('entities-empty') && (
+        <GuidanceBanner
+          id="entities-empty"
+          title="No Entities Yet"
+          description='Select text in the PDF and click "Add highlight" to create your first entity.'
+          actionLabel="Got it"
+          onDismiss={guidance.dismiss}
+          visible={true}
+        />
+      )}
+
+      {highlights.length === 0 && selectedMode === 'Relations' && guidance.shouldShow('relations-empty') && (
+        <GuidanceBanner
+          id="relations-empty"
+          title="No Relations Found"
+          description="No relationships were extracted yet. Relations link entities (e.g. has_property, has_value). If you have added or edited entities, try re-running the RE model from the toolbar."
+          actionLabel="Got it"
+          onDismiss={guidance.dismiss}
+          visible={true}
+          severity="warning"
+        />
+      )}
+
+      {highlights.length > 0 && selectedMode === 'Entities' && guidance.shouldShow('entities-intro') && (
+        <GuidanceBanner
+          id="entities-intro"
+          title="Entities Extracted"
+          description="Click any entity to scroll to it in the PDF. Right-click for edit and delete options."
+          actionLabel="Got it"
+          onDismiss={guidance.dismiss}
+          visible={true}
+        />
+      )}
+
+      {highlights.length > 5 && selectedMode === 'Entities' && guidance.shouldShow('confirm-entities-hint') && (
+        <GuidanceBanner
+          id="confirm-entities-hint"
+          title="Confirm Correct Entities"
+          description="Click the star icon to mark entities you have verified as correct."
+          actionLabel="Got it"
+          onDismiss={guidance.dismiss}
+          visible={true}
+        />
+      )}
 
       {/* Render paginated highlights */}
       <ul className="sidebar__highlights" style={{ overflow: "auto", paddingTop: "10px" }}>

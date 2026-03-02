@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
 import type { Highlight } from "../react-pdf-highlighter-extended";
 import "../style/Sidebar.css";
 import { CommentedHighlight } from "../types";
@@ -74,6 +75,8 @@ const EventSidebar = ({ highlights, getHighlightById, setIsActive, setHighlights
       convertedBratOutput[convertedEntityId] = entity;
     });
   });
+
+  const guidance = useGuidanceContext();
 
   const [selectedHighlight, setSelectedHighlight] = useState<CommentedHighlight | null>(null);
 
@@ -477,6 +480,28 @@ const EventSidebar = ({ highlights, getHighlightById, setIsActive, setHighlights
         </p>
 
       </div>
+
+      {guidance.shouldShow('events-intro') && (
+        <GuidanceBanner
+          id="events-intro"
+          title="Events Mode"
+          description="Events capture structured actions in the text — such as synthesis steps or measurement procedures. Each event groups related entities from a paragraph."
+          actionLabel="Got it"
+          onDismiss={guidance.dismiss}
+          visible={true}
+        />
+      )}
+
+      {guidance.shouldShow('events-paragraph-filter') && (
+        <GuidanceBanner
+          id="events-paragraph-filter"
+          title="Filter by Paragraph"
+          description='Use "Adjust your selection" above to choose which paragraphs contribute to event detection. Unchecking a paragraph excludes it from results.'
+          actionLabel="Got it"
+          onDismiss={guidance.dismiss}
+          visible={true}
+        />
+      )}
 
       {/* Render paginated highlights */}
       <ul className="sidebar__highlights" style={{ overflow: "auto", paddingTop: "10px" }}>

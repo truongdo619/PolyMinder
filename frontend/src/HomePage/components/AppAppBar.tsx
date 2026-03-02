@@ -136,7 +136,7 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
                   </Typography>
                 </MenuItem>
 
-                <MenuItem onClick={() => navigate('/home')} sx={{ py: '6px', px: '12px' }}>
+                <MenuItem onClick={() => navigate('/docs/v3.3/getting-started/faq')} sx={{ py: '6px', px: '12px' }}>
                   <Typography variant="body2" color="text.primary">
                     FAQ
                   </Typography>

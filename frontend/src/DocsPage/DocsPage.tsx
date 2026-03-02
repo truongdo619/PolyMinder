@@ -28,7 +28,10 @@ import Footer from "../HomePage/components/Footer";
 /*                               Version assets                               */
 /* -------------------------------------------------------------------------- */
 
-// v3.1 markdown
+// v3.3 markdown (new overview; remaining pages shared with v3.1)
+import md33Overview from "./markdown/v3.3/overview.md?raw";
+
+// v3.1 markdown (also reused by v3.2 and v3.3)
 import md31Overview from "./markdown/v3.1/overview.md?raw";
 import md31Installation from "./markdown/v3.1/installation.md?raw";
 import md31Usage from "./markdown/v3.1/quickstart.md?raw";
@@ -44,6 +47,10 @@ import md31ParagraphSelection from "./markdown/v3.1/paragraph‑selection.md?raw
 import md31Personalization from "./markdown/v3.1/personal-information-update.md?raw";
 import md31faq from "./markdown/v3.1/faq.md?raw";
 import md31support from "./markdown/v3.1/contact-support.md?raw";
+import md31LLMExtraction from "./markdown/v3.1/llm-extraction.md?raw";
+import md31Tables from "./markdown/v3.1/tables.md?raw";
+import md31Events from "./markdown/v3.1/events.md?raw";
+import md31WorkflowGuide from "./markdown/v3.1/workflow-guide.md?raw";
 
 // v3.0 markdown
 import md30Overview from "./markdown/v3.0/overview.md?raw";
@@ -65,7 +72,7 @@ import md20Overview from "./markdown/v2.0/overview.md?raw";
 /* -------------------------------------------------------------------------- */
 
 const drawerWidth = 260;
-const versions = ["v3.1", "v3.0", "v2.0"] as const;
+const versions = ["v3.3", "v3.2", "v3.1", "v3.0", "v2.0"] as const;
 
 type DocsTree = {
   [section: string]: {
@@ -78,6 +85,69 @@ type DocsTree = {
 
 /** Docs tree per‑version */
 const docsByVersion: Record<(typeof versions)[number], DocsTree> = {
+  // ── v3.3: current release — includes Guided UX, LLM Extraction, Tables, Events pages ──
+  "v3.3": {
+    "getting-started": {
+      title: "Getting started",
+      pages: {
+        overview: { title: "Overview", md: md33Overview },
+        installation: { title: "Installation", md: md31Installation },
+        quickstart: { title: "Quickstart", md: md31Usage },
+        faq: { title: "Frequently Asked Questions", md: md31faq },
+        support: { title: "Contact Support", md: md31support },
+      },
+    },
+    features: {
+      title: "Detailed instructions",
+      pages: {
+        login: { title: "Login & Signup", md: md31Login },
+        dashboard: { title: "Document Management", md: md31DocManagement },
+        result_visualization: { title: "Result Visualization", md: md31ResultVisualization },
+        workflow_guide: { title: "Workflow Guide", md: md31WorkflowGuide },
+        filtering: { title: "Filtering Results", md: md31FilteringFunc },
+        editing: { title: "Editing Annotations", md: md31EditingFunc },
+        llm_extraction: { title: "LLM Extraction", md: md31LLMExtraction },
+        tables: { title: "Tables Mode", md: md31Tables },
+        events: { title: "Events Mode", md: md31Events },
+        save_checkpoints: { title: "Save Checkpoints", md: md31SaveCheckpoint },
+        confirm_annotations: { title: "Confirm Annotations", md: md31ConfirmAnnotations },
+        paragraph_selection: { title: "Paragraph Selection", md: md31ParagraphSelection },
+        download: { title: "Export Results", md: md31DownloadFunc },
+        personalization: { title: "Personal Information Update", md: md31Personalization },
+      },
+    },
+  },
+
+  // ── v3.2: similar to v3.1, without Guided UX pages ──
+  "v3.2": {
+    "getting-started": {
+      title: "Getting started",
+      pages: {
+        overview: { title: "Overview", md: md31Overview },
+        installation: { title: "Installation", md: md31Installation },
+        quickstart: { title: "Quickstart", md: md31Usage },
+        faq: { title: "Frequently Asked Questions", md: md31faq },
+        support: { title: "Contact Support", md: md31support },
+      },
+    },
+    features: {
+      title: "Detailed instructions",
+      pages: {
+        login: { title: "Login & Signup", md: md31Login },
+        dashboard: { title: "Document Management", md: md31DocManagement },
+        result_visualization: { title: "Result Visualization", md: md31ResultVisualization },
+        filtering: { title: "Filtering Results", md: md31FilteringFunc },
+        editing: { title: "Editing Annotations", md: md31EditingFunc },
+        save_checkpoints: { title: "Save Checkpoints", md: md31SaveCheckpoint },
+        confirm_annotations: { title: "Confirm Annotations", md: md31ConfirmAnnotations },
+        paragraph_selection: { title: "Paragraph Selection", md: md31ParagraphSelection },
+        download: { title: "Export Results", md: md31DownloadFunc },
+        personalization: { title: "Personal Information Update", md: md31Personalization },
+      },
+    },
+  },
+
+  // ── v3.1: original release — no Guided UX pages ──
   "v3.1": {
     "getting-started": {
       title: "Getting started",
@@ -94,7 +164,6 @@ const docsByVersion: Record<(typeof versions)[number], DocsTree> = {
       pages: {
         login: { title: "Login & Signup", md: md31Login },
         dashboard: { title: "Document Management", md: md31DocManagement },
-        // working_modes: { title: "Working Modes", md: md31WorkingModes },
         result_visualization: { title: "Result Visualization", md: md31ResultVisualization },
         filtering: { title: "Filtering Results", md: md31FilteringFunc },
         editing: { title: "Editing Annotations", md: md31EditingFunc },

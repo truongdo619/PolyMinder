@@ -59,6 +59,9 @@ import ArticleIcon from '@mui/icons-material/Article';
 import InfoIcon from '@mui/icons-material/Info';
 import { Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent } from '@mui/lab';
 
+import { GuidanceBanner, WorkflowStepper, useGuidanceContext } from './GuidanceSystem';
+import type { GuidanceConditionState } from './GuidanceSystem';
+
 
 
 const getNextId = (paraId: number, entityId: number) => `para${paraId}_T${entityId}`;
@@ -267,6 +270,8 @@ const ResultComponent = () => {
     'Entities' | 'Relations' | 'Events' | 'Paragraphs' | 'Tables' | 'LLM'
   >('Entities');
 
+  const guidance = useGuidanceContext();
+  const [stepperVisible, setStepperVisible] = useState(true);
 
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
   const [selectedHistory, setSelectedHistory] = useState<{ id: number, real_id: number, name: string; upload_time: string } | null>(null);
@@ -321,13 +326,16 @@ const ResultComponent = () => {
     }
     if (selectedMode === "Relations"){
       setRelationHighlights(extractRelationHighlights(highlights));
+      guidance.completeStep('review-relations');
     }
 
     if (selectedMode === "Events"){
       // setEventHighlights 20% random of the highlights
-      const randomHighlights = highlights.filter(() => Math.random() < 0.2);
       setEventHighlights(extractEventHighlights(highlights));
-      // setEventHighlights(randomHighlights);
+    }
+
+    if (selectedMode === "LLM") {
+      guidance.completeStep('run-llm');
     }
 
   }, [selectedMode]);
@@ -337,7 +345,14 @@ const ResultComponent = () => {
     // setEventHighlights(extractEventHighlights(highlights));
   }, [highlights]);
 
-  
+  const prevDocumentIdRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (documentId !== null && documentId !== prevDocumentIdRef.current) {
+      guidance.resetCompletedSteps();
+    }
+    prevDocumentIdRef.current = documentId;
+  }, [documentId]);
+
   const handleContextMenu = (
     event: MouseEvent<HTMLDivElement>,
     highlight: ViewportHighlight,
@@ -726,6 +741,27 @@ const ResultComponent = () => {
     setIsRelationFiltered(false);
   };
 
+  const guidanceConditionState: GuidanceConditionState = {
+    highlightCount: highlights.length,
+    relationCount: relationHighlights.length,
+    selectedMode,
+    hasLLMOutput:
+      Array.isArray(LLLOutput) &&
+      LLLOutput.length > 0 &&
+      (LLLOutput as Array<{ entities?: unknown[] }>).some(
+        (item) => Array.isArray(item.entities) && item.entities.length > 0,
+      ),
+    hasTableOutput: Array.isArray(tableOutput) && tableOutput.length > 0,
+    documentId,
+  };
+
+  const handleWorkflowStepClick = (stepId: string) => {
+    if (stepId === 'upload') navigateTo('/documents');
+    else if (stepId === 'review-entities') setSelectedMode('Entities');
+    else if (stepId === 'review-relations') setSelectedMode('Relations');
+    else if (stepId === 'run-llm') setSelectedMode('LLM');
+  };
+
   // Toggle dialog visibility
   const toggleDialog = async () => {
     if (!isDialogOpen) {
@@ -1036,6 +1072,12 @@ const ResultComponent = () => {
           }}
         >
           <Toolbar setPdfScaleValue={(value) => setPdfScaleValue(value)} currentPage={currentPDFPage} totalPages={totalPages} setIsActive={setIsActive} />
+          <WorkflowStepper
+            conditionState={guidanceConditionState}
+            onStepClick={handleWorkflowStepClick}
+            visible={stepperVisible}
+            onToggleVisibility={() => setStepperVisible((v) => !v)}
+          />
           {pdfloader}
         </div>
         

@@ -82,6 +82,7 @@ import {
   FormHelperText,
   TextField
 } from "@mui/material";
+import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
 
   interface SettingSidebarProps {
     highlights: Array<CommentedHighlight>;
@@ -120,6 +121,8 @@ import {
     }
 
     const { documentId, fileName, updateId, setDocumentId, setUpdateId, settings } = globalContext;
+
+    const guidance = useGuidanceContext();
 
     // const [selectedIndex, setSelectedIndex] = React.useState(0);
 
@@ -373,17 +376,18 @@ import {
       try {
         /* new: collect filters */
         const { filter_entities, filter_relations } = getCurrentFilters();
-    
+
         const token = localStorage.getItem("accessToken");
         const payload = buildDownloadPayload(filter_entities, filter_relations);
-    
+
         const { data } = await axiosInstance.post(
           `${import.meta.env.VITE_BACKEND_URL}/download-highlighted-document`,
           payload,
           { headers: { Authorization: `Bearer ${token}` }, responseType: "blob" }
         );
-    
+
         triggerDownload(data, `${fileName.split(".")[0]}_highlighted.pdf`);
+        guidance.completeStep('export');
       } catch (err) {
         console.error("PDF download failed:", err);
       } finally {
@@ -397,17 +401,18 @@ import {
       setIsActive(true);
       try {
         const { filter_entities, filter_relations } = getCurrentFilters();
-    
+
         const token = localStorage.getItem("accessToken");
         const payload = buildDownloadPayload(filter_entities, filter_relations);
-    
+
         const { data } = await axiosInstance.post(
           `${import.meta.env.VITE_BACKEND_URL}/download-json/`,
           payload,
           { headers: { Authorization: `Bearer ${token}` }, responseType: "blob" }
         );
-    
+
         triggerDownload(data, `${fileName.split(".")[0]}_annotations.json`);
+        guidance.completeStep('export');
       } catch (err) {
         console.error("JSON download failed:", err);
       } finally {
@@ -1021,6 +1026,54 @@ import {
         </Tooltip>
 
         <Divider />
+
+        {selectedMode === 'Entities' && highlights.length > 0 && guidance.shouldShow('switch-to-relations') && (
+          <GuidanceBanner
+            id="switch-to-relations"
+            title="Next: Check Relations"
+            description="Entities look good? Switch to Relations to verify how they connect."
+            actionLabel="Switch to Relations"
+            onAction={() => setSelectedMode('Relations')}
+            onDismiss={guidance.dismiss}
+            visible={true}
+          />
+        )}
+
+        {selectedMode === 'Relations' && guidance.shouldShow('try-llm') && (
+          <GuidanceBanner
+            id="try-llm"
+            title="Try LLM Extraction"
+            description="Use LLM mode to extract additional entities the model may have missed."
+            actionLabel="Switch to LLM"
+            onAction={() => setSelectedMode('LLM')}
+            onDismiss={guidance.dismiss}
+            visible={true}
+          />
+        )}
+
+        {highlights.length > 0 && guidance.shouldShow('summarize-hint') && (
+          <GuidanceBanner
+            id="summarize-hint"
+            title="Visualise Your Extractions"
+            description='Click "Summarize Result" above to generate an interactive graph of all extracted entities and their relationships.'
+            actionLabel="Got it"
+            onDismiss={guidance.dismiss}
+            visible={true}
+            severity="success"
+          />
+        )}
+
+        {guidance.shouldShow('save-checkpoint') && (
+          <GuidanceBanner
+            id="save-checkpoint"
+            title="Save a Checkpoint"
+            description='Use "Save CHECKPOINT" above to snapshot your current annotations. You can revert to any checkpoint later.'
+            actionLabel="Got it"
+            onDismiss={guidance.dismiss}
+            visible={true}
+          />
+        )}
+
         {filterSettings}
 
         {/* <Dialog open={isDialogOpen} onClose={handleDialogClose}>
@@ -1383,7 +1436,19 @@ import {
       </Dialog>
 
 
-      
+      <Divider sx={{ mt: 1 }} />
+      <Box sx={{ px: 1, py: 0.5, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Typography variant="caption" sx={{ color: '#888' }}>
+          Show guidance tips
+        </Typography>
+        <Checkbox
+          checked={guidance.state.guidanceEnabled}
+          onChange={() => guidance.toggleGuidance()}
+          size="small"
+          sx={{ p: 0.5 }}
+        />
+      </Box>
+
       </Box>
     );
   }
