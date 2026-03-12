@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useMemo } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import type { Highlight } from "../react-pdf-highlighter-extended";
 import "../style/Sidebar.css";
 import { CommentedHighlight } from "../types";
@@ -11,42 +11,26 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
-import DialogContentText from '@mui/material/DialogContentText';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import AddIcon from '@mui/icons-material/Add';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Tooltip from '@mui/material/Tooltip';
-import SplitButton from './SplitButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditedEntityComponent from './EditedEntityComponent';
 import { GlobalContext } from '../GlobalState';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../axiosSetup';
 import Pagination from '@mui/material/Pagination';
-import { Box, List, ListItem, Snackbar, Checkbox, Typography, TextField, Alert } from '@mui/material';
+import { Box, List, ListItem, Snackbar, Checkbox, Typography, Alert, Chip, Badge } from '@mui/material';
 import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
+import { EntityEditSaveData, toRelations, EntityTypeDef, getContrastColor } from '../lib/settingsHelpers';
+import EntityEditPanel from './EntityEditPanel';
 
 interface SidebarProps {
   highlights: Array<CommentedHighlight>;
   getHighlightById: (id: string) => CommentedHighlight | undefined;
   setIsActive: (active: boolean) => void;
-  setHighlights: React.Dispatch<React.SetStateAction<Array<CommentedHighlight>>>; // Add this line
+  setHighlights: React.Dispatch<React.SetStateAction<Array<CommentedHighlight>>>;
   selectedMode: string;
-  paraHighlights: Array<CommentedHighlight>; // <-- new prop
+  paraHighlights: Array<CommentedHighlight>;
 }
 
 interface MatchedEntity {
@@ -60,193 +44,99 @@ interface MatchedEntity {
   tail?: number;
 }
 
-
 const updateHash = (highlight: Highlight) => {
   document.location.hash += `#highlight-${highlight.id}`;
 };
 
-// Define the type for paragraph
 interface Paragraph {
-  entities: Array<[string, any, any]>; // Adjust the tuple type as needed
-  // Add other properties if necessary
+  entities: Array<[string, unknown, unknown]>;
 }
 
-const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, selectedMode, paraHighlights }: SidebarProps) => {
+const Sidebar = ({ highlights, getHighlightById: _getHighlightById, setIsActive, setHighlights, selectedMode, paraHighlights }: SidebarProps) => {
   const globalContext = useContext(GlobalContext);
-  
-  // console.log("highlights", highlights)
   if (!globalContext) {
     throw new Error("GlobalContext must be used within a GlobalProvider");
   }
-  const { bratOutput, documentId, updateId, setBratOutput, setDocumentId, setUpdateId, fileName, setFileName, settings } = globalContext;
+  const { bratOutput, documentId, updateId, setBratOutput, setDocumentId, setUpdateId, setFileName, settings } = globalContext;
+  const entityTypeDefs = (settings?.entity_types as EntityTypeDef[] | undefined) ?? [];
   const navigateTo = useNavigate();
   const guidance = useGuidanceContext();
-  const convertedBratOutput: Record<string, [string, any, any]> = {}; // Update the type
+
+  const convertedBratOutput: Record<string, [string, unknown, [[number, number]]]> = {};
   bratOutput.forEach((paragraph: Paragraph, index: number) => {
-    paragraph.entities.forEach(entity => {
-      const convertedEntityId = `para${index}_${entity[0]}`; // Combine paragraph index with entity ID
-      convertedBratOutput[convertedEntityId] = entity;
+    paragraph.entities.forEach((entity: [string, unknown, unknown]) => {
+      const convertedEntityId = `para${index}_${entity[0]}`;
+      convertedBratOutput[convertedEntityId] = entity as [string, unknown, [[number, number]]];
     });
   });
 
-    // ---- Settings → types -----------------------------------------------------
-  type EntityDef = { type: string; labels?: string[]; [k: string]: any };
-  type RelationDef = { type: string; labels?: string[]; [k: string]: any };
-
-  const entityTypes = useMemo<string[]>(
-    () => ((settings?.entity_types as EntityDef[] | undefined)?.map(e => e.type)) ?? [],
-    [settings?.entity_types]
-  );
-
-  const relationTypes = useMemo<string[]>(
-    () => {
-      const base = ((settings?.relation_types as RelationDef[] | undefined)?.map(r => r.type)) ?? [
-        "has_property","has_value","has_amount","has_condition",
-        "abbreviation_of","refers_to","synthesised_by","characterized_by"
-      ];
-      return base;
-    },
-    [settings?.relation_types]
-  );
-
-  useEffect(() => {
-    if (!entityTypes.length) return;
-    setEditableComment(prev => (prev && entityTypes.includes(prev)) ? prev : entityTypes[0]);
-  }, [entityTypes]);
-
-
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [confirmOpen, setConfirmOpen] = useState(false);
-  const [maxDialogWidth, setMaxDialogWidth] = useState<'xs' | 'sm' | 'md' | 'lg' | 'xl' | false>('lg');
   const [selectedHighlight, setSelectedHighlight] = useState<CommentedHighlight | null>(null);
-  const [editableComment, setEditableComment] = useState<string>('');
-  const [editableUserComment, setEditableUserComment] = useState<string>('');
-  const [tabValue, setTabValue] = useState(0);
-
-  const [editingRelationIndex, setEditingRelationIndex] = useState<number | null>(null);
-  const [editedRelationType, setEditedRelationType] = useState<string>('');
-
-  const [newRelationType, setNewRelationType] = useState<string>('');
-  const [newRelationTarget, setNewRelationTarget] = useState<string>('');
-  const [selectionStart, setSelectionStart] = useState<number | null>(null);
-  const [selectionEnd, setSelectionEnd] = useState<number | null>(null);
   const [confirmStatusOpen, setConfirmStatusOpen] = useState(false);
-
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [notification, setNotification] = useState('');
   const [notificationSeverity, setNotificationSeverity] = useState<'success' | 'error'>('success');
   const [matchedEntities, setMatchedEntities] = useState<MatchedEntity[]>([]);
-  const [UpdateContentMatchedEntities, setUpdateContentMatchedEntities] = useState<any[]>([]);
+  const [UpdateContentMatchedEntities, setUpdateContentMatchedEntities] = useState<Record<string, unknown>>({});
   const [confirmUpdateMatchedEntitiesOpen, setConfirmUpdateMatchedEntitiesOpen] = useState(false);
   const [isReviewingMatchedEntities, setIsReviewingMatchedEntities] = useState(false);
   const [matchedEntitiesSelections, setMatchedEntitiesSelections] = useState<boolean[]>([]);
   const [allMatchedEntitiesSelected, setAllMatchedEntitiesSelected] = useState(true);
 
-  const handleCloseSnackbar = () => {
-    setOpenSnackbar(false);
-  };
+  const handleCloseSnackbar = () => setOpenSnackbar(false);
 
-
-
-
-
-  // State for "adjust your selection" dialog
   const [openParaSelection, setOpenParaSelection] = useState(false);
-  // Track which paragraphs are selected (default all checked)
   const [paragraphSelections, setParagraphSelections] = useState<boolean[]>(
     paraHighlights.map(ph => ph.visible !== undefined ? ph.visible : true)
   );
-
-
-  // State to track if the "add relation" row should be shown
-  const [showAddRelationRow, setShowAddRelationRow] = useState(false);
-
-  // Define state for pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 30; // Set items per page to 30
-
-  // Calculate total pages based on highlights length and itemsPerPage
+  const itemsPerPage = 30;
   const totalPages = Math.ceil(highlights.length / itemsPerPage);
-
-  // Determine the highlights to display on the current page
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentHighlights = highlights.slice(startIndex, startIndex + itemsPerPage);
-
   const [allParagraphsSelected, setAllParagraphsSelected] = useState(true);
 
-  // Updated paragraph checkbox handler to keep the "All" box in sync:
   const handleParagraphCheckbox = (index: number) => {
     setParagraphSelections((prev) => {
       const updated = [...prev];
       updated[index] = !updated[index];
-      // Update the "All" checkbox state if any box is unchecked
       setAllParagraphsSelected(updated.every(Boolean));
       return updated;
     });
   };
 
-  // New function to toggle all paragraphs on/off:
   const handleAllParagraphsToggle = () => {
     const newVal = !allParagraphsSelected;
     setAllParagraphsSelected(newVal);
     setParagraphSelections(paragraphSelections.map(() => newVal));
   };
 
-
-  // Handle page change
-  const handlePageChange = (event, page) => {
+  const handlePageChange = (_event: React.ChangeEvent<unknown>, page: number) => {
     setCurrentPage(page);
   };
 
-  // Reset currentPage to 1 whenever selectedMode changes
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedMode]);
 
-    
   const handleHighlightClick = (highlight: Highlight) => {
     updateHash(highlight);
-    // console.log(highlight);
-    setSelectedHighlight(highlight);
+    setSelectedHighlight(highlight as CommentedHighlight);
   };
 
   const editClick = (highlight: CommentedHighlight) => {
     setSelectedHighlight(highlight);
     setDialogOpen(true);
   };
-  
-  useEffect(() => {
-    if (selectedHighlight) {
-      setEditableComment(selectedHighlight.comment || '');
-      setEditableUserComment(selectedHighlight.user_comment || '');
-      setSelectionStart(convertedBratOutput[selectedHighlight.id][2][0][0]);
-      setSelectionEnd(convertedBratOutput[selectedHighlight.id][2][0][1]);
-    }
-  }, [selectedHighlight]);
 
   const handleDialogClose = () => {
     setDialogOpen(false);
     setSelectedHighlight(null);
-    setTabValue(0);
-    setShowAddRelationRow(false);
-    setNewRelationType('');
-    setNewRelationTarget('');
     setConfirmStatusOpen(false);
-    setEditableUserComment('');
   };
 
-  const handleOpenParaSelection = () => {
-    setOpenParaSelection(true);
-  };
-  
-  const handleCloseParaSelection = () => {
-    setOpenParaSelection(false);
-  };
-  
-  
-  // When user hits "Save & Reload" in that dialog
-  // Here we simply filter out any highlights that belong
-  // to unchecked paragraphs. Adjust as needed.
+  const handleOpenParaSelection = () => setOpenParaSelection(true);
+  const handleCloseParaSelection = () => setOpenParaSelection(false);
 
   const handleSaveParagraphSelection = async () => {
     try {
@@ -254,34 +144,24 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
       const data = {
         document_id: documentId,
         update_id: updateId,
-        visible_list: paragraphSelections
+        visible_list: paragraphSelections,
       };
-
-      console.log("Payload to /set-visible:", data);
       const token = localStorage.getItem('accessToken');
       const response = await axiosInstance.post(
         `${import.meta.env.VITE_BACKEND_URL}/set-visible`,
         data,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        { headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` } }
       );
-
-      // After success, set new highlights
-      // If you need, also update other states (bratOutput, fileName, etc.)
       setBratOutput(response.data.brat_format_output);
-      setDocumentId(response.data.document_id); // Store documentId in GlobalState
+      setDocumentId(response.data.document_id);
       setUpdateId(response.data.update_id);
       setHighlights(response.data.pdf_format_output);
       setFileName(response.data.filename);
-      navigateTo('/result', { 
-        state: { 
-          highlights: response.data.pdf_format_output, 
-          url: `${import.meta.env.VITE_PDF_BACKEND_URL}/statics/${response.data.filename}`
-        }
+      navigateTo('/result', {
+        state: {
+          highlights: response.data.pdf_format_output,
+          url: `${import.meta.env.VITE_PDF_BACKEND_URL}/statics/${response.data.filename}`,
+        },
       });
     } catch (error) {
       console.error("Error updating visible list:", error);
@@ -291,81 +171,12 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
     }
   };
 
-
-  const handleEntitySaveAndReload = async () => {
-    setIsActive(true);
-    const data = {
-        document_id: documentId,
-        update_id: updateId,
-        id: selectedHighlight?.id,
-        head_pos: selectionStart,
-        tail_pos: selectionEnd,
-        type: editableComment,
-        user_comment: editableUserComment
-    };
-    // console.log('data:', data);
-    // console.log('selectedHighlight:', selectedHighlight);
-    try {
-        const token = localStorage.getItem('accessToken');
-        const response = await axiosInstance.post(
-            `${import.meta.env.VITE_BACKEND_URL}/update-entity`,
-            data,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
-                },
-            }
-        );
-
-        console.log('Paragraphs updated successfully:', response.data);
-        setBratOutput(response.data.brat_format_output);
-        setDocumentId(response.data.document_id); // Store documentId in GlobalState
-        setUpdateId(response.data.update_id);
-        setHighlights(response.data.pdf_format_output);
-        setFileName(response.data.filename);
-        navigateTo('/result', { 
-          state: { 
-            highlights: response.data.pdf_format_output, 
-            url: `${import.meta.env.VITE_PDF_BACKEND_URL}/statics/${response.data.filename}`
-          }
-        });
-        // ✅ Set snackbar for success
-
-        setNotification('Entity saved successfully.');
-        setNotificationSeverity('success');
-        const matched = response.data.matched_entities || [];
-        setUpdateContentMatchedEntities(response.data.update_content_matched_entities || []);
-        if (matched.length > 0) {
-          setMatchedEntities(matched); // store for further usage
-          setUpdateContentMatchedEntities(response.data.update_content || []);
-          setConfirmUpdateMatchedEntitiesOpen(true); // show Yes/No dialog
-      }
-    } catch (error) {
-      console.error('Error updating paragraphs:', error);
-      setNotification('Failed to save entity. Please try again.');
-      setNotificationSeverity('error');
-    } finally {
-      setSelectedHighlight(null);
-      setDialogOpen(false);
-      setConfirmOpen(false);
-      setIsActive(false);
-      setOpenSnackbar(true);
-    }
-  };
-
   const handleSaveMatchedEntitiesSelection = async () => {
-    // 1️⃣  Build list_update from the check-marked entities
     setIsActive(true);
     const list_update = matchedEntities
-      .filter((_, i) => matchedEntitiesSelections[i])   // only those the user ticked
-      .map(({ para_id, page_number, entity_id }) => ({
-        para_id,
-        page_number,
-        entity_id,
-      }));
-    
-    // 2️⃣  Early exit if the user deselected everything
+      .filter((_, i) => matchedEntitiesSelections[i])
+      .map(({ para_id, page_number, entity_id }) => ({ para_id, page_number, entity_id }));
+
     if (list_update.length === 0) {
       setNotification('No entities selected.');
       setNotificationSeverity('error');
@@ -373,41 +184,32 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
       return;
     }
 
-    // 3️⃣  Assemble the new payload
     const payload = {
       list_update,
-      old_entity: UpdateContentMatchedEntities.old_entity, // already supplied by backend
-      new_entity: UpdateContentMatchedEntities.new_entity, // already supplied by backend
+      old_entity: (UpdateContentMatchedEntities as Record<string, unknown>).old_entity,
+      new_entity: (UpdateContentMatchedEntities as Record<string, unknown>).new_entity,
       document_id: documentId,
       update_id: updateId,
     };
 
-    console.log("payload:", payload);
     try {
       const token = localStorage.getItem('accessToken');
       const response = await axiosInstance.post(
-        `${import.meta.env.VITE_BACKEND_URL}/apply-update`, // ← keep your endpoint
+        `${import.meta.env.VITE_BACKEND_URL}/apply-update`,
         payload,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        },
+        { headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` } }
       );
-      console.log('Paragraphs updated successfully:', response.data);
       setBratOutput(response.data.brat_format_output);
-      setDocumentId(response.data.document_id); // Store documentId in GlobalState
+      setDocumentId(response.data.document_id);
       setUpdateId(response.data.update_id);
       setHighlights(response.data.pdf_format_output);
       setFileName(response.data.filename);
-      navigateTo('/result', { 
-        state: { 
-          highlights: response.data.pdf_format_output, 
-          url: `${import.meta.env.VITE_PDF_BACKEND_URL}/statics/${response.data.filename}`
-        }
+      navigateTo('/result', {
+        state: {
+          highlights: response.data.pdf_format_output,
+          url: `${import.meta.env.VITE_PDF_BACKEND_URL}/statics/${response.data.filename}`,
+        },
       });
-
       setNotification('Selected entities updated successfully.');
       setNotificationSeverity('success');
     } catch (error) {
@@ -422,214 +224,141 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
     }
   };
 
-
-
-
-  const handleDelete = async () => {
+  const handlePanelSave = async (data: EntityEditSaveData) => {
+    if (!selectedHighlight) return;
     setIsActive(true);
-    const data = {
-        document_id: documentId,
-        update_id: updateId,
-        ids: [selectedHighlight?.id],
-    };
-    // console.log('data:', data);
-    // console.log('selectedHighlight:', selectedHighlight);
-    try {
-        const token = localStorage.getItem('accessToken');
-        const response = await axiosInstance.post(
-            `${import.meta.env.VITE_BACKEND_URL}/delete-entity`,
-            data,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
-                },
-            }
-        );
+    const originalHighlights = [...highlights];
+    let currentUpdateId = updateId;
+    let currentDocumentId = documentId;
 
-        // console.log('Paragraphs updated successfully:', response.data);
+    const bratEntry = convertedBratOutput[selectedHighlight.id];
+    const origHead = bratEntry ? bratEntry[2][0][0] : 0;
+    const origTail = bratEntry ? bratEntry[2][0][1] : 0;
+
+    const entityChanged =
+      data.entityType !== selectedHighlight.comment ||
+      data.userComment !== (selectedHighlight.user_comment ?? '') ||
+      data.headPos !== origHead ||
+      data.tailPos !== origTail;
+
+    const relationsChanged =
+      JSON.stringify(data.relations) !== JSON.stringify(toRelations(selectedHighlight.relations ?? []));
+
+    // Optimistic update
+    setHighlights(prev =>
+      prev.map(h =>
+        h.id === selectedHighlight.id
+          ? { ...h, comment: data.entityType, user_comment: data.userComment, relations: data.relations as unknown as Array<Object> }
+          : h
+      )
+    );
+    setDialogOpen(false);
+
+    try {
+      const token = localStorage.getItem('accessToken');
+
+      if (entityChanged) {
+        const response = await axiosInstance.post(
+          `${import.meta.env.VITE_BACKEND_URL}/update-entity`,
+          {
+            document_id: currentDocumentId,
+            update_id: currentUpdateId,
+            id: selectedHighlight.id,
+            head_pos: data.headPos,
+            tail_pos: data.tailPos,
+            type: data.entityType,
+            user_comment: data.userComment,
+          },
+          { headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` } }
+        );
         setBratOutput(response.data.brat_format_output);
-        setDocumentId(response.data.document_id); // Store documentId in GlobalState
+        setDocumentId(response.data.document_id);
         setUpdateId(response.data.update_id);
         setHighlights(response.data.pdf_format_output);
         setFileName(response.data.filename);
-        navigateTo('/result', { 
-          state: { 
-            highlights: response.data.pdf_format_output, 
-            url: `${import.meta.env.VITE_PDF_BACKEND_URL}/statics/${response.data.filename}`
-          }
-        });
-    } catch (error) {
-        console.error('Error updating paragraphs:', error);
-    } finally {
-        setSelectedHighlight(null);
-        setDialogOpen(false);
-        setConfirmOpen(false);
-        setIsActive(false);
-    }
-    
+        currentUpdateId = response.data.update_id;
+        currentDocumentId = response.data.document_id;
 
-  };
-
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
-    setTabValue(newValue);
-  };
-
-  const handleEditRelation = (index: number) => {
-    if (selectedHighlight && selectedHighlight.relations) {
-      setEditingRelationIndex(index);
-      setEditedRelationType(selectedHighlight.relations[index].type || '');
-    }
-  };
-
-  const handleDeleteRelation = (index: number) => {
-    if (selectedHighlight && selectedHighlight.relations) {
-      selectedHighlight.relations.splice(index, 1); // Remove the relation at the specified index
-      setHighlights([...highlights]); // Trigger a re-render by updating the highlights
-    }
-  };
-
-  const handleRelationTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEditedRelationType(event.target.value);
-  };
-
-  const handleSaveRelationType = () => {
-    if (selectedHighlight && selectedHighlight.relations && editingRelationIndex !== null) {
-      selectedHighlight.relations[editingRelationIndex].type = editedRelationType;
-      setEditingRelationIndex(null);
-    }
-  };
-
-  const handleCancelEdit = () => {
-    setEditingRelationIndex(null);
-  };
-
-  const handleAddRelation = () => {
-    if (newRelationType && newRelationTarget) {
-      const newRelation = {
-        type: newRelationType,
-        arg_id: newRelationTarget,
-        arg_type: getHighlightById(newRelationTarget)?.comment || '',
-        arg_text: getHighlightById(newRelationTarget)?.content.text || '',
-      };
-      if (selectedHighlight) {
-        if (!selectedHighlight.relations) {
-          selectedHighlight.relations = [];
+        const matched = response.data.matched_entities || [];
+        setUpdateContentMatchedEntities(response.data.update_content_matched_entities || {});
+        if (matched.length > 0) {
+          setMatchedEntities(matched);
+          setConfirmUpdateMatchedEntitiesOpen(true);
         }
-        selectedHighlight.relations.push(newRelation);
       }
-      setNewRelationType('');
-      setNewRelationTarget('');
+
+      if (relationsChanged) {
+        const response = await axiosInstance.post(
+          `${import.meta.env.VITE_BACKEND_URL}/update-relations`,
+          {
+            document_id: currentDocumentId,
+            update_id: currentUpdateId,
+            entity_id: selectedHighlight.id,
+            relations: data.relations,
+          },
+          { headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` } }
+        );
+        setBratOutput(response.data.brat_format_output);
+        setDocumentId(response.data.document_id);
+        setUpdateId(response.data.update_id);
+        setHighlights(response.data.pdf_format_output);
+        setFileName(response.data.filename);
+      }
+
+      setNotification('Saved successfully.');
+      setNotificationSeverity('success');
+      setOpenSnackbar(true);
+    } catch (err) {
+      setHighlights(originalHighlights);
+      setNotification('Failed to save. Changes reverted.');
+      setNotificationSeverity('error');
+      setOpenSnackbar(true);
+    } finally {
+      setIsActive(false);
+      setSelectedHighlight(null);
     }
   };
 
-  const handleAddButtonClick = () => {
-    setShowAddRelationRow(true);
-  };
-
-  
-  // const handleCommentSaveAndReload = async () => {
-  //   if (!selectedHighlight) return;
-  //   setIsActive(true);
-  //   const data = {
-  //     document_id: documentId,
-  //     update_id: updateId,
-  //     id: selectedHighlight.id,
-  //     user_comment: editableUserComment
-  //   };
-  //   try {
-  //     const token = localStorage.getItem('accessToken');
-  //     const response = await axiosInstance.post(`${import.meta.env.VITE_BACKEND_URL}/update-comment`, data, {
-  //       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
-  //     });
-  //     setBratOutput(response.data.brat_format_output);
-  //     setDocumentId(response.data.document_id);
-  //     setUpdateId(response.data.update_id);
-  //     setHighlights(response.data.pdf_format_output);
-  //   } catch (error) {
-  //     console.error('Error updating comment:', error);
-  //   } finally {
-  //     handleDialogClose();
-  //     setIsActive(false);
-  //   }
-  // };
-
-  
-  const handleSaveAndReload = () => {
-    if (tabValue === 0) {
-      handleEntitySaveAndReload();
-    } else if (tabValue === 1) {
-      setDialogOpen(false);
-      handleRelationSaveAndReload();
-    }
-    else if (tabValue === 2) {
-      handleEntitySaveAndReload();
-    }
-  };
-
-  const handleRelationSaveAndReload = async () => {
+  const handlePanelDelete = async () => {
+    if (!selectedHighlight) return;
     setIsActive(true);
-  
-    // Prepare data for the server
-    const data = {
-      document_id: documentId,
-      update_id: updateId,
-      entity_id: selectedHighlight?.id,
-      relations: selectedHighlight?.relations,
-    };
-    
-    // console.log('data:', data);
+    const originalHighlights = [...highlights];
+
+    setHighlights(prev => prev.filter(h => h.id !== selectedHighlight.id));
+    setDialogOpen(false);
+
     try {
       const token = localStorage.getItem('accessToken');
       const response = await axiosInstance.post(
-        `${import.meta.env.VITE_BACKEND_URL}/update-relations`,
-        data,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        `${import.meta.env.VITE_BACKEND_URL}/delete-entity`,
+        { document_id: documentId, update_id: updateId, ids: [selectedHighlight.id] },
+        { headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` } }
       );
-  
-      // console.log('Relations updated successfully:', response.data);
       setBratOutput(response.data.brat_format_output);
-      setDocumentId(response.data.document_id); // Update documentId in GlobalState
+      setDocumentId(response.data.document_id);
       setUpdateId(response.data.update_id);
       setHighlights(response.data.pdf_format_output);
-  
-      // Navigate to the result page to display the updated highlights
-      navigateTo('/result', { 
-        state: { 
-          highlights: response.data.pdf_format_output, 
-          url: `${import.meta.env.VITE_PDF_BACKEND_URL}/statics/${response.data.filename}` 
-        }
-      });
-    } catch (error) {
-      console.error('Error updating relations:', error);
+      setFileName(response.data.filename);
+      setNotification('Entity deleted.');
+      setNotificationSeverity('success');
+      setOpenSnackbar(true);
+    } catch (err) {
+      setHighlights(originalHighlights);
+      setNotification('Failed to delete. Changes reverted.');
+      setNotificationSeverity('error');
+      setOpenSnackbar(true);
     } finally {
-      setSelectedHighlight(null);
-      setDialogOpen(false);
-      setConfirmOpen(false);
       setIsActive(false);
+      setSelectedHighlight(null);
     }
-  };
-
-  const handleEntitySelectionChange = (start: number, end: number) => {
-    setSelectionStart(start);
-    setSelectionEnd(end);
-    console.log("Selection changed:", start, end);
   };
 
   useEffect(() => {
     const hash = document.location.hash.split("#")[document.location.hash.split("#").length - 1];
-  
-    // Find the index of hightlight in the highlights array using the ids
     const highlightIndex = highlights.findIndex((highlight) => `highlight-${highlight.id}` === hash);
-    if (highlightIndex !== -1){
+    if (highlightIndex !== -1) {
       setCurrentPage(Math.floor(highlightIndex / itemsPerPage) + 1);
     }
-    // Set delay to ensure the element is rendered before scrolling
     setTimeout(() => {
       if (hash) {
         const highlightElement = document.getElementById(hash);
@@ -640,47 +369,31 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
     }, 100);
   }, [document.location.hash]);
 
-
   const handleStarClick = (highlight: CommentedHighlight) => {
     setSelectedHighlight(highlight);
     setConfirmStatusOpen(true);
   };
 
-
   const handleConfirmStar = async () => {
     if (!selectedHighlight) return;
-
     try {
       setIsActive(true);
-      const newStatus = selectedHighlight.edit_status === "confirmed" ? "none" : "confirmed";
-      const data = {
-        document_id: documentId,
-        update_id: updateId,
-        id: selectedHighlight.id,
-      };
-
+      const currentStatus = (selectedHighlight as CommentedHighlight & { edit_status?: string }).edit_status;
+      const newStatus = currentStatus === "confirmed" ? "none" : "confirmed";
+      const data = { document_id: documentId, update_id: updateId, id: selectedHighlight.id };
       const token = localStorage.getItem('accessToken');
-      const response = await axiosInstance.post(
+      await axiosInstance.post(
         `${import.meta.env.VITE_BACKEND_URL}/change-edit-status`,
         data,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        { headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` } }
       );
-      console.log('Status updated successfully:', response.data);
-      // Update the local highlights with the new status
-      setHighlights((prevHighlights) => 
-        prevHighlights.map((highlight) =>
-          highlight.id === selectedHighlight.id
-            ? { ...highlight, edit_status: newStatus }
-            : highlight
+      setHighlights(prevHighlights =>
+        prevHighlights.map(h =>
+          h.id === selectedHighlight.id
+            ? { ...h, edit_status: newStatus } as CommentedHighlight
+            : h
         )
       );
-
-      console.log('Status updated successfully:', response.data);
     } catch (error) {
       console.error('Error updating status:', error);
     } finally {
@@ -690,14 +403,14 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
     }
   };
 
-  const renderStarButton = (highlight) => {
-    const isConfirmed = highlight.edit_status === "confirmed";
+  const renderStarButton = (highlight: CommentedHighlight) => {
+    const isConfirmed = (highlight as CommentedHighlight & { edit_status?: string }).edit_status === "confirmed";
     return (
       <Tooltip title={isConfirmed ? "This item has been confirmed by the user" : "This item has not been confirmed yet"}>
-        <IconButton 
-          color="primary" 
-          aria-label={isConfirmed ? "confirmed" : "unconfirmed"} 
-          onClick={(e) => {e.stopPropagation(); handleStarClick(highlight)}}
+        <IconButton
+          color="primary"
+          aria-label={isConfirmed ? "confirmed" : "unconfirmed"}
+          onClick={(e) => { e.stopPropagation(); handleStarClick(highlight); }}
         >
           {isConfirmed ? <StarIcon /> : <StarBorderIcon />}
         </IconButton>
@@ -705,32 +418,19 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
     );
   };
 
-
-  return (
-    <div className="sidebar" style={{ width: "100%", height: "100vh", overflowY: "auto" }}>
+  const entityList = (
+    <>
       <div className="description" style={{ padding: "1rem" }}>
         <h2 style={{ marginBottom: "1rem" }}>
           Found <span className="total_entities_span">{highlights.length}</span> entities in this document.
         </h2>
-        <p>
-          <small>
-            
-          </small>
-        </p>
         <p style={{ fontSize: "15px", marginTop: "10px" }}>
-        🌟 To highlight a new entity, select the text you want and click "Add Highlight".
+          🌟 To highlight a new entity, select the text you want and click "Add Highlight".
         </p>
-
-
         <p style={{ fontSize: "15px", marginTop: "10px" }}>
           📝 To annotate results for specific sections of the document, please{" "}
           <span
-            style={{
-              color: "#007bff",
-              cursor: "pointer",
-              textDecoration: "none",
-              fontWeight: "bold",
-            }}
+            style={{ color: "#007bff", cursor: "pointer", textDecoration: "none", fontWeight: "bold" }}
             onMouseEnter={(e) => (e.currentTarget.style.textDecoration = "underline")}
             onMouseLeave={(e) => (e.currentTarget.style.textDecoration = "none")}
             onClick={handleOpenParaSelection}
@@ -739,131 +439,122 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
           </span>
           .
         </p>
-
       </div>
 
       {highlights.length === 0 && selectedMode === 'Entities' && guidance.shouldShow('entities-empty') && (
-        <GuidanceBanner
-          id="entities-empty"
-          title="No Entities Yet"
-          description='Select text in the PDF and click "Add highlight" to create your first entity.'
-          actionLabel="Got it"
-          onDismiss={guidance.dismiss}
-          visible={true}
-        />
+        <GuidanceBanner id="entities-empty" title="No Entities Yet" description='Select text in the PDF and click "Add highlight" to create your first entity.' actionLabel="Got it" onDismiss={guidance.dismiss} visible={true} />
       )}
-
       {highlights.length === 0 && selectedMode === 'Relations' && guidance.shouldShow('relations-empty') && (
-        <GuidanceBanner
-          id="relations-empty"
-          title="No Relations Found"
-          description="No relationships were extracted yet. Relations link entities (e.g. has_property, has_value). If you have added or edited entities, try re-running the RE model from the toolbar."
-          actionLabel="Got it"
-          onDismiss={guidance.dismiss}
-          visible={true}
-          severity="warning"
-        />
+        <GuidanceBanner id="relations-empty" title="No Relations Found" description="No relationships were extracted yet. Relations link entities (e.g. has_property, has_value). If you have added or edited entities, try re-running the RE model from the toolbar." actionLabel="Got it" onDismiss={guidance.dismiss} visible={true} severity="warning" />
       )}
-
       {highlights.length > 0 && selectedMode === 'Entities' && guidance.shouldShow('entities-intro') && (
-        <GuidanceBanner
-          id="entities-intro"
-          title="Entities Extracted"
-          description="Click any entity to scroll to it in the PDF. Right-click for edit and delete options."
-          actionLabel="Got it"
-          onDismiss={guidance.dismiss}
-          visible={true}
-        />
+        <GuidanceBanner id="entities-intro" title="Entities Extracted" description="Click any entity to scroll to it in the PDF. Right-click for edit and delete options." actionLabel="Got it" onDismiss={guidance.dismiss} visible={true} />
       )}
-
       {highlights.length > 5 && selectedMode === 'Entities' && guidance.shouldShow('confirm-entities-hint') && (
-        <GuidanceBanner
-          id="confirm-entities-hint"
-          title="Confirm Correct Entities"
-          description="Click the star icon to mark entities you have verified as correct."
-          actionLabel="Got it"
-          onDismiss={guidance.dismiss}
-          visible={true}
-        />
+        <GuidanceBanner id="confirm-entities-hint" title="Confirm Correct Entities" description="Click the star icon to mark entities you have verified as correct." actionLabel="Got it" onDismiss={guidance.dismiss} visible={true} />
       )}
 
-      {/* Render paginated highlights */}
-      <ul className="sidebar__highlights" style={{ overflow: "auto", paddingTop: "10px" }}>
-        {currentHighlights.map((highlight, index) => (
-          <li
-            key={index}
-            id={`highlight-${highlight.id}`}
-            className={`sidebar__highlight ${document.location.hash.split("#")[document.location.hash.split("#").length - 1] === `highlight-${highlight.id}` ? 'sidebar__highlight--selected' : ''}`}
-            onClick={() => handleHighlightClick(highlight)}
-            style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}
-          >
-            <div style={{ flex: 1, width: '100%', overflow: "hidden" }}>
-              <div className="highlight_item_header">
-                <p className={"entity_point " + highlight.comment}>&nbsp;&nbsp;</p>
-                <strong>{highlight.comment}</strong>
-              </div>
-              {highlight.content.text && (
-                <blockquote style={{ fontSize: "0.9rem", overflow: "hidden", textOverflow: "ellipsis" }}> 
-                  {`${highlight.content.text.slice(0, 60).trim()}`}
-                </blockquote>
-              )}
-              <ul style={{ fontSize: "0.8rem", overflow: "hidden", textOverflow: "ellipsis" }}>
-                {highlight.relations &&
-                  highlight.relations.map((relation, index) => (
-                    <li key={index}>
-                      <i style={{ marginLeft: "0rem" }}>{relation.type}</i>
-                      <br />
-                      <strong style={{ marginLeft: "1rem" }}>
-                        {relation.arg_type}: {relation.arg_text}
-                      </strong>
-                    </li>
+      <ul className="sidebar__highlights" style={{ overflow: "auto", paddingTop: "6px" }}>
+        {currentHighlights.map((highlight, index) => {
+          const typeDef = entityTypeDefs.find(e => e.type === highlight.comment);
+          const typeBg = typeDef?.bgColor ?? '#888';
+          const typeFg = getContrastColor(typeBg);
+          const isSelected = document.location.hash.split("#")[document.location.hash.split("#").length - 1] === `highlight-${highlight.id}`;
+          const relCount = (highlight.relations as Array<unknown>)?.length ?? 0;
+          const relations = highlight.relations as Array<{ type: string; arg_type: string; arg_text: string }> | undefined;
+          return (
+            <li
+              key={index}
+              id={`highlight-${highlight.id}`}
+              className={`sidebar__highlight ${isSelected ? 'sidebar__highlight--selected' : ''}`}
+              onClick={() => handleHighlightClick(highlight)}
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}
+            >
+              {/* Entity type badge — full width row at top */}
+              <Chip
+                label={highlight.comment}
+                size="small"
+                sx={{
+                  bgcolor: typeBg,
+                  color: typeFg,
+                  fontWeight: 700,
+                  fontSize: '0.72rem',
+                  height: 22,
+                  mb: 0.6,
+                  '& .MuiChip-label': { px: 1 },
+                }}
+              />
+
+              {/* Entity text */}
+              <Typography
+                variant="body2"
+                sx={{
+                  fontSize: '0.88rem',
+                  lineHeight: 1.45,
+                  color: '#222',
+                  width: '100%',
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical',
+                }}
+              >
+                {highlight.content.text ?? ''}
+              </Typography>
+
+              {/* Relations compact list */}
+              {relations && relations.length > 0 && (
+                <Box sx={{ mt: 0.5, display: 'flex', flexDirection: 'column', gap: 0.2, width: '100%' }}>
+                  {relations.slice(0, 2).map((rel, relIndex) => (
+                    <Typography key={relIndex} variant="caption" sx={{ color: '#666', fontSize: '0.72rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      <span style={{ fontStyle: 'italic', color: '#6c63ff' }}>{rel.type}</span>
+                      {' → '}
+                      <strong>{rel.arg_type}</strong>: {rel.arg_text.slice(0, 28)}{rel.arg_text.length > 28 ? '…' : ''}
+                    </Typography>
                   ))}
-              </ul>
+                  {relations.length > 2 && (
+                    <Typography variant="caption" sx={{ color: '#999', fontSize: '0.68rem' }}>
+                      +{relations.length - 2} more
+                    </Typography>
+                  )}
+                </Box>
+              )}
+
               {highlight.content.image && (
                 <div className="highlight__image__container" style={{ marginTop: "0.5rem" }}>
-                  <img
-                    src={highlight.content.image}
-                    alt={"Screenshot"}
-                    className="highlight__image"
-                  />
+                  <img src={highlight.content.image} alt={"Screenshot"} className="highlight__image" />
                 </div>
               )}
-            </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center', marginTop: '1.0rem' }}>
-              <Tooltip title="Click to revise annotation">
-                <IconButton color="primary" aria-label="edit paragraph" onClick={(e) => {e.stopPropagation(); editClick(highlight)}}>
-                  <EditNoteIcon />
-                </IconButton>
-              </Tooltip>
-              {/* Add a star button with a tooltip */}
-              {highlight.comment && renderStarButton(highlight)}
-              
-
-              {
-                highlight.user_comment && highlight.user_comment.length > 0 &&
-                <Tooltip
-                  title={'Show annotation comment'}
-                >
-                  <IconButton
-                    aria-label="comment"
-                    onClick={(e) => {}}
-                  >
-                    <CommentIcon  color="primary" />
+              {/* Action row */}
+              <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', mt: 0.5 }}>
+                <Tooltip title="Edit annotation">
+                  <IconButton size="small" color="primary" aria-label="edit" onClick={(e) => { e.stopPropagation(); editClick(highlight); }} sx={{ p: 0.5 }}>
+                    <EditNoteIcon sx={{ fontSize: 20 }} />
                   </IconButton>
                 </Tooltip>
-              }
-
-              <div className="highlight__location" style={{ marginLeft: 'auto' }}>
-                Page {highlight.position.boundingRect.pageNumber}
-              </div>
-            </div>
-          </li>
-        ))}
+                {highlight.comment && renderStarButton(highlight)}
+                {highlight.user_comment && highlight.user_comment.length > 0 && (
+                  <Tooltip title={highlight.user_comment}>
+                    <IconButton size="small" aria-label="comment" onClick={() => {}} sx={{ p: 0.5 }}>
+                      <CommentIcon color="primary" sx={{ fontSize: 18 }} />
+                    </IconButton>
+                  </Tooltip>
+                )}
+                {relCount > 0 && (
+                  <Badge badgeContent={relCount} color="primary" sx={{ ml: 0.5 }}>
+                    <Box sx={{ width: 8 }} />
+                  </Badge>
+                )}
+                <Typography variant="caption" sx={{ ml: 'auto', color: '#aaa', fontSize: '0.72rem' }}>
+                  p.{highlight.position.boundingRect.pageNumber}
+                </Typography>
+              </Box>
+            </li>
+          );
+        })}
       </ul>
 
-      {/* Pagination Controls */}
-      {/* MUI Pagination Controls */}
       <div
         className="pagination-controls"
         style={{
@@ -876,442 +567,185 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
           justifyContent: "center",
         }}
       >
-        <Pagination 
-          count={totalPages} 
-          page={currentPage} 
+        <Pagination
+          count={totalPages}
+          page={currentPage}
           siblingCount={0}
-          onChange={handlePageChange} 
-          color="primary" 
-          variant="outlined" 
+          onChange={handlePageChange}
+          color="primary"
+          variant="outlined"
           shape="rounded"
         />
       </div>
+    </>
+  );
 
-      <Dialog 
-        open={dialogOpen} 
+  const selectedParaIndex = selectedHighlight
+    ? parseInt(selectedHighlight.id.split("_")[0].match(/\d+/)?.[0] ?? "0", 10)
+    : -1;
+  const selectedParaRaw = selectedParaIndex >= 0
+    ? (bratOutput[selectedParaIndex] as { text?: string; entities?: unknown[]; relations?: unknown[] } | undefined)
+    : undefined;
+  const paragraphDataForEdit = selectedParaRaw
+    ? { text: selectedParaRaw.text ?? '', entities: selectedParaRaw.entities ?? [], relations: selectedParaRaw.relations }
+    : null;
+
+  const editPanel = dialogOpen && selectedHighlight && convertedBratOutput[selectedHighlight.id] ? (
+    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <EntityEditPanel
+        highlight={selectedHighlight}
+        allHighlights={highlights}
+        paragraphText={paragraphDataForEdit?.text ?? ''}
+        headPos={convertedBratOutput[selectedHighlight.id][2][0][0]}
+        tailPos={convertedBratOutput[selectedHighlight.id][2][0][1]}
+        paragraphData={paragraphDataForEdit}
+        onSave={handlePanelSave}
+        onDelete={handlePanelDelete}
         onClose={handleDialogClose}
-        fullWidth={true}
-        maxWidth={maxDialogWidth}
-      >
-        <DialogTitle style={{ textAlign: 'center' }}>Edit Highlight</DialogTitle>
-        <DialogContent>
-          <Tabs value={tabValue} onChange={handleTabChange} aria-label="Entity and Relation tabs">
-            <Tab label="Entity" />
-            <Tab label="Relation" />
-            <Tab label="Comment" />
-          </Tabs>
-          <Box role="tabpanel" hidden={tabValue !== 0} id="entity-tabpanel" aria-labelledby="entity-tab">
-            {selectedHighlight ? (
-            <>
-              <FormControl fullWidth margin="normal">
-                <InputLabel id="entity-type-label">Entity Type</InputLabel>
-                <Select
-                  labelId="entity-type-label"
-                  value={editableComment}
-                  onChange={(e) => setEditableComment(e.target.value)}
-                  label="Entity Type"
-                  fullWidth
-                >
-                  {entityTypes.map(t => (
-                    <MenuItem key={t} value={t}>{t}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-              
-              <EditedEntityComponent  
-                text={bratOutput[parseInt(selectedHighlight.id.split("_")[0].match(/\d+/)?.[0] || "0", 10)].text}
-                defaultStart={convertedBratOutput[selectedHighlight.id][2][0][0]} 
-                defaultEnd={convertedBratOutput[selectedHighlight.id][2][0][1]}
-                onTextChange={(newText) => {console.log("Text changed:", newText)}}   
-                onSelectionChange={handleEntitySelectionChange}
-                entityType={editableComment}
-              />
-              {/* <TextField
-                label="Content"
-                value={editableContent}
-                onChange={(e) => setEditableContent(e.target.value)}
-                multiline
-                fullWidth
-                margin="normal"
-                variant="outlined"/> */}
-            </>
-            ) : (
-              <p>No highlight selected.</p>
-            )}
-          </Box>
+      />
+    </Box>
+  ) : null;
 
-          <Box role="tabpanel" hidden={tabValue !== 1} id="relation-tabpanel" aria-labelledby="relation-tab">
-            {selectedHighlight ? (
-              <Box sx={{ overflowX: "auto" }}>
-              <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 400 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell style={{fontWeight: "bold"}}>Subject Entity</TableCell>
-                      <TableCell style={{fontWeight: "bold"}}>Relation</TableCell>
-                      <TableCell style={{fontWeight: "bold"}}>Object Entity</TableCell>
-                      <TableCell style={{fontWeight: "bold"}}>Action</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {(selectedHighlight.relations ?? []).map((relation, index) => (
-                        <TableRow key={index}>
-                          <TableCell>
-                            <SplitButton 
-                              filledText={selectedHighlight.comment} 
-                              outlinedText={
-                                (selectedHighlight.content.text ?? '').length > 30 
-                                  ? `${(selectedHighlight.content.text ?? '').slice(0, 30).trim()}...` 
-                                  : selectedHighlight.content.text ?? ''
-                              } 
-                              entityType={selectedHighlight.comment} 
-                            />
-                          </TableCell>
-                          <TableCell style={{ fontStyle: 'italic', minWidth: '110px' }}>
-                            {editingRelationIndex === index ? (
-                              <FormControl fullWidth>
-                                <Select
-                                  value={editedRelationType}
-                                  onChange={(e) => setEditedRelationType(e.target.value)}
-                                  onBlur={handleSaveRelationType}
-                                  autoFocus
-                                >
-                                  {relationTypes.map(rt => (
-                                    <MenuItem key={rt} value={rt}>{rt}</MenuItem>
-                                  ))}
-                                </Select>
-                              </FormControl>
-                            ) : (
-                              <span onClick={() => handleEditRelation(index)}>{relation.type}</span>
-                            )}
-                          </TableCell>
-                          <TableCell>
-                            <SplitButton 
-                              filledText={relation.arg_type} 
-                              outlinedText={
-                                relation.arg_text.length > 30
-                                  ? `${relation.arg_text.slice(0, 30).trim()}...` 
-                                  : relation.arg_text
-                              } 
-                              entityType={relation.arg_type} 
-                            />
-                          </TableCell>
-                          <TableCell>
-                            {/* <IconButton aria-label="delete relation" onClick={() => {}}>
-                              <DeleteIcon />
-                            </IconButton> */}
-                            <IconButton aria-label="delete relation" onClick={() => handleDeleteRelation(index)}>
-                              <DeleteIcon />
-                            </IconButton>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    {showAddRelationRow && (
-                      <TableRow>
-                        <TableCell>
-                          <SplitButton 
-                            filledText={selectedHighlight.comment} 
-                            outlinedText={
-                              (selectedHighlight.content.text ?? '').length > 30 
-                                ? `${(selectedHighlight.content.text ?? '').slice(0, 30).trim()}...` 
-                                : selectedHighlight.content.text ?? ''
-                            } 
-                            entityType={selectedHighlight.comment} 
-                          />
-                        </TableCell>
-                        <TableCell  style={{ minWidth: '110px' }}>
-                        <FormControl fullWidth>
-                          <InputLabel id="relation-type-label">Relation Type</InputLabel>
-                          <Select
-                            labelId="relation-type-label"
-                            value={newRelationType}
-                            label="Relation Type"
-                            onChange={(e) => setNewRelationType(e.target.value)}
-                          >
-                            <MenuItem value={"has_property"}>has_property</MenuItem>
-                            <MenuItem value={"has_value"}>has_value</MenuItem>
-                            <MenuItem value={"has_amount"}>has_amount</MenuItem>
-                            <MenuItem value={"has_condition"}>has_condition</MenuItem>
-                            <MenuItem value={"abbreviation_of"}>abbreviation_of</MenuItem>
-                            <MenuItem value={"refers_to"}>refers_to</MenuItem>
-                            <MenuItem value={"synthesised_by"}>synthesised_by</MenuItem>
-                            <MenuItem value={"characterized_by"}>characterized_by</MenuItem>
-                          </Select>
-                        </FormControl>
-                        </TableCell>
-                        <TableCell  style={{ minWidth: '110px' }}>
-                          <FormControl fullWidth>
-                            <InputLabel id="relation-target-label">Target Entity</InputLabel>
-                            <Select label="Target Entity" labelId="relation-target-label" value={newRelationTarget} onChange={(e) => setNewRelationTarget(e.target.value)}>
-                              {highlights
-                              .filter((highlight) => selectedHighlight.id.split("_")[0] === highlight.id.split("_")[0] && highlight.id !== selectedHighlight.id).map((highlight) => (
-                                <MenuItem key={highlight.id} value={highlight.id}>
-                                  {highlight.comment + ': ' + highlight.content.text}
-                                </MenuItem>
-                              ))}
-                            </Select>
-                          </FormControl>
-                        </TableCell>
-                        <TableCell>
-                          <Button variant="contained" color="primary" onClick={handleAddRelation}>
-                            Add
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    )}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-              </Box>
-            ) : (
-              <p>No highlight selected.</p>
-            )}
-            <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '1rem' }}>
-              <IconButton 
-                color="primary" 
-                onClick={handleAddButtonClick} 
-                style={{
-                  borderRadius: '50%',  // Round border
-                  border: '2px solid',   // Add border
-                  padding: '0px',       // Ensure sufficient padding for round shape
-                }}
-              >
-                <AddIcon />
-              </IconButton>
-            </div>
-          </Box>
+  const ucme = UpdateContentMatchedEntities as {
+    old_entity?: { entity_type: string; entity_text: string };
+    new_entity?: { entity_type: string; entity_text: string };
+  };
 
+  return (
+    <div className="sidebar" style={{ width: "100%", height: "100vh", overflowX: "hidden", overflowY: editPanel ? "hidden" : "auto" }}>
+      {editPanel ?? entityList}
 
-          <Box role="tabpanel" hidden={tabValue !== 2} id="comment-tabpanel">
-            {selectedHighlight ? (
-              <TextField
-                label="Comment"
-                value={editableUserComment}
-                onChange={(e)=>setEditableUserComment(e.target.value)}
-                multiline
-                rows={4}
-                fullWidth
-                margin="normal"
-              />
-            ) : (<p>No highlight selected.</p>)}
-          </Box>
-
-        </DialogContent>
-        <DialogActions style={{ justifyContent: 'space-between', padding: "20px" }}>
-          {tabValue === 0 && (
-              <Button onClick={() => setConfirmOpen(true)} color="error" variant="contained">
-                Delete
-              </Button>
-          )}
-          <div></div>
-          <div style={{ display: 'flex', gap: '8px' }}>
-            <Button onClick={handleDialogClose} color="primary" variant="outlined">
-              Cancel
-            </Button>
-            <Button onClick={handleSaveAndReload} color="primary" variant="contained">
-              Save & Reload
-            </Button>
-          </div>
-        </DialogActions>
-      </Dialog>
-
-      <Dialog
-        open={confirmOpen}
-        onClose={() => setConfirmOpen(false)}
-      >
-        <DialogTitle style={{ textAlign: 'center' }}>Confirm Deletion</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Are you sure you want to delete this highlight?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setConfirmOpen(false)} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleDelete} color="secondary">
-            Delete
-          </Button>
-        </DialogActions>
-      </Dialog>
-
-
+      {/* Confirm status change */}
       <Dialog open={confirmStatusOpen} onClose={handleDialogClose}>
         <DialogTitle style={{ textAlign: 'center' }}>
-          {selectedHighlight?.edit_status === "none" ? "Confirm Status Change" : "Confirm Deletion"}
+          {(selectedHighlight as (CommentedHighlight & { edit_status?: string }) | null)?.edit_status === "none"
+            ? "Confirm Status Change"
+            : "Confirm Deletion"}
         </DialogTitle>
         <DialogContent>
           <p>
-            Are you sure you want to {selectedHighlight?.edit_status === "none" ? "confirm this highlight?" : "unconfirm this highlight?"}
+            Are you sure you want to{' '}
+            {(selectedHighlight as (CommentedHighlight & { edit_status?: string }) | null)?.edit_status === "none"
+              ? "confirm this highlight?"
+              : "unconfirm this highlight?"}
           </p>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDialogClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleConfirmStar} color="primary" variant="contained">
-            Confirm
-          </Button>
+          <Button onClick={handleDialogClose} color="primary">Cancel</Button>
+          <Button onClick={handleConfirmStar} color="primary" variant="contained">Confirm</Button>
         </DialogActions>
       </Dialog>
 
-          
-    {/* NEW Dialog: "Adjust Your Selection" */}
-    <Dialog
-    open={openParaSelection}
-    onClose={handleCloseParaSelection}
-    maxWidth="md"
-    fullWidth
-    PaperProps={{
-      style: {
-        borderRadius: '8px',
-        backgroundColor: '#fafafa',
-      },
-    }}
-    >
-      <DialogTitle style={{ textAlign: 'center' }}>
-        Adjust Your Paragraph Selection
-      </DialogTitle>
-      <Divider />
-      <DialogContent dividers>
-        {/* "Enable/Disable All" checkbox outside the paragraphs list */}
-        <Box sx={{ display: "flex", alignItems: "center", marginBottom: "1rem" }}>
-          <Checkbox
-            checked={allParagraphsSelected}
-            onChange={handleAllParagraphsToggle}
-          />
-          <Typography variant="body1">Enable/Disable All</Typography>
-        </Box>
-
-        {/* List of paragraphs with a tooltip and individual checkboxes */}
-        <List>
-          {paraHighlights.map((para, i) => {
-            const shortPreview =
-              para.content.text.slice(0, 150) +
-              (para.content.text.length > 150 ? "..." : "");
-            return (
-              <ListItem
-                key={i}
-                dense
-                sx={{
-                  userSelect: "none",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginBottom: "1rem",
-                  padding: "0.5rem",
-                  border: "1px solid #ddd",
-                  borderRadius: "5px",
-                  backgroundColor: "#f9f9f9",
-                  cursor: "pointer",
-                  transition: "background 0.2s ease-in-out",
-                  ":hover": {
-                    backgroundColor: "#ececec",
-                  },
-                }}
-              >
-                <Tooltip title={para.content.text} arrow>
-                  <Box sx={{ flexGrow: 1 }}>
-                    <Typography variant="subtitle2">
-                      Paragraph {para.para_id + 1} - {para.comment}
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: "#555" }}>
-                      {shortPreview}
-                    </Typography>
-                  </Box>
-                </Tooltip>
-
-                {/* Individual paragraph checkbox */}
-                <Checkbox
-                  edge="end"
-                  checked={paragraphSelections[i]}
-                  onChange={() => handleParagraphCheckbox(i)}
-                  tabIndex={-1}
-                  disableRipple
-                />
-              </ListItem>
-            );
-          })}
-        </List>
-      </DialogContent>
-      <Divider />
-      <DialogActions>
-        <Button onClick={handleCloseParaSelection} color="primary" variant="outlined">
-          Cancel
-        </Button>
-        <Button onClick={handleSaveParagraphSelection} color="primary" variant="contained">
-          Save & Reload
-        </Button>
-      </DialogActions>
-    </Dialog>
-
-    <Snackbar
-      open={openSnackbar}
-      autoHideDuration={6000}
-      onClose={handleCloseSnackbar}
-      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-    >
-      <Alert
-        onClose={handleCloseSnackbar}
-        severity={notificationSeverity}
-        sx={{ width: '100%' }}
+      {/* Adjust paragraph selection */}
+      <Dialog
+        open={openParaSelection}
+        onClose={handleCloseParaSelection}
+        maxWidth="md"
+        fullWidth
+        PaperProps={{ style: { borderRadius: '8px', backgroundColor: '#fafafa' } }}
       >
-        {notification}
-      </Alert>
-    </Snackbar>
-
-    <Dialog
-      open={confirmUpdateMatchedEntitiesOpen}
-      onClose={() => {
-        setConfirmUpdateMatchedEntitiesOpen(false);
-        setIsReviewingMatchedEntities(false);
-      }}
-      maxWidth="md"
-      fullWidth
-    >
-      <DialogTitle sx={{ textAlign: 'center' }}>
-        {isReviewingMatchedEntities
-          ? 'Review & Apply to Matched Entities'
-          : 'Apply Revision to Similar Entities?'}
-
-        {isReviewingMatchedEntities && (
-          <Box mt={1}>
-            <Typography variant="body2" textAlign="center">
-              {UpdateContentMatchedEntities.old_entity.entity_type}:{' '}
-              <span className={`${UpdateContentMatchedEntities.old_entity.entity_type}`}>
-                {UpdateContentMatchedEntities.old_entity.entity_text}
-              </span>
-              {' → '}
-              {UpdateContentMatchedEntities.new_entity.entity_type}:{' '}
-              <span className={`${UpdateContentMatchedEntities.new_entity.entity_type}`}>
-                {UpdateContentMatchedEntities.new_entity.entity_text}
-              </span>
-            </Typography>
+        <DialogTitle style={{ textAlign: 'center' }}>Adjust Your Paragraph Selection</DialogTitle>
+        <Divider />
+        <DialogContent dividers>
+          <Box sx={{ display: "flex", alignItems: "center", marginBottom: "1rem" }}>
+            <Checkbox checked={allParagraphsSelected} onChange={handleAllParagraphsToggle} />
+            <Typography variant="body1">Enable/Disable All</Typography>
           </Box>
-        )}
-      </DialogTitle>
+          <List>
+            {paraHighlights.map((para, i) => {
+              const shortPreview = para.content.text.slice(0, 150) + (para.content.text.length > 150 ? "..." : "");
+              return (
+                <ListItem
+                  key={i}
+                  dense
+                  sx={{
+                    userSelect: "none",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: "1rem",
+                    padding: "0.5rem",
+                    border: "1px solid #ddd",
+                    borderRadius: "5px",
+                    backgroundColor: "#f9f9f9",
+                    cursor: "pointer",
+                    transition: "background 0.2s ease-in-out",
+                    ":hover": { backgroundColor: "#ececec" },
+                  }}
+                >
+                  <Tooltip title={para.content.text} arrow>
+                    <Box sx={{ flexGrow: 1 }}>
+                      <Typography variant="subtitle2">Paragraph {para.para_id + 1} - {para.comment}</Typography>
+                      <Typography variant="body2" sx={{ color: "#555" }}>{shortPreview}</Typography>
+                    </Box>
+                  </Tooltip>
+                  <Checkbox
+                    edge="end"
+                    checked={paragraphSelections[i]}
+                    onChange={() => handleParagraphCheckbox(i)}
+                    tabIndex={-1}
+                    disableRipple
+                  />
+                </ListItem>
+              );
+            })}
+          </List>
+        </DialogContent>
+        <Divider />
+        <DialogActions>
+          <Button onClick={handleCloseParaSelection} color="primary" variant="outlined">Cancel</Button>
+          <Button onClick={handleSaveParagraphSelection} color="primary" variant="contained">Save & Reload</Button>
+        </DialogActions>
+      </Dialog>
 
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert onClose={handleCloseSnackbar} severity={notificationSeverity} sx={{ width: '100%' }}>
+          {notification}
+        </Alert>
+      </Snackbar>
 
-      <DialogContent dividers>
-        {isReviewingMatchedEntities ? (
-          <>
-           {/* Enable/Disable All */}
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <Checkbox
-                checked={allMatchedEntitiesSelected}
-                onChange={() => {
-                  const newValue = !allMatchedEntitiesSelected;
-                  setAllMatchedEntitiesSelected(newValue);
-                  setMatchedEntitiesSelections(new Array(matchedEntities.length).fill(newValue));
-                }}
-              />
-              <Typography variant="body1">Enable/Disable All</Typography>
+      {/* Matched entities dialog */}
+      <Dialog
+        open={confirmUpdateMatchedEntitiesOpen}
+        onClose={() => { setConfirmUpdateMatchedEntitiesOpen(false); setIsReviewingMatchedEntities(false); }}
+        maxWidth="md"
+        fullWidth
+      >
+        <DialogTitle sx={{ textAlign: 'center' }}>
+          {isReviewingMatchedEntities ? 'Review & Apply to Matched Entities' : 'Apply Revision to Similar Entities?'}
+          {isReviewingMatchedEntities && ucme.old_entity && ucme.new_entity && (
+            <Box mt={1}>
+              <Typography variant="body2" textAlign="center">
+                {ucme.old_entity.entity_type}:{' '}
+                <span className={`${ucme.old_entity.entity_type}`}>{ucme.old_entity.entity_text}</span>
+                {' → '}
+                {ucme.new_entity.entity_type}:{' '}
+                <span className={`${ucme.new_entity.entity_type}`}>{ucme.new_entity.entity_text}</span>
+              </Typography>
             </Box>
-
-            {/* Matched entity list */}
-            <List>
-              {matchedEntities.map((entity, i) => {
-                return (
+          )}
+        </DialogTitle>
+        <DialogContent dividers>
+          {isReviewingMatchedEntities ? (
+            <>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Checkbox
+                  checked={allMatchedEntitiesSelected}
+                  onChange={() => {
+                    const newValue = !allMatchedEntitiesSelected;
+                    setAllMatchedEntitiesSelected(newValue);
+                    setMatchedEntitiesSelections(new Array(matchedEntities.length).fill(newValue));
+                  }}
+                />
+                <Typography variant="body1">Enable/Disable All</Typography>
+              </Box>
+              <List>
+                {matchedEntities.map((entity, i) => (
                   <ListItem
                     key={i}
                     dense
@@ -1334,15 +768,12 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
                         <Typography variant="body2" sx={{ color: "#555" }}>
                           {"... "}
                           {entity.short_text?.slice(0, entity.head)}
-                          <span className={`${entity.entity_type}`}>
-                            {entity.entity_text}
-                          </span>
+                          <span className={`${entity.entity_type}`}>{entity.entity_text}</span>
                           {entity.short_text?.slice(entity.tail)}
                           {" ..."}
                         </Typography>
                       </Box>
                     </Tooltip>
-
                     <Checkbox
                       edge="end"
                       checked={matchedEntitiesSelections[i] || false}
@@ -1354,70 +785,54 @@ const Sidebar = ({ highlights, getHighlightById, setIsActive, setHighlights, sel
                       }}
                     />
                   </ListItem>
-                );
-              })}
-            </List>
-          </>
-        ) : (
-          <>
-            <Typography variant="body1" gutterBottom>
-              We found <strong>{matchedEntities.length}</strong> other entities in the document that have
-              the <strong>same span text</strong> and <strong>original entity type</strong> as the one you just revised.
-            </Typography>
-            <Typography variant="body2" color="textSecondary">
-              Would you like to review and apply the same revision to these matched entities as well?
-            </Typography>
-          </>
-        )}
-      </DialogContent>
-
-      <DialogActions>
-        {isReviewingMatchedEntities ? (
-          <>
-            <Button
-              onClick={() => {
-                setConfirmUpdateMatchedEntitiesOpen(false);
-                setIsReviewingMatchedEntities(false);
-              }}
-              color="primary"
-              variant="outlined"
-            >
-              Cancel
-            </Button>
-            <Button
-              onClick={handleSaveMatchedEntitiesSelection}
-              color="primary"
-              variant="contained"
-            >
-              Save & Reload
-            </Button>
-          </>
-        ) : (
-          <>
-            <Button
-              onClick={() => setConfirmUpdateMatchedEntitiesOpen(false)}
-              color="primary"
-            >
-              No
-            </Button>
-            <Button
-              onClick={() => {
-                setIsReviewingMatchedEntities(true);
-                setMatchedEntitiesSelections(new Array(matchedEntities.length).fill(true));
-                setAllMatchedEntitiesSelected(true);
-              }}
-              color="primary"
-              variant="contained"
-              autoFocus
-            >
-              Yes
-            </Button>
-          </>
-        )}
-      </DialogActions>
-    </Dialog>
-
-
+                ))}
+              </List>
+            </>
+          ) : (
+            <>
+              <Typography variant="body1" gutterBottom>
+                We found <strong>{matchedEntities.length}</strong> other entities in the document that have
+                the <strong>same span text</strong> and <strong>original entity type</strong> as the one you just revised.
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                Would you like to review and apply the same revision to these matched entities as well?
+              </Typography>
+            </>
+          )}
+        </DialogContent>
+        <DialogActions>
+          {isReviewingMatchedEntities ? (
+            <>
+              <Button
+                onClick={() => { setConfirmUpdateMatchedEntitiesOpen(false); setIsReviewingMatchedEntities(false); }}
+                color="primary"
+                variant="outlined"
+              >
+                Cancel
+              </Button>
+              <Button onClick={handleSaveMatchedEntitiesSelection} color="primary" variant="contained">
+                Save & Reload
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button onClick={() => setConfirmUpdateMatchedEntitiesOpen(false)} color="primary">No</Button>
+              <Button
+                onClick={() => {
+                  setIsReviewingMatchedEntities(true);
+                  setMatchedEntitiesSelections(new Array(matchedEntities.length).fill(true));
+                  setAllMatchedEntitiesSelected(true);
+                }}
+                color="primary"
+                variant="contained"
+                autoFocus
+              >
+                Yes
+              </Button>
+            </>
+          )}
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

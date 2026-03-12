@@ -8,7 +8,7 @@
 .highlight__image__container::-webkit-scrollbar,
 .sidebar::-webkit-scrollbar {
     width: 10px;
-    height: 10px;
+    height: 6px;
 }
 
 .highlight__image__container::-webkit-scrollbar-thumb,
@@ -57,14 +57,14 @@
 }
 
 .sidebar__highlight {
-    padding: 0.5rem 1rem 0.5rem 1rem;
+    padding: 0.6rem 0.9rem 0.35rem 0.9rem;
     cursor: pointer;
     transition: background 140ms ease-in;
     border-bottom: 1px solid #e1e1e1;
-    margin: 0.7rem;
-    border-radius: 4.5px;
-    box-shadow: 0 1px 8px #6d758d61;
-    margin-bottom: 1.2rem;
+    margin: 0.6rem;
+    border-radius: 6px;
+    box-shadow: 0 1px 6px #6d758d45;
+    margin-bottom: 0.9rem;
 }
 
 .sidebar__highlight:hover {

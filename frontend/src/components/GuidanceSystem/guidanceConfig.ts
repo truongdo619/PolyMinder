@@ -47,7 +47,7 @@ export const WORKFLOW_STEPS: WorkflowStep[] = [
   },
   {
     id: 'run-llm',
-    label: 'Run LLM Extraction',
+    label: 'Run LLM Extraction (optional)',
     description: 'Use LLM mode to extract additional entities from paragraphs.',
     optional: true,
     isComplete: (s) => s.hasLLMOutput,

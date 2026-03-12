@@ -333,7 +333,7 @@ const ResultComponent = () => {
       if (draggingRef.current === 'sidebar') {
         // Handle 1 (PDF|Sidebar): drag right → sidebar smaller, PDF bigger
         const newW = dragStartValRef.current - dx;
-        setSidebarWidthPx(Math.max(160, Math.min(500, newW)));
+        setSidebarWidthPx(Math.max(160, Math.min(700, newW)));
       } else if (draggingRef.current === 'settings') {
         // Handle 2 (Sidebar|Settings): drag right → settings smaller, PDF bigger
         const newW = dragStartValRef.current - dx;
