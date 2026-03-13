@@ -7,6 +7,7 @@ export default defineConfig({
     target: "esnext",
     outDir: "dist",
   },
+  assetsInclude: ["**/*.PNG", "**/*.JPG", "**/*.JPEG"],
   plugins: [reactRefresh()],
   server: {
     host: "0.0.0.0",

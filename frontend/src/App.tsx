@@ -64,7 +64,7 @@ const App = () => {
             />
 
             {/* Redirect /docs routes */}
-            <Route path="/docs" element={<Navigate to="/docs/v3.1/getting-started/overview" replace />} />
+            <Route path="/docs" element={<Navigate to="/docs/v3.3/getting-started/overview" replace />} />
             <Route path="/docs/:version" element={<Navigate to="getting-started/overview" replace />} />
             <Route path="/docs/:version/:section" element={<Navigate to="overview" replace />} />
             <Route path="/docs/:version/:section/:page" element={<DocsPage />} />

@@ -137,7 +137,9 @@ Current `EditedEntityComponent` is imprecise. Replace with:
 
 ## 4. Implementation Plan
 
-### Phase 1 — Fix Critical Bugs (no UI change, ~1 day)
+> **Status:** All phases completed ✅ (2026-03-02)
+
+### Phase 1 — Fix Critical Bugs ✅ DONE
 
 **P1.1 — Read relation types dynamically from settings**
 
@@ -174,7 +176,7 @@ const validTargets = highlights.filter(h =>
 
 ---
 
-### Phase 2 — Entity Type Panel (Chip Grid) (~2 days)
+### Phase 2 — Entity Type Panel (Chip Grid) ✅ DONE
 
 Replace the dropdown in the Entity tab with a chip grid:
 
@@ -200,7 +202,7 @@ interface EntityTypeChipGridProps {
 
 ---
 
-### Phase 3 — Inline Edit Panel (replace modal dialog) (~3 days)
+### Phase 3 — Inline Edit Panel (replace modal dialog) ✅ DONE
 
 Replace the `Dialog` with an **inline slide-in panel** rendered inside the Sidebar:
 
@@ -243,7 +245,7 @@ interface EntityEditPanelProps {
 
 ---
 
-### Phase 4 — Relation Visual Cards (~1 day)
+### Phase 4 — Relation Visual Cards ✅ DONE
 
 **New component: `RelationCard.tsx`**
 
@@ -273,7 +275,7 @@ interface RelationCardProps {
 
 ---
 
-### Phase 5 — Span Adjustment UX (~1 day)
+### Phase 5 — Span Adjustment UX ✅ DONE
 
 **New component: `SpanAdjustEditor.tsx`** (replaces `EditedEntityComponent`)
 
@@ -401,13 +403,13 @@ export const getValidTargetsForRelation = (
 
 ## 9. Phase Timeline
 
-| Phase | Work | Estimated effort |
+| Phase | Work | Status |
 |-------|------|:-:|
-| P1 — Fix critical bugs (dynamic relation types + constraint validation) | Sidebar.tsx | Small |
-| P2 — EntityTypeChipGrid | New component + Sidebar integration | Small |
-| P3 — EntityEditPanel (inline, no modal) | New component + Sidebar refactor | Large |
-| P4 — RelationCard + AddRelationRow | Two new components | Medium |
-| P5 — SpanAdjustEditor | New component | Small |
+| P1 — Fix critical bugs (dynamic relation types + constraint validation) | Sidebar.tsx | ✅ Done |
+| P2 — EntityTypeChipGrid | New component + Sidebar integration | ✅ Done |
+| P3 — EntityEditPanel (inline, no modal) | New component + Sidebar refactor | ✅ Done |
+| P4 — RelationCard + AddRelationRow | Two new components | ✅ Done |
+| P5 — SpanAdjustEditor | New component | ✅ Done |
 
 Recommended order: P1 → P2 → P4 → P3 → P5 (P3 requires P2 and P4 to be done first).
 

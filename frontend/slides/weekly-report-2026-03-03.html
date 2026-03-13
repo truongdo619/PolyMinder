@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PolyMinder v3.3 — Weekly Report (March 2026)</title>
+<style>
+  :root {
+    --blue:    #1976d2;
+    --blue-lt: #e3f0fc;
+    --green:   #2e7d32;
+    --green-lt:#e8f5e9;
+    --purple:  #6a1b9a;
+    --grey:    #546e7a;
+    --bg:      #fafbfc;
+    --white:   #ffffff;
+    --text:    #212121;
+    --border:  #e0e0e0;
+    --accent:  #f57c00;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #1a1a2e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: var(--text);
+  }
+
+  /* ── Deck shell ── */
+  .deck {
+    position: relative;
+    width: 960px;
+    height: 540px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 24px 64px rgba(0,0,0,.55);
+  }
+
+  /* ── Slides ── */
+  .slide {
+    position: absolute;
+    inset: 0;
+    padding: 48px 56px;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s ease;
+  }
+  .slide.active { opacity: 1; pointer-events: auto; }
+
+  /* ── Slide variants ── */
+  .slide.title-slide {
+    background: linear-gradient(135deg, #0d47a1 0%, #1976d2 50%, #1565c0 100%);
+    color: #fff;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .slide.section-slide {
+    background: linear-gradient(135deg, var(--blue) 0%, #42a5f5 100%);
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* ── Typography ── */
+  .kicker {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    opacity: .7;
+    margin-bottom: 12px;
+  }
+  h1 { font-size: 40px; font-weight: 800; line-height: 1.15; }
+  h2 { font-size: 28px; font-weight: 700; line-height: 1.2; }
+  h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--blue); }
+  .subtitle { font-size: 17px; opacity: .85; margin-top: 14px; line-height: 1.5; }
+  .meta { font-size: 13px; opacity: .65; margin-top: 24px; }
+  p, li { font-size: 15px; line-height: 1.6; }
+
+  /* ── Slide header bar ── */
+  .slide-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .slide-header h2 { color: var(--blue); }
+  .slide-header .accent-bar {
+    height: 4px;
+    flex: 1;
+    background: var(--blue-lt);
+    border-radius: 2px;
+  }
+
+  /* ── Layout helpers ── */
+  .cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .cols-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+  .cols-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .card.blue  { border-left: 4px solid var(--blue);   background: var(--blue-lt); }
+  .card.green { border-left: 4px solid var(--green);  background: var(--green-lt); }
+  .card.orange{ border-left: 4px solid var(--accent); background: #fff3e0; }
+  .card.purple{ border-left: 4px solid var(--purple); background: #f3e5f5; }
+
+  /* ── Tag pills ── */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .tag.new    { background: #e8f5e9; color: var(--green); }
+  .tag.fix    { background: #fff3e0; color: var(--accent); }
+  .tag.update { background: var(--blue-lt); color: var(--blue); }
+
+  /* ── Table ── */
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th { background: var(--blue); color: #fff; padding: 8px 12px; text-align: left; font-weight: 600; }
+  td { padding: 7px 12px; border-bottom: 1px solid var(--border); }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #f5f7fa; }
+
+  /* ── List styles ── */
+  ul { padding-left: 18px; }
+  li { margin-bottom: 6px; }
+  li::marker { color: var(--blue); }
+
+  /* ── Check list ── */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 7px; font-size: 14px; }
+  .checklist li::before { content: "\2713"; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── Badge ── */
+  .badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--blue); color: #fff;
+    border-radius: 6px; padding: 3px 10px;
+    font-size: 12px; font-weight: 700;
+  }
+  .badge.green { background: var(--green); }
+  .badge.orange { background: var(--accent); }
+
+  /* ── Navigation ── */
+  .nav {
+    display: flex; align-items: center; gap: 14px;
+    margin-top: 18px;
+    color: #aaa;
+    font-size: 14px;
+  }
+  .nav button {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.25);
+    color: #fff;
+    border-radius: 6px;
+    width: 36px; height: 36px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+  }
+  .nav button:hover { background: rgba(255,255,255,.22); }
+  .nav button:disabled { opacity: .3; cursor: default; }
+  #slide-counter { color: rgba(255,255,255,.7); font-size: 13px; min-width: 60px; text-align: center; }
+
+  /* ── Progress bar ── */
+  .progress-bar {
+    width: 960px;
+    height: 3px;
+    background: rgba(255,255,255,.15);
+    border-radius: 0 0 2px 2px;
+    overflow: hidden;
+    margin-top: 2px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #42a5f5, #26c6da);
+    transition: width .4s ease;
+    border-radius: 2px;
+  }
+
+  /* ── Section number ── */
+  .section-num {
+    font-size: 80px;
+    font-weight: 900;
+    opacity: .15;
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    line-height: 1;
+  }
+
+  /* ── Divider ── */
+  hr { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+  /* ── Stat boxes ── */
+  .stat { text-align: center; }
+  .stat-num { font-size: 40px; font-weight: 900; color: var(--blue); line-height: 1; }
+  .stat-label { font-size: 12px; color: #888; margin-top: 4px; text-transform: uppercase; letter-spacing: .06em; }
+
+  /* ── Highlight box ── */
+  .highlight-box {
+    background: linear-gradient(135deg, var(--blue-lt), #f0f8ff);
+    border: 1px solid #90caf9;
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── Section icon ── */
+  .section-icon { font-size: 56px; margin-bottom: 16px; }
+
+  /* ── Footer strip ── */
+  .slide-footer {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue), #42a5f5, #26c6da);
+  }
+
+  /* ── Before / After comparison ── */
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    align-items: center;
+  }
+  .compare-arrow {
+    font-size: 24px;
+    color: var(--green);
+    font-weight: 900;
+  }
+
+  /* ── ASCII mockup box ── */
+  .mockup {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-family: 'Cascadia Code', 'Fira Code', monospace;
+    font-size: 12px;
+    line-height: 1.55;
+    white-space: pre;
+    overflow: auto;
+  }
+  .mockup .hl { color: #f9e2af; }
+  .mockup .gr { color: #a6e3a1; }
+  .mockup .bl { color: #89b4fa; }
+  .mockup .pk { color: #f38ba8; }
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 1 — Title
+  ═══════════════════════════════════════════════ -->
+  <div class="slide title-slide active">
+    <div class="kicker">Weekly Progress Report &middot; PolyMinder v3.3</div>
+    <h1>Entity Editing UX Overhaul<br>&amp; Responsive Improvements</h1>
+    <p class="subtitle">
+      Inline editing panel, live BRAT preview, optimistic saves,<br>
+      constraint-aware relations, responsive layout fixes, and BRAT rendering reliability.
+    </p>
+    <p class="meta">Truong Dinh Do &middot; RIKEN / JAIST &middot; March 2026</p>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 2 — Agenda
+  ═══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Agenda</h2>
+      <div class="accent-bar"></div>
+    </div>
+    <div class="cols-2" style="gap:16px; margin-top:8px;">
+      <div>
+        <div class="card blue" style="margin-bottom:12px;">
+          <h3 style="margin-bottom:6px;">Problem</h3>
+          <p>Entity editing required a full-screen modal dialog with 3 tabs, hard-coded relation types, and a page reload on every save. Annotators worked blind with no live visual feedback.</p>
+        </div>
+        <div class="card green">
+          <h3 style="margin-bottom:6px;">Solution</h3>
+          <p>Replaced with a fast inline panel, live BRAT visualization, optimistic saves, and schema-driven constraint validation.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 14px;background:#f5f5f5;border-radius:8px;">
+          <span style="font-weight:700;color:var(--blue);">1</span> <span>Inline EntityEditPanel (replaces Dialog)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 14px;background:#f5f5f5;border-radius:8px;">
+          <span style="font-weight:700;color:var(--blue);">2</span> <span>Live BRAT Preview (paragraph context)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 14px;background:#f5f5f5;border-radius:8px;">
+          <span style="font-weight:700;color:var(--blue);">3</span> <span>Settings-driven Relations &amp; Constraints</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 14px;background:#f5f5f5;border-radius:8px;">
+          <span style="font-weight:700;color:var(--blue);">4</span> <span>Optimistic Saves (no page reload)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 14px;background:#f5f5f5;border-radius:8px;">
+          <span style="font-weight:700;color:var(--blue);">5</span> <span>Responsive Layout &amp; Overflow Fixes</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 14px;background:#f5f5f5;border-radius:8px;">
+          <span style="font-weight:700;color:var(--blue);">6</span> <span>BRAT Rendering Reliability</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 14px;background:#f5f5f5;border-radius:8px;">
+          <span style="font-weight:700;color:var(--blue);">7</span> <span>Bug Fixes &amp; UI Polish</span>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 3 — Section: Before / After
+  ═══════════════════════════════════════════════ -->
+  <div class="slide section-slide">
+    <div class="section-num">1</div>
+    <div class="section-icon">&#9998;</div>
+    <h2>Before vs After</h2>
+    <p style="opacity:.85;margin-top:10px;">From modal dialog to inline panel &mdash; fewer clicks, no context switch</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 4 — UX Comparison
+  ═══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Editing UX: Before vs After</h2>
+      <div class="accent-bar"></div>
+    </div>
+    <table>
+      <tr>
+        <th>Action</th>
+        <th style="text-align:center;">Before (clicks)</th>
+        <th style="text-align:center;">After (clicks)</th>
+        <th>How</th>
+      </tr>
+      <tr>
+        <td><strong>Change entity type</strong></td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;color:var(--green);font-weight:700;">1</td>
+        <td>Colored chip grid &mdash; single click</td>
+      </tr>
+      <tr>
+        <td><strong>Add a relation</strong></td>
+        <td style="text-align:center;">7+</td>
+        <td style="text-align:center;color:var(--green);font-weight:700;">3</td>
+        <td>Constraint-filtered dropdowns inline</td>
+      </tr>
+      <tr>
+        <td><strong>Edit relation type</strong></td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;color:var(--green);font-weight:700;">2</td>
+        <td>Click pill &rarr; pick type from dropdown</td>
+      </tr>
+      <tr>
+        <td><strong>Delete a relation</strong></td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;color:var(--green);font-weight:700;">1</td>
+        <td>Single trash icon click</td>
+      </tr>
+      <tr>
+        <td><strong>Delete an entity</strong></td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;color:var(--green);font-weight:700;">2</td>
+        <td>Delete &rarr; confirm inline</td>
+      </tr>
+      <tr>
+        <td><strong>See visual result</strong></td>
+        <td style="text-align:center;">Save + reload</td>
+        <td style="text-align:center;color:var(--green);font-weight:700;">Instant</td>
+        <td>Live BRAT preview updates in real time</td>
+      </tr>
+    </table>
+    <div class="highlight-box" style="margin-top:18px;">
+      <strong>Key insight:</strong> The old dialog blocked the PDF context and required a full page reload after every save. The new panel stays inside the sidebar with optimistic saves and live visual feedback.
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 5 — Section: Inline Panel
+  ═══════════════════════════════════════════════ -->
+  <div class="slide section-slide">
+    <div class="section-num">2</div>
+    <div class="section-icon">&#128736;</div>
+    <h2>Inline EntityEditPanel</h2>
+    <p style="opacity:.85;margin-top:10px;">7 new components replacing the monolithic Dialog</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 6 — New Components
+  ═══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>New Components Created</h2>
+      <div class="accent-bar"></div>
+      <span class="tag new">New</span>
+    </div>
+    <div class="cols-2" style="gap:16px;">
+      <div>
+        <table>
+          <tr><th>Component</th><th>Purpose</th></tr>
+          <tr><td><code>EntityEditPanel</code></td><td>Main inline panel (header, body, footer)</td></tr>
+          <tr><td><code>EntityTypeChipGrid</code></td><td>Colored chip grid for 1-click type selection</td></tr>
+          <tr><td><code>RelationCard</code></td><td>Relation display with inline type edit</td></tr>
+          <tr><td><code>AddRelationRow</code></td><td>Constraint-aware add-relation form</td></tr>
+          <tr><td><code>SpanAdjustEditor</code></td><td>Collapsible span adjustment with preview</td></tr>
+          <tr><td><code>ParagraphBratPreview</code></td><td>Live BRAT visualization preview</td></tr>
+        </table>
+        <div style="margin-top:12px;">
+          <table>
+            <tr><th>Utility</th><th>Purpose</th></tr>
+            <tr><td><code>settingsHelpers.ts</code></td><td>Types, constraint helpers, contrast colors</td></tr>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Panel Layout</h3>
+        <div class="mockup" style="font-size:11px;"><span class="hl">POLYMER_FAMILY</span>  "Sulfonated poly..."   <span class="pk">X</span>
+&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+<span class="bl">&#9660; PARAGRAPH CONTEXT</span>     [Related]
+  &#9484; BRAT graph (live updating) &#9488;
+  &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;
+  &#9589;&#9589;&#9589; drag to resize
+&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+<span class="bl">ENTITY TYPE</span>
+  <span class="gr">[VALUE]</span> <span class="hl">[&#10003; POLYMER]</span> [PROP_NAME] ...
+&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+<span class="bl">RELATIONS (1)</span>                <span class="gr">+</span>
+  POLYMER &#8211;<span class="pk">has_property</span>&#8594; PROP_NAME
+&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+  [DELETE]          [CANCEL] <span class="gr">[SAVE]</span></div>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 7 — Section: BRAT Preview
+  ═══════════════════════════════════════════════ -->
+  <div class="slide section-slide">
+    <div class="section-num">3</div>
+    <div class="section-icon">&#128065;</div>
+    <h2>Live BRAT Preview</h2>
+    <p style="opacity:.85;margin-top:10px;">See how edits look before saving &mdash; no more blind editing</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 8 — BRAT Preview Details
+  ═══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>ParagraphBratPreview</h2>
+      <div class="accent-bar"></div>
+      <span class="tag new">New</span>
+    </div>
+    <div class="cols-2" style="gap:20px;">
+      <div>
+        <h3 style="margin-bottom:8px;">Live Update Mechanics</h3>
+        <table>
+          <tr><th>User Action</th><th>BRAT Response</th></tr>
+          <tr><td>Click entity type chip</td><td>Entity colour changes instantly</td></tr>
+          <tr><td>Add/delete relation</td><td>Relation arrow appears/disappears</td></tr>
+          <tr><td>Change relation type</td><td>Arrow label updates (new in this fix)</td></tr>
+          <tr><td>Adjust span numbers</td><td>Entity extent updates (300ms debounce)</td></tr>
+          <tr><td>Type user note</td><td>No change (memoized, no spurious re-render)</td></tr>
+        </table>
+        <div class="highlight-box" style="margin-top:14px;padding:12px 16px;">
+          <strong>How it works:</strong> Each change updates a <code>previewKey</code> string. When the key changes, React destroys and recreates <code>BratEmbeddingDefault</code>, which calls <code>window.Util.embed()</code> fresh with the modified entity data.
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Features</h3>
+        <ul class="checklist">
+          <li><strong>Show All / Related Only</strong> toggle &mdash; filter to just the edited entity and its relation partners</li>
+          <li><strong>Drag-to-resize</strong> handle (80px&ndash;600px) &mdash; expand for long paragraphs, shrink for compact view</li>
+          <li><strong>Collapsible accordion</strong> &mdash; fully hide the preview when not needed</li>
+          <li><strong>ResizeObserver</strong> &mdash; remounts BRAT when sidebar width changes, preventing blank previews</li>
+          <li><strong>Memoized docData</strong> &mdash; prevents spurious embed() calls on unrelated parent re-renders</li>
+          <li><strong>Full previewKey</strong> &mdash; captures relation type+target, not just count</li>
+          <li><strong>No extra API calls</strong> &mdash; overrides paragraph data locally in memory</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 9 — Section: Settings-driven Relations
+  ═══════════════════════════════════════════════ -->
+  <div class="slide section-slide">
+    <div class="section-num">4</div>
+    <div class="section-icon">&#128279;</div>
+    <h2>Settings-Driven Relations</h2>
+    <p style="opacity:.85;margin-top:10px;">Constraint-aware validation powered by <code>settings.json</code></p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 10 — Relations Detail
+  ═══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Constraint-Aware Relations</h2>
+      <div class="accent-bar"></div>
+      <span class="tag fix">Fixed</span>
+    </div>
+    <div class="cols-2" style="gap:20px;">
+      <div>
+        <h3 style="color:var(--accent);">Before (hard-coded)</h3>
+        <div class="card orange" style="padding:14px 16px;margin-bottom:12px;">
+          <ul style="font-size:13px;">
+            <li>6 relation types hard-coded as <code>&lt;MenuItem&gt;</code> strings in <code>Sidebar.tsx:1031&ndash;1038</code></li>
+            <li>No validation &mdash; user could create invalid Arg1/Arg2 type combinations</li>
+            <li>Out of sync with <code>settings.json</code> schema</li>
+            <li>Adding a new relation type required code change</li>
+          </ul>
+        </div>
+        <h3 style="color:var(--green);">After (settings-driven)</h3>
+        <div class="card green" style="padding:14px 16px;">
+          <ul style="font-size:13px;">
+            <li>Reads <code>settings.relation_types</code> dynamically</li>
+            <li>Filters valid relation types per source entity type</li>
+            <li>Filters valid target entities per relation type</li>
+            <li>Schema change = config change only, no code edits</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:10px;">Helper Functions</h3>
+        <table>
+          <tr><th>Function</th><th>Role</th></tr>
+          <tr><td><code>getRelationTypesForSource()</code></td><td>Given a source entity type, returns only relation types whose Arg1 targets include that type</td></tr>
+          <tr><td><code>getValidTargetTypesForRelation()</code></td><td>Given a relation type, returns valid Arg2 entity types</td></tr>
+          <tr><td><code>getContrastColor()</code></td><td>Computes black/white text color from a hex background</td></tr>
+          <tr><td><code>toRelations()</code></td><td>Safe cast from legacy array to typed <code>Relation[]</code></td></tr>
+        </table>
+        <div class="highlight-box" style="margin-top:14px;padding:12px 16px;">
+          <strong>Example:</strong> If the source entity is <code>POLYMER</code>, only <code>has_property</code>, <code>has_value</code>, <code>abbreviation_of</code> etc. appear in the relation dropdown. Target entities are filtered to only valid Arg2 types.
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 11 — Optimistic Saves
+  ═══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Optimistic Saves</h2>
+      <div class="accent-bar"></div>
+      <span class="tag new">New</span>
+    </div>
+    <div class="cols-2" style="gap:20px;">
+      <div>
+        <h3 style="color:var(--accent);margin-bottom:8px;">Before</h3>
+        <div class="card orange" style="padding:14px 16px;margin-bottom:16px;">
+          <p style="font-size:14px;">Every entity or relation save called <code>navigate('/result')</code>, triggering a <strong>full page reload</strong>. The PDF re-rendered, scroll position was lost, and the user had to find their entity again.</p>
+        </div>
+        <h3 style="color:var(--green);margin-bottom:8px;">After</h3>
+        <div class="card green" style="padding:14px 16px;">
+          <p style="font-size:14px;">Saves are <strong>optimistic</strong>: local state updates instantly, the panel closes, and the API call runs in the background. On failure, changes revert and a snackbar notification appears.</p>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:10px;">Save Flow</h3>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 14px;background:#e8f5e9;border-radius:8px;border-left:4px solid var(--green);font-size:13px;">
+            <strong>1.</strong> User clicks Save
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 14px;background:#e8f5e9;border-radius:8px;border-left:4px solid var(--green);font-size:13px;">
+            <strong>2.</strong> Local highlights[] updated immediately
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 14px;background:#e8f5e9;border-radius:8px;border-left:4px solid var(--green);font-size:13px;">
+            <strong>3.</strong> Edit panel closes, entity list shows updated data
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 14px;background:#e3f0fc;border-radius:8px;border-left:4px solid var(--blue);font-size:13px;">
+            <strong>4.</strong> API calls fire in background (entity + relations)
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 14px;background:#e3f0fc;border-radius:8px;border-left:4px solid var(--blue);font-size:13px;">
+            <strong>5.</strong> Server response syncs bratOutput, updateId, etc.
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 14px;background:#fff3e0;border-radius:8px;border-left:4px solid var(--accent);font-size:13px;">
+            <strong>6.</strong> On error: revert to originalHighlights + show snackbar
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 12 — Section: Responsive Layout
+  ═══════════════════════════════════════════════ -->
+  <div class="slide section-slide">
+    <div class="section-num">5</div>
+    <div class="section-icon">&#128208;</div>
+    <h2>Responsive Layout &amp; Overflow Fixes</h2>
+    <p style="opacity:.85;margin-top:10px;">Sidebar resize, scroll management, and adaptive BRAT rendering</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 13 — Responsive Details
+  ═══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Responsive Layout &amp; Overflow Fixes</h2>
+      <div class="accent-bar"></div>
+      <span class="tag fix">Fixed</span>
+    </div>
+    <div class="cols-2" style="gap:20px;">
+      <div>
+        <h3 style="margin-bottom:8px;">Sidebar Resize Handling</h3>
+        <div class="card blue" style="padding:14px 16px;margin-bottom:14px;">
+          <ul style="font-size:13px;">
+            <li>Sidebar max width increased from <strong>500px &rarr; 700px</strong> for wider BRAT previews</li>
+            <li>ResizeObserver tracks container width with <strong>&gt;10px change threshold</strong></li>
+            <li>Debounced 300ms to prevent rapid BRAT remounts during drag</li>
+            <li>First measurement recorded silently (no spurious initial remount)</li>
+          </ul>
+        </div>
+        <h3 style="margin-bottom:8px;">Overflow Management</h3>
+        <div class="card green" style="padding:14px 16px;">
+          <ul style="font-size:13px;">
+            <li>Explicit <code>overflowX: hidden</code> on EntityEditPanel scrollable body</li>
+            <li>Sidebar overflow toggles to <code>hidden</code> when edit panel is visible (prevents double scrollbar)</li>
+            <li>CSS fix: <code>overflow-y: auto</code> without <code>overflow-x</code> promotes it to <code>auto</code> per spec</li>
+            <li>Scrollbar width reduced from 10px to 6px for less visual noise</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Drag-to-Resize BRAT Preview</h3>
+        <div class="card purple" style="padding:14px 16px;margin-bottom:14px;">
+          <ul style="font-size:13px;">
+            <li>Mouse drag handle at bottom of BRAT preview panel</li>
+            <li>Height range: <strong>80px</strong> (min) to <strong>600px</strong> (max), default 180px</li>
+            <li>Visual grip indicator with hover/active state transitions</li>
+            <li>Text selection disabled during drag to prevent interference</li>
+          </ul>
+        </div>
+        <h3 style="margin-bottom:8px;">CSS Responsive Breakpoints</h3>
+        <table>
+          <tr><th>Breakpoint</th><th>Changes</th></tr>
+          <tr><td>&le; 1200px</td><td>Smaller entity badges (12px), tighter highlight padding</td></tr>
+          <tr><td>&le; 900px</td><td>Further reduced padding and margins for compact view</td></tr>
+          <tr><td>Any width</td><td>BRAT SVG re-renders on sidebar drag via ResizeObserver</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 14 — Section: BRAT Rendering Reliability
+  ═══════════════════════════════════════════════ -->
+  <div class="slide section-slide">
+    <div class="section-num">6</div>
+    <div class="section-icon">&#9881;</div>
+    <h2>BRAT Rendering Reliability</h2>
+    <p style="opacity:.85;margin-top:10px;">Preventing content disappearance during editing, resizing, and relation changes</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 15 — BRAT Reliability Details
+  ═══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>BRAT Rendering Reliability Fixes</h2>
+      <div class="accent-bar"></div>
+      <span class="tag fix">Fixed</span>
+    </div>
+    <div class="cols-2" style="gap:20px;">
+      <div>
+        <h3 style="color:var(--accent);margin-bottom:8px;">Bug 1: Incomplete previewKey</h3>
+        <div class="card orange" style="padding:14px 16px;margin-bottom:14px;">
+          <p style="font-size:13px;"><strong>Problem:</strong> <code>previewKey</code> only included <code>currentRelations.length</code>. Changing a relation&rsquo;s type or target (without changing count) did not trigger BRAT remount.</p>
+          <div style="margin-top:8px;padding:8px 12px;background:#e8f5e9;border-radius:6px;border-left:3px solid var(--green);font-size:12px;">
+            <strong>Fix:</strong> <code>previewKey</code> now uses <code>relations.map(r&nbsp;=&gt;&nbsp;type:arg_id).join(',')</code> &mdash; any change to type or target produces a new key.
+          </div>
+        </div>
+        <h3 style="color:var(--accent);margin-bottom:8px;">Bug 2: New docData reference on every render</h3>
+        <div class="card orange" style="padding:14px 16px;">
+          <p style="font-size:13px;"><strong>Problem:</strong> <code>docData</code> was constructed inline (new object every render). <code>BratEmbeddingDefault</code>&rsquo;s <code>useEffect([docData])</code> compares by reference, so it fired <code>window.Util.embed()</code> on EVERY parent re-render (typing notes, toggling UI, saving). This caused BRAT to flicker or fail silently.</p>
+          <div style="margin-top:8px;padding:8px 12px;background:#e8f5e9;border-radius:6px;border-left:3px solid var(--green);font-size:12px;">
+            <strong>Fix:</strong> Wrapped all computation in <code>useMemo</code> keyed on <code>previewKey</code> + <code>paragraphData</code>. Reference only changes when actual content changes.
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:10px;">Other Rendering Fixes</h3>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="card" style="padding:10px 14px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-weight:700;color:var(--accent);font-size:13px;">BRAT disappears on sidebar resize</span>
+              <span class="badge green" style="font-size:10px;">Fixed</span>
+            </div>
+            <p style="font-size:12px;margin-top:4px;color:var(--green);">&check; ResizeObserver with debounced remount, &gt;10px threshold</p>
+          </div>
+          <div class="card" style="padding:10px 14px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-weight:700;color:var(--accent);font-size:13px;">BRAT renders then vanishes instantly</span>
+              <span class="badge green" style="font-size:10px;">Fixed</span>
+            </div>
+            <p style="font-size:12px;margin-top:4px;color:var(--green);">&check; Skip first width measurement (0&rarr;actual was spurious remount)</p>
+          </div>
+          <div class="card" style="padding:10px 14px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-weight:700;color:var(--accent);font-size:13px;">Double scrollbar conflicts</span>
+              <span class="badge green" style="font-size:10px;">Fixed</span>
+            </div>
+            <p style="font-size:12px;margin-top:4px;color:var(--green);">&check; Sidebar overflow toggles to hidden when edit panel is open</p>
+          </div>
+          <div class="card" style="padding:10px 14px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-weight:700;color:var(--accent);font-size:13px;">Horizontal scrollbar from BRAT SVG</span>
+              <span class="badge green" style="font-size:10px;">Fixed</span>
+            </div>
+            <p style="font-size:12px;margin-top:4px;color:var(--green);">&check; Explicit overflowX: hidden on scrollable containers</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 16 — Section: Bug Fixes
+  ═══════════════════════════════════════════════ -->
+  <div class="slide section-slide">
+    <div class="section-num">7</div>
+    <div class="section-icon">&#128027;</div>
+    <h2>Bug Fixes &amp; Polish</h2>
+    <p style="opacity:.85;margin-top:10px;">8 issues discovered and resolved</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 13 — Bug Fixes Detail
+  ═══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Bugs Fixed</h2>
+      <div class="accent-bar"></div>
+      <span class="tag fix">Fixed</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="card orange" style="padding:10px 16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-weight:700;color:var(--accent);">Hard-coded relation types</span>
+          <span class="badge orange">Fixed</span>
+        </div>
+        <p style="font-size:12px;margin-top:4px;">6 relation <code>&lt;MenuItem&gt;</code> strings in Sidebar.tsx replaced with dynamic reads from <code>settings.relation_types</code></p>
+      </div>
+      <div class="card orange" style="padding:10px 16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-weight:700;color:var(--accent);">BRAT preview disappearing on sidebar resize</span>
+          <span class="badge orange">Fixed</span>
+        </div>
+        <p style="font-size:12px;margin-top:4px;">Added ResizeObserver with debounced remount. Only triggers when width changes &gt;10px (actual resize, not initial measurement).</p>
+      </div>
+      <div class="card orange" style="padding:10px 16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-weight:700;color:var(--accent);">BRAT renders then vanishes instantly</span>
+          <span class="badge orange">Fixed</span>
+        </div>
+        <p style="font-size:12px;margin-top:4px;">Initial <code>debouncedWidth</code> change (0 &rarr; actual) was causing a spurious remount. Fixed by skipping the first width measurement in the key.</p>
+      </div>
+      <div class="card orange" style="padding:10px 16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-weight:700;color:var(--accent);">Persistent bottom horizontal scrollbar</span>
+          <span class="badge orange">Fixed</span>
+        </div>
+        <p style="font-size:12px;margin-top:4px;">Added explicit <code>overflowX: hidden</code> on the scrollable body and sidebar. CSS spec: <code>overflow-y: auto</code> without <code>overflow-x</code> promotes it to <code>auto</code>.</p>
+      </div>
+      <div class="card orange" style="padding:10px 16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-weight:700;color:var(--accent);">Double scrollbar when edit panel open</span>
+          <span class="badge orange">Fixed</span>
+        </div>
+        <p style="font-size:12px;margin-top:4px;">Sidebar <code>overflow</code> now toggles to <code>hidden</code> when EntityEditPanel is visible, preventing parent + child scroll conflict.</p>
+      </div>
+      <div class="card orange" style="padding:10px 16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-weight:700;color:var(--accent);">Sidebar max width too narrow for BRAT</span>
+          <span class="badge orange">Fixed</span>
+        </div>
+        <p style="font-size:12px;margin-top:4px;">Increased sidebar maximum resizable width from 500px to 700px.</p>
+      </div>
+      <div class="card orange" style="padding:10px 16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-weight:700;color:var(--accent);">Incomplete previewKey for relations</span>
+          <span class="badge orange">Fixed</span>
+        </div>
+        <p style="font-size:12px;margin-top:4px;">Key now includes full relation type+target (<code>type:arg_id</code>), not just <code>currentRelations.length</code>.</p>
+      </div>
+      <div class="card orange" style="padding:10px 16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-weight:700;color:var(--accent);">Spurious BRAT re-renders on unrelated state changes</span>
+          <span class="badge orange">Fixed</span>
+        </div>
+        <p style="font-size:12px;margin-top:4px;">Memoized <code>docData</code> with <code>useMemo</code>; reference only changes when actual BRAT content changes.</p>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 14 — Summary Stats
+  ═══════════════════════════════════════════════ -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Summary</h2>
+      <div class="accent-bar"></div>
+    </div>
+
+    <div class="cols-3" style="margin-bottom:20px;gap:12px;">
+      <div class="stat card">
+        <div class="stat-num">7</div>
+        <div class="stat-label">New components<br>created</div>
+      </div>
+      <div class="stat card">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Bugs<br>fixed</div>
+      </div>
+      <div class="stat card">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Page reloads<br>on save</div>
+      </div>
+    </div>
+
+    <div class="cols-2" style="gap:14px;">
+      <div>
+        <h3 style="margin-bottom:8px;">New Files</h3>
+        <ul class="checklist">
+          <li><code>EntityEditPanel.tsx</code> &mdash; inline editing panel</li>
+          <li><code>EntityTypeChipGrid.tsx</code> &mdash; colored type chips</li>
+          <li><code>RelationCard.tsx</code> &mdash; relation display + edit</li>
+          <li><code>AddRelationRow.tsx</code> &mdash; constraint-aware add form</li>
+          <li><code>SpanAdjustEditor.tsx</code> &mdash; span adjustment</li>
+          <li><code>ParagraphBratPreview.tsx</code> &mdash; live BRAT preview</li>
+          <li><code>settingsHelpers.ts</code> &mdash; types and utilities</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Modified Files</h3>
+        <ul class="checklist">
+          <li><code>Sidebar.tsx</code> &mdash; replaced Dialog with inline panel, optimistic saves</li>
+          <li><code>ResultComponent.tsx</code> &mdash; sidebar max width 500&rarr;700px</li>
+          <li><code>Sidebar.css</code> &mdash; entity card styling, scroll fixes, responsive breakpoints</li>
+          <li><code>ParagraphBratPreview.tsx</code> &mdash; useMemo + full previewKey fix</li>
+        </ul>
+        <h3 style="margin-bottom:8px;margin-top:14px;">Key Principle</h3>
+        <div class="highlight-box" style="padding:12px 14px;font-size:13px;">
+          Zero changes to <code>BratEmbedding.tsx</code>, <code>BratEmbeddingDefault.tsx</code>, or <code>ResultComponent</code> layout. All new functionality is additive.
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SLIDE 15 — Thank you
+  ═══════════════════════════════════════════════ -->
+  <div class="slide title-slide">
+    <div class="kicker">PolyMinder v3.3 &middot; March 2026</div>
+    <h1>Thank you</h1>
+    <p class="subtitle">Questions welcome.</p>
+    <p class="meta" style="margin-top:32px;">
+      Truong Dinh Do<br>
+      RIKEN Center for Advanced Intelligence Project / JAIST<br>
+      truongdo@jaist.ac.jp
+    </p>
+    <div class="slide-footer"></div>
+  </div>
+
+</div><!-- /deck -->
+
+<!-- Progress bar -->
+<div class="progress-bar">
+  <div class="progress-fill" id="progress"></div>
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button id="prev" onclick="go(-1)">&#8592;</button>
+  <span id="slide-counter">1 / 19</span>
+  <button id="next" onclick="go(1)">&#8594;</button>
+  <span style="color:rgba(255,255,255,.4);font-size:12px;margin-left:8px;">&larr; &rarr; or click</span>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total  = slides.length;
+  let   cur    = 0;
+
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = Math.max(0, Math.min(total - 1, n));
+    slides[cur].classList.add('active');
+    document.getElementById('slide-counter').textContent = (cur + 1) + ' / ' + total;
+    document.getElementById('prev').disabled = cur === 0;
+    document.getElementById('next').disabled = cur === total - 1;
+    document.getElementById('progress').style.width = ((cur + 1) / total * 100) + '%';
+  }
+
+  function go(d) { show(cur + d); }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') go(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                      go(-1);
+    if (e.key === 'Home')  show(0);
+    if (e.key === 'End')   show(total - 1);
+  });
+
+  show(0);
+</script>
+</body>
+</html>

@@ -19,6 +19,10 @@ import LoadingOverlay from 'react-loading-overlay-ts';
 
 import getLPTheme from '../HomePage/getLPTheme';
 import AppAppBar from '../HomePage/components/AppAppBar';
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
 
 export default function ContactSupportPage() {
   const [mode, setMode] = useState<PaletteMode>('light');
@@ -110,8 +114,42 @@ export default function ContactSupportPage() {
               <Typography variant="h4" gutterBottom>
                 How can we help?
               </Typography>
+              <Typography variant="body1" sx={{ fontFamily: "'Inter', sans-serif", color: '#6b7280', mb: 4, textAlign: 'center' }}>
+                Have questions or need assistance? Send us a message and we'll get back to you shortly.
+              </Typography>
 
-              <Box component="form" onSubmit={handleSubmit}>
+              <Box 
+                component="form" 
+                onSubmit={handleSubmit}
+                sx={{
+                  backgroundColor: mode === 'light' ? '#ffffff' : '#111827',
+                  p: { xs: 3, sm: 5 },
+                  borderRadius: '16px',
+                  boxShadow: mode === 'light' 
+                    ? '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 24px 48px -12px rgba(0, 0, 0, 0.1)'
+                    : '0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 24px 48px -12px rgba(0, 0, 0, 0.8)',
+                  border: mode === 'light' ? '1px solid #f3f4f6' : '1px solid #1f2937',
+                  '& .MuiOutlinedInput-root': {
+                    fontFamily: "'Inter', sans-serif",
+                    borderRadius: '8px',
+                    backgroundColor: mode === 'light' ? '#f9fafb' : '#1f2937',
+                    '& fieldset': {
+                      borderColor: mode === 'light' ? '#e5e7eb' : '#374151',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: mode === 'light' ? '#d1d5db' : '#4b5563',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: mode === 'light' ? '#9ca3af' : '#6b7280',
+                      borderWidth: '1px',
+                    },
+                  },
+                  '& .MuiInputLabel-root': {
+                    fontFamily: "'Inter', sans-serif",
+                    color: mode === 'light' ? '#6b7280' : '#9ca3af',
+                  }
+                }}
+              >
                 <TextField
                   label="Your Name"
                   variant="outlined"
@@ -145,8 +183,28 @@ export default function ContactSupportPage() {
                   required
                 />
 
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-                  <Button type="submit" variant="contained">
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+                  <Button 
+                    type="submit" 
+                    variant="contained"
+                    fullWidth
+                    sx={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 600,
+                      py: 1.5,
+                      borderRadius: '8px',
+                      textTransform: 'none',
+                      fontSize: '1rem',
+                      backgroundColor: mode === 'light' ? '#111827' : '#f9fafb',
+                      color: mode === 'light' ? '#ffffff' : '#111827',
+                      boxShadow: 'none',
+                      transition: 'all 0.2s',
+                      '&:hover': {
+                        backgroundColor: mode === 'light' ? '#374151' : '#e5e7eb',
+                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                      }
+                    }}
+                  >
                     Send Message
                   </Button>
                 </Box>
