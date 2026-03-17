@@ -7,16 +7,20 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
+  DialogContentText,
   DialogActions,
-  Checkbox,
+  RadioGroup,
   FormControlLabel,
+  Radio,
   Button,
+  CircularProgress,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import "../style/Toolbar.css";
 import Tooltip from '@mui/material/Tooltip';
-import { set } from "date-fns";
 
 interface ToolbarProps {
   setPdfScaleValue: (value: number) => void;
@@ -36,8 +40,9 @@ const Toolbar = ({ setPdfScaleValue, currentPage, totalPages, setIsActive }: Too
 
   const [zoom, setZoom] = useState<number | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [runNERModel, setRunNERModel] = useState(true);
-  const [runREModel, setRunREModel] = useState(false); // Only one can be active at a time
+  const [extractMode, setExtractMode] = useState<'ner_re' | 're_only'>('ner_re');
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [errorSnack, setErrorSnack] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const zoomIn = () => {
@@ -73,90 +78,55 @@ const Toolbar = ({ setPdfScaleValue, currentPage, totalPages, setIsActive }: Too
   };
 
   const handleDialogClose = () => {
-    setIsDialogOpen(false);
+    if (!isProcessing) setIsDialogOpen(false);
   };
 
   const handleDialogSubmit = async () => {
+    setIsProcessing(true);
     setIsActive(true);
-    
-    let token = localStorage.getItem('accessToken');
-    // Logic to handle the selected models
-    if (runNERModel) {
-      try {
-        const response = await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/re-extract-all/${documentId}`, {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          },
-        });
-        setIsActive(false);
-        setBratOutput(response.data.brat_format_output);
-        setDocumentId(response.data.document_id);
-        setUpdateId(response.data.update_id);
-        setFileName(response.data.filename);
-        navigate('/result', {
-          state: {
-            highlights: response.data.pdf_format_output,
-            url: `${import.meta.env.VITE_PDF_BACKEND_URL}/statics/${response.data.filename}`
-          }
-        });
-      } catch (error: any) {
-        console.error('Error fetching document:', error);
-      }
-    } else if (runREModel) {
-      try {
-        const response = await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/re-extract-relations/${documentId}`, {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          },
-        });
-        setIsActive(false);
-        setBratOutput(response.data.brat_format_output);
-        setDocumentId(response.data.document_id);
-        setUpdateId(response.data.update_id);
-        setFileName(response.data.filename);
-        navigate('/result', {
-          state: {
-            highlights: response.data.pdf_format_output,
-            url: `${import.meta.env.VITE_PDF_BACKEND_URL}/statics/${response.data.filename}`
-          }
-        });
-      } catch (error: any) {
-        console.error('Error fetching document:', error);
-      }
-    }
-    setIsDialogOpen(false);
-  };
 
-  // Ensure that only one checkbox is selected at a time
-  const handleNERChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const isChecked = event.target.checked;
-    setRunNERModel(isChecked);
-    if (isChecked) {
-      setRunREModel(false); // Disable RE if NER & RE is selected
-    }
-  };
+    const token = localStorage.getItem('accessToken');
+    const endpoint = extractMode === 'ner_re'
+      ? `/re-extract-all/${documentId}`
+      : `/re-extract-relations/${documentId}`;
 
-  const handleREChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const isChecked = event.target.checked;
-    setRunREModel(isChecked);
-    if (isChecked) {
-      setRunNERModel(false); // Disable NER & RE if RE is selected
+    try {
+      const response = await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}${endpoint}`, {
+        headers: { 'Authorization': `Bearer ${token}` },
+      });
+      setBratOutput(response.data.brat_format_output);
+      setDocumentId(response.data.document_id);
+      setUpdateId(response.data.update_id);
+      setFileName(response.data.filename);
+      navigate('/result', {
+        state: {
+          highlights: response.data.pdf_format_output,
+          url: `${import.meta.env.VITE_PDF_BACKEND_URL}/statics/${response.data.filename}`
+        }
+      });
+    } catch (error: any) {
+      console.error('Error re-extracting:', error);
+      setErrorSnack(error?.response?.data?.detail || 'Re-extraction failed. Please try again.');
+    } finally {
+      setIsActive(false);
+      setIsProcessing(false);
+      setIsDialogOpen(false);
     }
   };
 
   return (
     <div className="Toolbar">
-        <Tooltip title="Click to back to the home page">
-          <IconButton onClick={goToHomePage} className="HomeButton">
-            <HomeIcon />
-          </IconButton>
-        </Tooltip>
+      <Tooltip title="Back to document list">
+        <IconButton onClick={goToHomePage} className="HomeButton">
+          <HomeIcon />
+        </IconButton>
+      </Tooltip>
 
       <div className="PageNumber">
         Page {currentPage} / {totalPages}
       </div>
       <div className="ZoomControls">
-        <Tooltip title="Click to re run the NER & RE models">
+        <Tooltip title="Re-extract entities and relations">
           <IconButton onClick={handleReloadClick} className="ReloadButton">
             <RefreshIcon />
           </IconButton>
@@ -171,34 +141,53 @@ const Toolbar = ({ setPdfScaleValue, currentPage, totalPages, setIsActive }: Too
       </div>
 
       <Dialog open={isDialogOpen} onClose={handleDialogClose}>
-        <DialogTitle>Reload Options</DialogTitle>
+        <DialogTitle>Re-extract Entities & Relations</DialogTitle>
         <DialogContent>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={runNERModel}
-                onChange={handleNERChange}
-              />
-            }
-            label="Run NER & RE Models"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={runREModel}
-                onChange={handleREChange}
-              />
-            }
-            label="Run RE Model"
-          />
+          <DialogContentText sx={{ mb: 2 }}>
+            Choose which models to run. This will overwrite current annotations.
+          </DialogContentText>
+          <RadioGroup
+            value={extractMode}
+            onChange={(e) => setExtractMode(e.target.value as 'ner_re' | 're_only')}
+          >
+            <FormControlLabel
+              value="ner_re"
+              control={<Radio />}
+              label="Re-extract entities and relations (NER + RE)"
+              disabled={isProcessing}
+            />
+            <FormControlLabel
+              value="re_only"
+              control={<Radio />}
+              label="Re-extract relations only (RE)"
+              disabled={isProcessing}
+            />
+          </RadioGroup>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDialogClose}>Cancel</Button>
-          <Button onClick={handleDialogSubmit} color="primary">
-            Submit
+          <Button onClick={handleDialogClose} disabled={isProcessing}>Cancel</Button>
+          <Button
+            onClick={handleDialogSubmit}
+            color="primary"
+            variant="contained"
+            disabled={isProcessing}
+            startIcon={isProcessing ? <CircularProgress size={16} color="inherit" /> : undefined}
+          >
+            {isProcessing ? 'Processing…' : 'Run'}
           </Button>
         </DialogActions>
       </Dialog>
+
+      <Snackbar
+        open={!!errorSnack}
+        autoHideDuration={6000}
+        onClose={() => setErrorSnack(null)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert severity="error" onClose={() => setErrorSnack(null)} variant="filled">
+          {errorSnack}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

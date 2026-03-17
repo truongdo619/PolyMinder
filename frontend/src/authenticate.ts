@@ -72,9 +72,9 @@ export const register = async (username: string, email: string, password: string
       console.error('Registration failed with status:', response);
       return { success: false, message: 'Registration failed. Please try again.' };
     }
-  } catch (error: any) {
-    // Assuming the error response contains an error message in response.data.message
-    const errorMessage = error.response?.data?.detail || 'An unexpected error occurred. Please try again.';
+  } catch (error) {
+    const axiosErr = error as { response?: { data?: { detail?: string } } };
+    const errorMessage = axiosErr.response?.data?.detail || 'An unexpected error occurred. Please try again.';
     console.error('Registration failed:', errorMessage);
     return { success: false, message: "Registration failed. " + errorMessage };
   }

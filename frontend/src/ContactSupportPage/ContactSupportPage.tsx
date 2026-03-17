@@ -17,7 +17,7 @@ import {
 import axios from 'axios';
 import LoadingOverlay from 'react-loading-overlay-ts';
 
-import getLPTheme from '../HomePage/getLPTheme';
+import getLPTheme from '../lib/getLPTheme';
 import AppAppBar from '../HomePage/components/AppAppBar';
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
@@ -26,7 +26,7 @@ import "@fontsource/inter/700.css";
 
 export default function ContactSupportPage() {
   const [mode, setMode] = useState<PaletteMode>('light');
-  const [showCustomTheme, setShowCustomTheme] = useState(true);
+  const [showCustomTheme, _setShowCustomTheme] = useState(true);
 
   const LPtheme = createTheme(getLPTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });

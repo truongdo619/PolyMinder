@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
  * @param {string} outlinedText – label in the outlined block
  * @param {string} entityType   – entity class, e.g. "INORGANIC", "PROP_NAME"…
  */
-const SplitButton = ({ filledText, outlinedText, entityType = '' }) => {
+const SplitButton = ({ filledText, outlinedText, entityType = '' }: { filledText: string; outlinedText: string; entityType?: string }) => {
   // Class for solid half:  "INORGANIC"
   const filledClass   = entityType;
 

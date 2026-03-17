@@ -31,12 +31,10 @@ import TimelineIcon from '@mui/icons-material/Timeline';
 import TableChartIcon from '@mui/icons-material/TableChart';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import SummerizeGraph from './SummerizeGraph'
-import ImageIcon from '@mui/icons-material/Image';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
 
 
 import CloseIcon from '@mui/icons-material/Close';
-import DownloadIcon from '@mui/icons-material/Download';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import CircularProgress from '@mui/material/CircularProgress';
 import { styled } from '@mui/material/styles';
@@ -120,7 +118,7 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
       throw new Error("GlobalContext must be used within a GlobalProvider");
     }
 
-    const { documentId, fileName, updateId, setDocumentId, setUpdateId, settings } = globalContext;
+    const { documentId, fileName, updateId, setUpdateId, settings } = globalContext;
 
     const guidance = useGuidanceContext();
 
@@ -311,7 +309,9 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
     function countOccurrences(arr: CommentedHighlight[]): Record<string, number> {
       return arr.reduce((acc: Record<string, number>, obj: CommentedHighlight) => {
         const comment = obj.comment;
-        acc[comment] = (acc[comment] || 0) + 1;
+        if (comment !== undefined) {
+          acc[comment] = (acc[comment] || 0) + 1;
+        }
         return acc;
       }, {});
     }
@@ -386,7 +386,7 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
           { headers: { Authorization: `Bearer ${token}` }, responseType: "blob" }
         );
 
-        triggerDownload(data, `${fileName.split(".")[0]}_highlighted.pdf`);
+        triggerDownload(data, `${(fileName ?? '').split(".")[0]}_highlighted.pdf`);
         guidance.completeStep('export');
       } catch (err) {
         console.error("PDF download failed:", err);
@@ -411,7 +411,7 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
           { headers: { Authorization: `Bearer ${token}` }, responseType: "blob" }
         );
 
-        triggerDownload(data, `${fileName.split(".")[0]}_annotations.json`);
+        triggerDownload(data, `${(fileName ?? '').split(".")[0]}_annotations.json`);
         guidance.completeStep('export');
       } catch (err) {
         console.error("JSON download failed:", err);
@@ -448,10 +448,10 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
 
       const entity_occurrences = countOccurrences(highlights);
       // Sort by count
-      const sorted_occurrences = Object.keys(entity_occurrences).sort((a, b) => entity_occurrences[b] - entity_occurrences[a]).reduce((acc, key) => {
+      const sorted_occurrences = Object.keys(entity_occurrences).sort((a, b) => entity_occurrences[b] - entity_occurrences[a]).reduce((acc: Record<string, number>, key) => {
         acc[key] = entity_occurrences[key];
         return acc;
-      }, {});
+      }, {} as Record<string, number>);
 
       
       // const handleListItemClick = (
@@ -506,7 +506,7 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
         
               checkedItems[1].forEach((subArray, relationIndex) => {
                 const relationType = relationTypes[relationIndex];
-                const selectedEntities = [];
+                const selectedEntities: string[] = [];
           
                 subArray.forEach((isChecked, entityIndex) => {
                   if (isChecked) {
@@ -527,7 +527,7 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
       
               checkedItems[0].forEach((subArray, entityIndex) => {
                 const entityType = entityTypes[entityIndex];
-                const selectedRelations = [];
+                const selectedRelations: string[] = [];
                 
                 subArray.forEach((isChecked, relationIndex) => {
                   if (isChecked) {
@@ -583,15 +583,15 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
       
           checkedItems[0].forEach((subArray, entityIndex) => {
             const entityType = entityTypes[entityIndex];
-            const selectedRelations = [];
-            
+            const selectedRelations: string[] = [];
+
             subArray.forEach((isChecked, relationIndex) => {
               if (isChecked) {
                 const relationType = relationTypes[relationIndex];
                 selectedRelations.push(relationType);
               }
             });
-      
+
             if (selectedRelations.length > 0 && selectedLabels.includes(entityType)) {
               selectedEntityRelationMap[entityType] = selectedRelations;
             }
@@ -603,15 +603,15 @@ import { GuidanceBanner, useGuidanceContext } from './GuidanceSystem';
       
           checkedItems[1].forEach((subArray, relationIndex) => {
             const relationType = relationTypes[relationIndex];
-            const selectedEntities = [];
-      
+            const selectedEntities: string[] = [];
+
             subArray.forEach((isChecked, entityIndex) => {
               if (isChecked) {
                 const entityType = entityTypes[entityIndex];
                 selectedEntities.push(entityType);
               }
             });
-      
+
             if (selectedEntities.length > 0 && selectedLabels.includes(relationType)) {
               selectedRelationEntityMap[relationType] = selectedEntities;
             }

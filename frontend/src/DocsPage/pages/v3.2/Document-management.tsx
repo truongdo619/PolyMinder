@@ -3,12 +3,8 @@ import { Box } from "@mui/material";
 import {
   DocHeader,
   DocText,
-  DocLink,
   DocList,
-  DocListItem,
-  DocInlineCode,
-  DocCodeBlock,
-  DocCallout
+  DocListItem
 } from "../../components/DocComponents";
 import img_documents_header_png from "../../photos/documents_header.png";
 import img_documents_page_png from "../../photos/documents_page.png";

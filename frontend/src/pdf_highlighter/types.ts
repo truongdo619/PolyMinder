@@ -176,8 +176,34 @@ export type PdfScaleValue =
   | number;
 
 
+export type EventArgument = [string, string, string, string];
+
+export interface EventInfo {
+  event_id: string;
+  trigger_id: string;
+  arguments?: EventArgument[];
+}
+
+export interface TableResult {
+  entities?: string[][];
+  relations?: string[][];
+  text?: string;
+}
+
 export interface CommentedHighlight extends Highlight {
   comment?: string;
-  relations?: Array<Object>;
+  relations?: Array<{ type: string; [key: string]: string }>;
+  edit_status?: string;
+  trigger?: string;
+  event_infor?: EventInfo;
+  table_id?: string;
+  table_caption?: string;
+  table_footnote?: string;
+  table_context?: string;
+  table_body?: string;
+  table_name?: string;
+  result?: TableResult[];
+  relationTypes?: string[];
+  page_number?: number;
 }
     

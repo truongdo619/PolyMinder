@@ -248,7 +248,7 @@ const Sidebar = ({ highlights, getHighlightById: _getHighlightById, setIsActive,
     setHighlights(prev =>
       prev.map(h =>
         h.id === selectedHighlight.id
-          ? { ...h, comment: data.entityType, user_comment: data.userComment, relations: data.relations as unknown as Array<Object> }
+          ? { ...h, comment: data.entityType, user_comment: data.userComment, relations: data.relations }
           : h
       )
     );
@@ -359,7 +359,7 @@ const Sidebar = ({ highlights, getHighlightById: _getHighlightById, setIsActive,
     if (highlightIndex !== -1) {
       setCurrentPage(Math.floor(highlightIndex / itemsPerPage) + 1);
     }
-    setTimeout(() => {
+    const timerId = setTimeout(() => {
       if (hash) {
         const highlightElement = document.getElementById(hash);
         if (highlightElement) {
@@ -367,6 +367,7 @@ const Sidebar = ({ highlights, getHighlightById: _getHighlightById, setIsActive,
         }
       }
     }, 100);
+    return () => clearTimeout(timerId);
   }, [document.location.hash]);
 
   const handleStarClick = (highlight: CommentedHighlight) => {
@@ -452,6 +453,17 @@ const Sidebar = ({ highlights, getHighlightById: _getHighlightById, setIsActive,
       )}
       {highlights.length > 5 && selectedMode === 'Entities' && guidance.shouldShow('confirm-entities-hint') && (
         <GuidanceBanner id="confirm-entities-hint" title="Confirm Correct Entities" description="Click the star icon to mark entities you have verified as correct." actionLabel="Got it" onDismiss={guidance.dismiss} visible={true} />
+      )}
+
+      {highlights.length === 0 && !guidance.shouldShow('entities-empty') && selectedMode === 'Entities' && (
+        <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', py: 3, px: 2 }}>
+          No entities yet. Select text in the PDF and click "Add highlight" to create one.
+        </Typography>
+      )}
+      {highlights.length === 0 && !guidance.shouldShow('relations-empty') && selectedMode === 'Relations' && (
+        <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', py: 3, px: 2 }}>
+          No relations found. Add entities first, then run the RE model from the toolbar.
+        </Typography>
       )}
 
       <ul className="sidebar__highlights" style={{ overflow: "auto", paddingTop: "6px" }}>
@@ -653,7 +665,8 @@ const Sidebar = ({ highlights, getHighlightById: _getHighlightById, setIsActive,
           </Box>
           <List>
             {paraHighlights.map((para, i) => {
-              const shortPreview = para.content.text.slice(0, 150) + (para.content.text.length > 150 ? "..." : "");
+              const paraText = para.content.text ?? '';
+              const shortPreview = paraText.slice(0, 150) + (paraText.length > 150 ? "..." : "");
               return (
                 <ListItem
                   key={i}
@@ -673,9 +686,9 @@ const Sidebar = ({ highlights, getHighlightById: _getHighlightById, setIsActive,
                     ":hover": { backgroundColor: "#ececec" },
                   }}
                 >
-                  <Tooltip title={para.content.text} arrow>
+                  <Tooltip title={paraText} arrow>
                     <Box sx={{ flexGrow: 1 }}>
-                      <Typography variant="subtitle2">Paragraph {para.para_id + 1} - {para.comment}</Typography>
+                      <Typography variant="subtitle2">Paragraph {(para.para_id ?? 0) + 1} - {para.comment}</Typography>
                       <Typography variant="body2" sx={{ color: "#555" }}>{shortPreview}</Typography>
                     </Box>
                   </Tooltip>

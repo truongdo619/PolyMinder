@@ -67,20 +67,20 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   const [settings, setSettings] = useState<AppSettings>(defaultSettings as AppSettings);
 
   useEffect(() => {
-    // Try fetching /settings.json at runtime to override (ignore if missing in dev)
+    const controller = new AbortController();
     const loadRuntimeSettings = async () => {
       try {
-        const res = await fetch('/settings.json', { cache: 'no-store' });
+        const res = await fetch('/settings.json', { cache: 'no-store', signal: controller.signal });
         if (res.ok) {
           const runtimeSettings = (await res.json()) as AppSettings;
-          // Merge runtime over defaults
           setSettings((prev) => ({ ...prev, ...runtimeSettings }));
         }
       } catch {
-        // No runtime settings available; keep defaults
+        // No runtime settings available or request aborted; keep defaults
       }
     };
     loadRuntimeSettings();
+    return () => controller.abort();
   }, []);
 
   // Utility to load a script once

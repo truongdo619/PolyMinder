@@ -3,12 +3,8 @@ import { Box } from "@mui/material";
 import {
   DocHeader,
   DocText,
-  DocLink,
   DocList,
-  DocListItem,
-  DocInlineCode,
-  DocCodeBlock,
-  DocCallout
+  DocListItem
 } from "../../components/DocComponents";
 
 export const toc = [
@@ -106,9 +102,6 @@ A drag-and-drop dialog opens listing all tables. Drag them to the correct sequen
  Use the Context field to see which paragraph directly precedes or follows the table   this often clarifies ambiguous column headers.
 `;
 
-const tableStyle: React.CSSProperties = { borderCollapse: "collapse", width: "100%", marginBottom: "24px", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", border: "1px solid #e5e7eb" };
-const thStyle: React.CSSProperties = { borderBottom: "2px solid #e5e7eb", padding: "12px 16px", textAlign: "left", backgroundColor: "#f9fafb", color: "#374151", fontWeight: 600 };
-const tdStyle: React.CSSProperties = { borderBottom: "1px solid #e5e7eb", padding: "12px 16px", color: "#4b5563" };
 
 export default function Tables() {
   return (

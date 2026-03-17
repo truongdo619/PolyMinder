@@ -6,9 +6,7 @@ import {
   DocLink,
   DocList,
   DocListItem,
-  DocInlineCode,
   DocCodeBlock,
-  DocCallout
 } from "../../components/DocComponents";
 
 export const toc = [

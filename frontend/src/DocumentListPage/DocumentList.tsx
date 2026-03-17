@@ -14,6 +14,8 @@ import Dialog from '@mui/material/Dialog';
 import Box from '@mui/material/Box';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogActions from '@mui/material/DialogActions';
 import { FileUploader } from 'react-drag-drop-files';
 import Link from '@mui/material/Link';
 import Tooltip from '@mui/material/Tooltip';
@@ -60,21 +62,22 @@ const DocumentList: React.FC = () => {
   const [tableData, setTableData] = useState<DocumentData[]>([]);
   const [openUploadDialog, setOpenUploadDialog] = useState(false);
   const [uploadOption, setUploadOption] = useState<'new' | 'annotated'>('new');   // NEW
-  const [file, setFile] = useState<File | null>(null);
+  const [_file, _setFile] = useState<File | null>(null);
   const [notification, setNotification] = useState<string | null>(null); // Notification message
   const [notificationSeverity, setNotificationSeverity] = useState<'success' | 'error' | 'info'>('success');
   const [openSnackbar, setOpenSnackbar] = useState(false); // Snackbar visibility state
   const [dialogStep, setDialogStep] = useState<'select' | 'upload'>('select');
   // Keep the files until we have a matching pair
-  const [annotatedPair, setAnnotatedPair] = useState<{ pdf?: File; json?: File }>({});
+  const [_annotatedPair, setAnnotatedPair] = useState<{ pdf?: File; json?: File }>({});
+  const [deleteConfirm, setDeleteConfirm] = useState<{ id: string; name: string } | null>(null);
 
   // Use a ref to store the interval ID
   const pollingIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const guidance = useGuidanceContext();
 
-  const fetchTableData = useCallback(async () => {
+  const fetchTableData = useCallback(async (signal?: AbortSignal) => {
     setIsActive(true);
-    let token = localStorage.getItem('accessToken');
+    const token = localStorage.getItem('accessToken');
     try {
       const response = await axiosInstance.post(
         `${import.meta.env.VITE_BACKEND_URL}/documents`,
@@ -83,22 +86,31 @@ const DocumentList: React.FC = () => {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
+          signal,
           onUnauthorized: () => navigate('/'),
         }
       );
       setTableData(response.data);
     } catch (error) {
+      if (signal?.aborted) return;
       console.error('Error fetching document list:', error);
-      if (error.response?.status === 401) {
-        navigate('/signin');
+      if (error instanceof Object && 'response' in error) {
+        const axiosErr = error as { response?: { status?: number } };
+        if (axiosErr.response?.status === 401) {
+          navigate('/signin');
+        }
       }
     } finally {
-      setIsActive(false);
+      if (!signal?.aborted) {
+        setIsActive(false);
+      }
     }
   }, [navigate]);
 
   useEffect(() => {
-    fetchTableData();
+    const controller = new AbortController();
+    fetchTableData(controller.signal);
+    return () => controller.abort();
   }, [fetchTableData]);
 
   const pollPendingDocuments = useCallback(() => {
@@ -202,23 +214,30 @@ const DocumentList: React.FC = () => {
     }
   };
 
-  const handleDeleteClick = async (id: string, fileName: string) => {
-    const confirmDelete = window.confirm(`Are you sure you want to delete ${fileName}?`);
-    if (!confirmDelete) return;
+  const handleDeleteClick = (id: string, fileName: string) => {
+    setDeleteConfirm({ id, name: fileName });
+  };
 
+  const handleDeleteConfirm = async () => {
+    if (!deleteConfirm) return;
+    setDeleteConfirm(null);
     setIsActive(true);
-    let token = localStorage.getItem('accessToken');
+    const token = localStorage.getItem('accessToken');
 
     try {
-      await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/delete-document/${id}`, {
-        data: { fileName },
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
+      await axiosInstance.get(`${import.meta.env.VITE_BACKEND_URL}/delete-document/${deleteConfirm.id}`, {
+        data: { fileName: deleteConfirm.name },
+        headers: { 'Authorization': `Bearer ${token}` },
       });
-      setTableData(tableData.filter((doc) => doc.id !== id));
+      setTableData(tableData.filter((doc) => doc.id !== deleteConfirm.id));
+      setNotification('Document deleted successfully.');
+      setNotificationSeverity('success');
+      setOpenSnackbar(true);
     } catch (error: any) {
       console.error('Error deleting file:', error);
+      setNotification('Failed to delete document. Please try again.');
+      setNotificationSeverity('error');
+      setOpenSnackbar(true);
     } finally {
       setIsActive(false);
     }
@@ -337,7 +356,7 @@ const DocumentList: React.FC = () => {
       name: "filename",
       label: "File Name",
       options: {
-        customBodyRender: (value: string, tableMeta) => {
+        customBodyRender: (value: string, tableMeta: { rowData: string[] }) => {
 
           const status = tableMeta.rowData[6]; // Assuming status is at index 6
           if (status === 'queued') {
@@ -403,7 +422,7 @@ const DocumentList: React.FC = () => {
       name: "actions",
       label: "Actions",
       options: {
-        customBodyRender: (value: string, tableMeta) => {
+        customBodyRender: (value: string, tableMeta: { rowData: string[] }) => {
           const id = tableMeta.rowData[0];
           const fileName = tableMeta.rowData[1];
           
@@ -577,7 +596,7 @@ const DocumentList: React.FC = () => {
 
 
               <FileUploader
-                handleChange={(input) => {
+                handleChange={(input: File | File[] | FileList) => {
                   /* ───────────── NEW mode ───────────── */
                   if (uploadOption === 'new') {
                     handleUpload(input);                    // can be multi-select
@@ -592,7 +611,6 @@ const DocumentList: React.FC = () => {
                       : (input as FileList)[0];
 
                   const isPdf  = file.name.toLowerCase().endsWith('.pdf');
-                  const isJson = file.name.toLowerCase().endsWith('.json');
 
                   /* Enforce order: PDF must come first */
                   setAnnotatedPair(prev => {
@@ -630,6 +648,22 @@ const DocumentList: React.FC = () => {
             </>
           )}
         </DialogContent>
+      </Dialog>
+
+      {/* Delete confirmation dialog */}
+      <Dialog open={!!deleteConfirm} onClose={() => setDeleteConfirm(null)}>
+        <DialogTitle>Delete Document</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to delete <strong>{deleteConfirm?.name}</strong>? This action cannot be undone.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDeleteConfirm(null)}>Cancel</Button>
+          <Button onClick={handleDeleteConfirm} color="error" variant="contained">
+            Delete
+          </Button>
+        </DialogActions>
       </Dialog>
     </LoadingOverlay>
   );

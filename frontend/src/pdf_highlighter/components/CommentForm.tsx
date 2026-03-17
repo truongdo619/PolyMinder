@@ -14,41 +14,23 @@ import { GlobalContext } from '../../../src/GlobalState';
 import axiosInstance from '../../../src/axiosSetup';
 import Divider from "@mui/material/Divider";
 import CommentIcon from "@mui/icons-material/Comment";
-
-function useWindowDimensions() {
-  const [windowDimensions, setWindowDimensions] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  return windowDimensions;
-}
+import { PdfHighlighterUtils } from "../contexts/PdfHighlighterContext";
 
 interface CommentFormProps {
   onSubmit: (input: string) => void;
   highlight: CommentedHighlight;
   brat_item: {
     text: string;
-    entities: Array<any>;
-    relations: Array<any>;
+    entities: string[][];
+    relations: (string | [string, string][])[][];
     selectedMode: string;
+    triggers?: string[][];
+    events?: (string | [string, string][])[][];
   };
-  setCommentDialogData : (data: any) => void;
-  toggleEditInProgress: (isEditing: boolean) => void;  
-  pdfHighlighterUtils: any;
-  onOpenTreeDialog?: () => void;
+  setCommentDialogData: (data: { highlight: CommentedHighlight; brat_item: CommentFormProps["brat_item"] } | null) => void;
+  toggleEditInProgress: (isEditing: boolean) => void;
+  pdfHighlighterUtils: PdfHighlighterUtils | null;
+  onOpenTreeDialog?: (id: string) => void;
 }
 
 
@@ -72,20 +54,6 @@ const CommentForm = ({
   const [key, setKey] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [showAllEntities, setShowAllEntities] = useState(false);
-  const { width: windowWidth } = useWindowDimensions();
-
-  const calculateWidthBasedOnContent = (content: string) => {
-    const baseWidth = 300; 
-    const maxWidth = Math.min(1100, windowWidth - 20); 
-    const contentWidth = content.length * 5; 
-    return Math.min(baseWidth + contentWidth, maxWidth);
-  };
-
-  const baseCardWidth = calculateWidthBasedOnContent(brat_item.text);
-  const cardWidth = showAllEntities 
-    ? Math.min(baseCardWidth + 200, Math.min(1100, windowWidth - 20))
-    : baseCardWidth;
-
   const isEvent = brat_item && "triggers" in brat_item;
 
   const svgStyle = {
@@ -122,13 +90,13 @@ const CommentForm = ({
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = fileName.split('.')[0] + `_output_${highlight.id}.json`;
+        a.download = (fileName ?? '').split('.')[0] + `_output_${highlight.id}.json`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
         console.log('Download button clicked');
-      } catch (error: any) {
+      } catch (error) {
         console.error('Error fetching document:', error);
       }
     } else {
@@ -149,13 +117,13 @@ const CommentForm = ({
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = fileName.split('.')[0] + `_output_para${para_id}.json`;
+        a.download = (fileName ?? '').split('.')[0] + `_output_para${para_id}.json`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
         console.log('Download button clicked');
-      } catch (error: any) {
+      } catch (error) {
         console.error('Error fetching document:', error);
       }
     }
@@ -198,22 +166,24 @@ const CommentForm = ({
 
     if ("triggers" in brat_item) {
       // Filter triggers related to currentEntityId
-      const filteredTriggers = brat_item.triggers?.filter(trigger =>
+      const filteredTriggers = brat_item.triggers?.filter((trigger: string[]) =>
         trigger && trigger[0] === currentEntityId
       ) || [];
 
-      // Filter events where event[1] matches currentEntityId
-      const filteredEvents = brat_item.events?.filter(event =>
+      const filteredEvents = brat_item.events?.filter((event: (string | [string, string][])[]) =>
         event && event[1] === currentEntityId
       ) || [];
 
       // Collect related entity ids from event arguments + add currentEntityId itself
       const relatedEntityIds = new Set(["E" + currentEntityId]);
       filteredEvents.forEach(event => {
-        if (event[2]) {
-          event[2].forEach(([role, entityId]) => {
-            relatedEntityIds.add(entityId);
-          });
+        const args = event[2];
+        if (Array.isArray(args)) {
+          for (const pair of args) {
+            if (Array.isArray(pair) && pair.length >= 2) {
+              relatedEntityIds.add(String(pair[1]));
+            }
+          }
         }
       });
 
@@ -235,11 +205,12 @@ const CommentForm = ({
     const relatedEntityIds = new Set([currentEntityId]);
     if (brat_item.relations) {
       brat_item.relations.forEach(relation => {
-        if (relation && relation[2]) {
-          relation[2].forEach(([role, entityId]: [string, string]) => {
+        const args = relation[2] as [string, string][];
+        if (relation && args) {
+          args.forEach(([role, entityId]: [string, string]) => {
             if (entityId === currentEntityId) {
-              relatedEntityIds.add(relation[2][0][1]);
-              relatedEntityIds.add(relation[2][1][1]);
+              relatedEntityIds.add((relation[2] as [string, string][])[0][1]);
+              relatedEntityIds.add((relation[2] as [string, string][])[1][1]);
             }
           });
         }
@@ -248,9 +219,10 @@ const CommentForm = ({
 
     const filteredEntities = brat_item.entities.filter(entity => relatedEntityIds.has(entity[0]));
     const filteredRelations = brat_item.relations
-      ? brat_item.relations.filter(r =>
-          relatedEntityIds.has(r[2][0][1]) && relatedEntityIds.has(r[2][1][1])
-        )
+      ? brat_item.relations.filter(r => {
+          const args = r[2] as [string, string][];
+          return relatedEntityIds.has(args[0][1]) && relatedEntityIds.has(args[1][1]);
+        })
       : [];
 
     return { ...brat_item, entities: filteredEntities, relations: filteredRelations };

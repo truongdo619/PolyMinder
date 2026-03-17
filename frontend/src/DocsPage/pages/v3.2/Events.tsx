@@ -3,12 +3,8 @@ import { Box } from "@mui/material";
 import {
   DocHeader,
   DocText,
-  DocLink,
   DocList,
-  DocListItem,
-  DocInlineCode,
-  DocCodeBlock,
-  DocCallout
+  DocListItem
 } from "../../components/DocComponents";
 
 export const toc = [
@@ -107,9 +103,6 @@ The event is removed from the annotation, but the underlying entities remain in 
  Event arguments inherit their entity type from the main annotation   editing an entity in Entities mode also updates it here.
 `;
 
-const tableStyle: React.CSSProperties = { borderCollapse: "collapse", width: "100%", marginBottom: "24px", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", border: "1px solid #e5e7eb" };
-const thStyle: React.CSSProperties = { borderBottom: "2px solid #e5e7eb", padding: "12px 16px", textAlign: "left", backgroundColor: "#f9fafb", color: "#374151", fontWeight: 600 };
-const tdStyle: React.CSSProperties = { borderBottom: "1px solid #e5e7eb", padding: "12px 16px", color: "#4b5563" };
 
 export default function Events() {
   return (

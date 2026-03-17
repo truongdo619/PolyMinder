@@ -5,10 +5,7 @@ import {
   DocText,
   DocLink,
   DocList,
-  DocListItem,
-  DocInlineCode,
-  DocCodeBlock,
-  DocCallout
+  DocListItem
 } from "../../components/DocComponents";
 import img_v3_1_signin_page_png from "../../photos/v3.1/signin_page.png";
 import img_v3_1_document_page_png from "../../photos/v3.1/document_page.png";

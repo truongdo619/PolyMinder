@@ -30,7 +30,8 @@ const defaultTheme = createTheme();
 
 export default function SignUpPage() {
   const [signUpSuccess, setSignUpSuccess] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<{ username?: string; email?: string; password?: string; serverError?: string }>({});
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<{ username?: string; email?: string; password?: string; confirmPassword?: string; serverError?: string }>({});
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -45,21 +46,22 @@ export default function SignUpPage() {
     const password = data.get('password') as string;
     const confirmPassword = data.get('confirmPassword') as string;
 
-    let errors: { username?: string; email?: string; password?: string } = {};
+    let errors: { username?: string; email?: string; password?: string; confirmPassword?: string } = {};
 
-    // Simple Username validation (optional)
     if (!username || username.trim().length === 0) {
       errors.username = 'Username is required.';
     }
 
-    // Email validation
     if (!validateEmail(email)) {
       errors.email = 'Invalid email address.';
     }
 
-    // Password confirmation validation
+    if (!password || password.length < 4) {
+      errors.password = 'Password must be at least 4 characters.';
+    }
+
     if (password !== confirmPassword) {
-      errors.password = 'Passwords do not match.';
+      errors.confirmPassword = 'Passwords do not match.';
     }
 
     if (Object.keys(errors).length > 0) {
@@ -67,19 +69,23 @@ export default function SignUpPage() {
       return;
     }
 
-    // Call the register function and handle the response
-    const registrationResponse  = await register(username, email, password);
-
-  if (registrationResponse.success) {
-    setSignUpSuccess(true);
-    setErrorMessage({}); // Clear errors
-    // Redirect to sign-in page after 1.5 seconds
-    setTimeout(() => {
-      window.location.href = '#/signin';
-    }, 1000);
-  } else {
-    setErrorMessage({ serverError: registrationResponse.message || 'Registration failed. Please try again.' });
-  }
+    setLoading(true);
+    setErrorMessage({});
+    try {
+      const registrationResponse = await register(username, email, password);
+      if (registrationResponse.success) {
+        setSignUpSuccess(true);
+        setTimeout(() => {
+          window.location.href = '#/signin';
+        }, 1500);
+      } else {
+        setErrorMessage({ serverError: registrationResponse.message || 'Registration failed. Please try again.' });
+      }
+    } catch {
+      setErrorMessage({ serverError: 'Network error. Please check your connection.' });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -166,16 +172,16 @@ export default function SignUpPage() {
                     type="password"
                     id="confirmPassword"
                     autoComplete="new-password"
-                    error={!!errorMessage.password}
-                    helperText={errorMessage.password || ''}
+                    error={!!errorMessage.confirmPassword}
+                    helperText={errorMessage.confirmPassword || ''}
                   />
                   {errorMessage.serverError && (
                     <Typography variant="body2" color="error" align="center" sx={{ mt: 2 }}>
                       {errorMessage.serverError}
                     </Typography>
                   )}
-                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-                    Sign Up
+                  <Button type="submit" fullWidth variant="contained" disabled={loading} sx={{ mt: 3, mb: 2 }}>
+                    {loading ? 'Signing up…' : 'Sign Up'}
                   </Button>
                   <Grid container>
                     <Grid item>

@@ -3,6 +3,9 @@
     color: #333333;
     background: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Firefox scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f4f4f4;
 }
 
 .highlight__image__container::-webkit-scrollbar,

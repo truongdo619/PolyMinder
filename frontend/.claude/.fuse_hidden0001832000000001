@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__drawio__open_drawio_mermaid"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "drawio"
+  ],
+  "enableAllProjectMcpServers": true
+}

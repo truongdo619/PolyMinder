@@ -3,8 +3,9 @@ import { GlobalContext } from "../GlobalState";
 
 interface CommentFormProps {
   onSubmit: (input: string) => void;
+  onCancel?: () => void;
   placeHolder?: string;
-  defaultValue?: string; // optional: preselect a value
+  defaultValue?: string;
 }
 
 const CommentForm = ({ onSubmit, placeHolder = "Please select", defaultValue }: CommentFormProps) => {

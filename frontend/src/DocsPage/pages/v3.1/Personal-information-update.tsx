@@ -3,11 +3,8 @@ import { Box } from "@mui/material";
 import {
   DocHeader,
   DocText,
-  DocLink,
   DocList,
   DocListItem,
-  DocInlineCode,
-  DocCodeBlock,
   DocCallout
 } from "../../components/DocComponents";
 import img_v3_1_personal_info_update_png from "../../photos/v3.1/personal_info_update.png";
@@ -95,9 +92,6 @@ This guide shows you how to update the profile details stored in PolyMinder and 
   The system prevents duplicate addresses. Choose another or contact support. -->
 `;
 
-const tableStyle: React.CSSProperties = { borderCollapse: "collapse", width: "100%", marginBottom: "24px", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", border: "1px solid #e5e7eb" };
-const thStyle: React.CSSProperties = { borderBottom: "2px solid #e5e7eb", padding: "12px 16px", textAlign: "left", backgroundColor: "#f9fafb", color: "#374151", fontWeight: 600 };
-const tdStyle: React.CSSProperties = { borderBottom: "1px solid #e5e7eb", padding: "12px 16px", color: "#4b5563" };
 
 export default function Personalinformationupdate() {
   return (

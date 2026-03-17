@@ -19,7 +19,7 @@ import { GlobalContext } from '../GlobalState';
 import { useNavigate } from 'react-router-dom';
 
 // Import from react-beautiful-dnd
-import { DragDropContext, Draggable, DropResult } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, DroppableProvided, DraggableProvided, DraggableStateSnapshot, DropResult } from "react-beautiful-dnd";
 // Import our custom StrictModeDroppable
 import { StrictModeDroppable } from "./StrictModeDroppable";
 
@@ -348,7 +348,7 @@ const ParagraphSidebar = ({
               <div style={{ flex: 1, width: '100%' }}>
                 <div className="highlight_item_header">
                   <p className={"entity_point " + highlight.comment}>&nbsp;&nbsp;</p>
-                  <strong>{highlight.comment + " " + (highlight.para_id + 1)}</strong>
+                  <strong>{highlight.comment + " " + ((highlight.para_id ?? 0) + 1)}</strong>
                 </div>
                 {highlight.content.text && (
                   <blockquote>
@@ -397,7 +397,7 @@ const ParagraphSidebar = ({
       {/* --- EDIT TEXT DIALOG --- */}
       <Dialog open={openEdit} onClose={handleCloseEdit} maxWidth="md">
         <DialogTitle sx={{ textAlign: "center" }}>
-          Edit Text - Paragraph {currentHighlight ? currentHighlight.para_id + 1 : ''}
+          Edit Text - Paragraph {currentHighlight ? (currentHighlight.para_id ?? 0) + 1 : ''}
         </DialogTitle>
         <Divider />
         <DialogContent>
@@ -426,7 +426,7 @@ const ParagraphSidebar = ({
           <DragDropContext onDragEnd={onDragEnd}>
             {/* Use our StrictModeDroppable instead of Droppable */}
             <StrictModeDroppable droppableId="paragraphsDroppable">
-              {(provided) => (
+              {(provided: DroppableProvided) => (
                 <ul
                   style={{ listStyle: 'none', padding: 0 }}
                   {...provided.droppableProps}
@@ -438,7 +438,7 @@ const ParagraphSidebar = ({
                       draggableId={String(highlight.id)}
                       index={index}
                     >
-                      {(provided, snapshot) => (
+                      {(provided: DraggableProvided, snapshot: DraggableStateSnapshot) => (
                         <Tooltip key={highlight.id} title={highlight.content.text} arrow>
                           <li
                             ref={provided.innerRef}
@@ -462,8 +462,8 @@ const ParagraphSidebar = ({
                             }}
                           >
                             <div>
-                              <strong>Paragraph {highlight.para_id + 1}</strong>:{" "}
-                              {highlight.content.text.slice(0, 80)}...
+                              <strong>Paragraph {(highlight.para_id ?? 0) + 1}</strong>:{" "}
+                              {(highlight.content.text ?? '').slice(0, 80)}...
                             </div>
                           </li>
                         </Tooltip>

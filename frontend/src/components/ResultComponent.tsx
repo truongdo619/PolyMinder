@@ -16,9 +16,8 @@ import { GlobalContext } from '../GlobalState';
 import LoadingOverlay from 'react-loading-overlay-ts'; // Add this import
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../axiosSetup';
-import TwoSideComparisonDialog, { ComparisonData, MergeOptions, MergeResult, MergeApiResponse } from "./TwoSideComparisonDialog";
+import TwoSideComparisonDialog, { ComparisonData, MergeApiResponse } from "./TwoSideComparisonDialog";
 
-import Paper from '@mui/material/Paper';
 import {
   GhostHighlight,
   Highlight,
@@ -27,8 +26,9 @@ import {
   PdfLoader,
   Tip,
   ViewportHighlight,
-  PdfSelection
 } from "../react-pdf-highlighter-extended";
+import type { Scaled, TableResult } from "../react-pdf-highlighter-extended";
+import type { PDFDocumentProxy } from "pdfjs-dist";
 import '../style/App.css';
 import { CommentedHighlight } from "../types";
 import {
@@ -41,7 +41,6 @@ import {
   Box,
   Divider,
   Tooltip,
-  FormControlLabel,
   Radio,
   Chip,
   List,
@@ -65,21 +64,13 @@ import ListIcon from '@mui/icons-material/List';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent } from '@mui/lab';
 
-import { GuidanceBanner, WorkflowStepper, useGuidanceContext } from './GuidanceSystem';
+import { WorkflowStepper, useGuidanceContext } from './GuidanceSystem';
 import type { GuidanceConditionState } from './GuidanceSystem';
 
 
 
-const getNextId = (paraId: number, entityId: number) => `para${paraId}_T${entityId}`;
-
 const parseIdFromHash = () => {
   return document.location.hash.split("#").pop()?.slice("#highlight-".length - 1);
-};
-
-const resetHash = () => {
-  const hash = document.location.hash;
-  const parts = hash.split('#');
-  document.location.hash = parts[0] + "#" + parts[1];
 };
 
 const extractRelationHighlights = (highlights: Array<CommentedHighlight>) => {
@@ -87,7 +78,7 @@ const extractRelationHighlights = (highlights: Array<CommentedHighlight>) => {
     .filter(highlight => highlight.relations && highlight.relations.length > 0) // Filter highlights with relations
     .map(highlight => ({
       ...highlight,
-      relationTypes: highlight.relations.map(relation => relation.type) // Extract relation types
+      relationTypes: (highlight.relations ?? []).map(relation => relation.type) // Extract relation types
     }));
 
   return relationHighlights;
@@ -104,11 +95,11 @@ const extractEventHighlights = (
       }));
 
 
-const convertBratOutputToHighlights = (bratOutput: any[]): Highlight[] => {
+const convertBratOutputToHighlights = (bratOutput: any[]): CommentedHighlight[] => {
   // console.log("bratOutput", bratOutput);
-  let highlights: Highlight[] = [];
+  let highlights: CommentedHighlight[] = [];
   bratOutput.forEach((para, paraId) => {
-    const highlight: Highlight = {
+    const highlight: CommentedHighlight = {
       id:  `para${paraId}`,
       comment: "BLOCK_" + para.type.toUpperCase(), 
       content: {
@@ -129,43 +120,40 @@ const convertBratOutputToHighlights = (bratOutput: any[]): Highlight[] => {
 
 
 
-const convertBratOutputToTableHighlights = (tableOutput: any[]): Highlight[] => {
+const convertBratOutputToTableHighlights = (tableOutput: Record<string, unknown>[]): CommentedHighlight[] => {
 
   if (!Array.isArray(tableOutput)) return [];
 
-  const highlights: Highlight[] = [];
+  const highlights: CommentedHighlight[] = [];
 
   tableOutput.forEach((table, tableIdx) => {
-    // Defensive: ensure bounding_box is valid
-    const rects = Array.isArray(table.bounding_box) ? table.bounding_box : [];
+    const rects = Array.isArray(table.bounding_box) ? (table.bounding_box as Scaled[]) : [];
 
-    const highlight: Highlight = {
-      id: `${table.table_id}` || `table_${tableIdx}`,
-      table_id: table.table_id || `table_${tableIdx}`,
+    const captionStr = typeof table.table_caption === 'string' ? table.table_caption : '';
+    const contextStr = typeof table.table_context === 'string' ? table.table_context : '';
+
+    const highlight: CommentedHighlight = {
+      id: `${table.table_id as string}` || `table_${tableIdx}`,
+      table_id: (table.table_id as string) || `table_${tableIdx}`,
       comment: `BLOCK_TABLE_BODY`,
       content: {
         text:
-          table.table_caption?.trim() ||
-          table.table_context?.trim() ||
+          captionStr.trim() ||
+          contextStr.trim() ||
           `Table ${tableIdx + 1}`,
       },
       position: {
-        boundingRect: rects.length > 0 ? rects[0] : null,
+        boundingRect: rects.length > 0 ? rects[0] : { x1: 0, y1: 0, x2: 0, y2: 0, width: 0, height: 0, pageNumber: 0 },
         rects: rects,
       },
       para_id: tableIdx,
       visible: true,
-      page_number: table.page_number || [],
-      // attach rich table metadata for later use in sidebar / inspector
-      table_name: table.table_name || "",
-      table_caption: table.table_caption || "",
-      table_body: table.table_body || "",
-      table_context: table.context || "",
-      text: table.text || [],
-      entities: table.entities || [],
-      relations: table.relations || [],
-      result: table.result || [],
-      bounding_box: rects,
+      page_number: (table.page_number as number) || 0,
+      table_name: (table.table_name as string) || "",
+      table_caption: captionStr || "",
+      table_body: (table.table_body as string) || "",
+      table_context: (table.context as string) || "",
+      result: (table.result as TableResult[]) || [],
     };
 
     highlights.push(highlight);
@@ -175,10 +163,10 @@ const convertBratOutputToTableHighlights = (tableOutput: any[]): Highlight[] => 
 };
 
 
-const convertLlmOutputToHighlights = (llmOutput: any[]): Highlight[] => {
+const convertLlmOutputToHighlights = (llmOutput: any[]): CommentedHighlight[] => {
   if (!Array.isArray(llmOutput)) return [];
 
-  const highlights: Highlight[] = [];
+  const highlights: CommentedHighlight[] = [];
 
   llmOutput.forEach((item, idx) => {
     // direct concat item.entities to highlights as well
@@ -195,8 +183,6 @@ const convertLlmOutputToHighlights = (llmOutput: any[]): Highlight[] => {
 const ResultComponent = () => {
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
-  const isLgUp = useMediaQuery(theme.breakpoints.up('lg'));
-
   const [isActive, setIsActive] = useState(false);
   const [relationHighlights, setRelationHighlights] = useState<Array<CommentedHighlight>>([]);
   const [eventHighlights, setEventHighlights] = useState<Array<CommentedHighlight>>([]);
@@ -206,8 +192,7 @@ const ResultComponent = () => {
   if (!globalContext) {
     throw new Error("GlobalContext must be used within a GlobalProvider");
   }
-  const { bratOutput, documentId, updateId, tableOutput, LLLOutput, setTableOutput, setBratOutput, setDocumentId, setUpdateId, setFileName, setLLLOutput, supportedModels } = globalContext;
-  const navigate = useNavigate();
+  const { bratOutput, documentId, updateId, tableOutput, LLLOutput, setTableOutput, setBratOutput, setDocumentId, setUpdateId, setFileName, setLLLOutput } = globalContext;
   const navigateTo = useNavigate();
   const paraHighlights = convertBratOutputToHighlights(bratOutput);
   
@@ -218,7 +203,7 @@ const ResultComponent = () => {
 
   // Combine para highlights with their LLM entities:
   // para0, entities of para0, para1, entities of para1, ...
-  const paraHighlightsForLLM = paraHighlights.reduce<Highlight[]>((acc, h) => {
+  const paraHighlightsForLLM = paraHighlights.reduce<CommentedHighlight[]>((acc, h) => {
     acc.push({ ...h, comment: "BLOCK_LLM" });
     const paraEntities = llmHighlights.filter(e => e.para_id === h.para_id);
     acc.push(...paraEntities);
@@ -233,7 +218,7 @@ const ResultComponent = () => {
   const initialVisibleHighlights = initialHighlights.filter((highlight: CommentedHighlight) => highlight.visible);
   // console.log("Initial highlights", initialHighlights);
   const MAIN_URL = location.state?.url || "";
-  const [url, setUrl] = useState(MAIN_URL);
+  const [url, _setUrl] = useState(MAIN_URL);
   const [highlights, setHighlights] = useState<Array<CommentedHighlight>>(
     initialVisibleHighlights ?? [],
   );
@@ -254,7 +239,7 @@ const ResultComponent = () => {
   // }, [highlights]);
 
   // Example history events (toy data)
-  const [history, setHistory] = useState<{ id: number, name: string; upload_time: string }[]>([]);
+  const [history, setHistory] = useState<{ id: number, real_id: number, name: string; upload_time: string }[]>([]);
 
   const [filteredHighlights, setFilteredHighlights] = useState<Array<CommentedHighlight>>([]);
   const [filteredRelationHighlights, setFilteredRelationHighlights] = useState<Array<CommentedHighlight>>([]); // Add this state for relation filtering
@@ -271,9 +256,6 @@ const ResultComponent = () => {
 
   // Refs for PdfHighlighter utilities
   const highlighterUtilsRef = useRef<PdfHighlighterUtils>();
-
-  // State to track the last entity ID used in each paragraph
-  const [lastEntityIds, setLastEntityIds] = useState<{ [key: number]: number }>({});
 
   // New state to track selected mode
   const [selectedMode, setSelectedMode] = useState<
@@ -306,15 +288,6 @@ const ResultComponent = () => {
   // Add this near your other useState definitions (e.g., near selectedCompareParaId)
   const [paraSearchText, setParaSearchText] = useState("");
 
-  const getParagraphData = (paraId: number) => {
-    if (!bratOutput || !Array.isArray(bratOutput)) return null;
-    // Assuming bratOutput array index maps to paraId
-    return bratOutput[paraId] || null; 
-  };
-
-  // New ref for PDF container
-  const pdfContainerRef = useRef<HTMLDivElement>(null);
-
   // Set total pages when the pdfDocument changes
   useEffect(() => {
     if (pdfDocument) {
@@ -327,7 +300,7 @@ const ResultComponent = () => {
   // Formula: newWidth = startWidth - dx
   // PDF viewer is flex:1 and absorbs all width changes automatically — sum always = 100vw.
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (e: globalThis.MouseEvent) => {
       if (!draggingRef.current) return;
       const dx = e.clientX - dragStartXRef.current;
       if (draggingRef.current === 'sidebar') {
@@ -553,13 +526,6 @@ const ResultComponent = () => {
   //   setBratOutput(updatedBratOutput);
   // };
 
-  const getCharacterPositions = (paraId: number, text: string) => {
-    const paragraphText = bratOutput[paraId].text;
-    const start = paragraphText.indexOf(text);
-    const end = start + text.length;
-    return [start, end];
-  };
-
   const findParagraphId = (boundingRect: any) => {
     // Logic to find the paragraph ID that covers most of the bounding box
     // You need to implement this based on your specific logic
@@ -600,16 +566,6 @@ const ResultComponent = () => {
     };
   };
 
-  const getNextEntityId = (paraId: number) => {
-    const paragraph = bratOutput[paraId];
-    const lastEntityId = paragraph.entities.reduce((maxId: number, entity: any) => {
-      const entityId = parseInt(entity[0].substring(1));
-      return Math.max(maxId, entityId);
-    }, 0);
-    const newEntityId = lastEntityId + 1;
-    return newEntityId;
-  }
-
   const deleteHighlight = (highlight: ViewportHighlight | Highlight) => {
     console.log("Deleting highlight", highlight);
     setVisibleHighlights(highlights.filter((h) => h.id != highlight.id));
@@ -636,17 +592,11 @@ const ResultComponent = () => {
     if (selectedMode === 'Entities') return highlights.find(h => h.id === id);
     if (selectedMode === 'Relations') return relationHighlights.find(h => h.id === id);
     if (selectedMode === 'Events')   return eventHighlights.find(h => h.id === id);
-    if (selectedMode === 'Tables')   return tableHighlights.find(h => h.table_id === id) as any;
-    if (selectedMode === 'LLM')        return paraHighlightsForLLM.find(h => h.id === id) as any;
+    if (selectedMode === 'Tables')   return tableHighlights.find(h => h.table_id === id);
+    if (selectedMode === 'LLM')        return paraHighlightsForLLM.find(h => h.id === id);
     return paraHighlights.find(h => h.id === id);
   };
   
-
-  const getViewportHighlightById = (id: string) => {
-    let found_highlights = highlights.find((highlight) => highlight.id === id);
-    let transformed = found_highlights as unknown as ViewportHighlight;
-    return transformed;
-  };
 
   // Open comment tip and update highlight with new user input
   const editComment = (highlight: ViewportHighlight<CommentedHighlight>) => {
@@ -676,7 +626,7 @@ const ResultComponent = () => {
     
     // Check if the hash is empty
     if (id) {
-      const highlight = getHighlightById(parseIdFromHash());
+      const highlight = getHighlightById(id);
       // const viewport_highlight = getViewportHighlightById(parseIdFromHash());
       console.log("Highlight to scroll to", highlight);
       if (highlight && highlighterUtilsRef.current) {
@@ -719,7 +669,7 @@ const ResultComponent = () => {
 
   const filterHighlights = (selectedEntityRelationMap: { [entityType: string]: string[] }) => {
     const filtered = highlights.filter(highlight => {
-      const entityType = highlight.comment;
+      const entityType = highlight.comment ?? '';
       const selectedRelationTypes = selectedEntityRelationMap[entityType];
       if (!selectedRelationTypes) return false;
       const relations = highlight.relations || [];
@@ -745,7 +695,7 @@ const ResultComponent = () => {
   const filterRelations = (selectedRelationEntityMap: { [relationType: string]: string[] }) => {
     const filtered = relationHighlights.filter(highlight => {
       // Check if any of the highlight's relation types are in selectedRelationEntityMap
-      const matchingRelationTypes = highlight.relationTypes.filter(relationType => selectedRelationEntityMap[relationType]);
+      const matchingRelationTypes = (highlight.relationTypes ?? []).filter(relationType => selectedRelationEntityMap[relationType]);
   
       if (matchingRelationTypes.length === 0) return false;
   
@@ -1047,10 +997,7 @@ const ResultComponent = () => {
     
       sidebar = (
         <LLMSidebar
-          highlights={paraHighlightsForLLM as any}
-          getHighlightById={getHighlightById}
-          setIsActive={setIsActive}
-          setHighlights={setHighlights}
+          highlights={paraHighlightsForLLM as CommentedHighlight[]}
         />
       );    
     } else {
@@ -1158,9 +1105,10 @@ const ResultComponent = () => {
               yPos={contextMenu.yPos}
               deleteHighlight={contextMenu.deleteHighlight}
               onCompare={contextMenu.editComment}
+              onClose={() => setContextMenu(null)}
             />
           ) : (
-            <ContextMenu {...contextMenu} />
+            <ContextMenu {...contextMenu} onClose={() => setContextMenu(null)} />
           )
         )}
       </LoadingOverlay>
@@ -1442,15 +1390,15 @@ const ResultComponent = () => {
           <DialogContent dividers sx={{ p: 0, bgcolor: "#f5f5f5" }}>
             <List sx={{ p: 2 }}>
               {paraHighlights
-                .filter((para) => 
-                  para.content.text.toLowerCase().includes(paraSearchText.toLowerCase())
+                .filter((para) =>
+                  (para.content.text ?? '').toLowerCase().includes(paraSearchText.toLowerCase())
                 )
                 .map((para, idx) => {
                   const isSelected = selectedCompareParaId === para.para_id;
                   return (
                     <ListItem key={para.para_id} disablePadding sx={{ mb: 1.5 }}>
                       <ListItemButton
-                        onClick={() => setSelectedCompareParaId(para.para_id)}
+                        onClick={() => setSelectedCompareParaId(para.para_id ?? 0)}
                         sx={{
                           borderRadius: 2,
                           bgcolor: "background.paper",
@@ -1482,7 +1430,7 @@ const ResultComponent = () => {
                               <Box display="flex" alignItems="center" gap={1}>
                                 <ArticleIcon color="disabled" fontSize="small" />
                                 <Typography variant="subtitle2" fontWeight="bold" color="text.primary">
-                                  Paragraph {para.para_id + 1}
+                                  Paragraph {(para.para_id ?? 0) + 1}
                                 </Typography>
                               </Box>
                               {para.page_number && (
@@ -1517,7 +1465,7 @@ const ResultComponent = () => {
                 })}
                 
                 {/* Empty State */}
-                {paraHighlights.filter(p => p.content.text.toLowerCase().includes(paraSearchText.toLowerCase())).length === 0 && (
+                {paraHighlights.filter(p => (p.content.text ?? '').toLowerCase().includes(paraSearchText.toLowerCase())).length === 0 && (
                   <Box textAlign="center" py={4}>
                     <Typography variant="body2" color="text.secondary">
                       No paragraphs found matching "{paraSearchText}"

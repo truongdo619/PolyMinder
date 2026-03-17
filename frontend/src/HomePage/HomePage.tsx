@@ -6,7 +6,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import AppAppBar from './components/AppAppBar';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
-import getLPTheme from './getLPTheme';
+import getLPTheme from '../lib/getLPTheme';
 import Features from './components/Features';
 
 

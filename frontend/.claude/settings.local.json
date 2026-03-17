@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__drawio__open_drawio_mermaid",
+      "Bash(wc:*)",
+      "Bash(ls:*)",
+      "Bash(git ls-remote:*)",
+      "Bash(ldconfig:*)",
+      "Bash(dpkg:*)",
+      "Bash(LD_PRELOAD=/lib/x86_64-linux-gnu/libffi.so.7 git ls-remote:*)",
+      "Bash(LD_PRELOAD=/lib/x86_64-linux-gnu/libffi.so.7 npx skills:*)",
+      "Bash(python3:*)",
+      "Bash(head:*)",
+      "Bash(grep:*)",
+      "Bash(grep GuidanceSystem:*)",
+      "Bash(grep ResultComponent\\\\|GuidanceSystem:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "drawio"
+  ]
+}

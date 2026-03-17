@@ -17,8 +17,6 @@ import Divider from '@mui/material/Divider';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import DialogContentText from '@mui/material/DialogContentText';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -37,9 +35,7 @@ import { GlobalContext } from '../GlobalState';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../axiosSetup';
 import Pagination from '@mui/material/Pagination';
-import { Box, List, ListItem, ListItemIcon, ListItemText, Checkbox, Typography, Snackbar, Alert } from '@mui/material';
-import CheckIcon from '@mui/icons-material/Check';
-import CloseIcon from '@mui/icons-material/Close';
+import { Box, List, ListItem, Checkbox, Typography, Snackbar, Alert } from '@mui/material';
 
 interface EventSidebarProps {
   highlights: Array<CommentedHighlight>;
@@ -66,7 +62,7 @@ const EventSidebar = ({ highlights, getHighlightById, setIsActive, setHighlights
   if (!globalContext) {
     throw new Error("GlobalContext must be used within a GlobalProvider");
   }
-  const { bratOutput, documentId, updateId, setBratOutput, setDocumentId, setUpdateId, fileName, setFileName } = globalContext;
+  const { bratOutput, documentId, updateId, setBratOutput, setDocumentId, setUpdateId, setFileName } = globalContext;
   const navigateTo = useNavigate();
   const convertedBratOutput: Record<string, [string, any, any]> = {}; // Update the type
   bratOutput.forEach((paragraph: Paragraph, index: number) => {
@@ -93,7 +89,7 @@ const EventSidebar = ({ highlights, getHighlightById, setIsActive, setHighlights
   const [selectedEvent, setSelectedEvent] = useState<CommentedHighlight | null>(null);
 
   // trigger editing
-  const [editableTriggerText, setEditableTriggerText] = useState('');
+  const [_editableTriggerText, setEditableTriggerText] = useState('');
   const [triggerStart, setTriggerStart] = useState<number | null>(null);
   const [triggerEnd, setTriggerEnd] = useState<number | null>(null);
 
@@ -116,16 +112,15 @@ const EventSidebar = ({ highlights, getHighlightById, setIsActive, setHighlights
     // console.log(convertedBratOutput);
     setSelectedEvent(ev);
     
-    setEditableTriggerText(ev.content.text);
-    setTriggerStart(convertedBratOutput[ev.id][2][0][0]); // or your stored head index
-    setTriggerEnd(convertedBratOutput[ev.id][2][0][1]);   // or tail index
-    // convert backend format → EventArg[]
+    setEditableTriggerText(ev.content.text ?? '');
+    setTriggerStart(convertedBratOutput[ev.id][2][0][0]);
+    setTriggerEnd(convertedBratOutput[ev.id][2][0][1]);
 
     setEventArgs(
-      (ev.event_infor.arguments || []).map(([entityId, role, , text]) => ({
-        entityId,   // "ET9"
-        role: role.toUpperCase(),       // "POLYMER"
-        text        // "Sulfonated polyarylenethioethersulfone..."
+      (ev.event_infor?.arguments ?? []).map(([entityId, role, , text]) => ({
+        entityId,
+        role: role.toUpperCase(),
+        text
       }))
     );
 
@@ -245,7 +240,7 @@ const EventSidebar = ({ highlights, getHighlightById, setIsActive, setHighlights
 
 
   // Handle page change
-  const handlePageChange = (event, page) => {
+  const handlePageChange = (_event: React.ChangeEvent<unknown>, page: number) => {
     setCurrentPage(page);
   };
 
@@ -281,8 +276,8 @@ const EventSidebar = ({ highlights, getHighlightById, setIsActive, setHighlights
         trigger_new_head: triggerStart,
         trigger_new_tail: triggerEnd,
         event: {
-          'event_id': selectedEvent.event_infor.event_id,
-          'trigger_id': selectedEvent.event_infor.trigger_id,
+          'event_id': selectedEvent.event_infor?.event_id,
+          'trigger_id': selectedEvent.event_infor?.trigger_id,
           arguments: eventArgs.map(({ role, entityId }) => [role, entityId]),
         },
       };
@@ -318,7 +313,7 @@ const EventSidebar = ({ highlights, getHighlightById, setIsActive, setHighlights
     }
   };
 
-  const renderStarButton = (highlight) => {
+  const renderStarButton = (highlight: CommentedHighlight) => {
     const isConfirmed = highlight.edit_status === "confirmed";
     return (
       <Tooltip title={isConfirmed ? "This item has been confirmed by the user" : "This item has not been confirmed yet"}>
@@ -400,7 +395,7 @@ const EventSidebar = ({ highlights, getHighlightById, setIsActive, setHighlights
         document_id: documentId,
         update_id:   updateId,
         para_id:     event.para_id,
-        event_id:    event.event_infor.event_id,
+        event_id:    event.event_infor?.event_id,
       };
 
       const token = localStorage.getItem('accessToken');
@@ -545,7 +540,7 @@ const EventSidebar = ({ highlights, getHighlightById, setIsActive, setHighlights
                 >
                   {highlight.event_infor?.arguments?.map((arg, idx) => {
                     // arg structure: [id, arg_type, span, extra, text]
-                    const [argID, argType, , argText] = arg;
+                    const [_argID, argType, , argText] = arg;
 
                     // Nicely format the arg type, e.g. VALUE → Value
                     const label =
@@ -726,8 +721,8 @@ const EventSidebar = ({ highlights, getHighlightById, setIsActive, setHighlights
 
                           return bratOutput[paraIdx].entities
                             /* 1️⃣  skip the trigger entity */
-                            .filter(ent => ent[0] !== triggerLocalId)
-                            .map(ent => {
+                            .filter((ent: string[]) => ent[0] !== triggerLocalId)
+                            .map((ent: string[]) => {
                               const [localId, entType, , , entText] = ent;
                               const globalId = `para${paraIdx}_${localId}`;
                               return (
@@ -747,13 +742,14 @@ const EventSidebar = ({ highlights, getHighlightById, setIsActive, setHighlights
                       disabled={!newArgEntity}
                       onClick={() => {
                         /* look up the entity we just chose */
+                        if (!selectedEvent) return;
                         const paraIdx =
                         parseInt(
                           selectedEvent.id.split("_")[0].match(/\d+/)?.[0] ?? "0",
                           10,
                         );
                         const entity = bratOutput[paraIdx].entities.find(
-                          e => `para${paraIdx}_${e[0]}` === newArgEntity,
+                          (e: string[]) => `para${paraIdx}_${e[0]}` === newArgEntity,
                         );
 
                         if (!entity) return;                         // safety check
@@ -841,9 +837,10 @@ const EventSidebar = ({ highlights, getHighlightById, setIsActive, setHighlights
         {/* List of paragraphs with a tooltip and individual checkboxes */}
         <List>
           {paraHighlights.map((para, i) => {
+            const paraText = para.content.text ?? '';
             const shortPreview =
-              para.content.text.slice(0, 150) +
-              (para.content.text.length > 150 ? "..." : "");
+              paraText.slice(0, 150) +
+              (paraText.length > 150 ? "..." : "");
             return (
               <ListItem
                 key={i}
@@ -865,10 +862,10 @@ const EventSidebar = ({ highlights, getHighlightById, setIsActive, setHighlights
                   },
                 }}
               >
-                <Tooltip title={para.content.text} arrow>
+                <Tooltip title={paraText} arrow>
                   <Box sx={{ flexGrow: 1 }}>
                     <Typography variant="subtitle2">
-                      Paragraph {para.para_id + 1} - {para.comment}
+                      Paragraph {(para.para_id ?? 0) + 1} - {para.comment}
                     </Typography>
                     <Typography variant="body2" sx={{ color: "#555" }}>
                       {shortPreview}

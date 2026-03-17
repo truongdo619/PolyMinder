@@ -23,6 +23,7 @@ export interface Relation {
   arg_id: string;
   arg_type: string;
   arg_text: string;
+  [key: string]: string;
 }
 
 export interface EntityEditSaveData {

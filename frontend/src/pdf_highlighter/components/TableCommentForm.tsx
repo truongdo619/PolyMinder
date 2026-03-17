@@ -385,7 +385,7 @@ const TableCommentForm = ({
   const [editCaption, setEditCaption] = useState(tableCaption);
   const [editFootnote, setEditFootnote] = useState(tableFootnote);
   const [editContext, setEditContext] = useState(tableContext);
-  const [editTableHTML, setEditTableHTML] = useState(tableHTML);
+  const [_editTableHTML, setEditTableHTML] = useState(tableHTML);
 
   // Keep edit fields in sync if highlight changes
   useEffect(() => {
@@ -477,10 +477,10 @@ const TableCommentForm = ({
   // ── Sidebar-style "Edit Highlight" dialog state (hardcoded content for now)
   const [openEntityDialog, setOpenEntityDialog] = useState(false);
   const [tabValue, setTabValue] = useState(0);
-  const [editableComment, setEditableComment] = useState<string>("POLYMER");
-  const [editableUserComment, setEditableUserComment] = useState<string>("");
-  const [showAddRelationRow, setShowAddRelationRow] = useState(false);
-  const [editedRelationType, setEditedRelationType] = useState<string>("");
+  const [_editableComment, setEditableComment] = useState<string>("POLYMER");
+  const [_editableUserComment, setEditableUserComment] = useState<string>("");
+  const [_showAddRelationRow, setShowAddRelationRow] = useState(false);
+  const [_editedRelationType, setEditedRelationType] = useState<string>("");
 
   
   // ---- Settings → types -----------------------------------------------------
@@ -525,7 +525,7 @@ const TableCommentForm = ({
   }, [entityTypes]);
 
   // Hardcoded demo relations to show in the dialog for now
-  const [demoRelations, setDemoRelations] = useState<Array<{
+  const [_demoRelations, _setDemoRelations] = useState<Array<{
     type: string; arg_id: string; arg_type: string; arg_text: string;
   }>>([
     { type: "has_property", arg_id: "T2", arg_type: "PROPERTY", arg_text: "glass transition" },

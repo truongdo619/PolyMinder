@@ -1,5 +1,7 @@
-import React, { useContext, useEffect } from 'react';
+import React, { Suspense, useContext, useEffect } from 'react';
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 import { GlobalProvider } from './GlobalState';
 import { AuthProvider, AuthContext } from './AuthContext';
@@ -11,14 +13,21 @@ import ResetPasswordPage from './SignInPage/ResetPasswordPage';
 import SignUpPage from './SignUpPage/SignUpPage';
 import ProfilePage from './ProfilePage/ProfilePage';
 import ContactSupportPage from './ContactSupportPage/ContactSupportPage';
-import DocumentListPage from './DocumentListPage/DocumentListPage';
-import ResultComponent from './components/ResultComponent';
-import DocsPage from './DocsPage/DocsPage';
 
 import setting from '../settings.json';
 import { injectDynamicCSS } from './injectStyles';
 import './style/Guidance.css';
 import { GuidanceProvider } from './components/GuidanceSystem';
+
+const DocumentListPage = React.lazy(() => import('./DocumentListPage/DocumentListPage'));
+const ResultComponent = React.lazy(() => import('./components/ResultComponent'));
+const DocsPage = React.lazy(() => import('./DocsPage/DocsPage'));
+
+const PageFallback = () => (
+  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <CircularProgress />
+  </Box>
+);
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -35,6 +44,7 @@ const App = () => {
     <GlobalProvider>
       <AuthProvider>
         <Router>
+          <Suspense fallback={<PageFallback />}>
           <Routes>
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/home" element={<HomePage />} />
@@ -69,6 +79,7 @@ const App = () => {
             <Route path="/docs/:version/:section" element={<Navigate to="overview" replace />} />
             <Route path="/docs/:version/:section/:page" element={<DocsPage />} />
           </Routes>
+          </Suspense>
         </Router>
       </AuthProvider>
     </GlobalProvider>

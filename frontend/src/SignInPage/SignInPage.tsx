@@ -33,24 +33,35 @@ const defaultTheme = createTheme();
 
 const SignInPage = () => {
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = React.useState<string | null>(null); // State to store error message
+  const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+  const [loading, setLoading] = React.useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const username = data.get('username') as string;
+    const username = (data.get('username') as string)?.trim();
     const password = data.get('password') as string;
 
-    // Call the authenticate function
-    const isAuthenticated = await authenticate(username, password);
+    // Client-side validation
+    if (!username || !password) {
+      setErrorMessage('Please enter both username and password.');
+      return;
+    }
 
-    if (isAuthenticated) {
-      // If authentication is successful, redirect to home page
-      navigate('/');
-      navigate(0);
-    } else {
-      // If authentication fails, show an error message
-      setErrorMessage('Invalid username or password. Please try again.');
+    setLoading(true);
+    setErrorMessage(null);
+    try {
+      const isAuthenticated = await authenticate(username, password);
+      if (isAuthenticated) {
+        navigate('/');
+        navigate(0);
+      } else {
+        setErrorMessage('Invalid username or password. Please try again.');
+      }
+    } catch {
+      setErrorMessage('Network error. Please check your connection and try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -121,9 +132,10 @@ const SignInPage = () => {
                 type="submit"
                 fullWidth
                 variant="contained"
+                disabled={loading}
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                {loading ? 'Signing in…' : 'Sign In'}
               </Button>
 
               <Grid container>

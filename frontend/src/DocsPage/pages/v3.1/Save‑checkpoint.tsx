@@ -3,11 +3,8 @@ import { Box } from "@mui/material";
 import {
   DocHeader,
   DocText,
-  DocLink,
   DocList,
   DocListItem,
-  DocInlineCode,
-  DocCodeBlock,
   DocCallout
 } from "../../components/DocComponents";
 import img_v3_1_save_checkpoint_dialog_jpeg from "../../photos/v3.1/save_checkpoint_dialog.jpeg";
@@ -64,9 +61,6 @@ Open History at the bottom right of the page, click the desired snapshot, and Co
 > Restored checkpoints can be edited and saved again, giving you flexible version control.
 `;
 
-const tableStyle: React.CSSProperties = { borderCollapse: "collapse", width: "100%", marginBottom: "24px", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", border: "1px solid #e5e7eb" };
-const thStyle: React.CSSProperties = { borderBottom: "2px solid #e5e7eb", padding: "12px 16px", textAlign: "left", backgroundColor: "#f9fafb", color: "#374151", fontWeight: 600 };
-const tdStyle: React.CSSProperties = { borderBottom: "1px solid #e5e7eb", padding: "12px 16px", color: "#4b5563" };
 
 export default function Savecheckpoint() {
   return (

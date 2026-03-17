@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useContext, useEffect } from 'react';
+import React, { useState, useMemo, useContext, useEffect, useRef } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -992,8 +992,6 @@ const TwoSideComparisonDialog: React.FC<TwoSideComparisonDialogProps> = ({
   const [isMerging, setIsMerging] = useState(false);
   const [mergeResult, setMergeResult] = useState<MergeResult | null>(null);
 
-  // Legacy state (kept for potential future use)
-  const [isMergeDialogOpen, setIsMergeDialogOpen] = useState(false);
   const [showEntityList, setShowEntityList] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [addEntityDialogOpen, setAddEntityDialogOpen] = useState(false);
@@ -1004,6 +1002,14 @@ const TwoSideComparisonDialog: React.FC<TwoSideComparisonDialogProps> = ({
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarSeverity, setSnackbarSeverity] = useState<'error' | 'success'>('error');
+
+  const mergeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (mergeTimerRef.current) clearTimeout(mergeTimerRef.current);
+    };
+  }, []);
 
   // Get settings and state setters from global context
   const globalContext = useContext(GlobalContext);
@@ -1115,8 +1121,7 @@ const TwoSideComparisonDialog: React.FC<TwoSideComparisonDialogProps> = ({
         onMergeSuccess(response.data);
       }
 
-      // Auto close after successful merge with delay
-      setTimeout(() => {
+      mergeTimerRef.current = setTimeout(() => {
         handleCloseMergePreview();
         onClose();
       }, 2000);
@@ -1130,25 +1135,6 @@ const TwoSideComparisonDialog: React.FC<TwoSideComparisonDialogProps> = ({
     } finally {
       setIsMerging(false);
     }
-  };
-
-  // --- Legacy handlers (kept for potential future use) ---
-  const handleOpenMergeDialog = () => {
-    setIsMergeDialogOpen(true);
-  };
-
-  const handleCloseMergeDialog = () => {
-    setIsMergeDialogOpen(false);
-  };
-
-  const handleConfirmMerge = async (options: MergeOptions): Promise<MergeResult> => {
-    if (onMerge) {
-      return await onMerge(options);
-    }
-    return {
-      success: false,
-      message: 'Merge handler not provided.'
-    };
   };
 
   const handleToggleEditMode = () => {

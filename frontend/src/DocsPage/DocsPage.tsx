@@ -14,10 +14,7 @@ import {
   ListItemButton,
   ListItemText,
   ListItemIcon,
-  Divider,
-  Collapse,
   FormControl,
-  InputLabel,
   Select,
   MenuItem,
   IconButton,
@@ -32,7 +29,7 @@ import {
   Typography,
 } from "@mui/material";
 import {
-  ExpandLess, ExpandMore, Menu as MenuIcon,
+  Menu as MenuIcon,
   Article, PlayArrow, QuestionAnswer, SupportAgent,
   Login, Dashboard, Visibility, AutoFixHigh, Edit,
   GetApp, TableChart, Event, Save, CheckCircle, FormatAlignJustify, Person,
@@ -289,23 +286,6 @@ export default function DocsPage() {
     }
   }, [rv, rs, rp, version, section, page, navigate]);
 
-  /* -------- Collapse state -------- */
-  const [openMap, setOpenMap] = React.useState<Record<string, boolean>>(() => {
-    const m: Record<string, boolean> = {};
-    sectionKeys.forEach((s) => (m[s] = s === section));
-    return m;
-  });
-  React.useEffect(() => {
-    // Reset open map when version changes
-    setOpenMap((m) => {
-      const n: Record<string, boolean> = {};
-      sectionKeys.forEach((s) => (n[s] = s === section));
-      return n;
-    });
-  }, [sectionKeys, section]);
-
-  const toggleSection = (s: string) => () => setOpenMap((m) => ({ ...m, [s]: !m[s] }));
-
   /* -------- Keyboard Shortcut for Search -------- */
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -536,7 +516,6 @@ export default function DocsPage() {
         }}
       >
         {sectionKeys.map((sec) => {
-          const open = openMap[sec];
           const secData = docsStructure[sec];
           return (
             <Box key={sec} sx={{ mb: 2 }}>

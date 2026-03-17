@@ -3,12 +3,7 @@ import { Box } from "@mui/material";
 import {
   DocHeader,
   DocText,
-  DocLink,
-  DocList,
-  DocListItem,
-  DocInlineCode,
-  DocCodeBlock,
-  DocCallout
+  DocLink
 } from "../../components/DocComponents";
 import img_Sign_in_header_png from "../../photos/Sign_in_header.png";
 import img_Sign_in_png from "../../photos/Sign_in.png";
@@ -67,9 +62,6 @@ If you are a new user, click Sign Up in the same header area. Fill in the reques
 </figure>
 `;
 
-const tableStyle: React.CSSProperties = { borderCollapse: "collapse", width: "100%", marginBottom: "24px", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", border: "1px solid #e5e7eb" };
-const thStyle: React.CSSProperties = { borderBottom: "2px solid #e5e7eb", padding: "12px 16px", textAlign: "left", backgroundColor: "#f9fafb", color: "#374151", fontWeight: 600 };
-const tdStyle: React.CSSProperties = { borderBottom: "1px solid #e5e7eb", padding: "12px 16px", color: "#4b5563" };
 
 export default function Loginsignup() {
   return (

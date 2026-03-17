@@ -94,6 +94,15 @@ const EntityEditPanel = ({
 
   const availableRelationTypes = getRelationTypesForSource(allRelationTypes, entityType);
 
+  // Track whether anything has actually changed
+  const origRelations = toRelations(highlight.relations ?? []);
+  const hasChanges =
+    entityType !== (highlight.comment ?? '') ||
+    userComment !== (highlight.user_comment ?? '') ||
+    currentHeadPos !== headPos ||
+    currentTailPos !== tailPos ||
+    JSON.stringify(relations) !== JSON.stringify(origRelations);
+
   const currentTypeDef = entityTypes.find(e => e.type === entityType);
   const typeBg = currentTypeDef?.bgColor ?? '#888';
   const typeFg = getContrastColor(typeBg);
@@ -308,7 +317,7 @@ const EntityEditPanel = ({
               color="primary"
               variant="contained"
               onClick={handleSave}
-              disabled={saving}
+              disabled={saving || !hasChanges}
               sx={{ minWidth: 70 }}
             >
               {saving ? 'Saving…' : 'Save'}

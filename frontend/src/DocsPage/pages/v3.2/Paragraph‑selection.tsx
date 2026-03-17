@@ -3,11 +3,8 @@ import { Box } from "@mui/material";
 import {
   DocHeader,
   DocText,
-  DocLink,
   DocList,
   DocListItem,
-  DocInlineCode,
-  DocCodeBlock,
   DocCallout
 } from "../../components/DocComponents";
 import img_v3_1_adjust_selection_dialog_jpeg from "../../photos/v3.1/adjust_selection_dialog.jpeg";
@@ -84,9 +81,6 @@ The viewer updates instantly no need to re process the document.
 Paragraph selection is non destructive; unselected text remains intact and can be brought back whenever required.
 `;
 
-const tableStyle: React.CSSProperties = { borderCollapse: "collapse", width: "100%", marginBottom: "24px", fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", border: "1px solid #e5e7eb" };
-const thStyle: React.CSSProperties = { borderBottom: "2px solid #e5e7eb", padding: "12px 16px", textAlign: "left", backgroundColor: "#f9fafb", color: "#374151", fontWeight: 600 };
-const tdStyle: React.CSSProperties = { borderBottom: "1px solid #e5e7eb", padding: "12px 16px", color: "#4b5563" };
 
 export default function Paragraphselection() {
   return (

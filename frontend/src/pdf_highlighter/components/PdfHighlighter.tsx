@@ -620,9 +620,6 @@ export const PdfHighlighter = ({
         0, // Default z coord
       ],
     });
-    let viewport = scaledToViewport(boundingRect, pageViewport, usePdfCoordinates);
-    // viewport.
-    
     let brat_item = undefined;
     if (selectedMode == "Events") {
       let org_brat_item = highlight.para_id !== undefined ? bratOutput[highlight.para_id] : undefined;
@@ -875,7 +872,7 @@ export const PdfHighlighter = ({
               }}
               pdfHighlighterUtils={pdfHighlighterUtils}
               onOpenTreeDialog={(tableID) =>
-                handleOpenTreeDialog(tableID)
+                handleOpenTreeDialog(String(tableID))
               }
             />
           </DialogContent>

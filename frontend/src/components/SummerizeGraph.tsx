@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Network, DataSet } from 'vis-network/standalone';
+import { Network, DataSet, Node as VisNode, Edge as VisEdge, Options } from 'vis-network/standalone';
 import 'vis-network/styles/vis-network.css';
 import { 
   Box, 
   Typography, 
   CircularProgress, 
-  Alert, 
-  Chip, 
+  Chip,
   Stack, 
   IconButton, 
   Tooltip,
@@ -18,7 +17,6 @@ import {
   ListItem,
   ListItemText,
   ListItemIcon,
-  Button,
   Link
 } from '@mui/material';
 import { 
@@ -44,43 +42,34 @@ interface NodeParagraph {
   type?: string;
 }
 
-interface GraphNode {
+interface GraphNode extends VisNode {
   id: string;
   label: string;
-  shape?: string;
-  color?: {
-    background?: string;
-    border?: string;
-  };
-  font?: {
-    size?: number;
-    bold?: boolean;
-    color?: string;
-  };
-  hidden?: boolean; 
-  x?: number;
-  y?: number;
-  physics?: boolean;
-  paragraphs?: NodeParagraph[]; 
+  paragraphs?: NodeParagraph[];
 }
 
-interface GraphEdge {
+interface GraphEdge extends VisEdge {
   from: string;
   to: string;
-  label?: string;
-  arrows?: string;
 }
 
 interface SummarizeGraphProps {
   data?: {
     nodes: GraphNode[];
     edges: GraphEdge[];
-    options?: any;
+    options?: Record<string, unknown>;
   };
   loading: boolean;
   topK: number;
   onTopKChange: (k: number) => void;
 }
+
+const getColorBackground = (color: VisNode['color']): string | undefined => {
+  if (typeof color === 'object' && color !== null && 'background' in color) {
+    return color.background;
+  }
+  return typeof color === 'string' ? color : undefined;
+};
 
 // Helper to extract category from label "CATEGORY: Content"
 const getNodeCategory = (label: string) => {
@@ -171,8 +160,9 @@ export default function SummarizeGraph({
     const catMap: Record<string, string> = {};
     nodes.forEach(node => {
       const cat = getNodeCategory(node.label);
-      if (!catMap[cat] && node.color?.background) {
-        catMap[cat] = node.color.background;
+      const bg = getColorBackground(node.color);
+      if (!catMap[cat] && bg) {
+        catMap[cat] = bg;
       }
     });
     setCategories(catMap);
@@ -244,7 +234,7 @@ export default function SummarizeGraph({
         width: 1,
         color: { color: '#B0BEC5', highlight: '#2196F3' },
         arrows: { to: { enabled: true, scaleFactor: 0.5 } },
-        smooth: { type: 'continuous', roundness: 0 },
+        smooth: { enabled: true, type: 'continuous', roundness: 0 },
         font: { size: 10, align: 'middle', strokeWidth: 3, strokeColor: '#ffffff' }
       },
       physics: {
@@ -276,8 +266,8 @@ export default function SummarizeGraph({
 
     const net = new Network(
       containerRef.current,
-      { nodes: nodesDataSet.current, edges: edgesDataSet.current },
-      options
+      { nodes: nodesDataSet.current as DataSet<VisNode>, edges: edgesDataSet.current as DataSet<VisEdge> },
+      options as Options
     );
 
     const resizeObserver = new ResizeObserver(() => {
@@ -292,13 +282,13 @@ export default function SummarizeGraph({
 
     // 1. Click Handler (Expand + Select)
     net.on('click', (params) => {
-      const clickedNodeId = params.nodes[0];
+      const clickedNodeId = String(params.nodes[0]);
 
       // --- HANDLE SELECTION FOR SIDE PANEL ---
       if (clickedNodeId && nodesDataSet.current) {
         // VisJS DataSet stores the full object passed to it, so 'paragraphs' should be present
         const node = nodesDataSet.current.get(clickedNodeId);
-        setSelectedNode(node as GraphNode); 
+        if (node) setSelectedNode(node);
       } else {
         setSelectedNode(null); // Clicked background -> Hide panel
         return; // Stop processing if background click
@@ -323,7 +313,7 @@ export default function SummarizeGraph({
           }
         }
         const existingEdges = edgesDataSet.current!.get({
-          filter: (e: any) => e.from === edge.from && e.to === edge.to
+          filter: (e: GraphEdge) => e.from === edge.from && e.to === edge.to
         });
         if (existingEdges.length === 0) {
           newEdges.push(edge);
@@ -333,7 +323,7 @@ export default function SummarizeGraph({
 
       if (hasChanges) {
         nodesDataSet.current.add(newNodes);
-        edgesDataSet.current.add(newEdges);
+        edgesDataSet.current!.add(newEdges);
         net.setOptions({ physics: { enabled: true } });
         setPhysicsEnabled(true);
       }
@@ -420,14 +410,16 @@ export default function SummarizeGraph({
 
         if (initialNodes.length > 0) nodesDataSet.current.add(initialNodes);
         if (initialEdges.length > 0) edgesDataSet.current.add(initialEdges);
-        
-        setTimeout(() => {
+
+        const timerId = setTimeout(() => {
             if (networkRef.current) {
                 networkRef.current.redraw();
                 networkRef.current.fit({ animation: true });
             }
         }, 150);
+        return () => clearTimeout(timerId);
     }
+    return undefined;
   }, [data]);
 
   return (
@@ -620,7 +612,7 @@ export default function SummarizeGraph({
                 <Chip 
                   label={getNodeCategory(selectedNode.label)} 
                   size="small" 
-                  sx={{ mt: 1, height: 20, fontSize: '0.65rem', fontWeight: 'bold', bgcolor: selectedNode.color?.background, color: '#fff' }} 
+                  sx={{ mt: 1, height: 20, fontSize: '0.65rem', fontWeight: 'bold', bgcolor: getColorBackground(selectedNode.color), color: '#fff' }} 
                 />
               </Box>
               <IconButton size="small" onClick={handleClosePanel} sx={{ mt: -0.5, mr: -0.5 }}>

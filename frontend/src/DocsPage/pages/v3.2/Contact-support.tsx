@@ -4,10 +4,6 @@ import {
   DocHeader,
   DocText,
   DocLink,
-  DocList,
-  DocListItem,
-  DocInlineCode,
-  DocCodeBlock,
   DocCallout
 } from "../../components/DocComponents";
 import img_v3_1_contact_support_png from "../../photos/v3.1/contact_support.png";

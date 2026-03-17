@@ -2,13 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import {
   DocHeader,
-  DocText,
-  DocLink,
-  DocList,
-  DocListItem,
-  DocInlineCode,
-  DocCodeBlock,
-  DocCallout
+  DocText
 } from "../../components/DocComponents";
 import img_v3_1_filter_entity_jpeg from "../../photos/v3.1/filter_entity.jpeg";
 import img_v3_1_filter_icon_jpeg from "../../photos/v3.1/filter_icon.jpeg";

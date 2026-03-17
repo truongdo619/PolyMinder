@@ -25,7 +25,7 @@ const ForgotPasswordPage = () => {
   const handleSubmit = async () => {
     setIsActive(true); // Show the loading spinner
     try {
-      const response = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/forget-password/`,
         { email }
       );

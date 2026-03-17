@@ -162,4 +162,4 @@ Key backend endpoints used by the frontend (all via `VITE_BACKEND_URL`):
 - **API pattern** — Most API calls follow: POST/GET via `axiosInstance` → response includes `filename` → PDF URL constructed as `VITE_PDF_BACKEND_URL/statics/${filename}`.
 - **`pdf_highlighter`** is designed as an independent library but lives in-tree. Two re-export files exist: `src/context.ts` and `src/react-pdf-highlighter-extended.ts`.
 - **Types** — `CommentedHighlight` (extends `Highlight` with `comment` and `relations`) is defined in both `src/types.ts` and `src/pdf_highlighter/types.ts`.
-- **Do not modify:** `LLMSidebar copy.tsx` (stale copy), `DocumentList.legacy.tsx` (legacy backup).
+- **Deleted stale files (2026-03-15 audit):** `LLMSidebar copy.tsx`, `DocumentList.legacy.tsx`, `context.ts`, `Editing-function copy.tsx` — confirmed unused, removed.
